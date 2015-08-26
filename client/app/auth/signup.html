@@ -1,0 +1,24 @@
+<div class="auth">
+  <div class="container">      
+    <header-non-auth-partial></header-non-auth-partial>
+    <div class="auth__message" ng-show="!!message">{{ message }}</div>
+    <form class="auth-form" ng-submit="signup()">
+      <h2 class="auth-form__title">Sign up now!</h2>
+      <div class="auth-form__group">
+        <label for="username">Username:</label>
+        <input id="username" type="text" class="form-control" ng-model="user.username">
+      </div>
+      <div class="auth-form__group">
+        <label for="username">Password:</label>
+        <input class="form-control" type="password" ng-model="user.password">
+      </div>
+      <div class="auth-form__footer">
+        <button type="submit" class="btn btn--large btn--secondary">Sign Up</button>
+      </div>
+    </form>
+    <div class="auth__footer">
+      Already have an account?
+      <a href="#/signin">Sign in!</a>
+    </div>
+  </div>
+</div><!-- /auth -->

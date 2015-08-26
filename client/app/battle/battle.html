@@ -1,0 +1,89 @@
+<header-main user-info="userInfo"></header-main>
+
+<main class="main">
+  <div class="container">
+    <div class="battle">
+      
+      <div class="battle-waiting" ng-class="{'active': showBattleWaitingArea == true}">
+        <h1>Waiting for opponent...</h1>
+        <p>When both of you are ready, click the buttons!</p>
+        <div class="grid grid--l battle-waiting__buttons">
+          <div class="grid__item grid__item--50-l battle-waiting__opp">
+            <button ng-class="userReadyClass" class="btn btn--primary btn--large btn--block" ng-click="updateUserReadyState()">{{ userReadyText }}</button>
+          </div>
+          <div class="grid__item grid__item--50-l battle-waiting__opp">
+            <button ng-class="opponentReadyClass" class="btn btn--primary btn--large btn--block">{{ opponentReadyText }}</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="battle-field" ng-class="battleFieldClass">
+        
+        <div class="battle-field__header">
+          <p>{{ user }} <span>-vs-</span> {{ opponent }}</p>
+        </div><!-- /battlefield header -->
+
+        <div class="grid grid--l">
+          
+          <div class="grid__item grid__item--33-l">
+            <div class="battle-prompt">
+              <h1 class = "promptName"> {{promptName}}</h1><br>
+              <h3 class="battle-prompt__title">Prompt:</h3>
+
+              <div class="battle-prompt__description" ng-show="!!battleDescription" ng-bind-html="battleDescription"></div>
+              <div class = "exampleFixture">{{ exampleFixture}} </div>
+            </div><!-- /battle-prompt -->
+            <div class = "exampleFixture">{{ exampleFixture}} </div>
+          </div><!-- grid item -->
+
+          <div class="grid__item grid__item--66-l">
+
+            <div class="battle-player battle-player--user">
+              <h3 class="battle-player__heading">Your solution:</h3>
+              <form action="#" class="editor">
+                <div class="editor__field">
+                  <textarea name="editor--user" id="editor--user" class="editor__text"></textarea>
+                </div>
+                <div class="editor__footer">
+                  <button type="submit" class="btn btn--secondary btn--small" ng-click="attemptBattle($event)">
+                    {{ userButtonAttempt }}
+                  </button>
+                </div>
+              </form><!-- /editor -->
+            </div><!-- /battle-player battle-player user -->
+
+            <div class="grid grid--l">
+              <div class="grid__item grid__item--66-l">
+                <div class="battle-notices">
+                  <h3 class="battle-notices__heading">Notifications:</h3>
+                  <div class="battle-notices__notes">
+                    {{ userNotes }}
+                  </div>
+                </div><!-- /battle-notices -->
+              </div><!-- /grid__item -->
+              <div class="grid__item grid__item--33-l">
+                <div class="battle-player battle-player--opponent">
+                  <h3 class="battle-player__heading">Opponent:</h3>
+                  <form action="#" class="editor">
+                    <div class="editor__field">
+                      <textarea name="editor--opponent" id="editor--opponent" class="editor__text"></textarea>
+                    </div>
+                  </form><!-- /editor -->
+                </div><!-- /battle-player battle-player opponent -->
+              </div><!-- /grid__item -->
+            </div><!-- /grid -->
+
+          </div><!-- /grid item -->
+
+        </div><!-- /grid -->
+      </div><!-- battle-field -->
+
+      <div class="spinner-container" ng-class="{active: spinnerOn === true}">
+        <div class="spinner"></div>
+      </div><!-- /spinner -->
+  
+    </div><!-- /battle -->
+  </div><!-- /container -->
+</main><!-- /main -->
+
+<footer-partial></footer-partial>

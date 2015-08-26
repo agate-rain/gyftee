@@ -1,0 +1,29 @@
+/* -----------------------------------------------------------------------------
+
+  TEXT
+  
+----------------------------------------------------------------------------- */
+
+a {
+  color: $color--theme-orange;
+  text-decoration: none;
+}
+
+a:hover {
+  color: darken($color--theme-orange, 20%);
+}
+
+b,
+strong {
+  font-weight: 700;
+}
+
+i,
+em {
+  font-style: italic;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}

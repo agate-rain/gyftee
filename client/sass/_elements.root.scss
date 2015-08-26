@@ -1,0 +1,20 @@
+/* -----------------------------------------------------------------------------
+
+  ELEMENTS
+  
+----------------------------------------------------------------------------- */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  color: $color--neutral;
+  background-color: $color--theme-blue-dark;
+  font-family: $font-family--primary;
+  font-size: $font-size--small;
+  line-height: $line-height--medium;
+}

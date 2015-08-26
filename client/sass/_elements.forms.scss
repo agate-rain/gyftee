@@ -1,0 +1,26 @@
+/* -----------------------------------------------------------------------------
+
+  FORMS
+  
+----------------------------------------------------------------------------- */
+
+input,
+textarea,
+button {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}

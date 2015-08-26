@@ -1,0 +1,35 @@
+/* -----------------------------------------------------------------------------
+
+  TEXT
+  
+----------------------------------------------------------------------------- */
+
+.lead {
+  color: $color--theme-blue-mid;
+  font-size: $font-size--medium;
+  text-align: center;
+}
+
+@media all and (min-width: 600px) {
+
+  .lead {
+    font-size: $font-size--large;
+  }
+
+}
+
+@media all and (min-width: 840px) {
+
+  .lead {
+    font-size: $font-size--xlarge;
+  }
+
+}
+
+@media all and (min-width: 1080px) {
+
+  .lead {
+    font-size: $font-size--xxlarge;
+  }
+
+}

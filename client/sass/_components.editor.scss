@@ -1,0 +1,28 @@
+/* -----------------------------------------------------------------------------
+
+  EDITOR COMPONENTS
+  
+----------------------------------------------------------------------------- */
+
+.editor {
+
+}
+
+.editor__field {
+  margin-bottom: 12px;
+}
+
+.editor__text {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* code mirror theme overrides */
+
+.cm-s-material {
+  background-color: $color--theme-blue-dark;
+}
+.cm-s-material .CodeMirror-gutters {
+  background: $color--theme-blue-dark;
+}

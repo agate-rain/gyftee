@@ -1,0 +1,32 @@
+/* -----------------------------------------------------------------------------
+
+  HEADER
+  
+----------------------------------------------------------------------------- */
+
+.header {
+  padding: 24px 0;
+  background-color: $color--theme-blue-dark;
+}
+
+.header__inner {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.header__logo {
+  flex: 0 0 100%;
+  margin: 0 0 24px 0;
+  text-align: center;
+}
+
+@media all and (min-width: 600px) {
+  
+  .header__logo {
+    flex: 1;
+    margin: 0;
+    text-align: left;
+  }
+
+}
