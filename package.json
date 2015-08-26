@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "homepage": "https://github.com/agate-rain/gifty",
   "authors": [
+    "Ben Biran <benbiran@gmail.com>",
+    "Jennie Kim Eldon <thejenniekim@gmail.com>",
+    "Eric Le <therealericle@gmail.com>",
+    "Chris Saden <csaden@gmail.com>"
   ],
   "license": "MIT",
   "dependencies": {
