@@ -1,0 +1,35 @@
+machine:
+  services:
+    - cassandra
+  python:
+    version: 3.4.2
+  environment:
+    DISPLAY: 8000
+    CASSANDRA_DATABASE: 'circle_test'
+    CASSANDRA_DATABASE_USER: 'ubuntu'
+    CASSANDRA_DATABASE_PASSWORD: 'ubuntu'
+    CASSANDRA_DATABASE_SERVER: 'localhost'
+dependencies:
+  pre:
+    - mysql -uubuntu -e"SET PASSWORD FOR 'ubuntu'@'localhost' = PASSWORD('ubuntu')"
+    - pip install awsebcli
+    - eb init gifty -p Node.js -r us-west-2
+test: 
+  pre: 
+    - node server/db/schema.js clean
+    - node server/db/schema.js create
+  override:
+    - grunt test
+deployment:
+  staging:
+    branch: master
+    commands:
+      - eb deploy gifty-staging --timeout 10
+      - aws elasticbeanstalk create-environment --application-name gifty --environment-name gifty-tweet-handler --tier "Name=WebServer,Type=Standard,Version=1.0" --template-name "64bit Amazon Linux 2015.03 v1.4.4 running Node.js"
+      - eb deploy gifty-tweet-handler --timeout 10
+      - aws elasticbeanstalk create-environment --application-name gifty --environment-name gifty-streaming --tier "Name=WebServer,Type=Standard,Version=1.0" --template-name "64bit Amazon Linux 2015.03 v1.4.4 running Node.js"
+      - eb deploy gifty-streaming --timeout 10
+  production:
+    branch: production
+    commands:
+      - eb deploy thesis-production --timeout 10
