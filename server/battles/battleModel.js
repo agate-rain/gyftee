@@ -18,7 +18,7 @@ var ImageSchema = new mongoose.Schema({
     type: String
   }
   
-});
+});s
 
 ImageSchemamethods.generateHash = function () {
   var rand = Math.random().toString();
