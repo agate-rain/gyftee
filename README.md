@@ -47,14 +47,14 @@ Get personalized birthday gift ideas for your family and friends
 ### Build First Components 
 
 1. Build Process
-- Create tests and tasks to compile the application (automated)
-- Aimed at facilitating continuous development (later can re-tune to focus on max performance)
+  - Create tests and tasks to compile the application (automated)
+  - Aimed at facilitating continuous development (later can re-tune to focus on max performance)
 2. Design
-- Code and augment application architecture  
-- Refactor code
-- Update tests and iterate 
+  - Code and augment application architecture  
+  - Refactor code
+  - Update tests and iterate 
 3. Deployment and Environment 
-- Automate the release process 
-- Configure different host environments, and define the services and databases they interact with
-- Deliver changes to hosted environment
+  - Automate the release process 
+  - Configure different host environments, and define the services and databases they interact with
+  - Deliver changes to hosted environment
 
