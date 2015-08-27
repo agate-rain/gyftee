@@ -33,6 +33,7 @@ Get personalized birthday gift ideas for your family and friends
 - Elastic Beanstalk
 
 ## Roadmap 
-- TODO: In Asana 
+- [Product scope (Asana)](https://app.asana.com/0/46865547141591/list)
+- [Sprint schedule (Asana)](https://app.asana.com/0/46865547141637/list)
 
 
