@@ -1,6 +1,6 @@
 # gyftee
 
-Get personalized, surprising and irreverent gift ideas for your family and friends. 
+Get personalized, surprising and irreverent gift ideas for your family and friends.
 
 ## Dev Team 
 - Product Owner: Eric Le
@@ -23,9 +23,9 @@ Type these commands to get started:
 
 - React 
 - Redux
-- Reapp 
+- Reapp
 
-### Back End 
+### Back End
 
 - Node/Express
 - MongoDB/Mongoose
@@ -36,7 +36,7 @@ Type these commands to get started:
 
 **Build System**
 
-- Webpack 
+- Webpack
 
 **Deployment**
 
@@ -55,21 +55,20 @@ Type these commands to get started:
 - Ensure that releases conform to performance best practices
 - Test all deployed code prior to release
 
-### Build First Components 
+### Build First Components
 
 1. Build Process
-  - Create tests and tasks to compile the application (automated)
-  - Aimed at facilitating continuous development (later can re-tune to focus on max performance)
+ - Create tests and tasks to compile the application (automated)
+ - Aimed at facilitating continuous development (later can re-tune to focus on max performance)
 2. Design
-  - Code and augment application architecture  
-  - Refactor code
-  - Update tests and iterate 
+ - Code and augment application architecture  
+ - Refactor code
+ - Update tests and iterate 
 3. Deployment and Environment 
-  - Automate the release process 
-  - Configure different host environments, and define the services and databases they interact with
-  - Deliver changes to hosted environment
+ - Automate the release process 
+ - Configure different host environments, and define the services and databases they interact with
+ - Deliver changes to hosted environment
 
 ## Contributing
 
 See [_CONTRIBUTING.md](_CONTRIBUTING.md) for contribution guidelines.
-
