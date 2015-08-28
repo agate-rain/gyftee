@@ -1,20 +1,19 @@
-var model = require('mongoose').model;
-var Schema = require('mongoose').Schema;
+var mongoose = require('mongoose');
 
-var GiftListSchema = new Schema({
+var GiftListSchema = new mongoose.Schema({
   userId: {
-    type: ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
   // giftee
   friendId: {
-    type: ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
   gifts: [{
-    type: ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Gift'
   }]
 });
 
-module.exports = model('GiftList', GiftListSchema);
+module.exports = mongoose.model('GiftList', GiftListSchema);

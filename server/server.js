@@ -34,4 +34,3 @@ app.listen(port);
 
 console.log('Magical gifts on port ' + port);
 module.exports = app;
-
