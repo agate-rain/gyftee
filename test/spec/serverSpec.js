@@ -1,7 +1,7 @@
+var utils = require('./serverUtils');
 var request = require('supertest');
-var express = require('express');
-var expect  = require('chai').expect;
-var app     = require('../../server/server.js');
+var should = require('should');
+var app = require('../../server/server');
 
 describe('information at root directory of server',
   function() {
@@ -10,14 +10,11 @@ describe('information at root directory of server',
   request(app)
     .get('/')
     // test passes if statusCode is 200
-    .expect(200, function(err, data) {
-      // display error in terminal
-      console.log('error: ', err);
-      // data is everything we get back from the server
-      console.log('data: ', data);
-    })
+    .expect(200)
     // test will timeout without end
-    .end(done);
+    .end(function(err, res) {
+      should.not.exist(err);
+      done();
+    });
   });
-
 });
