@@ -7,6 +7,16 @@ Get personalized birthday gift ideas for your family and friends
 - Scrum Master: Jennie Kim Eldon
 - Development Team: Ben Biran, Chris Saden
 
+## Installing Dependencies
+
+Type these commands to get started:
+
+1. `npm install` node dependencies
+2. `bower install` bower dependencies
+3. `brew install mongodb` if you need to install mongoDB client
+4. create `/data/db` folder at root directly if it doesn't exist already
+5. run `mongod` process from the terminal
+
 ## Tech Stack
 
 ### Front End
@@ -57,4 +67,8 @@ Get personalized birthday gift ideas for your family and friends
   - Automate the release process 
   - Configure different host environments, and define the services and databases they interact with
   - Deliver changes to hosted environment
+
+## Contributing
+
+See [_CONTRIBUTING.md](_CONTRIBUTING.md) for contribution guidelines.
 
