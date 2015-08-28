@@ -1,7 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var db = require('./config/dbConfig');
-var 
 
 var app = express();
 
@@ -16,10 +15,13 @@ mongoose.connection.once('connected', function(){
   console.log('Nifty gifty db is connected!');
 });
 
+// configure the server with all the middleware and the routing
+require('./config/middleware')(app, express);
+
 // will change this later for production
 var port = process.env.PORT || 3000;
 
 app.listen(port);
 
 console.log('Magical gifts on port ' + port);
-module.exports = app; 
+module.exports = app;

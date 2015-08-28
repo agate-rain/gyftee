@@ -1,7 +1,6 @@
-var model = require('mongoose').model;
-var Schema = require('mongoose').Schema;
+var mongoose = require('mongoose');
 
-var GiftSchema = new Schema({
+var GiftSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true
@@ -11,4 +10,4 @@ var GiftSchema = new Schema({
   }
 });
 
-module.exports = model('Gift', GiftSchema);
+module.exports = mongoose.model('Gift', GiftSchema);

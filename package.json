@@ -25,10 +25,11 @@
   "devDependencies": {
     "chai": "^3.2.0",
     "mocha": "^2.2.5",
+    "should": "^7.1.0",
     "supertest": "^1.1.0"
   },
   "scripts": {
     "test": "npm run test-node",
-    "test-node": "mocha -R spec ./test/spec/ServerSpec.js"
+    "test-node": "mocha -R spec ./test/spec/userModelSpec.js"
   }
 }
