@@ -30,6 +30,6 @@
   },
   "scripts": {
     "test": "npm run test-node",
-    "test-node": "mocha -R spec ./test/spec/ServerSpec.js"
+    "test-node": "mocha -R spec ./test/spec/userModelSpec.js"
   }
 }

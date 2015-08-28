@@ -16,7 +16,7 @@ mongoose.connection.once('connected', function(){
 });
 
 // configure the server with all the middleware and the routing
-require('./config/middleware.js')(app, express);
+require('./config/middleware')(app, express);
 
 // will change this later for production
 var port = process.env.PORT || 3000;
