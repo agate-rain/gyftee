@@ -3,16 +3,16 @@ var Schema = require('mongoose').Schema;
 
 var GiftListSchema = new Schema({
   userId: {
-    type: ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'User'
   },
   // giftee
   friendId: {
-    type: ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'User'
   },
   gifts: [{
-    type: ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'Gift'
   }]
 });

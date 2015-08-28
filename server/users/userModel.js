@@ -5,8 +5,7 @@ var Schema = require('mongoose').Schema;
 var UserSchema = new Schema({
   birthdate: {
     // may need to change to Date, using String bc we don't know what FB will give us
-    type: String,
-    required: true
+    type: String
   },
   fbToken: {
     type: String
