@@ -9,12 +9,10 @@ var UserSchema = new Schema({
     required: true
   },
   fbToken: {
-    type: String,
-    required: true
+    type: String
   },
   fbId: {
-    type: String,
-    required: true
+    type: String
   },
   friendsList: [{ // array that represents users, stored by _id that reference the target user
     type: Schema.Types.ObjectId,
