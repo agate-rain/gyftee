@@ -1,6 +1,6 @@
-# gifty
+# gyftee
 
-Get personalized birthday gift ideas for your family and friends 
+Get personalized, surprising and irreverent gift ideas for your family and friends. 
 
 ## Dev Team 
 - Product Owner: Eric Le
@@ -21,7 +21,8 @@ Type these commands to get started:
 
 ### Front End
 
-- MVC: Redux/React 
+- React 
+- Redux
 - Reapp 
 
 ### Back End 

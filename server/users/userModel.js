@@ -7,6 +7,10 @@ var UserSchema = new Schema({
     // may need to change to Date, using String bc we don't know what FB will give us
     type: String
   },
+  // user profile photo from fb nested in friend's picture object
+  pictureUrl: { 
+    type: String
+  },
   fbToken: {
     type: String
   },

@@ -1,8 +1,15 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var db = require('./config/dbConfig');
+var 
 
 var app = express();
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 mongoose.connect(db.url);
 mongoose.connection.once('connected', function(){
