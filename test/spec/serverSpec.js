@@ -3,8 +3,7 @@ var request = require('supertest');
 var should = require('should');
 var app = require('../../server/server');
 
-describe('information at root directory of server',
-  function() {
+describe('information at root directory of server', function() {
   it('is connecting locally', function(done) {
   // pass in our server to supertest
   request(app)

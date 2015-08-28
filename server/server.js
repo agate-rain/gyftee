@@ -15,6 +15,9 @@ mongoose.connection.once('connected', function(){
   console.log('Nifty gifty db is connected!');
 });
 
+// configure the server with all the middleware and the routing
+require('./config/middleware.js')(app, express);
+
 // will change this later for production
 var port = process.env.PORT || 3000;
 
