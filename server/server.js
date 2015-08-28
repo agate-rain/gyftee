@@ -1,7 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var db = require('./config/dbConfig');
-var 
 
 var app = express();
 
@@ -22,4 +21,4 @@ var port = process.env.PORT || 3000;
 app.listen(port);
 
 console.log('Magical gifts on port ' + port);
-module.exports = app; 
+module.exports = app;

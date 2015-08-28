@@ -1,8 +1,7 @@
-var request = require('supertest'),
-    express = require('express'),
-    expect  = require('chai').expect,
-    app     = require('../../server/server.js');
-
+var request = require('supertest');
+var express = require('express');
+var expect  = require('chai').expect;
+var app     = require('../../server/server.js');
 
 describe('information at root directory of server',
   function() {
