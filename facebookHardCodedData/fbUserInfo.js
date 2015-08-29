@@ -6,7 +6,7 @@
 FB.api(
   '/me',
   'GET',
-  {"fields":"id,name,birthday,friends,location,books,music,movies"},
+  {"fields":"id,name,birthday,friends,location,books,music,movies,picture"},
   function(response) {
       // Insert your code here
   }
