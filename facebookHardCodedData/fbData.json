@@ -1,0 +1,480 @@
+{
+  "id": "10100966909272887",
+  "name": "Chris Saden",
+  "birthday": "05/22/1986",
+  "friends": {
+    "data": [
+      {
+        "name": "Jennie Kim Eldon",
+        "id": "202385"
+      },
+      {
+        "name": "Justin Krause",
+        "id": "615719"
+      },
+      {
+        "name": "Adam Tetenbaum",
+        "id": "616080"
+      },
+      {
+        "name": "Debarshi Chaudhuri",
+        "id": "713437"
+      },
+      {
+        "name": "Francesco Lugli",
+        "id": "1107564"
+      },
+      {
+        "name": "Alex Laugh Lee",
+        "id": "2604088"
+      },
+      {
+        "name": "Solomon Messing",
+        "id": "3321330"
+      },
+      {
+        "name": "Alicia Paull Smith",
+        "id": "5001057"
+      },
+      {
+        "name": "Nicolas Artman",
+        "id": "6421341"
+      },
+      {
+        "name": "Garen Checkley",
+        "id": "8404474"
+      },
+      {
+        "name": "Vitaliy Levit",
+        "id": "10104361677485275"
+      },
+      {
+        "name": "Katey Basye",
+        "id": "16819899"
+      },
+      {
+        "name": "Alex Schultz",
+        "id": "36905751"
+      },
+      {
+        "name": "Tobias Kahn",
+        "id": "48100716"
+      },
+      {
+        "name": "Michael Wales",
+        "id": "505644766"
+      },
+      {
+        "name": "Jonathan Schapiro",
+        "id": "10153540585167565"
+      },
+      {
+        "name": "Gundega Dekena",
+        "id": "534614898"
+      },
+      {
+        "name": "Mathieu Tozer",
+        "id": "590655129"
+      },
+      {
+        "name": "Pat Shea",
+        "id": "681701524"
+      },
+      {
+        "name": "Glenn Shope",
+        "id": "748713548"
+      },
+      {
+        "name": "Russell Shearer",
+        "id": "1080090027"
+      },
+      {
+        "name": "Gabriel Sanchez",
+        "id": "1149750337"
+      },
+      {
+        "name": "Lakshman Mody",
+        "id": "1223850500"
+      },
+      {
+        "name": "Nick Romano",
+        "id": "1234020624"
+      },
+      {
+        "name": "Jeff Donovan",
+        "id": "10202378630258565"
+      }
+    ],
+    "paging": {
+      "next": "https://graph.facebook.com/v2.4/10100966909272887/friends?access_token=CAACEdEose0cBALyZCIx9Vx9e1uBU1WKEXL8usRuNEVWk76rt3Sr1mntZAeBBAck4EBjgmeLtZCZCZAIf8At0A8QAWWU02wGvvsCqYZCr8WoVPBL0K4aPPlAeJRzhA7HOFOLYTGfIrKZATadPDCElJNKgFjbPPutoH3iJMZA6ZAuYPmASN3x7ZCZBWhcNB3baxJ6L3CzcZAxViTI88FaZAvjp9YsE0&limit=25&offset=25&__after_id=enc_AdApIODI7UnmWPohJY3BOQ4SwgPGLJaQUhU0d8ZB5UpjsZCCRjSxI44IhLAum7rQCFowEZD"
+    },
+    "summary": {
+      "total_count": 1464
+    }
+  },
+  "location": {
+    "id": "114952118516947",
+    "name": "San Francisco, California"
+  },
+  "books": {
+    "data": [
+      {
+        "name": "On the Road",
+        "id": "613324775416871",
+        "created_time": "2014-05-01T23:57:41+0000"
+      },
+      {
+        "name": "Blink",
+        "id": "167157296770664",
+        "created_time": "2013-03-20T17:23:19+0000"
+      },
+      {
+        "name": "Where the Wild Things Are Book",
+        "id": "410309835650552",
+        "created_time": "2012-05-14T23:18:30+0000"
+      },
+      {
+        "name": "The Little Prince Official",
+        "id": "243775288975628",
+        "created_time": "2011-09-21T16:04:46+0000"
+      },
+      {
+        "name": "The Amazing Adventures of Kavalier & Clay",
+        "id": "103810286324477",
+        "created_time": "2011-09-14T05:43:25+0000"
+      },
+      {
+        "name": "Our Town",
+        "id": "112359518775723",
+        "created_time": "2010-06-21T07:36:34+0000"
+      },
+      {
+        "name": "The Polar Express",
+        "id": "109135859105463",
+        "created_time": "2010-06-21T07:36:34+0000"
+      },
+      {
+        "name": "Calvin and Hobbes",
+        "id": "107448119284549",
+        "created_time": "2010-06-21T07:36:35+0000"
+      },
+      {
+        "name": "Where's Waldo",
+        "id": "106046256100347",
+        "created_time": "2010-06-21T07:36:34+0000"
+      },
+      {
+        "name": "Blink (book)",
+        "id": "105711682796304",
+        "created_time": "2010-06-21T07:36:34+0000"
+      },
+      {
+        "name": "Where the Wild Things Are",
+        "id": "103975372971904",
+        "created_time": "2010-06-21T07:36:34+0000"
+      },
+      {
+        "name": "The Count of Monte Cristo",
+        "id": "103740319665080",
+        "created_time": "2010-06-21T07:36:34+0000"
+      },
+      {
+        "name": "The Facts Behind the Helsinki Roccamatios",
+        "id": "112166825461695",
+        "created_time": "2010-06-21T07:36:33+0000"
+      },
+      {
+        "name": "What Is the What",
+        "id": "110946662262949",
+        "created_time": "2010-06-21T07:36:33+0000"
+      },
+      {
+        "name": "On the Road",
+        "id": "109705612381196",
+        "created_time": "2010-06-21T07:36:33+0000"
+      },
+      {
+        "name": "The Little Prince",
+        "id": "105618116139414",
+        "created_time": "2010-06-21T07:36:33+0000"
+      },
+      {
+        "name": "Life of Pi",
+        "id": "104107972960350",
+        "created_time": "2010-06-21T07:36:33+0000"
+      }
+    ],
+    "paging": {
+      "cursors": {
+        "before": "NjEzMzI0Nzc1NDE2ODcx",
+        "after": "MTA0MTA3OTcyOTYwMzUw"
+      }
+    }
+  },
+  "music": {
+    "data": [
+      {
+        "name": "Dirtybird",
+        "id": "144340365663223",
+        "created_time": "2013-05-22T01:06:47+0000"
+      },
+      {
+        "name": "LCD Soundsystem",
+        "id": "12429835443",
+        "created_time": "2013-01-20T22:34:48+0000"
+      },
+      {
+        "name": "Swedish House Mafia",
+        "id": "69448024527",
+        "created_time": "2013-01-20T22:34:37+0000"
+      },
+      {
+        "name": "Zedd",
+        "id": "107281645968137",
+        "created_time": "2013-01-20T22:34:33+0000"
+      },
+      {
+        "name": "Hot Chip",
+        "id": "9270736186",
+        "created_time": "2013-01-20T22:34:23+0000"
+      },
+      {
+        "name": "Porter Robinson",
+        "id": "107343989324200",
+        "created_time": "2013-01-20T22:33:51+0000"
+      },
+      {
+        "name": "DJ HECTOR FONSECA",
+        "id": "23192090618",
+        "created_time": "2012-11-24T00:29:57+0000"
+      },
+      {
+        "name": "DJ Billy Lace",
+        "id": "204766770963",
+        "created_time": "2012-11-23T19:42:35+0000"
+      },
+      {
+        "name": "Hootie and the Blowfish",
+        "id": "146626978735281",
+        "created_time": "2012-05-16T21:03:30+0000"
+      },
+      {
+        "name": "Eddie Vedder",
+        "id": "241781485875968",
+        "created_time": "2011-11-15T20:31:55+0000"
+      },
+      {
+        "name": "Jimmy Eat World (EP)",
+        "id": "150770598297747",
+        "created_time": "2011-08-22T11:16:07+0000"
+      },
+      {
+        "name": "Spoon (band)",
+        "id": "112589422088640",
+        "created_time": "2011-08-22T11:16:07+0000"
+      },
+      {
+        "name": "Hootie & the Blowfish",
+        "id": "104107936292439",
+        "created_time": "2011-08-22T11:16:07+0000"
+      },
+      {
+        "name": "Passion Pit",
+        "id": "63224190085",
+        "created_time": "2013-08-07T08:09:44+0000"
+      },
+      {
+        "name": "Third Eye Blind",
+        "id": "34254940936",
+        "created_time": "2011-08-22T11:16:07+0000"
+      },
+      {
+        "name": "John Legend",
+        "id": "22516413022",
+        "created_time": "2011-08-22T11:16:07+0000"
+      },
+      {
+        "name": "Kings Of Leon",
+        "id": "6174621106",
+        "created_time": "2011-08-22T11:16:07+0000"
+      },
+      {
+        "name": "Eddie Vedder",
+        "id": "113390842005017",
+        "created_time": "2013-08-06T22:07:48+0000"
+      },
+      {
+        "name": "Mash-Ups",
+        "id": "108671822497920",
+        "created_time": "2011-08-22T11:16:06+0000"
+      },
+      {
+        "name": "Fleetwood Mac",
+        "id": "8340954137",
+        "created_time": "2011-08-22T11:16:06+0000"
+      },
+      {
+        "name": "Guster",
+        "id": "7219382370",
+        "created_time": "2011-08-22T11:16:06+0000"
+      },
+      {
+        "name": "Cut Copy",
+        "id": "6816454446",
+        "created_time": "2011-08-22T11:16:06+0000"
+      },
+      {
+        "name": "Snow Patrol",
+        "id": "6191917071",
+        "created_time": "2011-08-22T11:16:06+0000"
+      },
+      {
+        "name": "Jack Johnson",
+        "id": "5916438291",
+        "created_time": "2011-08-22T11:16:06+0000"
+      }
+    ],
+    "paging": {
+      "cursors": {
+        "before": "MTQ0MzQwMzY1NjYzMjIz",
+        "after": "NTkxNjQzODI5MQZDZD"
+      }
+    }
+  },
+  "movies": {
+    "data": [
+      {
+        "name": "Little Miss Sunshine Movie",
+        "id": "1486515668290043",
+        "created_time": "2014-10-08T21:13:45+0000"
+      },
+      {
+        "name": "Brick",
+        "id": "449849385154204",
+        "created_time": "2014-10-08T20:43:11+0000"
+      },
+      {
+        "name": "Lucky Number Slevin Movie",
+        "id": "549487441853040",
+        "created_time": "2014-10-08T20:36:15+0000"
+      },
+      {
+        "name": "Kill Bill",
+        "id": "179403312117362",
+        "created_time": "2014-01-22T15:46:21+0000"
+      },
+      {
+        "name": "Little Miss Sunshine",
+        "id": "453746614734057",
+        "created_time": "2013-11-14T02:28:10+0000"
+      },
+      {
+        "name": "Ocean's Eleven",
+        "id": "247282041954910",
+        "created_time": "2013-08-13T19:10:15+0000"
+      },
+      {
+        "name": "Rear Window",
+        "id": "475661712529668",
+        "created_time": "2013-07-24T21:04:40+0000"
+      },
+      {
+        "name": "Big Fish",
+        "id": "468745069868300",
+        "created_time": "2013-05-10T19:59:46+0000"
+      },
+      {
+        "name": "Cruel Intentions",
+        "id": "441669589243833",
+        "created_time": "2013-03-20T00:18:38+0000"
+      },
+      {
+        "name": "The Usual Suspects",
+        "id": "487680604610929",
+        "created_time": "2013-01-23T23:31:46+0000"
+      },
+      {
+        "name": "The Rock",
+        "id": "106201592748972",
+        "created_time": "2013-01-04T21:32:55+0000"
+      },
+      {
+        "name": "Memento",
+        "id": "285128358275044",
+        "created_time": "2012-11-28T20:56:06+0000"
+      },
+      {
+        "name": "The Shawshank Redemption",
+        "id": "103636093053996",
+        "created_time": "2012-11-20T19:27:55+0000"
+      },
+      {
+        "name": "Life of Pi Movie",
+        "id": "256181194411680",
+        "created_time": "2012-10-17T21:43:51+0000"
+      },
+      {
+        "name": "Clue",
+        "id": "345821172149964",
+        "created_time": "2012-06-22T22:34:09+0000"
+      },
+      {
+        "name": "Hot Fuzz",
+        "id": "290756150982190",
+        "created_time": "2012-03-29T22:52:45+0000"
+      },
+      {
+        "name": "Garden State",
+        "id": "350771801602185",
+        "created_time": "2012-01-27T23:54:38+0000"
+      },
+      {
+        "name": "Batman Begins",
+        "id": "246344278767961",
+        "created_time": "2012-01-07T00:21:50+0000"
+      },
+      {
+        "name": "Vertigo",
+        "id": "295412547167061",
+        "created_time": "2011-12-21T23:21:33+0000"
+      },
+      {
+        "name": "Life is Beautiful",
+        "id": "221464931239904",
+        "created_time": "2011-11-29T15:54:54+0000"
+      },
+      {
+        "name": "Pan's Labyrinth",
+        "id": "141847652583852",
+        "created_time": "2011-11-04T20:21:52+0000"
+      },
+      {
+        "name": "Braveheart",
+        "id": "217008138317240",
+        "created_time": "2011-08-19T20:08:56+0000"
+      },
+      {
+        "name": "Brick",
+        "id": "108374945849430",
+        "created_time": "2011-08-07T17:03:35+0000"
+      },
+      {
+        "name": "Cruel Intentions",
+        "id": "108374825850101",
+        "created_time": "2011-08-07T17:03:35+0000"
+      },
+      {
+        "name": "The Class (2008 film)",
+        "id": "103129449727771",
+        "created_time": "2011-08-07T17:03:35+0000"
+      }
+    ],
+    "paging": {
+      "cursors": {
+        "before": "MTQ4NjUxNTY2ODI5MDA0MwZDZD",
+        "after": "MTAzMTI5NDQ5NzI3Nzcx"
+      },
+      "next": "https://graph.facebook.com/v2.4/10100966909272887/movies?access_token=CAACEdEose0cBALyZCIx9Vx9e1uBU1WKEXL8usRuNEVWk76rt3Sr1mntZAeBBAck4EBjgmeLtZCZCZAIf8At0A8QAWWU02wGvvsCqYZCr8WoVPBL0K4aPPlAeJRzhA7HOFOLYTGfIrKZATadPDCElJNKgFjbPPutoH3iJMZA6ZAuYPmASN3x7ZCZBWhcNB3baxJ6L3CzcZAxViTI88FaZAvjp9YsE0&pretty=0&limit=25&after=MTAzMTI5NDQ5NzI3Nzcx"
+    }
+  },
+}
