@@ -12,7 +12,7 @@ var Friend = React.createClass({
 var FriendList = React.createClass({
   render: function() {
     var friends = [];
-    this.props.pals.forEach(function(friend) {
+    this.props.friends.forEach(function(friend) {
       friends.push(<Friend friend={friend} key={friend.id}/>);
     });
     return (
@@ -21,12 +21,44 @@ var FriendList = React.createClass({
   }
 });
 
-var Search = React.createClass({
+var FilterableFriends = React.createClass({
+  getInitialState: function () {
+    return {
+      filterText: ''
+    };
+  },
+
+  filterFacebookFriends: function(e) {
+    console.log(e.target);
+    this.setState( {filterText: e.target.value} );
+  },
+
   render: function() {
+    var friends = this.props.fbFriends,
+        filterText = this.state.filterText.trim().toLowerCase();
+
+    if (filterText.length > 0) {
+      // user is searching so filter the results
+      friends = friends.filter(function(friend) {
+        return friend.name.toLowerCase().match( filterText );
+      });
+    }
     return (
-      <form className="search friend-search">
-        <input type="text" placeholder="Search for your friends"/>
-      </form>
+      <div className="filtered-friends">
+        <input type="text" placeholder="Search for your friends" value={this.state.filterText} onChange={this.filterFacebookFriends}/>
+        <ul>
+          {
+            friends.map(function(friend) {
+              return (
+                <div className="friend-row">
+                  <span className="fb-photo">PHOTO</span>
+                  <span className="fb-friend-name">{friend.name}</span>
+                </div>
+              )
+            })
+          }
+        </ul>
+      </div>
     );
   }
 });
@@ -35,14 +67,15 @@ var FriendManager = React.createClass({
   render: function() {
     return (
       <div className="friend-manager">
-        <Search/>
-        <FriendList pals={this.props.friends}/>
+        <FilterableFriends fbFriends={this.props.facebookFriends}/>
+        <FriendList friends={this.props.appFriends}/>
       </div>
     );
   }
 });
 
-var FRIENDS = [
+
+var FACEBOOKFRIENDS = APP_FRIENDS = [
   {
     "name": "Jennie Kim Eldon",
     "id": "202385",
@@ -85,4 +118,4 @@ var FRIENDS = [
   }
 ]
 
-React.render(<FriendManager friends={FRIENDS}/>, document.getElementById('friend-manager-container'));
+React.render(<FriendManager facebookFriends={FACEBOOKFRIENDS} appFriends={APP_FRIENDS}/>, document.getElementById('friend-manager-container'));
