@@ -52,10 +52,12 @@ var FilterableFriends = React.createClass({
   },
 
   filterFacebookFriends: function(e) {
-    this.setState({
-      filterText: e.target.value,
-      resultsVisible: true
-    });
+    this.setState({filterText: e.target.value});
+    if (this.state.filterText.length === 0) {
+      this.setState({resultsVisible: true});
+    } else {
+      this.setState({resultsVisible: false});
+    }
   },
 
   showSearchResults: function(e) {
@@ -70,9 +72,6 @@ var FilterableFriends = React.createClass({
       friends = friends.filter(function(friend) {
         return friend.name.toLowerCase().match( filterText );
       });
-    }
-    if (filterText.length === 0) {
-      friends = [];
     }
     return (
       <div className="filtered-friends">
