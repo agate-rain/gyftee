@@ -63,6 +63,14 @@ h2,
 h3 {
   font-weight: 100;
 }
+
+.friend-img{
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
+
+
 #logo img {
   width: 300px;
   margin-bottom: 60px;
