@@ -540,7 +540,7 @@ var USER_DATA = {
   "name": "Chris Saden",
   "birthday": "05/22/1986",
   "id": "10100966909272887",
-  "photo": "https://pbs.twimg.com/profile_images/574703388/smeagol.jpg"
+  "photo": "https://scontent.fsjc1-2.fna.fbcdn.net/hphotos-xpa1/v/t1.0-9/1526674_10100494800667317_1991372456_n.jpg?oh=b17d8a8431044feacd81f35b67b8a0af&oe=5675945F"
 };
 
 React.render(<GiftRecommendations data={AMAZON_DATA} user={USER_DATA}/>, document.getElementById('recommended-gifts'));
