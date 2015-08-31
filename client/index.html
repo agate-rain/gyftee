@@ -16,26 +16,9 @@
 
         <!-- In-browser JSX transformer, remove when pre-compiling JSX. -->
         <script src="http://fb.me/JSXTransformer-0.13.1.js"></script>
-
+        <script type="text/jsx" src="app/components/giftDetail.jsx"></script>
     </head>
     <body>
-
         <div id="gift-detail"></div>
-        <script type="text/jsx">
-
-      /** @jsx React.DOM */
-
-        var GiftDetail = React.createClass({
-  render: function() {
-    return (
-      <h1>Gift Detail</h1>
-    );
-  }
-});
-
-React.render(<GiftDetail/>, document.getElementById('gift-detail'));
-        </script>
-        
-
     </body>
 </html>

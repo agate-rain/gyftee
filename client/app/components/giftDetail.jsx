@@ -6,3 +6,5 @@ var GiftDetail = React.createClass({
     );
   }
 });
+
+React.render(<GiftDetail/>, document.getElementById('gift-detail'));
