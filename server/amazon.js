@@ -1,4 +1,5 @@
 var aws = require("aws-lib");
+var fs = require("fs");
 require('dotenv').load();
 
 var prodAdv = aws.createProdAdvClient(process.env.AMAZON_CLIENT_ID, process.env.AMAZON_CLIENT_SECRET, process.env.AMAZON_ASSOCIATE_TAG);
@@ -11,12 +12,10 @@ var options = {SearchIndex: "Books", Keywords: "best sellers 2015", ResponseGrou
 
 // prodAdv.call("SimilarityLookup", options, function(err, result) {
 prodAdv.call("ItemSearch", options, function(err, result) {
-  // console.log(">>>>>>>>>>",result.Items.Item[0].ItemLinks);
-  // console.log(">>>>>>>>>>",result.Items.Item[0]);
-  console.log('#####################################')
-  result.Items.Item.forEach(function(item){
-    console.log(JSON.stringify(item, null, '\t'));
-  });
-  //get the price 
-  //console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>",result.Items.Item[0].OfferSummary.LowestNewPrice.FormattedPrice);
+	fs.writeFile('amazonHardCodeData/data.txt', 
+    JSON.stringify(result.Items.Item, null, "\t"), 
+    function (err) {
+      if (err) throw err;
+      console.log('Saved!');
+    });
 })
