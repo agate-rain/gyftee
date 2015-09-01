@@ -35,6 +35,6 @@ coverage
 client/build/
 
 # Credentials
-config/auth0-variables.js
+client/config/auth0-variables.js
 
 .DS_Store
