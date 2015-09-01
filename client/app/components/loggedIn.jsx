@@ -1,13 +1,13 @@
 var LoggedIn = React.createClass({
   callApi: function(data) {
     $.ajax({
-      url: 'http://localhost:3000/secured/ping',
+      url: 'http://localhost:3000/api/friends',
       method: 'POST',
       data : {access_token : data}
     }).then(function(data, textStatus, jqXHR) {
       alert("The request to the secured enpoint was successfull");
     }, function() {
-      alert("Error!");
+      alert("Error");
     });
   },
 

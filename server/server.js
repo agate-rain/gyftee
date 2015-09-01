@@ -7,7 +7,10 @@ var dotenv = require('dotenv');
 var bodyParser = require('body-parser');
 var BPromise = require('bluebird');
 var fb = require('fb');
-var facebookApi = require('./config/facebook-api');
+var cookieSession = require('cookie-session');
+var cookieParser = require('cookie-parser');
+
+var facebookApi = require('./config/facebook-api.js')
 
 //load .env file
 dotenv.load();
@@ -26,6 +29,8 @@ require('./config/middleware')(app, express);
  // Request body parsing middleware should be above methodOverride
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(cookieSession({secret: process.env.SESSION_SECRET}));
 
 app.use('/secured', authenticate);
 app.use(cors());
@@ -34,28 +39,42 @@ app.get('/ping', function(req, res) {
   res.send(200, {text: "All good. You don't need to be authenticated to call this"});
 });
 
-app.post('/secured/ping', function(req, res) {
+app.post('/api/friends', function(req, res) {
     BPromise.all([
         facebookApi.friends(req.body.access_token),
         facebookApi.invitableFriends(req.body.access_token)
     ])
     .spread(function(friendsResponse, invitableFriendsResponse) {
         var friends = friendsResponse.data.map(function(userData) {
-            console.log(userData);
+            // console.log(JSON.stringify(userData,null, '\t'));
             return {
                 id: userData.id,
                 name: userData.name,
                 pictureUrl: userData.picture.data.url,
+                birthday : userData.birthday,
+                hometown : userData.hometown.name,
+                fav_atheletes : userData.favorite_athletes,
+                inspirational_people : userData.inspirational_people,
+                sports : userData.sports,
+                books: userData.books,
+                albums: userData.albums
             };
         });
         var invitableFriends = invitableFriendsResponse.data.map(function(userData) {
             return {
                 id: userData.id,
                 name: userData.name,
-                pictureUrl: userData.picture.data.url
+                pictureUrl: userData.picture.data.url,
+                birthday : userData.birthday,
+                fav_atheletes : userData.favorite_athletes,
+                inspirational_people : userData.inspirational_people,
+                sports : userData.sports,
+                books: userData.books,
+                albums: userData.albums
             };
         });
         var allFriends = friends.concat(invitableFriends);
+        console.log(JSON.stringify(invitableFriends, null, '\t'));
         res.send(JSON.stringify(allFriends));
     })
     .catch(function(err) {
