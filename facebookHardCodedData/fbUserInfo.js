@@ -6,7 +6,11 @@
 FB.api(
   '/me',
   'GET',
+<<<<<<< HEAD
   {"fields":"id,name,birthday,friends,location,books,music,movies,picture"},
+=======
+  {"fields":"id,name,birthday,friends,location,books,music,movies"},
+>>>>>>> built friendManager and related basic React components
   function(response) {
       // Insert your code here
   }

@@ -78,6 +78,13 @@ var FilterableFriends = React.createClass({
         <input ref="filterText" type="text" placeholder="Search for your friends" value={this.state.filterText} onChange={this.filterFacebookFriends}/>
         { this.state.resultsVisible ? <SearchResults friends={friends}/> : null }
       </div>
+
+var Search = React.createClass({
+  render: function() {
+    return (
+      <form className="search friend-search">
+        <input type="text" placeholder="Search for your friends"/>
+      </form>  
     );
   }
 });
@@ -86,8 +93,10 @@ var FriendManager = React.createClass({
   render: function() {
     return (
       <div className="friend-manager">
+
         <FilterableFriends fbFriends={this.props.facebookFriends}/>
         <FriendList friends={this.props.appFriends}/>
+        <Search/>
       </div>
     );
   }
@@ -95,6 +104,7 @@ var FriendManager = React.createClass({
 
 
 var FACEBOOKFRIENDS = APP_FRIENDS = [
+
   {
     "name": "Jennie Kim Eldon",
     "id": "202385",
@@ -137,4 +147,6 @@ var FACEBOOKFRIENDS = APP_FRIENDS = [
   }
 ]
 
+
 React.render(<FriendManager facebookFriends={FACEBOOKFRIENDS} appFriends={APP_FRIENDS}/>, document.getElementById('friend-manager-container'));
+
