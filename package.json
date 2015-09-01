@@ -37,7 +37,8 @@
     "supertest": "^1.1.0",
     "babel-loader": "latest",
     "jsx-loader": "^0.13.1",
-    "webpack": "^1.8.9"
+    "webpack": "^1.8.9",
+    "react-hot-loader": "latest"
   },
   "scripts": {
     "test": "npm run test-node",

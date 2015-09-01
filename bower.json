@@ -1,12 +1,12 @@
 {
-  "name": "battlescript",
+  "name": "gyftee",
   "version": "1.0.0",
-  "homepage": "https://github.com/battlescript/battlescript",
+  "homepage": "https://github.com/agate-rain/gifty",
   "authors": [
-    "Nick Salloum <nick@callmenick.com>",
-    "Adam Ellsworth <azellsworth@gmail.com>",
-    "Omar Shaikh <oshaikh13@gmail.com>",
-    "Eric Le <hle2806@uw.edu>"
+    "Jennie Kim Eldon <thejenniekim@gmail.com>",
+    "Eric Le <therealericle@gmail.com>",
+    "Chris Saden <csaden@gmail.com>",
+    "Ben Biran <benbiran@gmail.com>"
   ],
   "license": "MIT",
   "ignore": [

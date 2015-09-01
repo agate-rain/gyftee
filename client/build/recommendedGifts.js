@@ -8,53 +8,6 @@ webpackJsonp([0,1],[
 	var Slider = __webpack_require__(/*! react-slick */ 1);
 	var React = __webpack_require__(/*! react */ 3);
 	
-	var SimpleSlider = React.createClass({displayName: "SimpleSlider",
-	  render: function () {
-	    var settings = {
-	        dots: true,
-	        infinite: false,
-	        speed: 500,
-	        slidesToShow: 4,
-	        slidesToScroll: 4,
-	        responsive: [{
-	            breakpoint: 1024,
-	            settings: {
-	                slidesToShow: 3,
-	                slidesToScroll: 3,
-	                infinite: true,
-	                dots: true
-	            }
-	        }, {
-	            breakpoint: 600,
-	            settings: {
-	                slidesToShow: 2,
-	                slidesToScroll: 2
-	            }
-	        }, {
-	            breakpoint: 480,
-	            settings: {
-	                slidesToShow: 1,
-	                slidesToScroll: 1
-	            }
-	        }]
-	    };
-	    return (
-	      React.createElement("div", null, 
-	        React.createElement(Slider, React.__spread({},  settings), 
-	          React.createElement("div", null, React.createElement("h3", null, "1")), 
-	          React.createElement("div", null, React.createElement("h3", null, "2")), 
-	          React.createElement("div", null, React.createElement("h3", null, "3")), 
-	          React.createElement("div", null, React.createElement("h3", null, "4")), 
-	          React.createElement("div", null, React.createElement("h3", null, "5")), 
-	          React.createElement("div", null, React.createElement("h3", null, "6")), 
-	          React.createElement("div", null, React.createElement("h3", null, "7")), 
-	          React.createElement("div", null, React.createElement("h3", null, "8"))
-	        )
-	      )
-	    );
-	  }
-	});
-	
 	var UserHeader = React.createClass({displayName: "UserHeader",
 	
 	  render: function(){
@@ -91,6 +44,7 @@ webpackJsonp([0,1],[
 	      books.push(React.createElement("div", null, React.createElement(Book, {book: book, key: book.ASIN})));
 	    });
 	
+	    // define slider options
 	    var settings = {
 	        dots: true,
 	        infinite: false,
@@ -150,14 +104,12 @@ webpackJsonp([0,1],[
 	        React.createElement(UserHeader, {user: this.props.user}), 
 	        React.createElement(RecommendationFilters, null), 
 	        React.createElement(BooksList, {data: this.props.data})
-	        
 	      )	
-				);
+				); 
 		}
 	});
 	
 	module.exports = GiftRecommendations;
-	
 	
 	var AMAZON_DATA = [ { ASIN: '1118531647',
 	    DetailPageURL: 'http://www.amazon.com/JavaScript-JQuery-Interactive-Front-End-Development/dp/1118531647%3FSubscriptionId%3DAKIAIT6MPAH4YTKJ46BA%26tag%3Deric0e7-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D1118531647',

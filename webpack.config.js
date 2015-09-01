@@ -9,7 +9,6 @@ var definePlugin = new webpack.DefinePlugin({
 
 var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
 
-
 /*module.exports = {
   entry: path.resolve(__dirname, 'client/app/main.js'),
   output: {
