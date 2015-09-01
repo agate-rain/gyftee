@@ -1,12 +1,12 @@
 {
-  "name": "battlescript",
+  "name": "gyftee",
   "version": "1.0.0",
-  "homepage": "https://github.com/battlescript/battlescript",
+  "homepage": "https://github.com/agate-rain/gifty",
   "authors": [
-    "Nick Salloum <nick@callmenick.com>",
-    "Adam Ellsworth <azellsworth@gmail.com>",
-    "Omar Shaikh <oshaikh13@gmail.com>",
-    "Eric Le <hle2806@uw.edu>"
+    "Jennie Kim Eldon <thejenniekim@gmail.com>",
+    "Eric Le <therealericle@gmail.com>",
+    "Chris Saden <csaden@gmail.com>",
+    "Ben Biran <benbiran@gmail.com>"
   ],
   "license": "MIT",
   "ignore": [
@@ -18,16 +18,9 @@
     "tests"
   ],
   "dependencies": {
-    "angular-route": "~1.4.3",
-    "angular": "^1.4.3",
     "bootstrap": "~3.3.5",
-    "angular-ui-router": "~0.2.15",
-    "angular-animate": "~1.4.3",
-    "CodeMirror": "~5.5.0",
     "underscore": "~1.8.3",
     "marked": "~0.3.5",
-    "angular-sanitize": "~1.4.3",
-    "firebase": "^2.2.4",
-    "firepad": "^1.1.1"
+    "slick-carousel": "1.3.15"
   }
 }

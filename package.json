@@ -24,16 +24,25 @@
     "mongoose": "^4.1.3",
     "morgan": "^1.6.1",
     "fs": "latest",
-    "request": "^2.60.0"
+    "request": "^2.60.0",
+    "flux": "^2.0.1",
+    "react": "^0.13.2",
+    "react-slick": "^0.5.0",
+    "react-bootstrap": "latest"
   },
   "devDependencies": {
     "chai": "^3.2.0",
     "mocha": "^2.2.5",
     "should": "^7.1.0",
-    "supertest": "^1.1.0"
+    "supertest": "^1.1.0",
+    "babel-loader": "latest",
+    "jsx-loader": "^0.13.1",
+    "webpack": "^1.8.9",
+    "react-hot-loader": "latest"
   },
   "scripts": {
     "test": "npm run test-node",
-    "test-node": "mocha -R spec ./test/spec/userModelSpec.js"
+    "test-node": "mocha -R spec ./test/spec/userModelSpec.js",
+    "start": "webpack --progress --colors --watch -d"
   }
 }
