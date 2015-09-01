@@ -5,6 +5,7 @@
 node_modules/
 bower_components/
 data/db/
+client/lib
 client/build
 
 # Thumbnails
