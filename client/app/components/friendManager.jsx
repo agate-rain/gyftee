@@ -21,10 +21,6 @@ var FriendList = React.createClass({
   }
 });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> add filtering and show and hide results
 var FacebookFriend = React.createClass({
   render: function() {
     return (
@@ -52,32 +48,20 @@ var FilterableFriends = React.createClass({
     return {
       filterText: '',
       resultsVisible: false
-<<<<<<< HEAD
+    };
   },
 
   filterFacebookFriends: function(e) {
-
     this.setState({filterText: e.target.value});
     if (this.state.filterText.length === 0) {
       this.setState({resultsVisible: true});
     } else {
       this.setState({resultsVisible: false});
     }
-=======
-    };
-  },
-
-  filterFacebookFriends: function(e) {
-    this.setState({
-      filterText: e.target.value,
-      resultsVisible: true
-    });
->>>>>>> add filtering and show and hide results
   },
 
   showSearchResults: function(e) {
     React.findDOMNode(this.refs.filterText).focus();
-<<<<<<< HEAD
   },
 
   render: function() {
@@ -94,37 +78,6 @@ var FilterableFriends = React.createClass({
         <input ref="filterText" type="text" placeholder="Search for your friends" value={this.state.filterText} onChange={this.filterFacebookFriends}/>
         { this.state.resultsVisible ? <SearchResults friends={friends}/> : null }
       </div>
-
-var Search = React.createClass({
-
-    console.log(e.target);
-    this.setState( {filterText: e.target.value} );
-=======
->>>>>>> add filtering and show and hide results
-  },
-
-
-  render: function() {
-    var friends = this.props.fbFriends,
-        filterText = this.state.filterText.trim().toLowerCase();
-
-    if (filterText.length > 0) {
-      friends = friends.filter(function(friend) {
-        return friend.name.toLowerCase().match( filterText );
-      });
-    }
-    if (filterText.length === 0) {
-      friends = [];
-    }
-    return (
-      <form className="search friend-search">
-        <input type="text" placeholder="Search for your friends"/>
-      </form>  
-      <div className="filtered-friends">
-        <input ref="filterText" type="text" placeholder="Search for your friends" value={this.state.filterText} onChange={this.filterFacebookFriends}/>
-        { this.state.resultsVisible ? <SearchResults friends={friends}/> : null }
-      </div>
-
     );
   }
 });
@@ -135,7 +88,6 @@ var FriendManager = React.createClass({
       <div className="friend-manager">
         <FilterableFriends fbFriends={this.props.facebookFriends}/>
         <FriendList friends={this.props.appFriends}/>
-        <Search/>
       </div>
     );
   }
@@ -185,7 +137,4 @@ var FACEBOOKFRIENDS = APP_FRIENDS = [
   }
 ]
 
-
-
 React.render(<FriendManager facebookFriends={FACEBOOKFRIENDS} appFriends={APP_FRIENDS}/>, document.getElementById('friend-manager-container'));
-
