@@ -26,7 +26,6 @@ var RecommendationFilters = React.createClass({
       );
   }
 
-
 });
 
 var BooksList = React.createClass({

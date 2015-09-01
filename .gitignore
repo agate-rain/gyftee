@@ -32,7 +32,7 @@ coverage
 .grunt
 
 # Build folder
-build/
+client/build/
 
 # Credentials
 config/auth0-variables.js

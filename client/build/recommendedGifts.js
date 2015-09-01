@@ -33,7 +33,6 @@ webpackJsonp([0,1],[
 	      );
 	  }
 	
-	
 	});
 	
 	var BooksList = React.createClass({displayName: "BooksList",
