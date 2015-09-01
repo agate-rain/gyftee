@@ -31,16 +31,22 @@
     "react-bootstrap": "latest"
   },
   "devDependencies": {
+    "babel-core": "^5.8.23",
     "chai": "^3.2.0",
     "mocha": "^2.2.5",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3",
     "should": "^7.1.0",
     "supertest": "^1.1.0",
     "babel-loader": "latest",
     "jsx-loader": "^0.13.1",
     "webpack": "^1.8.9",
     "react-hot-loader": "latest"
+    "webpack": "^1.12.0",
+    "webpack-dev-server": "^1.10.1"
   },
   "scripts": {
+    "start": "node server.js",
     "test": "npm run test-node",
     "test-node": "mocha -R spec ./test/spec/userModelSpec.js",
     "start": "webpack --progress --colors --watch -d"
