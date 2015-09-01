@@ -1,14 +1,21 @@
 var LoggedIn = React.createClass({
+
   callApi: function(data) {
     $.ajax({
-      url: 'http://localhost:3000/api/friends',
+      url:    'http://localhost:3000/api/friends',
       method: 'POST',
-      data : {access_token : data}
-    }).then(function(data, textStatus, jqXHR) {
-      alert("The request to the secured enpoint was successfull");
-    }, function() {
-      alert("Error");
-    });
+      data:   {access_token : data}
+    }).then(function(data) {
+      alert("The request to the secured endpoint was successful");
+    }).then(function(data) {
+      $.ajax({
+        url:    'http://localhost:3000/api/gifts',
+        method: 'POST',
+        data:   data
+      });
+    }).then(function(gift) {
+      console.log(gift);
+    }); 
   },
 
   getInitialState: function() {
