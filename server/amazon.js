@@ -12,7 +12,7 @@ var options = {SearchIndex: "Books", Keywords: "best sellers 2015", ResponseGrou
 
 // prodAdv.call("SimilarityLookup", options, function(err, result) {
 prodAdv.call("ItemSearch", options, function(err, result) {
-	fs.writeFile('amazonHardCodeData/data.js', 
+	fs.writeFile('amazonHardCodeData/data.txt', 
     JSON.stringify(result.Items.Item, null, "\t"), 
     function (err) {
       if (err) throw err;
