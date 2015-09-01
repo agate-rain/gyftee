@@ -1,3 +1,9 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 body {
   font-family: "proxima-nova", sans-serif;
   text-align: center;
@@ -101,3 +107,32 @@ label {
 .login-page .login-box {
   padding: 100px 0;
 }
+
+/***********************************/
+/** Gift Detail View **/
+/************************************/
+
+.gift-detail-container {
+  padding: 20px;
+  max-width: 300px;
+  border-style: solid;
+  border-color: #BBB;
+}
+.book-title {
+  font-size: 0.7em;
+  font-weight: bold;
+}
+.book-author {
+  font-size: 0.7em;
+}
+.book-binding {
+  font-size: 0.6em;
+}
+.book-price {
+  font-size: 0.7em;
+}
+.add-to-list {
+  font-size: 0.8em;
+  position: fixed;
+}
+
