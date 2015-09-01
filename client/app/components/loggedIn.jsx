@@ -1,12 +1,13 @@
 var LoggedIn = React.createClass({
-  callApi: function() {
+  callApi: function(data) {
     $.ajax({
       url: 'http://localhost:3000/secured/ping',
-      method: 'GET'
+      method: 'POST',
+      data : {access_token : data}
     }).then(function(data, textStatus, jqXHR) {
       alert("The request to the secured enpoint was successfull");
     }, function() {
-      alert("You need to download the server seed and start it to call this API");
+      alert("Error!");
     });
   },
 
@@ -28,6 +29,7 @@ var LoggedIn = React.createClass({
 
   render: function() {
     if (this.state.profile) {
+      this.callApi(this.state.profile.identities[0].access_token)
       return (
         <div className="logged-in-box auth0-box logged-in">
           
