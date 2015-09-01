@@ -1,3 +1,52 @@
+var Slider = require('react-slick');
+var React = require('react');
+
+var SimpleSlider = React.createClass({
+  render: function () {
+    var settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        responsive: [{
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+                dots: true
+            }
+        }, {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2
+            }
+        }, {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+        }]
+    };
+    return (
+      <div>
+        <Slider {...settings}>
+          <div><h3>1</h3></div>
+          <div><h3>2</h3></div>
+          <div><h3>3</h3></div>
+          <div><h3>4</h3></div>
+          <div><h3>5</h3></div>
+          <div><h3>6</h3></div>
+          <div><h3>7</h3></div>
+          <div><h3>8</h3></div>
+        </Slider>
+      </div>
+    );
+  }
+});
 
 var UserHeader = React.createClass({
 
@@ -32,11 +81,45 @@ var BooksList = React.createClass({
   render: function(){
     var books = [];
     this.props.data.forEach(function(book){
-      books.push(<Book book={book} key={book.ASIN}/>);
+      books.push(<div><Book book={book} key={book.ASIN}/></div>);
     });
 
+    var settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 6,
+        slidesToScroll: 6,
+        responsive: [{
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 5,
+                slidesToScroll: 5,
+                infinite: true,
+                dots: true
+            }
+        }, {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 4,
+                slidesToScroll: 4
+            }
+        }, {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3
+            }
+        }]
+    };
+
     return (
-      <table className="books-list"> {books} </table>
+      <div className="books-list">
+        <h1> Books </h1>
+        <Slider {...settings} className="books-list">
+          {{books}}
+        </Slider>
+      </div>
     );
   }
 
@@ -46,13 +129,7 @@ var Book = React.createClass({
 
   render: function(){
     return (
-      <tr className="book-info">
-        
-        <td className="book-img"><img src={this.props.book.SmallImage.URL}/></td>
-        <td className="book-author">{this.props.book.ItemAttributes.Auther}</td>
-        <td className="book-manufacturer">{this.props.book.ItemAttributes.Manufacturer}</td>
-        <td className="book-title">{this.props.book.ItemAttributes.Title}</td>
-      </tr>
+        <img className="book-img" src={this.props.book.MediumImage.URL}/>
       );
   }
 });
@@ -66,10 +143,14 @@ var GiftRecommendations = React.createClass({
         <UserHeader user={this.props.user}/>
         <RecommendationFilters />
         <BooksList data={this.props.data} />
+        
       </div>	
 			);
 	}
 });
+
+module.exports = GiftRecommendations;
+
 
 var AMAZON_DATA = [ { ASIN: '1118531647',
     DetailPageURL: 'http://www.amazon.com/JavaScript-JQuery-Interactive-Front-End-Development/dp/1118531647%3FSubscriptionId%3DAKIAIT6MPAH4YTKJ46BA%26tag%3Deric0e7-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D1118531647',
