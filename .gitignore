@@ -5,7 +5,7 @@
 node_modules/
 bower_components/
 data/db/
-client/lib
+client/build
 
 # Thumbnails
 ._*
@@ -30,9 +30,6 @@ coverage
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
-
-# Build folder
-client/build/
 
 # Credentials
 client/config/auth0-variables.js
