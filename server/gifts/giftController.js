@@ -1,9 +1,22 @@
 var Gift = require('./giftModel.js');
+var aws = require('aws-lib');
+
+require('dotenv').load();
+
+var prodAdv = aws.createProdAdvClient(process.env.AMAZON_CLIENT_ID, process.env.AMAZON_CLIENT_SECRET, process.env.AMAZON_ASSOCIATE_TAG);
 
 module.exports = {
   // call to Amazon API to get a friend's 'liked' item on facebook
-  lookupItemByKeyword: function(req, res) {
+  // passing in keyword (ie book title) that we get from facebook, and category, with the req body
+  // TODO: need to add category parameter to the clicked object in client side 
+  lookupItemByKeyword: function(req, res) { 
 
+    var options = {SearchIndex: 'Books', Keywords: req.body.keywords, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
+
+    // prodAdv.call("SimilarityLookup", options, function(err, result) {
+    prodAdv.call('ItemSearch', options, function(err, result) {
+      res.send(JSON.stringify(result));
+    });
   },
   // call to Amazon API to get similar items based on the 'liked' item
   getSimilarItems: function(req, res) {
