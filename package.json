@@ -44,7 +44,6 @@
     "webpack-dev-server": "^1.10.1"
   },
   "scripts": {
-    "start": "node server.js",
     "test": "npm run test-node",
     "test-node": "mocha -R spec ./test/spec/userModelSpec.js",
     "start": "webpack --progress --colors --watch -d"
