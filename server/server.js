@@ -56,11 +56,7 @@ app.post('/api/friends', function(req, res) {
             pictureUrl: userData.picture.data.url,
             birthday : userData.birthday,
             hometown : userData.hometown.name,
-            fav_atheletes : userData.favorite_athletes,
-            inspirational_people : userData.inspirational_people,
-            sports : userData.sports,
-            books: userData.books,
-            albums: userData.albums
+            books: userData.books
         };
     });
     var invitableFriends = invitableFriendsResponse.data.map(function(userData) {
@@ -77,8 +73,8 @@ app.post('/api/friends', function(req, res) {
         };
     });
     var allFriends = friends.concat(invitableFriends);
-    console.log(JSON.stringify(invitableFriends, null, '\t'));
-    res.send(JSON.stringify(allFriends));
+    // console.log(JSON.stringify(invitableFriends, null, '\t'));
+    res.send(JSON.stringify(friends));
   })
   .catch(function(err) {
       log.error('Error building friends response: ' + util.inspect(err));
@@ -88,12 +84,31 @@ app.post('/api/friends', function(req, res) {
 
 app.post('/api/gifts', function(req, res) {
   // hard coding for testing will refactor lataer
-  var bookKeyword = req.body[1].books.data[0].name;
+  var temp = JSON.parse(req.body.friend);
+  // console.log('REQ BODY', temp[1].books.data[0].name);
+  var bookKeyword = temp[1].books.data[0].name;
+
   var options = {SearchIndex: 'Books', Keywords: bookKeyword, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
   prodAdv.call('ItemSearch', options, function(err, result) {
   res.send(result);
   });
 });
+
+app.post('/api/similargifts', function(req, res) {
+  // hard coding for testing will refactor lataer
+
+  var ASIN = req.body.ASIN;
+  // console.log('REQ BODY', temp[1].books.data[0].name);
+  
+  var options = {ItemId: ASIN, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
+
+  // var options = {SearchIndex: 'Books', Keywords: bookKeyword, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
+  
+  prodAdv.call('SimilarityLookup', options, function(err, result) {
+    res.send(result);
+  });
+});
+
 
 mongoose.connect(db.url);
 mongoose.connection.once('connected', function(){

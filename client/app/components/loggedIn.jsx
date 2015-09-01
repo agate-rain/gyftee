@@ -1,21 +1,44 @@
 var LoggedIn = React.createClass({
 
+  
   callApi: function(data) {
+    var that = this;
+
     $.ajax({
       url:    'http://localhost:3000/api/friends',
       method: 'POST',
       data:   {access_token : data}
-    }).then(function(data) {
+    }).then(function(jsonFriend) {
       alert("The request to the secured endpoint was successful");
-    }).then(function(data) {
-      $.ajax({
-        url:    'http://localhost:3000/api/gifts',
-        method: 'POST',
-        data:   data
-      });
+      that.getGift(jsonFriend);
+    }, function() {
+      alert("Error");
+    });
+  },
+
+  getGift: function(jsonFriend){
+    var that = this;
+
+    $.ajax({
+      url:    'http://localhost:3000/api/gifts',
+      method: 'POST',
+      data:   {friend : jsonFriend}
     }).then(function(gift) {
-      console.log(gift);
-    }); 
+      var ASIN = gift.Items.Item[0].ASIN;
+      that.getSimilarItem(ASIN);
+    });
+  },
+
+  getSimilarItem: function(ASIN){
+    $.ajax({
+      url:    'http://localhost:3000/api/similargifts',
+      method: 'POST',
+      data:   {ASIN : ASIN}
+    }).then(function(similargifts) {
+      similargifts.Items.Item.forEach(function(gift){
+        console.log(gift);
+      })
+    });
   },
 
   getInitialState: function() {
