@@ -1,7 +1,7 @@
-
+var React = require('react');
 
 var LoggedIn = React.createClass({
-  
+
   callApi: function(data) {
     var that = this;
 
@@ -31,7 +31,7 @@ var LoggedIn = React.createClass({
   },
 
 
-  //PUT THIS INTO ANOTHER JSX FILE 
+  //PUT THIS INTO ANOTHER JSX FILE
   getSimilarItem: function(ASIN){
     $.ajax({
       url:    'http://localhost:3000/api/gifts/searchsimilargifts',
@@ -65,7 +65,7 @@ var LoggedIn = React.createClass({
       this.callApi(this.state.profile.identities[0].access_token)
       return (
         <div className="logged-in-box auth0-box logged-in">
-          
+
           <img src={this.state.profile.picture} />
           <h2>Welcome {this.state.profile.nickname}</h2>
 
@@ -78,3 +78,5 @@ var LoggedIn = React.createClass({
     }
   }
 });
+
+module.exports = LoggedIn;
