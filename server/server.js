@@ -1,5 +1,8 @@
 var express = require('express');
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session');
 var db = require('./config/dbConfig');
 var jwt = require('express-jwt');
 var dotenv = require('dotenv');
@@ -7,6 +10,7 @@ var BPromise = require('bluebird');
 var fb = require('fb');
 var aws = require('aws-lib');
 var fs = require('fs');
+var cors = require('cors');
 
 //load .env file
 dotenv.load();
