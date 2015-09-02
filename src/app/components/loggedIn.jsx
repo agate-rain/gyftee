@@ -6,9 +6,9 @@ var LoggedIn = React.createClass({
     var that = this;
 
     $.ajax({
-      url:    'http://localhost:3000/api/friends',
+      url: 'http://localhost:3000/api/friends',
       method: 'POST',
-      data:   {access_token : data}
+      data: {access_token : data}
     }).then(function(jsonFriend) {
       alert("The request to the secured endpoint was successful");
       that.getGift(jsonFriend);
@@ -21,9 +21,9 @@ var LoggedIn = React.createClass({
     var that = this;
 
     $.ajax({
-      url:    'http://localhost:3000/api/gifts/searchbykeyword',
+      url: 'http://localhost:3000/api/gifts/searchbykeyword',
       method: 'POST',
-      data:   {friend : jsonFriend}
+      data: {friend : jsonFriend}
     }).then(function(gift) {
       var ASIN = gift.Items.Item[0].ASIN;
       that.getSimilarItem(ASIN);
@@ -34,9 +34,9 @@ var LoggedIn = React.createClass({
   //PUT THIS INTO ANOTHER JSX FILE
   getSimilarItem: function(ASIN){
     $.ajax({
-      url:    'http://localhost:3000/api/gifts/searchsimilargifts',
+      url: 'http://localhost:3000/api/gifts/searchsimilargifts',
       method: 'POST',
-      data:   {ASIN : ASIN}
+      data: {ASIN : ASIN}
     }).then(function(similargifts) {
       similargifts.Items.Item.forEach(function(gift){
         console.log(gift);
