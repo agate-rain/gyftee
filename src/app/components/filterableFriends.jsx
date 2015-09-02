@@ -11,11 +11,17 @@ var FilterableFriends = React.createClass({
   },
 
   filterFacebookFriends: function(e) {
+    console.log(this.state);
     this.setState({filterText: e.target.value});
+
     if (this.state.filterText.length === 0) {
+
       this.setState({resultsVisible: false});
+
     } else {
+
       this.setState({resultsVisible: true});
+
     }
   },
 

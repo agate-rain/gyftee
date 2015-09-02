@@ -1,6 +1,6 @@
 var React = require('react');
 
-var Friend = require('./friend');
+var Friend = require('./friend.jsx');
 
 var FriendList = React.createClass({
   //displays the friend list for the user
@@ -15,4 +15,4 @@ var FriendList = React.createClass({
   }
 });
 
-modules.export = FriendList;
+module.exports = FriendList;

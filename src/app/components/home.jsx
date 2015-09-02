@@ -8,7 +8,7 @@ var Home = React.createClass({
   render: function() {
     return (
     <div className="login-box auth0-box before">
-      <img src="../img/mipmap-xxxhdpi/ic_launcher.png" />
+      <img src="../src/img/mipmap-xxxhdpi/ic_launcher.png" />
       <h1>Gyftee</h1>
       <a onClick={this.showLock} className="btn btn-primary btn-lg btn-login btn-block">Sign In</a>
     </div>);
