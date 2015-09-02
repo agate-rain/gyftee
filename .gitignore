@@ -36,3 +36,8 @@ coverage
 client/config/auth0-variables.js
 
 .DS_Store
+
+# Etsy api info
+server/gifts/etsyGiftController.js
+
+

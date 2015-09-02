@@ -1,13 +1,46 @@
+
+
 var LoggedIn = React.createClass({
+  
   callApi: function(data) {
+    var that = this;
+
     $.ajax({
-      url: 'http://localhost:3000/api/friends',
+      url:    'http://localhost:3000/api/friends',
       method: 'POST',
-      data : {access_token : data}
-    }).then(function(data, textStatus, jqXHR) {
-      alert("The request to the secured enpoint was successfull");
+      data:   {access_token : data}
+    }).then(function(jsonFriend) {
+      alert("The request to the secured endpoint was successful");
+      that.getGift(jsonFriend);
     }, function() {
       alert("Error");
+    });
+  },
+
+  getGift: function(jsonFriend){
+    var that = this;
+
+    $.ajax({
+      url:    'http://localhost:3000/api/gifts/searchbykeyword',
+      method: 'POST',
+      data:   {friend : jsonFriend}
+    }).then(function(gift) {
+      var ASIN = gift.Items.Item[0].ASIN;
+      that.getSimilarItem(ASIN);
+    });
+  },
+
+
+  //PUT THIS INTO ANOTHER JSX FILE 
+  getSimilarItem: function(ASIN){
+    $.ajax({
+      url:    'http://localhost:3000/api/gifts/searchsimilargifts',
+      method: 'POST',
+      data:   {ASIN : ASIN}
+    }).then(function(similargifts) {
+      similargifts.Items.Item.forEach(function(gift){
+        console.log(gift);
+      })
     });
   },
 
