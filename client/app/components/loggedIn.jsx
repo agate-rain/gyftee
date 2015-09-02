@@ -1,5 +1,6 @@
-var LoggedIn = React.createClass({
 
+
+var LoggedIn = React.createClass({
   
   callApi: function(data) {
     var that = this;
@@ -20,7 +21,7 @@ var LoggedIn = React.createClass({
     var that = this;
 
     $.ajax({
-      url:    'http://localhost:3000/api/gifts',
+      url:    'http://localhost:3000/api/gifts/searchbykeyword',
       method: 'POST',
       data:   {friend : jsonFriend}
     }).then(function(gift) {
@@ -29,9 +30,11 @@ var LoggedIn = React.createClass({
     });
   },
 
+
+  //PUT THIS INTO ANOTHER JSX FILE 
   getSimilarItem: function(ASIN){
     $.ajax({
-      url:    'http://localhost:3000/api/similargifts',
+      url:    'http://localhost:3000/api/gifts/searchsimilargifts',
       method: 'POST',
       data:   {ASIN : ASIN}
     }).then(function(similargifts) {
