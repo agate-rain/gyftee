@@ -1,7 +1,6 @@
 var React = require('react');
-var App = require('../components/app.jsx');
-var AUTH0_CLIENT_ID = require('../../config/auth0').AUTH0_CLIENT_ID;
-var AUTH0_DOMAIN = require('../../config/auth0').AUTH0_DOMAIN;
+var App = require('../components/app');
+var Auth0 = require('../../config/auth0');
 
-React.render(<App clientId={AUTH0_CLIENT_ID} domain={AUTH0_DOMAIN} />,
+React.render(<App clientId={Auth0.AUTH0_CLIENT_ID} domain={Auth0.AUTH0_DOMAIN} />,
   document.getElementById('login-page'));

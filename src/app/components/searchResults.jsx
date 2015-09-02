@@ -1,6 +1,6 @@
 var React = require('react');
 
-var FacebookFriend = require('./facebookFriend.jsx');
+var FacebookFriend = require('./facebookFriend');
 
 var SearchResults = React.createClass({
   render: function() {

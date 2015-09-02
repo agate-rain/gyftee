@@ -1,6 +1,6 @@
 var React = require('react');
 
-var SearchResults = require('./searchResults.jsx');
+var SearchResults = require('./searchResults');
 
 var FilterableFriends = React.createClass({
   getInitialState: function () {

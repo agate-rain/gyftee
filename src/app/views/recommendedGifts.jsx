@@ -1,9 +1,9 @@
 var Slider = require('react-slick');
 var React = require('react');
-var UserHeader = require('../components/userHeader.jsx');
-var Thumbnail = require('../components/thumbnail.jsx');
-var RecommendationFilters = require('../components/recommendationFilters.jsx');
-var BookList = require('../components/bookList/jsx');
+var UserHeader = require('../components/userHeader');
+var Thumbnail = require('../components/thumbnail');
+var RecommendationFilters = require('../components/recommendationFilters');
+var BookList = require('../components/bookList');
 var BOOKS = require('../../data/hardCoded').BOOKS;
 var USER = require('../../data/hardCoded').USER;
 

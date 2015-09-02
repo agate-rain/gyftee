@@ -1,6 +1,6 @@
 var React = require('react');
-var LoggedIn = require('./loggedIn.jsx');
-var Home = require('./home.jsx');
+var LoggedIn = require('./loggedIn');
+var Home = require('./home');
 
 var App = React.createClass({
   componentWillMount: function() {
