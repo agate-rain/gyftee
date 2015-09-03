@@ -17,6 +17,12 @@ var LoggedIn = React.createClass({
     });
   },
 
+  logout: function() {
+    localStorage.removeItem('userToken');
+    this.props.lock.logout({ref: 'window.location.href'});
+    // Go to home with your React Router
+  },
+
   getGift: function(jsonFriend){
     var that = this;
 
@@ -60,15 +66,17 @@ var LoggedIn = React.createClass({
     }.bind(this));
   },
 
+  componentDidUpdate: function() {
+    this.callApi(this.state.profile.identities[0].access_token);
+  },
+
   render: function() {
     if (this.state.profile) {
-      this.callApi(this.state.profile.identities[0].access_token)
       return (
         <div className="logged-in-box auth0-box logged-in">
-
           <img src={this.state.profile.picture} />
           <h2>Welcome {this.state.profile.nickname}</h2>
-
+          <button onClick={this.logout} className="btn btn-lg btn-primary">Logout</button>
         </div>);
     } else {
       return (
