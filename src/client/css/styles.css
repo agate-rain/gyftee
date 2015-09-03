@@ -1,0 +1,409 @@
+/***********************************/
+/******** SITEWIDE STYLING *********/
+/***********************************/
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.flex-container {
+  display: -webkit-flex; /* for safari */
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.flex-item {
+  /*text-align: center;*/
+}
+
+.row {
+  display: flex;
+  margin-bottom: 24px;
+  padding: 0 12px;
+  align-items: center;
+}
+
+.row:last-child {
+  margin-bottom: 0;
+}
+
+
+.viewport {
+  height: 100vw; 
+  width: 56.25vw; /* height:width ratio = 9/16 = .5625  */
+  /*background: #BBB;*/
+  max-height: 177.78vh;
+  max-width: 100vh; /* 16/9 = 1.778 */
+  /*margin: auto;*/
+  position: absolute;
+  top:0;bottom:0; /* vertical center */
+  left:0;right:0; /* horizontal center */
+}
+
+.teal {
+  background-color: #017E82;
+}
+
+.dark-teal {
+  background-color: #004851;
+}
+
+.teal-font {
+  color: #017E82;
+}
+
+.white {
+  background-color: #FFF;
+}
+.white-font {
+  color: #FFF;
+}
+
+.seafoam {
+  background-color: #E4F2F2;
+}
+
+.proxima {
+  font-family: "proxima-nova", sans-serif;
+  /*text-align: center;*/
+  font-weight: 100;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+/***********************************/
+/******** LOGIN SCREEN *********/
+/***********************************/
+
+.login-container {
+  background-color: #017E82;
+}
+
+.logo {
+
+}
+
+.icon-container {
+  text-align: center;
+}
+
+.brand-container {
+  margin-bottom: 50%;
+  text-align: center;
+}
+
+#login-button {
+  width: 250px;
+  height: 80px;
+  position: relative;
+  align-items: baseline;
+  border-color: #004851;
+  font-size: 250%;
+  font-weight: lighter;
+  margin-bottom: -80%;
+}
+
+.login-button-text {
+  opacity: 0.8;
+}
+
+.login-button-container {
+  background-color: #017E82;
+  /*align-self: flex-end;*/
+}
+
+.gyftee-text {
+  font-family: "proxima-nova", sans-serif;
+  font-weight: 400;
+  font-size: 400%;
+  color: #FFF;
+}
+
+ul.nav.navbar-nav {
+  /*background-color: #017E82;*/
+  color: white !important;
+}
+
+/*TODO: make hover color go away*/
+li>a.nav-menu-item {
+  color: white;
+  font-size: 1.1em;
+  font-weight: lighter;
+}
+
+#nav-menu {
+  color: white;
+  /*background-color: red;*/
+}
+
+/***********************************/
+/******** HOME VIEW ********/
+/************************************/
+
+.gyftee-nav {
+  height: 60px;
+}
+
+/*nav.navbar-nav {
+  background-color: black;
+}
+*/
+.brand-icon {
+  height: 30px;
+}
+
+.welcome-container {
+  padding: 80px 60px 30px 60px;
+  /*background-color: yellow;*/
+}
+
+.greeting-text {
+  font-size: 1.2em;
+}
+
+.firstname {
+  font-size: 1.8em;
+  font-weight: lighter;
+  padding-bottom: 10px;
+}
+
+.profile-photo-container {
+  float: right;
+  text-align: right;
+  width: 50%;
+  /*background-color: blue;*/
+}
+
+.profile-photo {
+  border-radius: 50%;
+  background-color: yellow;
+  height: 100px;
+}
+
+.welcome {
+  /*position: relative;*/
+  width: 50%;
+}
+
+#invite-button {
+  width: 150px;
+  height: 50px;
+  position: relative;
+  /*justify-content: center;*/
+  border-color: #004851;
+  font-size: 1.0em;
+  background-color: #004851;
+  color: #FFF;
+  align-content: center;
+  border-radius: 10px 0 10px 0;
+  /*margin-bottom: -80%;*/
+}
+
+.bday-list-header {
+  color: #017E82;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-left: 60px;
+  margin-bottom: 10px;
+}
+
+.bday-list-item {
+  flex: 1;
+  padding: 0 48px 0 5px;
+}
+
+#friendname {
+  color: #004851;
+  text-decoration: none;
+  padding-left: 10px;
+  font-size: 1.3em;
+}
+
+#friendname:hover {
+  color: #017E82;
+  text-decoration: none;
+}
+
+.heart {
+  color: #9E081B;
+  font-size: 30px;
+}
+
+.heart:hover {
+  opacity: 0.5;
+}
+
+.bday-row {
+  padding: 20px 40px 20px 30px;
+  border: {
+    color: black,
+    width: 1px
+  } 
+}
+/***********************************/
+/******** GIFT DETAIL VIEW ********/
+/************************************/
+
+.gift-detail-container {
+  padding: 20px;
+  max-width: 300px;
+  border-style: solid;
+  border-color: #BBB;
+}
+.book-title {
+  font-size: 0.7em;
+  font-weight: bold;
+}
+.book-author {
+  font-size: 0.7em;
+}
+.book-binding {
+  font-size: 0.6em;
+}
+.book-price {
+  font-size: 0.7em;
+}
+.add-to-list {
+  font-size: 0.8em;
+  position: fixed;
+}
+
+
+
+/***********************************/
+/******** AUTH0 STYLING *********/
+/***********************************/
+/*
+.auth {
+  font-family: "proxima-nova", sans-serif;
+  text-align: center;
+  font-size: 300%;
+  font-weight: 100;
+}
+
+.auth input[type=checkbox],
+input[type=radio] {
+  position: absolute;
+  opacity: 0;
+}
+
+.auth input[type=checkbox] + label,
+input[type=radio] + label {
+  display: inline-block;
+}
+
+.auth input[type=checkbox] + label:before,
+input[type=radio] + label:before {
+  content: "";
+  display: inline-block;
+  vertical-align: -0.2em;
+  width: 1em;
+  height: 1em;
+  border: 0.15em solid #0074d9;
+  border-radius: 0.2em;
+  margin-right: 0.3em;
+  background-color: white;
+}
+
+.auth input[type=radio] + label:before {
+  border-radius: 50%;
+}
+
+.auth input[type=radio]:checked + label:before,
+input[type=checkbox]:checked + label:before {
+  background-color: #0074d9;
+  box-shadow: inset 0 0 0 0.15em white;
+}
+
+.auth input[type=radio]:focus + label:before,
+input[type=checkbox]:focus + label:before {
+  outline: 0;
+}
+
+.auth .btn {
+  font-size: 140%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 0;
+  background-color: #16214D;
+  color: white;
+}
+
+.auth .btn:hover {
+  background-color: #44C7F4;
+}
+
+.auth .btn:focus {
+  outline: none !important;
+}
+.auth .btn.btn-lg {
+  padding: 20px 30px;
+}
+
+.auth .btn:disabled {
+  background-color: #333;
+  color: #666;
+}
+
+.auth h1,
+h2,
+h3 {
+  font-weight: 100;
+}
+
+.auth .friend-img{
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
+
+.auth #logo img {
+  width: 300px;
+  margin-bottom: 60px;
+}
+
+.auth .home-description {
+  font-weight: 100;
+  margin: 100px 0;
+}
+
+.auth h2 {
+  margin-top: 30px;
+  margin-bottom: 40px;
+  font-size: 200%;
+}
+
+.auth label {
+  font-size: 100%;
+  font-weight: 300;
+}
+
+.auth .btn-next {
+  margin-top: 30px;
+}
+.auth .answer {
+  width: 70%;
+  margin: auto;
+  text-align: left;
+  padding-left: 10%;
+  margin-bottom: 20px;
+}
+
+.auth .login-page .login-box {
+  padding: 100px 0;
+}
+*/
+
+
