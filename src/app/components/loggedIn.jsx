@@ -1,4 +1,5 @@
 var React = require('react');
+var PORT = require('../../config/port.js')
 
 var LoggedIn = React.createClass({
 
@@ -6,7 +7,7 @@ var LoggedIn = React.createClass({
     var that = this;
 
     $.ajax({
-      url: 'http://localhost:4000/api/friends',
+      url: 'http://localhost:' + PORT.PORT + '/api/friends',
       method: 'POST',
       data: {access_token : data}
     }).then(function(jsonFriend) {
@@ -27,7 +28,7 @@ var LoggedIn = React.createClass({
     var that = this;
 
     $.ajax({
-      url: 'http://localhost:4000/api/gifts/searchbykeyword',
+      url: 'http://localhost:' + PORT.PORT + '/api/gifts/searchbykeyword',
       method: 'POST',
       data: {friend : jsonFriend}
     }).then(function(gift) {
@@ -40,7 +41,7 @@ var LoggedIn = React.createClass({
   //PUT THIS INTO ANOTHER JSX FILE
   getSimilarItem: function(ASIN){
     $.ajax({
-      url: 'http://localhost:4000/api/gifts/searchsimilargifts',
+      url: 'http://localhost:' + PORT.PORT + '/api/gifts/searchsimilargifts',
       method: 'POST',
       data: {ASIN : ASIN}
     }).then(function(similargifts) {
