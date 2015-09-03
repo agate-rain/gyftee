@@ -56,7 +56,6 @@
     "start": "webpack-dev-server & npm run server",
     "mongod": "mongod",
     "server": "nodemon server/server.js",
-    "start": "webpack-dev-server & npm run server",
     "build": "webpack --progress --colors",
     "watch": "webpack-dev-server --hot --inline --progress --colors"
   }
