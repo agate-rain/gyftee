@@ -15,8 +15,6 @@ var app = express();
 // configure the server with all the middleware and the routing
 require('./config/middleware')(app, express);
 
-var prodAdv = aws.createProdAdvClient(process.env.AMAZON_CLIENT_ID, process.env.AMAZON_CLIENT_SECRET, process.env.AMAZON_ASSOCIATE_TAG);
-
 mongoose.connect(db.url);
 mongoose.connection.once('connected', function(){
   console.log('Nifty gifty db is connected!');
