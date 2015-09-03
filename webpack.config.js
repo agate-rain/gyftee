@@ -21,8 +21,7 @@ var common = {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: path.join(__dirname, 'build'), // This is where images AND js will go
-    publicPath: '', // This is used to generate URLs to e.g. images
+    path: path.join(__dirname, 'build'), // This is where js will go
     filename: '[name].js', // template name based on keys in entry
     pathInfo: true
   },
