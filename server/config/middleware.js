@@ -22,7 +22,8 @@ module.exports = function(app, express) {
   app.use(cookieSession({secret: process.env.SESSION_SECRET}));
   app.use(cors());
 
-  app.use(express.static(__dirname + '/../../client'));
+  // We point to our static assets
+  app.use(express.static(__dirname + '/../../src'));
 
   // define API paths
   app.use('/api/users', userRouter);
