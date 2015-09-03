@@ -26,17 +26,16 @@
   /*text-align: center;*/
 }
 
+.float-right {
+  float: right;
+}
+
 .row {
   display: flex;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   padding: 0 12px;
   align-items: center;
 }
-
-.row:last-child {
-  margin-bottom: 0;
-}
-
 
 .viewport {
   height: 100vw; 
@@ -131,9 +130,8 @@
   color: #FFF;
 }
 
-ul.nav.navbar-nav {
-  /*background-color: #017E82;*/
-  color: white !important;
+ul {
+  list-style-type: none;
 }
 
 /*TODO: make hover color go away*/
@@ -141,60 +139,89 @@ li>a.nav-menu-item {
   color: white;
   font-size: 1.1em;
   font-weight: lighter;
+  /*background-color: yellow;*/
+  /*height: 70px;*/
+  /*text-align: right;*/
+  text-decoration: none;
 }
 
 #nav-menu {
-  color: white;
+  /*color: white;*/
   /*background-color: red;*/
 }
 
+.brand {
+  /*height: 70px;*/
+  /*position: absolute;*/
+}
 /***********************************/
 /******** HOME VIEW ********/
 /************************************/
 
 .gyftee-nav {
-  height: 60px;
+  height: 70px;
 }
 
-/*nav.navbar-nav {
-  background-color: black;
-}
-*/
 .brand-icon {
-  height: 30px;
+  height: 35px;
+  padding-right: 10px;
 }
 
 .welcome-container {
-  padding: 80px 60px 30px 60px;
+  padding: 80px 10px 20px 40px;
   /*background-color: yellow;*/
 }
 
 .greeting-text {
   font-size: 1.2em;
+  padding-bottom: 10px;
 }
 
 .firstname {
-  font-size: 1.8em;
+  font-size: 1.5em;
   font-weight: lighter;
   padding-bottom: 10px;
 }
 
-.profile-photo-container {
-  float: right;
-  text-align: right;
-  width: 50%;
-  /*background-color: blue;*/
+.thumbnail {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+.thumbnail img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+.thumbnail img.portrait {
+  width: 100%;
+  height: auto;
 }
 
+.profile-photo-container {
+  padding-top: 20px;
+  display: flex;
+  flex: 1;
+  /*background-color: yellow;*/
+  /*justify-content: center;*/
+}
 .profile-photo {
   border-radius: 50%;
-  background-color: yellow;
-  height: 100px;
+  /*background-color: yellow;*/
+  /*background-position: 50%;*/
+  /*position: relative;*/
 }
 
 .welcome {
   /*position: relative;*/
-  width: 50%;
+  flex: 1.6;
+  /*background-color: red;*/
 }
 
 #invite-button {
@@ -208,14 +235,19 @@ li>a.nav-menu-item {
   color: #FFF;
   align-content: center;
   border-radius: 10px 0 10px 0;
-  /*margin-bottom: -80%;*/
+  padding-bottom: 10px;
+}
+
+.bday-list-body {
+  /*margin: 48px auto;*/
+  padding: 0;
 }
 
 .bday-list-header {
   color: #017E82;
-  font-size: 1.3em;
+  font-size: 1.1em;
   font-weight: bold;
-  margin-left: 60px;
+  margin-left: 65px;
   margin-bottom: 10px;
 }
 
@@ -227,7 +259,7 @@ li>a.nav-menu-item {
 #friendname {
   color: #004851;
   text-decoration: none;
-  padding-left: 10px;
+  /*padding-left: 10px;*/
   font-size: 1.3em;
 }
 
@@ -241,17 +273,38 @@ li>a.nav-menu-item {
   font-size: 30px;
 }
 
+.heart-div {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
 .heart:hover {
   opacity: 0.5;
 }
 
 .bday-row {
-  padding: 20px 40px 20px 30px;
-  border: {
-    color: black,
-    width: 1px
-  } 
+  padding: 20px 20px 20px 20px;
+  /*border-style: solid;*/
+  border-top: solid;
+  border-color: white;
+  display: flex;
+  /*margin-bottom: 20px;*/
+  /*padding: 0 12px;*/
+  align-items: center;
 }
+
+.bday-row:last-child {
+  padding-bottom: 20px;
+}
+
+.date-container {
+  display: flex;
+  flex: 0.4;
+  font-size: 1.2em;
+  color: #004851;
+}
+
 /***********************************/
 /******** GIFT DETAIL VIEW ********/
 /************************************/
