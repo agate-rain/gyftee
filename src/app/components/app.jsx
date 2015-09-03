@@ -1,3 +1,7 @@
+var React = require('react');
+var LoggedIn = require('./loggedIn');
+var Home = require('./home');
+
 var App = React.createClass({
   componentWillMount: function() {
     this.setupAjax();
@@ -39,3 +43,5 @@ var App = React.createClass({
     }
   }
 });
+
+module.exports = App;

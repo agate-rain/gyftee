@@ -1,14 +1,14 @@
-
+var React = require('react');
 
 var LoggedIn = React.createClass({
-  
+
   callApi: function(data) {
     var that = this;
 
     $.ajax({
-      url:    'http://localhost:3000/api/friends',
+      url: 'http://localhost:3000/api/friends',
       method: 'POST',
-      data:   {access_token : data}
+      data: {access_token : data}
     }).then(function(jsonFriend) {
       alert("The request to the secured endpoint was successful");
       that.getGift(jsonFriend);
@@ -17,13 +17,19 @@ var LoggedIn = React.createClass({
     });
   },
 
+  logout: function() {
+    localStorage.removeItem('userToken');
+    this.props.lock.logout({ref: 'window.location.href'});
+    // Go to home with your React Router
+  },
+
   getGift: function(jsonFriend){
     var that = this;
 
     $.ajax({
-      url:    'http://localhost:3000/api/gifts/searchbykeyword',
+      url: 'http://localhost:3000/api/gifts/searchbykeyword',
       method: 'POST',
-      data:   {friend : jsonFriend}
+      data: {friend : jsonFriend}
     }).then(function(gift) {
       var ASIN = gift.Items.Item[0].ASIN;
       that.getSimilarItem(ASIN);
@@ -31,12 +37,12 @@ var LoggedIn = React.createClass({
   },
 
 
-  //PUT THIS INTO ANOTHER JSX FILE 
+  //PUT THIS INTO ANOTHER JSX FILE
   getSimilarItem: function(ASIN){
     $.ajax({
-      url:    'http://localhost:3000/api/gifts/searchsimilargifts',
+      url: 'http://localhost:3000/api/gifts/searchsimilargifts',
       method: 'POST',
-      data:   {ASIN : ASIN}
+      data: {ASIN : ASIN}
     }).then(function(similargifts) {
       similargifts.Items.Item.forEach(function(gift){
         console.log(gift);
@@ -60,15 +66,17 @@ var LoggedIn = React.createClass({
     }.bind(this));
   },
 
+  componentDidUpdate: function() {
+    this.callApi(this.state.profile.identities[0].access_token);
+  },
+
   render: function() {
     if (this.state.profile) {
-      this.callApi(this.state.profile.identities[0].access_token)
       return (
         <div className="logged-in-box auth0-box logged-in">
-          
           <img src={this.state.profile.picture} />
           <h2>Welcome {this.state.profile.nickname}</h2>
-
+          <button onClick={this.logout} className="btn btn-lg btn-primary">Logout</button>
         </div>);
     } else {
       return (
@@ -78,3 +86,5 @@ var LoggedIn = React.createClass({
     }
   }
 });
+
+module.exports = LoggedIn;

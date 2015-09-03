@@ -10,8 +10,7 @@ module.exports = function(app, express) {
   // define routers
   var userRouter = express.Router();
   var giftRouter = express.Router();
-  // giftList is a collection of gift items
-  var giftListRouter = express.Router();
+  var giftListRouter = express.Router(); // giftList is a collection of gift items
   var friendRouter = express.Router();
 
   // Request body parsing middleware should be above methodOverride
@@ -23,15 +22,16 @@ module.exports = function(app, express) {
   app.use(cookieSession({secret: process.env.SESSION_SECRET}));
   app.use(cors());
 
-  app.use(express.static(__dirname + '/../../client'));
+  // We point to our static assets
+  app.use(express.static(__dirname + '/../../src'));
 
-  // define API paths 
+  // define API paths
   app.use('/api/users', userRouter);
   app.use('/api/gifts', giftRouter);
   app.use('/api/giftlists', giftListRouter);
   app.use('/api/friends', friendRouter)
 
-  // auth middleware will be here if we allow users to login w/o facebook 
+  // auth middleware will be here if we allow users to login w/o facebook
 
   // require route files
   require('../users/userRoutes.js')(userRouter);

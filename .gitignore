@@ -2,11 +2,12 @@
 .env
 
 # Files that might appear on external disk
+build/
 node_modules/
 bower_components/
 data/db/
-client/lib
-client/build
+tmp/
+src/lib
 
 # Thumbnails
 ._*
