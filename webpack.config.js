@@ -17,7 +17,7 @@ var common = {
   // you must add a resolve.extensions parameter specifying files webpack
   // searches for; can use require('file') instead of require('file.jsx')
   resolve: {
-    root: SRC_PATH
+    root: SRC_PATH,
     extensions: ['', '.js', '.jsx']
   },
   output: {

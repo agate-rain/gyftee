@@ -29,7 +29,7 @@ module.exports = function(app, express) {
   app.use('/api/users', userRouter);
   app.use('/api/gifts', giftRouter);
   app.use('/api/giftlists', giftListRouter);
-  app.use('/api/friends', friendRouter)
+  app.use('/api/friends', friendRouter);
 
   // auth middleware will be here if we allow users to login w/o facebook
 
