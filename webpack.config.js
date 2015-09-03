@@ -11,17 +11,13 @@ var TARGET = process.env.npm_lifecycle_event;
 var SRC_PATH = path.join(__dirname, 'src');
 
 var common = {
-  target: 'web',
-  cache: true,
-  entry: {
-    module: path.join(SRC_PATH, 'app/views/boot'),
-    common: ['react', 'react-router']
-  },
+  context: SRC_PATH,
+  entry: path.join(SRC_PATH, 'main.jsx'),
   // to enable requiring files without specifying the extension
-  // you must add a resolve.extensions parameter specifying which files
-  // webpack searches for... can use require('file') instead of require('file.jsx')
+  // you must add a resolve.extensions parameter specifying files webpack
+  // searches for; can use require('file') instead of require('file.jsx')
   resolve: {
-    root: [path.join(SRC_PATH, 'app/components'), path.join(SRC_PATH, 'app/views')],
+    root: SRC_PATH
     extensions: ['', '.js', '.jsx']
   },
   output: {
@@ -35,12 +31,12 @@ var common = {
     loaders: [ // webpack's equivalent of browserify transforms and RequireJS plugins is a loader
       {
         test: /\.jsx$/,
-        loader: 'jsx-loader',
-        include: path.join(SRC_PATH, 'app')
+        loaders: ['react-hot-loader', 'babel-loader'],
+        include: [path.join(SRC_PATH, 'main.jsx'), path.join(SRC_PATH, 'app')]
       },
       {
         test: /\.css$/,
-        loaders: 'style-loader!css-loader', // use ! to chain loaders
+        loader: 'style!css',
         include: path.join(SRC_PATH, 'css')
       },
       {
@@ -58,13 +54,14 @@ var common = {
 if (TARGET === 'start' || !TARGET) {
   // webpack dev server automatically refreshes content inthe browser
   module.exports = merge(common, {
-    devtool: 'eval-cheap-module-source-map',
+    devtool: 'eval',
     devServer: {
       colors: true,
       historyApiFallback: true,
       hot: true,
       inline: true,
       progress: true,
+      debug: true,
       port: 3000
     },
     plugins: [
