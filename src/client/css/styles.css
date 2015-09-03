@@ -133,7 +133,7 @@
 
 ul.nav.navbar-nav {
   /*background-color: #017E82;*/
-  color: white !important;
+  /*color: white !important;*/
 }
 
 /*TODO: make hover color go away*/
@@ -165,7 +165,7 @@ li>a.nav-menu-item {
 }
 
 .welcome-container {
-  padding: 80px 60px 30px 60px;
+  padding: 70px 10px 0 40px;
   /*background-color: yellow;*/
 }
 
@@ -179,22 +179,44 @@ li>a.nav-menu-item {
   padding-bottom: 10px;
 }
 
-.profile-photo-container {
-  float: right;
-  text-align: right;
-  width: 50%;
-  /*background-color: blue;*/
+.thumbnail {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+.thumbnail img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+.thumbnail img.portrait {
+  width: 100%;
+  height: auto;
 }
 
+.profile-photo-container {
+  display: flex;
+  flex: 1;
+  /*background-color: white;*/
+  /*justify-content: center;*/
+}
 .profile-photo {
   border-radius: 50%;
-  background-color: yellow;
-  height: 100px;
+  /*background-color: yellow;*/
+  /*background-position: 50%;*/
+  /*position: relative;*/
 }
 
 .welcome {
   /*position: relative;*/
-  width: 50%;
+  flex: 1.6;
+  /*background-color: red;*/
 }
 
 #invite-button {
