@@ -1,16 +1,16 @@
 var React = require('react');
 var Book = require('../components/book');
-var BOOK = require('../../data/hardCoded');
+var BOOK = require('../../../data/hardCoded');
 
 var GiftDetail = React.createClass({
 
   render: function() {
     return (
       <div className="gift">
-      <Book book={this.props.book}/>
+      <Book book={BOOK}/>
       </div>
     );
   }
 });
 
-React.render(<GiftDetail book={BOOK}/>, document.getElementById('gift-detail'));
+module.exports = GiftDetail;

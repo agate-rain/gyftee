@@ -1,4 +1,3 @@
-require('../../css/styles.css');
 var React = require('react');
 var FilterableFriends = require('../components/filterableFriends');
 var FriendList = require('../components/friendList');
@@ -8,12 +7,11 @@ var FriendManager = React.createClass({
   render: function() {
     return (
       <div className="friend-manager">
-        <FilterableFriends fbFriends={this.props.facebookFriends}/>
-        <FriendList friends={this.props.appFriends}/>
+        <FilterableFriends fbFriends={FRIENDS}/>
+        <FriendList friends={FRIENDS}/>
       </div>
     );
   }
 });
 
-React.render(<FriendManager facebookFriends={FRIENDS} appFriends={FRIENDS}/>,
-  document.getElementById('friend-manager-container'));
+module.exports = FriendManager;
