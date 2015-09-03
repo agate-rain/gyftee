@@ -53,7 +53,9 @@
   "scripts": {
     "test": "npm run test-node",
     "test-node": "mocha -R spec ./test/spec/userModelSpec.js",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server & npm run server",
+    "mongod": "mongod",
+    "server": "nodemon server/server.js",
     "build": "webpack --progress --colors",
     "watch": "webpack-dev-server --hot --inline --progress --colors"
   }
