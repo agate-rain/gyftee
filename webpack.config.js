@@ -12,7 +12,7 @@ var SRC_PATH = path.join(__dirname, 'src');
 
 var common = {
   context: SRC_PATH,
-  entry: path.join(SRC_PATH, 'main.jsx'),
+  entry: path.join(SRC_PATH, 'index.jsx'),
   // to enable requiring files without specifying the extension
   // you must add a resolve.extensions parameter specifying files webpack
   // searches for; can use require('file') instead of require('file.jsx')
@@ -21,18 +21,19 @@ var common = {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: path.join(__dirname, 'build'), // This is where images AND js will go
-    publicPath: '', // This is used to generate URLs to e.g. images
+    // If in production mode we put the files into the dist folder instead
+    path: process.env.NODE_ENV === 'production' ? './dist' : './build',
     filename: '[name].js', // template name based on keys in entry
     pathInfo: true
   },
 
+
   module: {
     loaders: [ // webpack's equivalent of browserify transforms and RequireJS plugins is a loader
       {
-        test: /\.jsx$/,
-        loaders: ['react-hot-loader', 'babel-loader'],
-        include: [path.join(SRC_PATH, 'main.jsx'), path.join(SRC_PATH, 'app')]
+        test: /\.jsx?$/,
+        loaders: ['react-hot', 'babel'],
+        include: [path.join(SRC_PATH, 'index.jsx'), path.join(SRC_PATH, 'app')]
       },
       {
         test: /\.css$/,
