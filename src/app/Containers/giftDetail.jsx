@@ -1,5 +1,5 @@
 var React = require('react');
-var Book = require('../components/book');
+var Book = require('../Components/book');
 var BOOK = require('../../../data/hardCoded');
 
 var GiftDetail = React.createClass({

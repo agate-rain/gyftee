@@ -1,6 +1,6 @@
 var React = require('react');
-var FilterableFriends = require('../components/filterableFriends');
-var FriendList = require('../components/friendList');
+var FilterableFriends = require('../Components/filterableFriends');
+var FriendList = require('../Components/friendList');
 var FRIENDS = require('../../../data/hardCoded').FRIENDS;
 
 var FriendManager = React.createClass({
