@@ -21,10 +21,12 @@ var common = {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: path.join(__dirname, 'build'), // This is where js will go
+    // If in production mode we put the files into the dist folder instead
+    path: process.env.NODE_ENV === 'production' ? './dist' : './build',
     filename: '[name].js', // template name based on keys in entry
     pathInfo: true
   },
+
 
   module: {
     loaders: [ // webpack's equivalent of browserify transforms and RequireJS plugins is a loader
