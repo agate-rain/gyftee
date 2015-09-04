@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import FriendManager from './friendManager';
 
-import { ADD_FRIEND, REMOVE_FRIEND } from '../Actions/user';
+import { ADD_FRIEND, REMOVE_FRIEND, FETCH_FRIENDS } from '../Actions/user';
 
 class App extends Component {
   constructor(props) {
@@ -58,4 +58,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect( mapStateToProps, { ADD_FRIEND, REMOVE_FRIEND } )(App);
+export default connect( mapStateToProps, { ADD_FRIEND, REMOVE_FRIEND, FETCH_FRIENDS } )(App);

@@ -32,7 +32,10 @@ var FilterableFriends = React.createClass({
   render: function() {
     var friends = this.props.fbFriends,
         filterText = this.state.filterText.trim().toLowerCase();
-
+        // friends = JSON.parse(friends);
+        // friends = JSON.parse(friends);
+        // console.log(friends)
+        // friends = JSON.parse(friends);
     if (filterText.length > 0) {
       friends = friends.filter(function(friend) {
         return friend.name.toLowerCase().match( filterText );

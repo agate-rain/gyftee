@@ -42,7 +42,7 @@ module.exports = {
     BPromise.promisifyAll(facebookApi.invitableFriends(req.body.access_token))
     .then(function(invitableFriendsResponse){
       var invitableFriends = invitableFriendsResponse.data.map(function(userData) {
-          // console.log(JSON.stringify(userData,null, '\t'));
+          console.log(JSON.stringify(userData,null, '\t'));
           return {
             id: userData.id,
             name: userData.name,
