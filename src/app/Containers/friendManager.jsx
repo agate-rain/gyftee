@@ -1,31 +1,24 @@
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import React, {PropTypes} from 'react';
-// var React = require('react');
+import { fetchFriends } from '../Actions/user';
 var userActions = require('../Actions/user');
 var FilterableFriends = require('../Components/filterableFriends');
 var FriendList = require('../Components/friendList');
 var PORT = require('../../config/port.js');
-var globalDispatcher;
-var globalActions;
+
 
 var FriendManager = React.createClass({
-  // const actions = bindActionCreators(userActions, dispatch);
 
   render: function() {
-    const {friends} = this.props;
+    const { friends } = this.props;
     return (
       <div className="friend-manager">
-        <FilterableFriends fbFriends={this.state.fbFriends} />
-        <FriendList appFriends={this.state.appFriends} actions={globalActions} />
+        <FilterableFriends />
+        <FriendList appFriends={friends}/>
       </div>
     );
   },
-
-  // deleteFriend: function(id){
-  //   console.log('delete friend call with id', id);
-  //    actions.removeFriend(id);
-  // },
 
   getInitialState: function() {
     return { fbFriends: [], appFriends: [] }
@@ -35,10 +28,7 @@ var FriendManager = React.createClass({
   componentDidMount: function() {
     // this.fetchFacebookFriends();
     this.fetchAppFriends();
-    const {dispatch} = this.props;
-    const actions = bindActionCreators(userActions, dispatch);
-    globalDispatcher = dispatch;
-    globalActions = actions;
+
     //setInterval and use polling to run this function at specfic intervals
     //could also use socketIO
   },
@@ -63,9 +53,7 @@ var FriendManager = React.createClass({
       method: 'POST',
       data: {access_token: JSON.parse(localStorage.getItem('access_token')).access_token}, // need to pass in the access token
       success: function(data) {
-        this.setState({appFriends: JSON.parse(data)}); // check
-        globalActions.fetchFriends(JSON.parse(data));
-        console.log('fetching app friends')
+        this.props.dispatch(fetchFriends(JSON.parse(data)));
       }.bind(this),
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
@@ -80,10 +68,10 @@ FriendManager.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 
-var mapStateToProps = function(state){
+var mapStateToProps = function(state) {
   return {
-    friends : state.friends
+    friends : state.friends // export the portion of the state from index.js Reducers
   }
-}
-export default connect(mapStateToProps)(FriendManager);
+};
 
+export default connect(mapStateToProps)(FriendManager);

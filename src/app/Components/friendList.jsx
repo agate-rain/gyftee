@@ -1,29 +1,30 @@
-var React = require('react');
-
-var Friend = require('./friend');
+import React from 'react';
+import { connect } from 'react-redux';
+import Friend from './friend';
+import { removeFriend } from '../Actions/user';
 
 var FriendList = React.createClass({
-  // displays the friend list for the user
-  // removeFriend: function(i){
-  //   var id = this.props.appFriends[i].id;
-  //   console.log('remove friend call with id', id)
-  //   // console.log(this.props.actions);
-  //   // console.log(id);
-  //   this.props.actions.removeFriend(id);
-  // },
+
+  clickHandler: function(id) {
+    this.props.dispatch(removeFriend(id));
+  },
+
   render: function() {
-    // console.log("HERE",this.props.appFriends)
     return (
       <div className='friend-list'>
-        {this.props.appFriends.map(function(friend,i){
-          return (
-            <Friend friend={friend} key={i} onClick={this.props.actions.removeFriend.bind(this, i)}/>
-            );
-        },this)}
+        {
+          this.props.appFriends.map(function(friend) {
 
+            return (
+              <Friend friend={friend} key={friend.id} onClick={this.clickHandler.bind(this, friend.id)}/>
+            );
+
+          }, this)
+        }
       </div>
     );
   }
+
 });
 
-module.exports = FriendList;
+export default connect()(FriendList);
