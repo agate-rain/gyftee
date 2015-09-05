@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import FriendManager from './friendManager';
 
-import { ADD_FRIEND, REMOVE_FRIEND, FETCH_FRIENDS } from '../Actions/user';
+import * as userActions from '../Actions/user';
 // import userActions from '../Actions/user';
 
 
@@ -57,8 +57,13 @@ App.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    friends: state.friends
+    state: state
   };
 }
 
-export default connect( mapStateToProps, { ADD_FRIEND, REMOVE_FRIEND, FETCH_FRIENDS } )(App);
+function mapActionsToProps(dispatch) {
+
+}
+// not sure if we need userActions
+// can dispatch actions using connect on any component, what's best?
+export default connect( mapStateToProps, userActions )(App);
