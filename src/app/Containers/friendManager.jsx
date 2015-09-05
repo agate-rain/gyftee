@@ -6,27 +6,39 @@ var userActions = require('../Actions/user');
 var FilterableFriends = require('../Components/filterableFriends');
 var FriendList = require('../Components/friendList');
 var PORT = require('../../config/port.js');
+var globalDispatcher;
+var globalActions;
 
 var FriendManager = React.createClass({
+  // const actions = bindActionCreators(userActions, dispatch);
 
   render: function() {
-    const {friends, dispatch } = this.props;
-    const actions = bindActionCreators(userActions, dispatch);
+    const {friends} = this.props;
     return (
       <div className="friend-manager">
         <FilterableFriends fbFriends={this.state.fbFriends} />
-        <FriendList appFriends={this.state.appFriends} actions={actions} />
+        <FriendList appFriends={this.state.appFriends} actions={globalActions} />
       </div>
     );
   },
 
+  // deleteFriend: function(id){
+  //   console.log('delete friend call with id', id);
+  //    actions.removeFriend(id);
+  // },
+
   getInitialState: function() {
     return { fbFriends: [], appFriends: [] }
+
   },
 
   componentDidMount: function() {
     // this.fetchFacebookFriends();
     this.fetchAppFriends();
+    const {dispatch} = this.props;
+    const actions = bindActionCreators(userActions, dispatch);
+    globalDispatcher = dispatch;
+    globalActions = actions;
     //setInterval and use polling to run this function at specfic intervals
     //could also use socketIO
   },
@@ -52,7 +64,7 @@ var FriendManager = React.createClass({
       data: {access_token: JSON.parse(localStorage.getItem('access_token')).access_token}, // need to pass in the access token
       success: function(data) {
         this.setState({appFriends: JSON.parse(data)}); // check
-        userActions.fetchFriends(JSON.parse(data));
+        globalActions.fetchFriends(JSON.parse(data));
         console.log('fetching app friends')
       }.bind(this),
       error: function(xhr, status, err) {

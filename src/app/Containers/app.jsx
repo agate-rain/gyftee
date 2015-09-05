@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import FriendManager from './friendManager';
 
 import { ADD_FRIEND, REMOVE_FRIEND, FETCH_FRIENDS } from '../Actions/user';
+// import userActions from '../Actions/user';
+
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +25,8 @@ class App extends Component {
 
   render() {
     // Injected by React Router
-    const { location, children } = this.props;
+
+    const { location, children} = this.props;
     const { pathname } = location;
     const value = pathname.substring(1);
 
