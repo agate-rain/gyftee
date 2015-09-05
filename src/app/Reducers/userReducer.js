@@ -3,6 +3,7 @@ import { ADD_FRIEND, REMOVE_FRIEND, FETCH_FRIENDS } from '../Constants/ActionTyp
 const initialState = [];
 
 export default function userReducer(state=initialState, action) {
+  // DO NOT mutate the state, return a NEW state
 
   switch (action.type) {
     case ADD_FRIEND:
@@ -11,21 +12,16 @@ export default function userReducer(state=initialState, action) {
       }, ...state];
 
     case REMOVE_FRIEND:
-      // console.log("REMOVE_FRIEND called")
-      console.log(state);
-      // console.log("action id",action.id)
-      // state = state[0];
-      return state.filter(friend =>{
-        console.log('action ID',action.id);
-        friend.id !== action.id
+      return state.filter(friend => {
+        return friend.id !== action.id
       });
 
     case FETCH_FRIENDS:
-      var friendIds = [];
-      action.friends.forEach(function(friend){
-        friendIds.push({'id' : friend.id});
+      var friends = [];
+      action.friends.forEach(function(friend) {
+        friends.push(friend);
       });
-      return friendIds.concat(state)
+      return friends;
 
     default:
       return state;
