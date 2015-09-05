@@ -1,4 +1,4 @@
-import * as type from '../Constants/ActionTypes';
+import * as types from '../Constants/ActionTypes';
 
 export function addFriend(id) {
   return {
@@ -13,3 +13,12 @@ export function removeFriend(id) {
     id
   };
 };
+
+export function fetchFriends(friends){
+  return {
+    type: types.FETCH_FRIENDS,
+    friends
+  };
+};
+
+

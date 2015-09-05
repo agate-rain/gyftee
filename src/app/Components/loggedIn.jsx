@@ -69,6 +69,7 @@ var LoggedIn = React.createClass({
 
   componentDidUpdate: function() {
     this.callApi(this.state.profile.identities[0].access_token);
+    localStorage.setItem('access_token', JSON.stringify({'access_token' : this.state.profile.identities[0].access_token }))
   },
 
   render: function() {
