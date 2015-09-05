@@ -14,7 +14,11 @@ export default function userReducer(state=initialState, action) {
       return state.filter(friend => friend.id !== action.id);
 
     case FETCH_FRIENDS:
-      return state = action.friends;
+      const friendIds = [];
+      action.friends.forEach(function(friend){
+        friendIds.push({'id' : friend.id});
+      });
+      return [friendIds, ...state]
 
     default:
       return state;
