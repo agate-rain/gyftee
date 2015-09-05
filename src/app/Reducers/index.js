@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import userReducer from './userReducer';
+import friends from './userReducer'; //TODO change the path later
 
 const rootReducer = combineReducers({
-  userReducer
+  friends // state for the friendsManager
 });
 
 export default rootReducer;
