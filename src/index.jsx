@@ -30,10 +30,9 @@ React.render(
   {() =>
     <Router history={history}>
       <Route path="/" component={App}>
-        <Route path="/login" component={Login} />
-        <Route path="/friends" component={FriendManager}>
-          <Route name="friendGifts" path="/friends/:friendId" component={GiftRecs} />
-        </Route>
+        <Route name="login" path="/login" component={Login} />
+        <Route name="friends" path="/friends" component={FriendManager} />
+        <Route name="friendGifts" path="/friends/:friendId" component={GiftRecs} />
         <Route name="giftDetail" path="/gifts/:giftId" component={GiftDetail} />
       </Route>
     </Router>
