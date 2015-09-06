@@ -30,8 +30,6 @@ class App extends Component {
     // HEADER COMPONENT will replace the div with GYFTEE!
     return (
       <div>
-        <div>GYFTEE!</div>
-        <hr />
         {children}
       </div>
     );

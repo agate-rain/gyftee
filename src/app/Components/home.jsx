@@ -7,11 +7,25 @@ var Home = React.createClass({
 
   render: function() {
     return (
-    <div className="login-box auth0-box before">
-      <img src="../src/client/img/mipmap-xxxhdpi/ic_launcher.png" />
-      <h1>Gyftee</h1>
-      <a onClick={this.showLock} className="btn btn-primary btn-lg btn-login btn-block">Sign In</a>
-    </div>);
+      <View row expand>
+    <div className="login-container flex-container responsive">
+
+      <div className="container">
+
+      <div className="logo">
+        <div className="icon-container"><img src="src/client/img/gyftee-icon.png"></img></div>
+        <div className="brand-container"><span className="gyftee-text">gyftee</span></div>
+      </div>
+
+      <div className="login-button-container">
+      <a onClick={this.showLock} className="login-button btn">Sign In</a>
+      </div>
+
+    </div>
+   
+  </div>
+  </View>
+  );
   }
 });
 
