@@ -10,6 +10,8 @@
   box-sizing: border-box;
 }
 
+
+
 .flex-container {
   display: -webkit-flex; /* for safari */
   display: flex;
@@ -87,7 +89,10 @@
 /***********************************/
 
 .login-container {
-  background-color: #017E82;
+  /*background-color: #017E82;*/
+  background-image: url("../img/bg-tile.jpg");
+  height: 177.78vw;
+  max-width: 100.25vw;
 }
 
 .logo {
@@ -103,7 +108,7 @@
   text-align: center;
 }
 
-#login-button {
+.login-button {
   width: 250px;
   height: 80px;
   position: relative;
