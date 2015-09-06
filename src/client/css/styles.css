@@ -89,8 +89,10 @@
 /***********************************/
 
 .login-container {
-  background-color: #017E82;
-  display: flex;
+  /*background-color: #017E82;*/
+  background-image: url("../img/bg-tile.jpg");
+  height: 177.78vw;
+  max-width: 100.25vw;
 }
 
 .logo {
