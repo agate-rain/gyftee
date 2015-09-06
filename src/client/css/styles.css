@@ -250,25 +250,27 @@ li>a.nav-menu-item {
 
 .bday-list-header {
   color: #017E82;
-  font-size: 1.1em;
-  font-weight: bold;
+  font-size: 0.8em;
+  text-align: left;
   margin-left: 65px;
-  margin-bottom: 10px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .bday-list-item {
   flex: 1;
-  padding: 0 48px 0 5px;
+  padding: 0 48px 0 10px;
+  text-align: left;
 }
 
-#friendname {
+.friendname {
   color: #004851;
   text-decoration: none;
   /*padding-left: 10px;*/
-  font-size: 1.3em;
+  font-size: 0.8em;
 }
 
-#friendname:hover {
+.friendname:hover {
   color: #017E82;
   text-decoration: none;
 }
@@ -306,7 +308,7 @@ li>a.nav-menu-item {
 .date-container {
   display: flex;
   flex: 0.4;
-  font-size: 1.2em;
+  font-size: 0.8em;
   color: #004851;
 }
 

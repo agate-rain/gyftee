@@ -7,7 +7,7 @@ var Navbar = React.createClass({
       <div className="home-container">
         <nav className="navbar navbar-fixed-top gyftee-nav teal" role="navigation">
           <div className="container">
-            <div type="button" className="navbar-toggle" data-toggle="collapse">
+            <div className="navbar-toggle" data-toggle="collapse">
               <span className="icon-bar white"></span>
               <span className="icon-bar white"></span>
               <span className="icon-bar white"></span>
@@ -20,10 +20,11 @@ var Navbar = React.createClass({
             <div className="collapse navbar-collapse">
               <ul className="nav navbar-nav">
                 <li>
-                  <a className="nav-menu-item" href="#">Settings</a>  
+                  <a className="nav-menu-item" href="#"></a>  
                 </li>
               </ul>
             </div> 
+
           </div>
         </nav> 
       </div>
@@ -33,6 +34,3 @@ var Navbar = React.createClass({
 });
 
 export default Navbar;
-
-
-
