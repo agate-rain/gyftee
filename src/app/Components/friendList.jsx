@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Navbar from './navbar';
 import Friend from './friend';
 import { removeFriend } from '../Actions/user';
 import { Navigation } from 'react-router';
@@ -8,9 +9,9 @@ var FriendList = React.createClass({
 
   mixins: [ Navigation ],
 
-  clickHandler: function(id) {
-    this.props.dispatch(removeFriend(id));
-  },
+  // clickHandler: function(id) {
+  //   this.props.dispatch(removeFriend(id));
+  // },
 
   navToGiftList: function(id) {
     this.transitionTo(`/friends/${id}`);
@@ -19,12 +20,12 @@ var FriendList = React.createClass({
   render: function() {
     return (
       <div className='friend-list'>
+      <Navbar />
         {
           this.props.appFriends.map(function(friend) {
 
             return (
               <div>
-                <button onClick={this.clickHandler.bind(this, friend.id)}>Remove</button>
                 <Friend friend={friend} key={friend.id} onClick={this.navToGiftList.bind(this, friend.id)}/>
               </div>
             );
@@ -36,5 +37,6 @@ var FriendList = React.createClass({
   }
 
 });
+                // <button onClick={this.clickHandler.bind(this, friend.id)}>Remove</button>
 
 export default connect()(FriendList);
