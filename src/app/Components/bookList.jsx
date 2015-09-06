@@ -1,13 +1,20 @@
 var React = require('react');
+var Thumbnail = require('./thumbnail');
+var Slider = require('react-slick');
 
 var BookList = React.createClass({
+
+  navToGift: function(id) {
+    this.transitionTo(`/gifts/${id}`);
+  },
 
   render: function() {
 
     var books = [];
-    this.props.data.forEach(function(book) {
-      books.push(<div><Thumbnail book={book} key={book.ASIN}/></div>);
-    });
+    this.props.amazonBooks.forEach(function(book) {
+      books.push(<div><Thumbnail book={book} key={book.ASIN}
+        onClick={this.navToGift.bind(this, book.ASIN) } /></div>);
+    }, this);
 
     // define slider options
     var settings = {
@@ -41,7 +48,7 @@ var BookList = React.createClass({
 
     return (
       <div className="books-list">
-        <h1> Books </h1>
+        <h1>Books</h1>
         <Slider {...settings} className="books-list">
           {books}
         </Slider>

@@ -13,7 +13,7 @@ var GiftRecommendations = React.createClass({
       <div className="recommendations">
         <UserHeader user={USER} />
         <RecommendationFilters />
-        <BookList data={BOOKS} />
+        <BookList amazonBooks={BOOKS} />
       </div>
 		);
 	}

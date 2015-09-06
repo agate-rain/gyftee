@@ -3,9 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import FriendManager from './friendManager';
 
-import * as userActions from '../Actions/user';
-// import userActions from '../Actions/user';
-
+import * as friendActions from '../Actions/user';
 
 class App extends Component {
   constructor(props) {
@@ -29,7 +27,7 @@ class App extends Component {
     const { location, children} = this.props;
     const { pathname } = location;
     const value = pathname.substring(1);
-
+    // HEADER COMPONENT will replace the div with GYFTEE!
     return (
       <div>
         <div>GYFTEE!</div>
@@ -64,6 +62,6 @@ function mapStateToProps(state) {
 function mapActionsToProps(dispatch) {
 
 }
-// not sure if we need userActions
-// can dispatch actions using connect on any component, what's best?
-export default connect( mapStateToProps, userActions )(App);
+// not sure if we need friendActions
+// we can dispatch actions using connect on any component, what is best practice?
+export default connect( mapStateToProps, friendActions )(App);

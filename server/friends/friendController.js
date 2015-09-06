@@ -1,6 +1,7 @@
 // var User = require('./userModel.js');
 var BPromise = require('bluebird');
 var facebookApi = require('../config/facebook-api.js');
+var User = require('../users/userModel');
 
 module.exports = {
   // signin: function(req, res, next) {
@@ -16,20 +17,20 @@ module.exports = {
   getFriend: function(req, res, next) {
     BPromise.promisifyAll(facebookApi.friends(req.body.access_token))
     .then(function(friendsResponse){
-      var friends = friendsResponse.data.map(function(userData) {
-          // console.log(JSON.stringify(userData,null, '\t'));
+      var friends = friendsResponse.data.map(function(friend) {
           return {
-            id: userData.id,
-            name: userData.name,
-            pictureUrl: userData.picture.data.url,
-            birthday : userData.birthday,
-            fav_atheletes : userData.favorite_athletes,
-            inspirational_people : userData.inspirational_people,
-            sports : userData.sports,
-            books: userData.books,
-            albums: userData.albums
+            id: friend.id,
+            name: friend.name,
+            pictureUrl: friend.picture.data.url,
+            birthday : friend.birthday,
+            fav_atheletes : friend.favorite_athletes,
+            inspirational_people : friend.inspirational_people,
+            sports : friend.sports,
+            books: friend.books,
+            albums: friend.albums
           };
       });
+
       res.send(JSON.stringify(friends));
     })
     .catch(function(err) {
@@ -41,12 +42,11 @@ module.exports = {
   getInvitableFriend: function(req, res, next){
     BPromise.promisifyAll(facebookApi.invitableFriends(req.body.access_token))
     .then(function(invitableFriendsResponse){
-      var invitableFriends = invitableFriendsResponse.data.map(function(userData) {
-          console.log(JSON.stringify(userData,null, '\t'));
+      var invitableFriends = invitableFriendsResponse.data.map(function(friend) {
           return {
-            id: userData.id,
-            name: userData.name,
-            pictureUrl: userData.picture.data.url,
+            id: friend.id,
+            name: friend.name,
+            pictureUrl: friend.picture.data.url,
           };
       });
       res.send(JSON.stringify(invitableFriends));
