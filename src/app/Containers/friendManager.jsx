@@ -2,11 +2,9 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import React, {PropTypes} from 'react';
 import { fetchFriends } from '../Actions/user';
-var userActions = require('../Actions/user');
-var FilterableFriends = require('../Components/filterableFriends');
-var FriendList = require('../Components/friendList');
-var PORT = require('../../config/port.js');
-
+import FilterableFriends from '../Components/filterableFriends';
+import FriendList from '../Components/friendList';
+import PORT from '../../config/port.js';
 
 var FriendManager = React.createClass({
 
@@ -14,7 +12,7 @@ var FriendManager = React.createClass({
     const { friends } = this.props;
     return (
       <div className="friend-manager">
-        <FilterableFriends />
+        <FilterableFriends fbFriends={[]}/>
         <FriendList appFriends={friends}/>
       </div>
     );
@@ -42,8 +40,8 @@ var FriendManager = React.createClass({
         this.setState({fbFriends: JSON.parse(data)}); // check
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
-      }.bind(this)
+        console.error("http://localhost:" + PORT.PORT + "/api/friends/invitableFriends", status, err.toString());
+      }
     });
   },
 
@@ -57,7 +55,7 @@ var FriendManager = React.createClass({
       }.bind(this),
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
-      }.bind(this)
+      }
     });
   }
 
