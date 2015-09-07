@@ -12,7 +12,6 @@ var FriendManager = React.createClass({
     const { friends } = this.props;
     return (
       <div className="friend-manager">
-        <FilterableFriends fbFriends={[]}/>
         <FriendList appFriends={friends}/>
       </div>
     );
@@ -26,6 +25,7 @@ var FriendManager = React.createClass({
   componentDidMount: function() {
     // this.fetchFacebookFriends();
     this.fetchAppFriends();
+    this.fetchFacebookFriends();
 
     //setInterval and use polling to run this function at specfic intervals
     //could also use socketIO
