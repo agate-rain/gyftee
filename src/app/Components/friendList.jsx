@@ -42,7 +42,6 @@ var FriendList = React.createClass({
                   <div className="bday-list-body seafoam">
                     <div className="bday-row">
                       <div className="heart-div"><a href="#"><i className="glyphicon glyphicon-heart heart"></i></a></div>
-
                       <div className="bday-list-item friendname">
                         <Friend friend={friend} key={friend.id} onClick={this.navToGiftList.bind(this, friend.id)}/>
                       </div>
