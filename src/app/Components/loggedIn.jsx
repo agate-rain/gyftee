@@ -5,7 +5,6 @@ var LoggedIn = React.createClass({
 
   callApi: function(data) {
     var that = this;
-
     $.ajax({
       url: 'http://localhost:' + PORT.PORT + '/api/friends',
       method: 'POST',
@@ -13,6 +12,7 @@ var LoggedIn = React.createClass({
     }).then(function(jsonFriend) {
       alert("The request to the secured endpoint was successful");
       that.getGift(jsonFriend);
+      location.href = location.origin;
     }, function() {
       alert("Error");
     });
@@ -20,13 +20,13 @@ var LoggedIn = React.createClass({
 
   logout: function() {
     localStorage.removeItem('userToken');
+    localStorage.removeItem('access_token');
     this.props.lock.logout({ref: 'window.location.href'});
     // Go to home with your React Router
   },
 
   getGift: function(jsonFriend){
     var that = this;
-
     $.ajax({
       url: 'http://localhost:' + PORT.PORT + '/api/gifts/searchbykeyword',
       method: 'POST',
@@ -61,14 +61,15 @@ var LoggedIn = React.createClass({
     this.props.lock.getProfile(this.props.idToken, function (err, profile) {
       if (err) {
         console.log("Error loading the Profile", err);
-        alert("Error loading the Profile");
+        localStorage.removeItem('userToken');
+        this.props.lock.logout({ref: 'window.location.href'});
       }
       this.setState({profile: profile});
     }.bind(this));
   },
 
   componentDidUpdate: function() {
-    this.callApi(this.state.profile.identities[0].access_token);
+    // this.callApi(this.state.profile.identities[0].access_token);
     localStorage.setItem('access_token', JSON.stringify({'access_token' : this.state.profile.identities[0].access_token }))
   },
 
