@@ -13,6 +13,7 @@
   "dependencies": {
     "amazon-product-api": "^0.3.1",
     "async": "0.9.0",
+    "auth0-lock": "^7.9.0",
     "aws-lib": "latest",
     "babel-core": "^5.8.23",
     "bcrypt-nodejs": "0.0.3",
