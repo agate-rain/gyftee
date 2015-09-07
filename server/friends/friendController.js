@@ -64,6 +64,7 @@ module.exports = {
     .then(function(friendsResponse){
       var friend = friendsResponse.data.filter(function(friend) {
         if(friend.id === friendId){
+            console.log(friend);
             return {
               id: friend.id,
               name: friend.name,
