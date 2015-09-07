@@ -14,19 +14,19 @@ var Navbar = React.createClass({
             </div>
 
             <div className="navbar-brand">
-              <a className="white-font" href="#"><img className="brand-icon" src="src/client/img/g-icon.png"/>Gyftee</a>
+              <a className="white-font" href="#"><img className="brand-icon" src="../src/client/img/g-icon.png"/>Gyftee</a>
             </div>
 
             <div className="collapse navbar-collapse">
               <ul className="nav navbar-nav">
                 <li>
-                  <a className="nav-menu-item" href="#"></a>  
+                  <a className="nav-menu-item" href="#"></a>
                 </li>
               </ul>
-            </div> 
+            </div>
 
           </div>
-        </nav> 
+        </nav>
       </div>
     );
   }

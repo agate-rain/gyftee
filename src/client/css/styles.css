@@ -40,7 +40,7 @@
 }
 
 .viewport {
-  height: 100vw; 
+  height: 100vw;
   width: 56.25vw; /* height:width ratio = 9/16 = .5625  */
   /*background: #BBB;*/
   max-height: 177.78vh;
@@ -210,7 +210,7 @@ li>a.nav-menu-item {
 }
 
 .profile-photo-container {
-  padding-top: 20px;
+  padding-top: 40px;
   display: flex;
   flex: 1;
   /*background-color: yellow;*/
@@ -220,7 +220,7 @@ li>a.nav-menu-item {
   border-radius: 50%;
   /*background-color: yellow;*/
   /*background-position: 50%;*/
-  /*position: relative;*/
+  position: relative;
 }
 
 .welcome {
@@ -313,6 +313,24 @@ li>a.nav-menu-item {
 }
 
 /***********************************/
+/******** ALL FRIEND VIEW ********/
+/************************************/
+.all-friend-row{
+  padding: 20px 20px 20px 20px;
+  /*border-style: solid;*/
+  border-top: solid;
+  border-color: white;
+  display: flex;
+  /*margin-bottom: 20px;*/
+  /*padding: 0 12px;*/
+  align-items: center;
+}
+
+.invite-button {
+  margin-right: 10px;
+}
+
+/***********************************/
 /******** GIFT DETAIL VIEW ********/
 /************************************/
 
@@ -340,6 +358,9 @@ li>a.nav-menu-item {
   position: fixed;
 }
 
+/***********************************/
+/******** FILTERABLE FRIEND STYLING *********/
+/***********************************/
 
 
 /***********************************/

@@ -5,6 +5,7 @@ import UserHeader from './userHeader';
 import Friend from './friend';
 import { removeFriend } from '../Actions/user';
 import { Navigation } from 'react-router';
+import FilterableFriends from './filterableFriends';
 
 var FriendList = React.createClass({
 
@@ -18,14 +19,21 @@ var FriendList = React.createClass({
     this.transitionTo(`/friends/${id}`);
   },
 
+  navToAllFriendList: function(id) {
+    this.transitionTo(`/friends/allfriends`);
+  },
+
   render: function() {
+
     return (
       <div className='friend-list'>
         <Navbar />
+        <FilterableFriends appFriends={this.props.appFriends}/>
+
         <div className="welcome-container container flex-container">
         </div>
-        <div className="bday-list-header">UPCOMING BIRTHDAYS</div>
-
+        <div className="bday-list-header"> 3 UPCOMING BIRTHDAYS</div>
+        <button onClick={this.navToAllFriendList.bind(this)}>Get All Friend</button>
           {
             this.props.appFriends.map(function(friend) {
 
@@ -37,11 +45,12 @@ var FriendList = React.createClass({
                       <div className="bday-list-item friendname">
                         <Friend friend={friend} key={friend.id} onClick={this.navToGiftList.bind(this, friend.id)}/>
                       </div>
+
                       <div className="date-container">
                         <div>01/01</div>
                       </div>
                     </div>
-                  
+
                   </div>
                 </div>
               );
