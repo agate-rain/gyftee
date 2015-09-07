@@ -14,7 +14,6 @@ var PORT = require('../../config/port.js');
 var GiftRecommendations = React.createClass({
 
 	render: function() {
-    console.log(this.props.friend[0]);
     return (
         <div className="recommendations">
           <UserHeader user={this.props.friend[0]} />
