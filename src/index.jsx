@@ -11,8 +11,9 @@ var App           = require('./app/Containers/app');
 var Login         = require('./app/Containers/login');
 var FriendManager = require('./app/Containers/friendManager');
 var GiftDetail    = require('./app/Containers/giftDetail');
-var GiftRecs      = require('./app/Containers/recommendedGifts');
+var GiftRecs      = require('./app/Containers/giftRecommendations');
 var AllFriendsList    = require('./app/Containers/allFriendsList');
+var InviteFriend    = require('./app/Containers/inviteFriend');
 // TODO GiftList View for each friend
 
 const history = new BrowserHistory();
@@ -31,7 +32,8 @@ React.render(
       <Route path="/" component={App}>
         <Route name="login" path="/login" component={Login} />
         <Route name="friends" path="/friends" component={FriendManager} />
-        <Route name="friendGifts" path="/friends/allfriends" component={AllFriendsList} />
+        <Route name="allFriendsList" path="/friends/allfriends" component={AllFriendsList} />
+        <Route name="inviteFriend" path="/friends/invite/:friendId" component={InviteFriend} />
         <Route name="friendGifts" path="/friends/:friendId" component={GiftRecs} />
         <Route name="giftDetail" path="/gifts/:giftId" component={GiftDetail} />
       </Route>

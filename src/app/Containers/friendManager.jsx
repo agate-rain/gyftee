@@ -1,4 +1,3 @@
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import React, {PropTypes} from 'react';
 import { fetchFriends } from '../Actions/user';
@@ -25,7 +24,6 @@ var FriendManager = React.createClass({
   componentDidMount: function() {
     // this.fetchFacebookFriends();
     this.fetchAppFriends();
-    this.fetchFacebookFriends();
 
     //setInterval and use polling to run this function at specfic intervals
     //could also use socketIO

@@ -9,4 +9,5 @@ module.exports = function(app) {
   // app.post('/signout', userController.signout);
   app.post('/', friendController.getFriend);
   app.post('/invitableFriends', friendController.getInvitableFriend);
+   app.post('/:friendId', friendController.getFriendById);
 };

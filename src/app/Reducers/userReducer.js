@@ -23,8 +23,11 @@ export default function userReducer(state=initialState, action) {
       });
       return friends;
 
+
+
     default:
       return state;
+
   }
 
 };
