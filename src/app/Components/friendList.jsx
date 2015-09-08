@@ -9,7 +9,7 @@ import LoggedIn from './loggedIn';
 import { removeFriend } from '../Actions/user';
 import { Navigation } from 'react-router';
 import FilterableFriends from './filterableFriends';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 
 var FriendList = React.createClass({
 

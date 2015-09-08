@@ -1,32 +1,24 @@
-var React = require('react');
+import React from 'react';
 
 var UserHeader = React.createClass({
 
-  render: function(){
-    if(this.props.user.friend !== null){
-      console.log(this.props.url)
-      return (
-      <div className="friend-info">
-        <img className="friend-img" src={this.props.url} />
-        <div className="friend-name">{this.props.user.friend[0].name}</div>
-        <div className="friend-bday">{this.props.user.friend[0].birthday}</div>
-      </div>
-      );
-    }else{
-      return (
-        <div className="friend-info">
-          Fetching friend...
-        </div>
-      );
-    }
-  },
+  render: function() {
+    return (
+            <div className="flex-container welcome-main">
+              <div className="welcome-container container">
+                <div className="greeting-text proxima teal-font bold">Welcome, {this.props.user.name}</div>
+                <Link className="invite-link" to={`/friends/allfriends`}><div className="invite-button">INVITE FRIENDS</div></Link>
+              </div>
 
-  getInitialState: function() {
-    return { user: []}
-  },
+              <div className="profile-photo-container">
+                <div className="thumbnail profile-photo">
+                  <img src={this.props.user.pictureUrl} />
+                </div>
+              </div>
+            </div>    
+          );
+  }
 
-  componentDidMount: function() {
-  },
 });
 
-module.exports = UserHeader;
+export default UserHeader;
