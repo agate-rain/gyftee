@@ -1,0 +1,1 @@
+// Component for pinned gifts 
