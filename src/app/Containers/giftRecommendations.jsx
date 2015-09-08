@@ -1,5 +1,6 @@
 import {connect} from 'react-redux';
 import {fetchFriend} from '../Actions/friend'
+import {saveGifts} from '../Actions/gifts'
 
 var Slider = require('react-slick');
 var React = require('react');
@@ -8,7 +9,6 @@ var Thumbnail = require('../Components/thumbnail');
 var RecommendationFilters = require('../Components/recommendationFilters');
 var BookList = require('../Components/bookList');
 var BOOKS = require('../../../data/hardCoded').BOOKS;
-var USER = require('../../../data/hardCoded').USER;
 var PORT = require('../../config/port.js');
 
 var GiftRecommendations = React.createClass({
@@ -31,13 +31,13 @@ var GiftRecommendations = React.createClass({
   componentDidMount: function() {
     var friendId = window.location.href.split('/')[4];
     this.fetchFriendById(friendId);
-    console.log(this.props.friend[0]);
     // this.generateRandomKeyword(this.props.friend[0].books.data)
   },
 
   generateRandomKeyword: function(userArray){
     var randomIndex = Math.floor(Math.random() * (userArray.length - 1) + 1);
-    var keyWord;
+    var keyWord = userArray[randomIndex].name;
+    this.fetchGiftByKeyWord(keyWord)
   },
 
   fetchFriendById: function(friendId) {
@@ -48,6 +48,7 @@ var GiftRecommendations = React.createClass({
             friendId : friendId}, // need to pass in the access token
       success: function(data) {
         this.props.dispatch(fetchFriend(JSON.parse(data)));
+        this.generateRandomKeyword(this.props.friend[0].books.data);
         // = JSON.parse(data);
       }.bind(this),
       error: function(xhr, status, err) {
@@ -58,12 +59,12 @@ var GiftRecommendations = React.createClass({
 
   fetchGiftByKeyWord: function(keywordArray) {
     $.ajax({
-      url: "http://localhost:" + PORT.PORT + "/api/gifts/searchbykeyword" + friendId,
+      url: "http://localhost:" + PORT.PORT + "/api/gifts/searchbykeyword",
       method: 'POST',
       data: {keywordArray : keywordArray}, // need to pass in the access token
       success: function(gift) {
-        // var ASIN = gift.Items.Item[0].ASIN;
-        // this.getSimilarItem(ASIN);
+        var ASIN = gift.Items.Item[0].ASIN;
+        this.getSimilarItem(ASIN);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
@@ -76,18 +77,25 @@ var GiftRecommendations = React.createClass({
     $.ajax({
       url: 'http://localhost:' + PORT.PORT + '/api/gifts/searchsimilargifts',
       method: 'POST',
-      data: {ASIN : ASIN}
-    }).then(function(similargifts) {
-      similargifts.Items.Item.forEach(function(gift){
-        console.log(gift);
-      })
+      data: {ASIN : ASIN},
+      success: function(similargifts) {
+        similargifts.Items.Item.forEach(function(gift){
+          console.log(gift);
+        });
+        this.props.dispatch(saveGifts(similargifts));
+        console.log('this.props.gifts',this.props.gifts)
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+      }
     });
-  },
+  }
 });
 
 var mapStateToProps = function(state) {
   return {
-    friend : state.friend // export the portion of the state from index.js Reducers
+    friend : state.friend, // export the portion of the state from index.js Reducers
+    gifts : state.gifts
   }
 };
 

@@ -1,8 +1,9 @@
 import * as types from '../Constants/ActionTypes';
 
-export function save(giftListId, giftId) {
+export function saveGifts(arrayGift) {
+  console.log(arrayGift.Items.Item)
   return {
-    type: types.ADD_GIFT,
-    id
+    type : types.SAVE_GIFTS,
+    gifts : arrayGift
   };
 };
