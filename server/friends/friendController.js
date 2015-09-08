@@ -2,6 +2,7 @@
 var BPromise = require('bluebird');
 var facebookApi = require('../config/facebook-api.js');
 var User = require('../users/userModel');
+var http = require('http');
 
 module.exports = {
   // signin: function(req, res, next) {
@@ -64,7 +65,6 @@ module.exports = {
     .then(function(friendsResponse){
       var friend = friendsResponse.data.filter(function(friend) {
         if(friend.id === friendId){
-            console.log(friend);
             return {
               id: friend.id,
               name: friend.name,
@@ -86,4 +86,34 @@ module.exports = {
     });
   },
 
+  getImageUrl: function(req, res, next){
+    var headers = {
+      "access-control-allow-origin": "*",
+      "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
+      "access-control-allow-headers": "content-type, accept",
+      "access-control-max-age": 10, // Seconds.
+      'Content-Type': "application/json"
+    };
+
+    var options = {
+      'user-id': req.body.friendId,
+      access_token : req.body.access_token,
+      //This is the only line that is new. `headers` is an object with the headers to request
+      headers: headers
+    };
+
+    var str = ''
+    var callback = function(response) {
+      response.on('data', function (chunk) {
+        str += chunk;
+      });
+
+      response.on('end', function () {
+        console.log(str);
+      });
+    }
+    var req = http.request(options, callback);
+    req.end();
+    res.send(str);
+  }
 };

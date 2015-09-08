@@ -11,7 +11,6 @@ var LoggedIn = React.createClass({
       data: {access_token : data}
     }).then(function(jsonFriend) {
       alert("The request to the secured endpoint was successful");
-      that.getGift(jsonFriend);
       location.href = location.origin;
     }, function() {
       alert("Error");
@@ -23,32 +22,6 @@ var LoggedIn = React.createClass({
     localStorage.removeItem('access_token');
     this.props.lock.logout({ref: 'window.location.href'});
     // Go to home with your React Router
-  },
-
-  getGift: function(jsonFriend){
-    var that = this;
-    $.ajax({
-      url: 'http://localhost:' + PORT.PORT + '/api/gifts/searchbykeyword',
-      method: 'POST',
-      data: {friend : jsonFriend}
-    }).then(function(gift) {
-      var ASIN = gift.Items.Item[0].ASIN;
-      that.getSimilarItem(ASIN);
-    });
-  },
-
-
-  //PUT THIS INTO ANOTHER JSX FILE
-  getSimilarItem: function(ASIN){
-    $.ajax({
-      url: 'http://localhost:' + PORT.PORT + '/api/gifts/searchsimilargifts',
-      method: 'POST',
-      data: {ASIN : ASIN}
-    }).then(function(similargifts) {
-      similargifts.Items.Item.forEach(function(gift){
-        console.log(gift);
-      })
-    });
   },
 
   getInitialState: function() {

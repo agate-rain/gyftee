@@ -2,7 +2,7 @@ import {FETCH_FRIEND} from '../Constants/ActionTypes';
 
 const initialState = {};
 
-export default function userReducer(state=initialState, action) {
+export default function friendReducer(state=initialState, action) {
   // DO NOT mutate the state, return a NEW state
 
   switch (action.type) {

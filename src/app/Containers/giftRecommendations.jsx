@@ -13,7 +13,7 @@ var PORT = require('../../config/port.js');
 
 var GiftRecommendations = React.createClass({
 
-	render: function() {
+  render: function() {
     return (
         <div className="recommendations">
           <UserHeader user={this.props.friend[0]} />
@@ -22,7 +22,7 @@ var GiftRecommendations = React.createClass({
         </div>
     );
 
-	},
+  },
 
   getInitialState: function() {
     return { friend: [], gifts: []}
@@ -31,7 +31,13 @@ var GiftRecommendations = React.createClass({
   componentDidMount: function() {
     var friendId = window.location.href.split('/')[4];
     this.fetchFriendById(friendId);
-    USER = this.state.friend;
+    console.log(this.props.friend[0]);
+    // this.generateRandomKeyword(this.props.friend[0].books.data)
+  },
+
+  generateRandomKeyword: function(userArray){
+    var randomIndex = Math.floor(Math.random() * (userArray.length - 1) + 1);
+    var keyWord;
   },
 
   fetchFriendById: function(friendId) {
@@ -48,8 +54,35 @@ var GiftRecommendations = React.createClass({
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
-  }
+  },
 
+  fetchGiftByKeyWord: function(keywordArray) {
+    $.ajax({
+      url: "http://localhost:" + PORT.PORT + "/api/gifts/searchbykeyword" + friendId,
+      method: 'POST',
+      data: {keywordArray : keywordArray}, // need to pass in the access token
+      success: function(gift) {
+        // var ASIN = gift.Items.Item[0].ASIN;
+        // this.getSimilarItem(ASIN);
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+      }
+    });
+  },
+
+  //PUT THIS INTO ANOTHER JSX FILE
+  getSimilarItem: function(ASIN){
+    $.ajax({
+      url: 'http://localhost:' + PORT.PORT + '/api/gifts/searchsimilargifts',
+      method: 'POST',
+      data: {ASIN : ASIN}
+    }).then(function(similargifts) {
+      similargifts.Items.Item.forEach(function(gift){
+        console.log(gift);
+      })
+    });
+  },
 });
 
 var mapStateToProps = function(state) {

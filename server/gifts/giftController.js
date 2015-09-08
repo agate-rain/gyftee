@@ -9,14 +9,17 @@ module.exports = {
   // TODO: need to add category parameter to the clicked object in client side
   lookupItemByKeyword: function(req, res) {
     // hard coding for testing will refactor lataer
-    var temp = JSON.parse(req.body.friend);
-    // console.log('REQ BODY', temp[1].books.data[0].name);
-    var bookKeyword = temp[1].books.data[0].name;
+    var temp = req.body.keywordArray;
+    console.log(temp);
 
-    var options = {SearchIndex: 'Books', Keywords: bookKeyword, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
-    prodAdv.call('ItemSearch', options, function(err, result) {
-      res.send(result);
-    });
+    // var temp = JSON.parse(req.body.friend);
+    // // console.log('REQ BODY', temp[1].books.data[0].name);
+    // var bookKeyword = temp[1].books.data[0].name;
+
+    // var options = {SearchIndex: 'Books', Keywords: bookKeyword, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
+    // prodAdv.call('ItemSearch', options, function(err, result) {
+    //   res.send(result);
+    // });
   },
 
   // call to Amazon API to get similar items based on the 'liked' item
