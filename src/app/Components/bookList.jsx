@@ -16,13 +16,13 @@ var BookList = React.createClass({
 
   render: function() {
     var books = [];
-    this.props.amazonBooks.forEach(function(book) {
+    for(var key in this.props.amazonBooks){
       books.push(
         <div>
-            <Thumbnail book={book} key={book.ASIN} />
+            <Thumbnail book={this.props.amazonBooks[key]} key={this.props.amazonBooks[key].ASIN} />
         </div>
       );
-    }, this);
+    }
 
     // define slider options
     var settings = {

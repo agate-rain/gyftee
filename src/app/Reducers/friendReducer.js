@@ -1,13 +1,17 @@
-import {FETCH_FRIEND} from '../Constants/ActionTypes';
+import {FETCH_FRIEND, SAVE_IMAGE_URL} from '../Constants/ActionTypes';
 
-const initialState = {};
+const initialState = {friend: null , image_url: null};
 
-export default function userReducer(state=initialState, action) {
+export default function friendReducer(state=initialState, action) {
   // DO NOT mutate the state, return a NEW state
 
   switch (action.type) {
     case FETCH_FRIEND:
-      state = Object.assign({}, action.friend);
+      state.friend = action.friend
+      return state;
+
+    case SAVE_IMAGE_URL:
+      state.image_url = action.image_url
       return state;
 
     default:

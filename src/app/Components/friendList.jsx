@@ -31,14 +31,12 @@ var FriendList = React.createClass({
     return (
       <div className='friend-list'>
         <Navbar />
-        <FilterableFriends appFriends={this.props.appFriends}/>
-
         <div className="flex-container welcome-main">
           <div className="welcome-container container">
             <div className="greeting-text proxima teal-font bold">Welcome, Gorgeous</div>
             <Link className="invite-link" to={`/friends/allfriends`}><div className="invite-button">INVITE FRIENDS</div></Link>
           </div>
-        
+
           <div className="profile-photo-container">
             <div className="thumbnail profile-photo">
             </div>

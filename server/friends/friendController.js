@@ -2,6 +2,8 @@
 var BPromise = require('bluebird');
 var facebookApi = require('../config/facebook-api.js');
 var User = require('../users/userModel');
+var http = require('http');
+var request = require('request');
 
 module.exports = {
   // signin: function(req, res, next) {
@@ -59,7 +61,6 @@ module.exports = {
 
   getFriendById: function(req, res, next) {
     var friendId = req.body.friendId;
-    console.log('friendId',friendId);
     BPromise.promisifyAll(facebookApi.friends(req.body.access_token))
     .then(function(friendsResponse){
       var friend = friendsResponse.data.filter(function(friend) {
@@ -85,4 +86,19 @@ module.exports = {
     });
   },
 
+  getImageUrl: function(req, res, next){
+
+    // request.get('https://graph.facebook.com/10153584417332500/picture?type=large').on
+    var options = {
+      url: 'https://graph.facebook.com/' + req.body.friendId +'/picture?type=large',
+      headers: {
+        'access_token': req.body.access_token
+      }
+    }
+    var result;
+    request(options).on('response', function(response) {
+        result = response.request.uri.href;
+        res.send(result);
+    });
+  }
 };

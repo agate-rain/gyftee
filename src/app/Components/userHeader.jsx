@@ -3,12 +3,13 @@ var React = require('react');
 var UserHeader = React.createClass({
 
   render: function(){
-    if(this.props.user !== undefined){
+    if(this.props.user.friend !== null){
+      console.log(this.props.url)
       return (
       <div className="friend-info">
-        <img className="friend-img" src={this.props.user.picture.data.url} />
-        <div className="friend-name">{this.props.user.name}</div>
-        <div className="friend-bday">{this.props.user.birthday}</div>
+        <img className="friend-img" src={this.props.url} />
+        <div className="friend-name">{this.props.user.friend[0].name}</div>
+        <div className="friend-bday">{this.props.user.friend[0].birthday}</div>
       </div>
       );
     }else{
