@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Navbar from './navbar';
 import UserHeader from './userHeader';
 import Friend from './friend';
+import LoggedIn from './loggedIn';
 import { removeFriend } from '../Actions/user';
 import { Navigation } from 'react-router';
 import FilterableFriends from './filterableFriends';
@@ -15,6 +16,7 @@ var FriendList = React.createClass({
   // clickHandler: function(id) {
   //   this.props.dispatch(removeFriend(id));
   // },
+
 
   navToGiftList: function(id) {
     this.transitionTo(`/friends/${id}`);
@@ -31,10 +33,19 @@ var FriendList = React.createClass({
         <Navbar />
         <FilterableFriends appFriends={this.props.appFriends}/>
 
-        <div className="welcome-container container flex-container">
+        <div className="flex-container welcome-main">
+          <div className="welcome-container container">
+            <div className="greeting-text proxima teal-font bold">Welcome, Gorgeous</div>
+            <Link className="invite-link" to={`/friends/allfriends`}><div className="invite-button">INVITE FRIENDS</div></Link>
+          </div>
+        
+          <div className="profile-photo-container">
+            <div className="thumbnail profile-photo">
+            </div>
+          </div>
         </div>
-        <div className="bday-list-header"> 3 UPCOMING BIRTHDAYS</div>
-        <Link to={`/friends/allfriends`}><button>Get All Friend</button></Link>
+
+        <div className="bday-list-header">{this.props.appFriends.length} UPCOMING BIRTHDAYS</div>
           {
             this.props.appFriends.map(function(friend) {
 
@@ -48,7 +59,7 @@ var FriendList = React.createClass({
                       </div>
 
                       <div className="date-container">
-                        <div>01/01</div>
+                        <div>{friend.birthdate}</div>
                       </div>
                     </div>
 
