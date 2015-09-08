@@ -12,32 +12,36 @@ var Book = React.createClass({
   },
 
   render: function() {
+
+    const {book} = this.props;
+
+    var missingBookCover = 'http://www.mbalit.co.uk/sites/default/files/imagecache/fullsize/imagefield_default_images/generic_book_cover_0.jpg';
+
+    var bookDetails = {
+      url: book.DetailPageURL || 'NA',
+      img: book.MediumImage.URL || missingBookCover,
+      title: book.ItemAttributes.Title || 'NA',
+      author: book.ItemAttributes.Author || 'NA',
+      binding: book.ItemAttributes.Binding || 'NA',
+      price: book.Offers.Offer.OfferListing.Price.FormattedPrice || 'NA'
+    };
+
     return (
       <div className="container gift-detail-container">
         <div>
           <div className="add-to-list"><a href="#" onClick={this.addToList}><i className="glyphicon glyphicon-heart"></i></a></div>
-          <div className="book-thumbnail"><a href={this.props.book.DetailPageURL}><img src={this.props.book.MediumImage.URL} /></a></div>
+          <div className="book-thumbnail"><a href={bookDetails.url}><img src={bookDetails.img} /></a></div>
         </div>
 
-        <div className="book-title">{this.props.book.ItemAttributes.Title}</div>
+        <div className="book-title">{bookDetails.title}</div>
 
-        <div className="book-author">{this.props.book.ItemAttributes.Author}</div>
-        <div className="book-binding">{this.props.book.ItemAttributes.Binding}</div>
-
+        <div className="book-author">{bookDetails.author}</div>
+        <div className="book-binding">{bookDetails.binding}</div>
+        <div className="book-price">{bookDetails.price}</div>
 
       </div>
     );
   }
-
-
-  /* <div className="book-price">{this.props.book.Offers.Offer.OfferListing.Price.FormattedPrice}</div> */
-
-/*  render: function() {
-    return (
-      <div className="container gift-detail-container">
-      </div>
-    );
-  }*/
 });
 
 module.exports = Book;

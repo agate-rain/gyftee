@@ -38,7 +38,7 @@ var GiftRecommendations = React.createClass({
   generateRandomKeyword: function(userArray){
     var randomIndex = Math.floor(Math.random() * (userArray.length - 1) + 1);
     var keyWord = userArray[randomIndex].name;
-    this.fetchGiftByKeyWord(keyWord)
+    this.fetchGiftByKeyWord(keyWord);
   },
 
   fetchFriendById: function(friendId) {
