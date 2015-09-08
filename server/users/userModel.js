@@ -14,7 +14,10 @@ var UserSchema = new mongoose.Schema({
   fbId: {
     type: String
   },
-  friendsList: [{ // array that represents users, stored by _id that reference the target user
+  mutual_friends:{
+    type: mongoose.Schema.Types.Mixed
+  },
+  giftsList: [{ // array that represents users, stored by _id that reference the target user
     fbId: {
       type: String,
       pinnedGifts: [{
@@ -29,16 +32,18 @@ var UserSchema = new mongoose.Schema({
                       }]
           }]
     }
-  }],
-  facebookFriends: [{
-    // keep this flexible for now; check to see what the
-    name: {
-      type: String
-    },
-    fbId: {
-      type: Number
-    }
   }]
 });
 
 module.exports = mongoose.model('User', UserSchema);
+
+// var mongoose = require('mongoose');
+
+// // represents all users of the app, both gifters and giftees
+// var UserSchema = new mongoose.Schema({
+//     fbId: String,
+//     birthdate: String,
+//     mutual_friends: mongoose.Schema.Types.Mixed
+// });
+
+// module.exports = mongoose.model('User', UserSchema);

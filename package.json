@@ -59,7 +59,6 @@
     "test": "npm run test-node",
     "test-node": "mocha -R spec ./test/spec/userModelSpec.js",
     "start": "webpack-dev-server & npm run server",
-    "mongod": "mongod",
     "server": "nodemon server/server.js",
     "deploy": "NODE_ENV=production webpack -p",
     "build": "webpack --progress --colors",

@@ -13,30 +13,28 @@ module.exports = {
   // },
 
   saveUser: function(req, res, next) {
-    User.findOne({fbId: req.body.identities[0].user_id})
-        .exec(function(err, found) {
-          if (found) {
-            res.send(200, 'User already existed!');
-          } else {
-            var newUser = new User({
-              fbId: req.body.identities[0].user_id,
-              birthdate : req.body.birthday,
-              pictureUrl: req.body.picture
-            });
-            newUser.save(function(err,newEntry) {
-              if (err) {
-                res.send(500, err);
-              } else {
-                res.send(200,newEntry);
-              }
-          }
+    // User.findOne({fbId: req.body.user_id})
+    //     .exec(function(err, found) {
+    //       if (found) {
+    //         res.send(200, 'User already existed!');
+    //       } else {
 
+    console.log(req.body);
+    var newUser = new User({
+      fbId: req.body.user.user_id,
+      birthdate : req.body.user.birthday,
+      mutual_friends : req.body.user.mutual_friends
+    });
 
-    newUser.save(function(err, user) {
+    newUser.save(function(err,savedUser) {
       if (err) {
-        console.log(err);
+        res.send(500, 'Error saving user to DB' + err);
+      } else {
+        console.log(">> new User",savedUser);
+        res.send(200,newUser);
       }
-      res.status(200).json({_id: user._id});
     });
   }
-};
+  //       });
+  // }
+}
