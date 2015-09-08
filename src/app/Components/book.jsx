@@ -7,7 +7,7 @@ var Book = React.createClass({
     // should the req object just be Book's rendered view? this.props.book[0]
   },
 
-  componenetDidMount: function() {
+  componentDidMount: function() {
     console.log(JSON.stringify(this.props));
   },
 
