@@ -59,6 +59,10 @@
   background-color: #004851;
 }
 
+.light-teal {
+  background-color: #00B7BB;
+}
+
 .teal-font {
   color: #017E82;
 }
@@ -229,7 +233,7 @@ li>a.nav-menu-item {
   /*background-color: red;*/
 }
 
-#invite-button {
+.invite-button {
   width: 150px;
   height: 50px;
   position: relative;
@@ -330,6 +334,40 @@ li>a.nav-menu-item {
   margin-right: 10px;
 }
 
+/*********************************/
+/** GIFT LIST ********/
+
+.friend-detail-container {
+  padding: 10px 0 20px 0;
+}
+.giftlist-circle {
+  background-color: #9E081B;
+  color: #FFF;
+  text-align: center;
+  align-content: center;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+.giftlist-circle-container {
+  align-items: center;
+}
+
+.giftlist-main {
+  padding-bottom: 20px;
+}
+.giftlist-header {
+  margin-top: 70px;
+  font-size: 1.2em;
+  color: #FFF;
+  padding: 10px 0 10px 40px;
+}
+
+.category-header {
+  color: #FFF;
+  font-size: 1.2em;
+  padding: 10px 0 10px 40px;
+}
 /***********************************/
 /******** GIFT DETAIL VIEW ********/
 /************************************/
