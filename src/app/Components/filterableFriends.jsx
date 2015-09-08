@@ -34,7 +34,7 @@ var FilterableFriends = React.createClass({
     return (
       <div className="filter-friend-flex-container">
         <div className="filtered-friends" id= "filtered-friends">
-          <input ref="filterText" type="text" placeholder="Search for your friends" value={this.state.filterText} onChange={this.filterFacebookFriends}/>
+          <input ref="filterText" type="text" placeholder=" Search for a friend" value={this.state.filterText} onChange={this.filterFacebookFriends}/>
           { this.state.resultsVisible ? <SearchResults friends={friends}/> : null }
         </div>
       </div>
