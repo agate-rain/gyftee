@@ -1,5 +1,7 @@
-var React = require('react');
-var PORT = require('../../config/port.js')
+import React from 'react';
+import { connect } from 'react-redux';
+import PORT from '../../config/port.js';
+import { getUser } from '../Actions/user';
 
 var LoggedIn = React.createClass({
 
@@ -24,12 +26,6 @@ var LoggedIn = React.createClass({
     // Go to home with your React Router
   },
 
-  getInitialState: function() {
-    return {
-      profile: null
-    }
-  },
-
   componentDidMount: function() {
     this.props.lock.getProfile(this.props.idToken, function (err, profile) {
       if (err) {
@@ -37,21 +33,19 @@ var LoggedIn = React.createClass({
         localStorage.removeItem('userToken');
         this.props.lock.logout({ref: 'window.location.href'});
       }
-      this.setState({profile: profile});
+      this.props.dispatch(getUser(profile));
     }.bind(this));
   },
 
   componentDidUpdate: function() {
-    // this.callApi(this.state.profile.identities[0].access_token);
-    localStorage.setItem('access_token', JSON.stringify({'access_token' : this.state.profile.identities[0].access_token }))
+    localStorage.setItem('access_token', JSON.stringify({'access_token' : this.props.profile.identities[0].access_token }))
   },
 
   render: function() {
-    if (this.state.profile) {
+    if (this.props.profile) {
       return (
         <div className="logged-in-box auth0-box logged-in">
-          <img src={this.state.profile.picture} />
-          <h2>Welcome {this.state.profile.nickname}</h2>
+        <p>You are logged in!</p>
           <button onClick={this.logout} className="btn btn-lg btn-primary">Logout</button>
         </div>);
     } else {
@@ -63,4 +57,10 @@ var LoggedIn = React.createClass({
   }
 });
 
-module.exports = LoggedIn;
+var mapStateToProps = function(state) {
+  return {
+    profile: state.user.profile
+  }
+};
+
+export default connect(mapStateToProps)(LoggedIn);

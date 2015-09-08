@@ -66,7 +66,7 @@ FriendManager.propTypes = {
 
 var mapStateToProps = function(state) {
   return {
-    friends : state.friends // export the portion of the state from index.js Reducers
+    friends : state.user.friends // export the portion of the state from index.js Reducers
   }
 };
 

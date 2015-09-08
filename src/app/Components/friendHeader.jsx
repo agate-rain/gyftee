@@ -24,10 +24,8 @@ var FriendHeader = React.createClass({
 
   getInitialState: function() {
     return { user: []}
-  },
+  }
 
-  componentDidMount: function() {
-  },
 });
 
 export default FriendHeader;

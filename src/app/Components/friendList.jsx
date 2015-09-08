@@ -3,7 +3,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Navbar from './navbar';
-import FriendHeader from './friendHeader';
+import UserHeader from './userHeader';
 import Friend from './friend';
 import LoggedIn from './loggedIn';
 import { removeFriend } from '../Actions/user';
