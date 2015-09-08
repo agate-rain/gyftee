@@ -52,12 +52,15 @@ var LoggedIn = React.createClass({
       url: 'http://localhost:' + PORT.PORT + '/api/users/saveuser',
       method: 'POST',
       data: {user : profile}
-    }).then(function(jsonUser) {
-      alert("User saved to DB", jsonUser);
+    }).then(function(savedUser) {
+      if(typeof savedUser === 'string'){
+        console.log('USER EXISTS')
+      }else{
+        console.log('USER SAVED TO DB');
+      }
     }, function() {
       alert("Error");
     });
->>>>>>> working on userModel
   },
 
   render: function() {
