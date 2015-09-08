@@ -3,6 +3,7 @@ var BPromise = require('bluebird');
 var facebookApi = require('../config/facebook-api.js');
 var User = require('../users/userModel');
 var http = require('http');
+var request = require('request');
 
 module.exports = {
   // signin: function(req, res, next) {
@@ -60,7 +61,6 @@ module.exports = {
 
   getFriendById: function(req, res, next) {
     var friendId = req.body.friendId;
-    console.log('friendId',friendId);
     BPromise.promisifyAll(facebookApi.friends(req.body.access_token))
     .then(function(friendsResponse){
       var friend = friendsResponse.data.filter(function(friend) {
@@ -87,33 +87,21 @@ module.exports = {
   },
 
   getImageUrl: function(req, res, next){
-    var headers = {
-      "access-control-allow-origin": "*",
-      "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
-      "access-control-allow-headers": "content-type, accept",
-      "access-control-max-age": 10, // Seconds.
-      'Content-Type': "application/json"
-    };
-
-    var options = {
-      'user-id': req.body.friendId,
-      access_token : req.body.access_token,
-      //This is the only line that is new. `headers` is an object with the headers to request
-      headers: headers
-    };
-
-    var str = ''
-    var callback = function(response) {
-      response.on('data', function (chunk) {
-        str += chunk;
-      });
-
-      response.on('end', function () {
-        console.log(str);
-      });
-    }
-    var req = http.request(options, callback);
-    req.end();
-    res.send(str);
+    console.log('REQBODY',req.body)
+    res.send('hello!')
+    // request.get('https://graph.facebook.com/10153584417332500/picture?type=large').on
+    // var options = {
+    //   url: 'https://graph.facebook.com/10153584417332500/picture?type=large',
+    //   headers: {
+    //     'access_token': req.body.access_token
+    //   }
+    // }
+    // var callback = function(error, response, body) {
+    //   if (!error && response.statusCode == 200) {
+    //     var data = JSON.parse(body);
+    //   }
+    // }
+    // request(options, callback);
+    // console.log('DATA', data)
   }
 };

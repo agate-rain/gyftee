@@ -10,5 +10,5 @@ module.exports = function(app) {
   app.post('/', friendController.getFriend);
   app.post('/invitableFriends', friendController.getInvitableFriend);
   app.post('/:friendId', friendController.getFriendById);
-  app.post('/image/', friendController.getImageUrl);
+  app.post('/image', friendController.getImageUrl);
 };

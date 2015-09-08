@@ -31,6 +31,8 @@ var GiftRecommendations = React.createClass({
   componentDidMount: function() {
     var friendId = window.location.href.split('/')[4];
     this.fetchFriendById(friendId);
+    this.fetchImageUrlById(friendId);
+
     // this.generateRandomKeyword(this.props.friend[0].books.data)
   },
 
@@ -49,6 +51,24 @@ var GiftRecommendations = React.createClass({
       success: function(data) {
         this.props.dispatch(fetchFriend(JSON.parse(data)));
         this.generateRandomKeyword(this.props.friend[0].books.data);
+        // = JSON.parse(data);
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+      }
+    });
+  },
+
+  fetchImageUrlById: function(friendId) {
+    $.ajax({
+      url: "http://localhost:" + PORT.PORT + "/api/friends/image/",
+      method: 'POST',
+      data: {friendId : friendId,
+             access_token: JSON.parse(localStorage.getItem('access_token')).access_token}, // need to pass in the access token
+      success: function(data) {
+        console.log(data);
+        // this.props.dispatch(fetchFriend(JSON.parse(data)));
+        // this.generateRandomKeyword(this.props.friend[0].books.data);
         // = JSON.parse(data);
       }.bind(this),
       error: function(xhr, status, err) {
