@@ -75,11 +75,11 @@ var GiftRecommendations = React.createClass({
     });
   },
 
-  fetchGiftByKeyWord: function(keywordArray) {
+  fetchGiftByKeyWord: function(keyword) {
     $.ajax({
       url: "http://localhost:" + PORT.PORT + "/api/gifts/searchbykeyword",
       method: 'POST',
-      data: {keywordArray : keywordArray}, // need to pass in the access token
+      data: {keyword : keyword}, // need to pass in the access token
       success: function(gift) {
         var ASIN = gift.Items.Item[0].ASIN;
         this.getSimilarItem(ASIN);

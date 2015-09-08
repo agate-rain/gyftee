@@ -9,7 +9,7 @@ module.exports = {
   // TODO: need to add category parameter to the clicked object in client side
   lookupItemByKeyword: function(req, res) {
     // hard coding for testing will refactor lataer
-    var bookKeyword = req.body.keywordArray;
+    var bookKeyword = req.body.keyword;
     console.log(bookKeyword);
     // var temp = JSON.parse(req.body.friend);
     // // console.log('REQ BODY', temp[1].books.data[0].name);
