@@ -8,8 +8,3 @@ export default function userReducer(state=initialState, action) {
   switch (action.type) {
     case FETCH_CURRENT_DISPLAYED_GIFT:
       return Object.assign({}, action.gift);
-
-    default:
-      return state;
-  }
-}
