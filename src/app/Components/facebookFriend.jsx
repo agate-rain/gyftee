@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Navbar from './navbar';
-import UserHeader from './userHeader';
 import Friend from './friend';
 import { removeFriend } from '../Actions/user';
 import { Navigation } from 'react-router';

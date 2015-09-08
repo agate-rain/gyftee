@@ -3,13 +3,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Navbar from './navbar';
-import UserHeader from './userHeader';
+import FriendHeader from './friendHeader';
 import Friend from './friend';
 import LoggedIn from './loggedIn';
 import { removeFriend } from '../Actions/user';
 import { Navigation } from 'react-router';
 import FilterableFriends from './filterableFriends';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 
 var FriendList = React.createClass({
 
