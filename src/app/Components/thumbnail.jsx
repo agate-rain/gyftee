@@ -15,8 +15,8 @@ var Thumbnail = React.createClass({
   render: function(){
     return (
       <div>
-        <img className="book-img" src={this.props.book.MediumImage.URL}/>
-        <a onClick={this.navToGiftDetail.bind(this, this.props.book.ASIN)}>
+        <img className="book-img" src={this.props.book.details.MediumImage.URL}/>
+        <a onClick={this.navToGiftDetail.bind(this, this.props.book.details.ASIN)}>
           Details
         </a>
       </div>

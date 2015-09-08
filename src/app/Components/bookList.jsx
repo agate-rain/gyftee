@@ -19,7 +19,7 @@ var BookList = React.createClass({
     for(var key in this.props.amazonBooks){
       books.push(
         <div>
-            <Thumbnail book={this.props.amazonBooks[key].details} key={this.props.amazonBooks[key].ASIN} />
+            <Thumbnail book={this.props.amazonBooks[key]} key={this.props.amazonBooks[key].ASIN} />
         </div>
       );
     }
