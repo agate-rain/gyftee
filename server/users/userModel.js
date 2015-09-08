@@ -11,22 +11,31 @@ var UserSchema = new mongoose.Schema({
   pictureUrl: {
     type: String
   },
-  fbToken: {
-    type: String
-  },
   fbId: {
     type: String
   },
   friendsList: [{ // array that represents users, stored by _id that reference the target user
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    fbId: {
+      type: String,
+      pinnedGifts: [{
+              books: [{
+                        type: mongoose.Schema.Types.Mixed
+                      }],
+              music: [{
+                        type: mongoose.Schema.Types.Mixed
+                      }],
+              etsy: [{
+                        type: mongoose.Schema.Types.Mixed
+                      }]
+          }]
+    }
   }],
   facebookFriends: [{
     // keep this flexible for now; check to see what the
     name: {
       type: String
     },
-    id: {
+    fbId: {
       type: Number
     }
   }]

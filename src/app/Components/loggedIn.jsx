@@ -40,6 +40,19 @@ var LoggedIn = React.createClass({
   componentDidUpdate: function() {
     localStorage.setItem('access_token', JSON.stringify({'access_token' : this.props.profile.identities[0].access_token }))
   },
+  saveUserToDB: function(profile){
+    var that = this;
+    $.ajax({
+      url: 'http://localhost:' + PORT.PORT + '/api/users/saveuser',
+      method: 'POST',
+      data: {user : profile}
+    }).then(function(jsonUser) {
+      alert("User saved to DB", jsonUser);
+    }, function() {
+      alert("Error");
+    });
+>>>>>>> working on userModel
+  },
 
   render: function() {
     if (this.props.profile) {

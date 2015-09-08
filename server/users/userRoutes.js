@@ -4,7 +4,7 @@ module.exports = function(app) {
   // app is the userrouter injected from middleware file
   // app.post('/signin', userController.signin);
   // app.post('/signout', userController.signout);
-  app.post('/add', userController.addUser);
+  app.post('/saveuser', userController.saveUser);
 
   app.post('/friends', function(req, res, next) {
     BPromise.promisifyAll(facebookApi.friends(req.body.access_token))

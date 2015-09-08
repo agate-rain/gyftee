@@ -12,8 +12,26 @@ module.exports = {
   // // remove session
   // },
 
-  addUser: function(req, res, next) {
-    var newUser = new User(req.body);
+  saveUser: function(req, res, next) {
+    User.findOne({fbId: req.body.identities[0].user_id})
+        .exec(function(err, found) {
+          if (found) {
+            res.send(200, 'User already existed!');
+          } else {
+            var newUser = new User({
+              fbId: req.body.identities[0].user_id,
+              birthdate : req.body.birthday,
+              pictureUrl: req.body.picture
+            });
+            newUser.save(function(err,newEntry) {
+              if (err) {
+                res.send(500, err);
+              } else {
+                res.send(200,newEntry);
+              }
+          }
+
+
     newUser.save(function(err, user) {
       if (err) {
         console.log(err);
