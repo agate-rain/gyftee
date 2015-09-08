@@ -39,6 +39,28 @@ var LoggedIn = React.createClass({
 
   componentDidUpdate: function() {
     localStorage.setItem('access_token', JSON.stringify({'access_token' : this.props.profile.identities[0].access_token }))
+    var profile = {
+      user_id : this.props.profile.identities[0].user_id,
+      birthday : this.props.profile.birthday,
+      mutual_friends : this.props.profile.context.mutual_friends.data
+    }
+    this.saveUserToDB(profile);
+  },
+  saveUserToDB: function(profile){
+    var that = this;
+    $.ajax({
+      url: 'http://localhost:' + PORT.PORT + '/api/users/saveuser',
+      method: 'POST',
+      data: {user : profile}
+    }).then(function(savedUser) {
+      if(typeof savedUser === 'string'){
+        console.log('USER EXISTS')
+      }else{
+        console.log('USER SAVED TO DB');
+      }
+    }, function() {
+      alert("Error");
+    });
   },
 
   render: function() {

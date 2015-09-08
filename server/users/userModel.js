@@ -11,25 +11,39 @@ var UserSchema = new mongoose.Schema({
   pictureUrl: {
     type: String
   },
-  fbToken: {
-    type: String
-  },
   fbId: {
     type: String
   },
-  friendsList: [{ // array that represents users, stored by _id that reference the target user
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  }],
-  facebookFriends: [{
-    // keep this flexible for now; check to see what the
-    name: {
-      type: String
-    },
-    id: {
-      type: Number
+  mutual_friends:{
+    type: mongoose.Schema.Types.Mixed
+  },
+  giftsList: [{ // array that represents users, stored by _id that reference the target user
+    fbId: {
+      type: String,
+      pinnedGifts: [{
+              books: [{
+                        type: mongoose.Schema.Types.Mixed
+                      }],
+              music: [{
+                        type: mongoose.Schema.Types.Mixed
+                      }],
+              etsy: [{
+                        type: mongoose.Schema.Types.Mixed
+                      }]
+          }]
     }
   }]
 });
 
 module.exports = mongoose.model('User', UserSchema);
+
+// var mongoose = require('mongoose');
+
+// // represents all users of the app, both gifters and giftees
+// var UserSchema = new mongoose.Schema({
+//     fbId: String,
+//     birthdate: String,
+//     mutual_friends: mongoose.Schema.Types.Mixed
+// });
+
+// module.exports = mongoose.model('User', UserSchema);

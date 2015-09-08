@@ -12,13 +12,27 @@ module.exports = {
   // // remove session
   // },
 
-  addUser: function(req, res, next) {
-    var newUser = new User(req.body);
-    newUser.save(function(err, user) {
-      if (err) {
-        console.log(err);
+  saveUser: function(req, res, next) {
+    User.findOne({fbId: req.body.user.user_id})
+        .exec(function(err, found) {
+          if (found) {
+            res.send(200, 'User already existed!');
+          } else {
+          var newUser = new User({
+            fbId: req.body.user.user_id,
+            birthdate : req.body.user.birthday,
+            mutual_friends : req.body.user.mutual_friends
+          });
+
+          newUser.save(function(err,savedUser) {
+            if (err) {
+              res.send(500, 'Error saving user to DB' + err);
+            } else {
+              console.log(">> new User",savedUser);
+              res.send(200,newUser);
+            }
+        });
       }
-      res.status(200).json({_id: user._id});
     });
   }
-};
+}
