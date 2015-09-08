@@ -15,8 +15,7 @@ var FacebookFriend = React.createClass({
     console.log(this.props.friend);
     return (
       <div className='all-friend-row'>
-        <button onClick={this.inviteFriend.bind(this, this.props.friend.id)} className='invite-button'>Invite</button>
-        <div className='friend-picture'>{this.props.friend.picture}</div>
+        <div onClick={this.inviteFriend.bind(this, this.props.friend.id)} className="invite-fb-friend">INVITE</div>
         <div className='friend-name'>{this.props.friend.name}</div>
       </div>
     );

@@ -388,8 +388,22 @@ li>a.nav-menu-item {
 }
 
 /***********************************/
-/******** FILTERABLE FRIEND STYLING *********/
+/******** FILTERABLE FRIEND *********/
 /***********************************/
+
+.invite-fb-friend {
+  border-color: #004851;
+  font-size: 0.7em;
+  background-color: #004851;
+  color: #FFF;
+  /*align-content: center;*/
+  /*border-radius: 10px 0 10px 0;*/
+  margin: 10px 20px 10px 10px;
+  padding: 10px;
+  text-align: center;
+  width: 25%;
+
+}
 
 
 /***********************************/
