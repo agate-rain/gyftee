@@ -1,6 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-var UserHeader = React.createClass({
+
+var FriendHeader = React.createClass({
 
   render: function(){
     if(this.props.user.friend !== null){
@@ -29,4 +30,4 @@ var UserHeader = React.createClass({
   },
 });
 
-module.exports = UserHeader;
+export default FriendHeader;
