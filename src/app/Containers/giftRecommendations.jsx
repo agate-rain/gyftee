@@ -99,7 +99,7 @@ var GiftRecommendations = React.createClass({
       success: function(similargifts) {
         var gifts = []
         similargifts.Items.Item.forEach(function(gift){
-          gifts.push(gift);
+          gifts.push({category: "book", details: gift});
         });
         this.props.dispatch(saveGifts(gifts));
       }.bind(this),
