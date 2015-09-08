@@ -80,8 +80,7 @@ var GiftRecommendations = React.createClass({
       method: 'POST',
       data: {keyword : keyword}, // need to pass in the access token
       success: function(gift) {
-        var ASIN = gift.Items.Item[0].ASIN;
-        this.getSimilarItem(ASIN);
+        this.getSimilarItem(gift.Items.Item[0]);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
@@ -90,15 +89,16 @@ var GiftRecommendations = React.createClass({
   },
 
   //PUT THIS INTO ANOTHER JSX FILE
-  getSimilarItem: function(ASIN){
+  getSimilarItem: function(gift){
+    var ASIN = gift.ASIN;
     $.ajax({
       url: 'http://localhost:' + PORT.PORT + '/api/gifts/searchsimilargifts',
       method: 'POST',
       data: {ASIN : ASIN},
       success: function(similargifts) {
         var gifts = []
-        similargifts.Items.Item.forEach(function(gift){
-          gifts.push({category: "book", details: gift});
+        similargifts.Items.Item.forEach(function(recommendedGift){
+          gifts.push({category: "book", details: recommendedGift, basedOn: gift});
         });
         this.props.dispatch(saveGifts(gifts));
       }.bind(this),

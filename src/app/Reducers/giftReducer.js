@@ -1,6 +1,6 @@
 import {FETCH_CURRENT_DISPLAYED_GIFT} from '../Constants/ActionTypes';
 
-const initialState = {category: "", details: {}};
+const initialState = {category: "", details: {}, basedOn: {}};
 
 export default function userReducer(state=initialState, action) {
   // DO NOT mutate the state, return a NEW state

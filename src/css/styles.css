@@ -122,6 +122,14 @@ label {
   font-size: 0.7em;
   font-weight: bold;
 }
+.book-thumbnail{
+
+}
+.book-based-on-thumbnail{
+    -moz-transform:scale(0.5);
+    -webkit-transform:scale(0.5);
+    transform:scale(0.5);
+}
 .book-author {
   font-size: 0.7em;
 }

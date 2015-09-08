@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 var UserHeader = React.createClass({
 
@@ -15,7 +16,7 @@ var UserHeader = React.createClass({
                   <img src={this.props.user.pictureUrl} />
                 </div>
               </div>
-            </div>    
+            </div>
           );
   }
 
