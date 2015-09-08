@@ -5,3 +5,4 @@ export const FETCH_FRIEND = 'FETCH_FRIEND';
 export const FETCH_CURRENT_DISPLAYED_GIFT = 'FETCH_CURRENT_DISPLAYED_GIFT';
 export const SAVE_GIFTS = 'SAVE_GIFTS';
 export const SAVE_IMAGE_URL = 'SAVE_IMAGE_URL';
+export const GET_USER = 'GET_USER';

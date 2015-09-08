@@ -14,13 +14,16 @@ export function removeFriend(id) {
   };
 };
 
-export function fetchFriends(friends){
+export function fetchFriends(friends) {
   return {
     type: types.FETCH_FRIENDS,
     friends
   };
 };
 
-
-
-
+export function getUser(profile) {
+  return {
+    type: types.GET_USER,
+    profile
+  };
+}
