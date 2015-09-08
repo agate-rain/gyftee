@@ -1,3 +1,5 @@
+// TODO: Get user's first name from facebook for userheader 
+
 import React from 'react';
 import { connect } from 'react-redux';
 import Navbar from './navbar';
@@ -33,7 +35,7 @@ var FriendList = React.createClass({
         <Navbar />
         <div className="flex-container welcome-main">
           <div className="welcome-container container">
-            <div className="greeting-text proxima teal-font bold">Welcome, Gorgeous</div>
+            <div className="greeting-text proxima teal-font bold">Welcome, {this.props.user.name}</div>
             <Link className="invite-link" to={`/friends/allfriends`}><div className="invite-button">INVITE FRIENDS</div></Link>
           </div>
 
