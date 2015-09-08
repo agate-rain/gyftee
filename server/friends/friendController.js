@@ -87,21 +87,18 @@ module.exports = {
   },
 
   getImageUrl: function(req, res, next){
-    console.log('REQBODY',req.body)
-    res.send('hello!')
+
     // request.get('https://graph.facebook.com/10153584417332500/picture?type=large').on
-    // var options = {
-    //   url: 'https://graph.facebook.com/10153584417332500/picture?type=large',
-    //   headers: {
-    //     'access_token': req.body.access_token
-    //   }
-    // }
-    // var callback = function(error, response, body) {
-    //   if (!error && response.statusCode == 200) {
-    //     var data = JSON.parse(body);
-    //   }
-    // }
-    // request(options, callback);
-    // console.log('DATA', data)
+    var options = {
+      url: 'https://graph.facebook.com/' + req.body.friendId +'/picture?type=large',
+      headers: {
+        'access_token': req.body.access_token
+      }
+    }
+    var result;
+    request(options).on('response', function(response) {
+        result = response.request.uri.href;
+        res.send(result);
+    });
   }
 };
