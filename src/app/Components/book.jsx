@@ -18,7 +18,7 @@ var Book = React.createClass({
     var missingBookCover = 'http://www.mbalit.co.uk/sites/default/files/imagecache/fullsize/imagefield_default_images/generic_book_cover_0.jpg';
 
     var bookDetails = {
-      url: book.DetailPageURL || 'NA',
+      url: book.DetailPageURL || '',
       img: book.MediumImage.URL || missingBookCover,
       title: book.ItemAttributes.Title || 'NA',
       author: book.ItemAttributes.Author || 'NA',
