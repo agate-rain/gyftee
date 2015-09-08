@@ -25,7 +25,7 @@ var GiftRecommendations = React.createClass({
 	},
 
   getInitialState: function() {
-    return { friend: [], gifts: [],  }
+    return { friend: [], gifts: []}
   },
 
   componentDidMount: function() {

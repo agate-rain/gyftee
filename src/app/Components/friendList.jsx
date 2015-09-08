@@ -6,6 +6,7 @@ import Friend from './friend';
 import { removeFriend } from '../Actions/user';
 import { Navigation } from 'react-router';
 import FilterableFriends from './filterableFriends';
+import {Link} from 'react-router';
 
 var FriendList = React.createClass({
 
@@ -33,7 +34,7 @@ var FriendList = React.createClass({
         <div className="welcome-container container flex-container">
         </div>
         <div className="bday-list-header"> 3 UPCOMING BIRTHDAYS</div>
-        <button onClick={this.navToAllFriendList.bind(this)}>Get All Friend</button>
+        <Link to={`/friends/allfriends`}><button>Get All Friend</button></Link>
           {
             this.props.appFriends.map(function(friend) {
 
