@@ -1,6 +1,6 @@
 import { ADD_FRIEND, REMOVE_FRIEND, FETCH_FRIENDS, GET_USER } from '../Constants/ActionTypes';
 
-const initialState = { profile: null, friends: [] };
+const initialState = { profile: {}, friends: [] };
 
 export default function userReducer(state=initialState, action) {
   // DO NOT mutate the state, return a NEW state
@@ -18,14 +18,17 @@ export default function userReducer(state=initialState, action) {
       return Object.assign({}, { profile: state.profile, friends: friends });
 
     case FETCH_FRIENDS:
-      var friends = [];
-      action.friends.forEach(function(friend) {
-        friends.push(friend);
-      });
-      return Object.assign({}, { profile: state.profile, friends: friends });
+      // var friends = [];
+      // action.friends.forEach(function(friend) {
+      //   friends.push(friend);
+      // });
+    console.log("state in FETCH_FRIENDS", state)
+      return Object.assign({}, state, { friends: action.friends });
 
     case GET_USER:
-      return Object.assign({}, { profile: action.profile, friends: state.friends });
+    console.log("state in GET_USER", state)
+
+      return Object.assign({}, state, { profile: action.profile });
 
     default:
       return state;

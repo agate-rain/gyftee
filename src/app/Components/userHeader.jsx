@@ -4,6 +4,7 @@ import {Link} from 'react-router';
 var UserHeader = React.createClass({
 
   render: function() {
+    console.log("this.props in UserHeader", this.props);
     return (
             <div className="flex-container welcome-main">
               <div className="welcome-container container">

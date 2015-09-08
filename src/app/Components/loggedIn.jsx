@@ -33,6 +33,7 @@ var LoggedIn = React.createClass({
         localStorage.removeItem('userToken');
         this.props.lock.logout({ref: 'window.location.href'});
       }
+      console.log("profile in loggedIn", profile);
       this.props.dispatch(getUser(profile));
     }.bind(this));
   },

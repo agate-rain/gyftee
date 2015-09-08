@@ -8,12 +8,16 @@ import PORT from '../../config/port.js';
 var FriendManager = React.createClass({
 
   render: function() {
-    const { friends } = this.props;
-    return (
-      <div className="friend-manager">
-        <FriendList appFriends={friends}/>
-      </div>
-    );
+
+    console.log("this.props.user.profile in friend-manager", this.props.user.profile)
+    if(this.props.user.profile) {
+      return (
+        <div className="friend-manager">
+          <FriendList appFriends={this.props.user.friends} user={this.props.user.profile}/>
+        </div>
+      );
+
+    }
   },
 
   getInitialState: function() {
@@ -65,8 +69,11 @@ FriendManager.propTypes = {
 };
 
 var mapStateToProps = function(state) {
+  console.log("state.user in friend manager", state.user);
   return {
-    friends : state.user.friends // export the portion of the state from index.js Reducers
+    user: state.user
+    // friends : state.user.friends, // export the portion of the state from index.js Reducers
+    // profile: state.user.profile
   }
 };
 
