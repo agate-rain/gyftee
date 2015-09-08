@@ -31,7 +31,6 @@ var FriendList = React.createClass({
     return (
       <div className='friend-list'>
         <Navbar />
-
         <div className="flex-container welcome-main">
           <div className="welcome-container container">
             <div className="greeting-text proxima teal-font bold">Welcome, Gorgeous</div>
