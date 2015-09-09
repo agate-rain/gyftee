@@ -8,24 +8,36 @@ var FriendHeader = React.createClass({
 
   render: function(){
 
-    // var birthday = this.formatDate(this.props.user.friend[0].birthday);
-
     if(this.props.user.friend !== null){
       console.log(this.props.url)
       return (
       <div className="friend-info">
-        <img className="friend-img" src={this.props.url} />
-        <div className="friend-name">{this.props.user.friend[0].name}</div>
-        <div className="friend-bday">{this.formatDate(this.props.user.friend[0].birthday)}</div>
+        <div className="friend-header-container container flex-container">
+          <div>
+            <div className="friend-header-name">{this.props.user.friend[0].name}</div>
+            <div className="friend-header-bday">{this.formatDate(this.props.user.friend[0].birthday)}</div>
+            <div>
+              <button className="filter-button">WISHLIST</button> 
+            </div>
+          </div>
+
+          <div className="profile-photo-container">
+            <div className="thumbnail profile-photo">
+              <img src={this.props.url} />
+            </div>
+          </div>
+
+        </div> 
       </div>
       );
-    }else{
-      return (
-        <div className="friend-info">
-          Fetching friend...
-        </div>
-      );
-    }
+
+    } else {
+        return (
+          <div className="friend-info">
+            Fetching friend...
+          </div>
+        );
+      }
   },
 
   getInitialState: function() {

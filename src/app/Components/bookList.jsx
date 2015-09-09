@@ -67,10 +67,10 @@ var BookList = React.createClass({
 
     return (
       <div className="books-list">
-      <h1>Books</h1>
-      <Slider {...settings} className="books-list">
-      {books}
-      </Slider>
+      <div className="category-header">Books</div>
+        <Slider {...settings} className="books-list">
+        {books}
+        </Slider>
 
       </div>
       );

@@ -409,6 +409,51 @@ li>a.nav-menu-item {
 
 
 /***********************************/
+/******** FRIEND HEADER *********/
+/***********************************/
+
+.friend-header-container {
+  padding: 100px 20px 0 65px;
+}
+
+.friend-header-name {
+  font-family: "proxima-nova", sans-serif;
+  text-align: left;
+  font-size: 1.0em;
+  color: #017E82;
+}
+
+.friend-header-bday {
+  font-size: 1.0em;
+  padding-bottom: 0px;
+  font-weight: bold;
+  color: #017E82;
+}
+
+.filter-button {
+  /*position: relative;*/
+  /*justify-content: center;*/
+  border-color: #004851;
+  font-size: 0.7em;
+  background-color: #004851;
+  color: #FFF;
+  /*align-content: center;*/
+  border-radius: 10px 0 10px 0;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: center;
+  /*background-color: blue;*/
+}
+
+.filter-link {
+  text-decoration: none;
+}
+.filter-link:hover {
+  color: transparent;
+}
+
+/***********************************/
 /******** AUTH0 STYLING *********/
 /***********************************/
 /*
