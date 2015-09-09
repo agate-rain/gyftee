@@ -40,6 +40,31 @@ module.exports = {
         next(err);
     });
   },
+   saveGift: function(req, res, next){
+    var friendId = req.body.friendId;
+    var userId = req.body.userId;
+    var ASIN = req.body.ASIN;
+
+    User.findOne({fbId:userId})
+      .exec(function(err, user) {
+          if (user) {
+            console.log('User Found!')
+            user.giftsList.forEach(function(gift){
+              if(gift.fbId === friendId){
+                gift.pinnedGifts.books.push(ASIN);
+              }
+            });
+            user.markModified('giftsList');
+            user.save();
+            console.log(JSON.stringify(user,null, '\t'));
+          } else {
+           console.log('User Not Found!')
+          }
+    });
+
+
+  },
+
 
   getInvitableFriend: function(req, res, next){
     BPromise.promisifyAll(facebookApi.invitableFriends(req.body.access_token))
@@ -48,7 +73,7 @@ module.exports = {
           return {
             id: friend.id,
             name: friend.name,
-            pictureUrl: friend.picture.data.url,
+            pictureUrl: friend.picture.data.url
           };
       });
       res.send(JSON.stringify(invitableFriends));

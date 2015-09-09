@@ -8,6 +8,7 @@ module.exports = function(app) {
   // app.post('/signin', userController.signin);
   // app.post('/signout', userController.signout);
   app.post('/', friendController.getFriend);
+  app.post('/savegift', friendController.saveGift);
   app.post('/image', friendController.getImageUrl);
   app.post('/invitableFriends', friendController.getInvitableFriend);
   app.post('/:friendId', friendController.getFriendById);

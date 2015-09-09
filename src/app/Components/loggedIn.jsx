@@ -2,28 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PORT from '../../config/port.js';
 import { getUser } from '../Actions/user';
+import { Link } from 'react-router';
+import {Navigation } from 'react-router';
 
 var LoggedIn = React.createClass({
-
-  callApi: function(data) {
-    var that = this;
-    $.ajax({
-      url: 'http://localhost:' + PORT.PORT + '/api/friends',
-      method: 'POST',
-      data: {access_token : data}
-    }).then(function(jsonFriend) {
-      alert("The request to the secured endpoint was successful");
-      location.href = location.origin;
-    }, function() {
-      alert("Error");
-    });
-  },
-
   logout: function() {
     localStorage.removeItem('userToken');
     localStorage.removeItem('access_token');
     this.props.lock.logout({ref: 'window.location.href'});
     // Go to home with your React Router
+  },
+
+  mixins: [ Navigation ],
+
+  navToFriendList: function(){
+    this.transitionTo(`/friends`);
   },
 
   componentDidMount: function() {
@@ -47,20 +40,22 @@ var LoggedIn = React.createClass({
     }
     this.saveUserToDB(profile);
   },
+
   saveUserToDB: function(profile){
-    var that = this;
     $.ajax({
       url: 'http://localhost:' + PORT.PORT + '/api/users/saveuser',
       method: 'POST',
-      data: {user : profile}
-    }).then(function(savedUser) {
-      if(typeof savedUser === 'string'){
-        console.log('USER EXISTS')
-      }else{
-        console.log('USER SAVED TO DB');
+      data: {user : profile}, // need to pass in the access token
+      success: function(savedUser) {
+        if(typeof savedUser === 'string'){
+          console.log('USER EXISTS')
+        }else{
+          console.log('USER SAVED TO DB', savedUser);
+        }
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error("http://localhost:" + PORT.PORT + "/api/users/saveduser", status, err.toString());
       }
-    }, function() {
-      alert("Error");
     });
   },
 
@@ -70,6 +65,7 @@ var LoggedIn = React.createClass({
         <div className="logged-in-box auth0-box logged-in">
         <p>You are logged in!</p>
           <button onClick={this.logout} className="btn btn-lg btn-primary">Logout</button>
+          <button onClick={this.navToFriendList.bind(this)} className="btn btn-lg btn-primary">Go To Friend</button>
         </div>);
     } else {
       return (
