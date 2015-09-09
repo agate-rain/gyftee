@@ -502,10 +502,17 @@ li>a.nav-menu-item {
   color: #FFF;
   font-size: 0.8em;
   font-weight: normal;
-  padding: 10px 0 10px 40px;
-  margin-bottom: 10px;
+  padding: 10px 0 10px 10%;
 }
 
+.slider-container{
+  margin-left: 10%;
+}
+
+.prime-img{
+  height: 40px;
+  width: 71px;
+}
 
 /***********************************/
 /******** AUTH0 STYLING *********/
@@ -612,3 +619,68 @@ h3 {
   padding: 100px 0;
 }
 */
+
+/* Fallback styles */
+.book {
+  display: inline-block;
+  box-shadow: 5px 5px 20px #333;
+  margin: 10px;
+}
+
+.book img { vertical-align: middle; }
+
+/*
+ *  In order for this to work, you must use Modernizer
+ *  to detect 3D transform browser support. This will add
+ *  a "csstransforms3d" class to the HTML element.
+ *
+ *  Visit http://modernizr.com/ for installation instructions
+ */
+
+.csstransforms3d  .books {
+  -moz-perspective: 100px;
+  -moz-transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.csstransforms3d  .book {
+  position: relative;
+  -moz-perspective: 100px;
+  -moz-transform: rotateY(-3deg);
+  -webkit-transform: perspective(100) rotateY(-3deg);
+  outline: 1px solid transparent; /* Helps smooth jagged edges in Firefox */
+  box-shadow: none;
+  margin: 0;
+}
+
+.csstransforms3d  .book img {
+  position: relative;
+  max-width: 100%;
+}
+
+.csstransforms3d  .book:before,
+.csstransforms3d  .book:after {
+  position: absolute;
+  top: 2%;
+  height: 96%;
+  content: ' ';
+  z-index: -1;
+}
+
+.csstransforms3d  .book:before {
+  width: 100%;
+  left: 7.5%;
+  background-color: #5a2d18;
+  box-shadow: 5px 5px 20px #333;
+}
+
+.csstransforms3d  .book:after {
+  width: 5%;
+  left: 100%;
+  background-color: #EFEFEF;
+  box-shadow: inset 0px 0px 5px #aaa;
+  -moz-transform: rotateY(20deg);
+  -webkit-transform: perspective(100) rotateY(20deg);
+}
+.csstransforms3d  #book2:before { background-color: #333; }
+.csstransforms3d  #book3:before { background-color: #254053; }

@@ -27,12 +27,16 @@ var ConcertList = React.createClass({
 
     return (
       <div className="books-list">
-      <h1>Concerts</h1>
-      <Slider {...sliderSettings} className="concert-list">
-      {concerts}
-      </Slider>
-
+        <div className="row light-teal category">
+          <div className="category-header">Concerts</div>
+        </div>
+          <div className="slider-container">
+            <Slider {...sliderSettings} className="books-list">
+              {concerts}
+            </Slider>
+          </div>
       </div>
+
       );
   }
 });

@@ -30,9 +30,11 @@ var BookList = React.createClass({
         <div className="row light-teal category">
           <div className="category-header">Books</div>
         </div>
-          <Slider {...settings} className="books-list">
-            {books}
-          </Slider>
+          <div className="slider-container">
+            <Slider {...sliderSettings} className="books-list">
+              {books}
+            </Slider>
+          </div>
       </div>
       );
   }
