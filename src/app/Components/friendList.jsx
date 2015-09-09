@@ -17,7 +17,7 @@ var FriendList = React.createClass({
     this.transitionTo(`/friends/allfriends`);
   },
 
-// TODO: List birthdays in descending order 
+// TODO: List birthdays in descending order
   render: function() {
 
     return (
