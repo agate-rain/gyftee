@@ -55,40 +55,51 @@ var Book = React.createClass({
       author: basedOn.ItemAttributes.Author || 'NA',
     };
 
-    console.log(bookDetails);
-
     return (
-      <div className="container gift-detail-container">
-        <div>
-          <div className="add-to-list"><a href="#" onClick={this.addToList(bookDetails.ASIN)}><i className="glyphicon glyphicon-heart"></i></a></div>
-          <div className="book-thumbnail"><a className="book" href={bookDetails.url}><img src={bookDetails.img} /></a></div>
-        </div>
+      <div className="flex-container seafoam detail-main">
 
-        <div className="book-title">{bookDetails.title}</div>
-
-        <div className="book-author">{bookDetails.author}</div>
-        <div className="book-binding">{bookDetails.binding}</div>
-        <div className="book-price">{bookDetails.price}</div>
-        {(() => {
-          if (bookDetails.isPrime){
-            return (
-              <div className="prime-eligible">
-                <img className ="prime-img" src="https://b1.burst.zone/wp-content/uploads/2014/03/amazon-prime-logo.jpg" />
+        <div className="detail-wrapper">
+          <div>
+            <div className="add-to-list-container">
+              <div className="add-to-list">
+                <button className="add-to-list-button">
+                  <a href="#" onClick={this.addToList(bookDetails.ASIN)}>
+                    <i className="glyphicon add-heart glyphicon-heart"></i>
+                  </a> ADD TO LIST
+                </button>
               </div>
-              );
-          }
-        })()}
-        <div className="based-on">
-          <div> Based on: </div>
-          <div className = "book-based-on-thumbnail"><img src={basedOnDetails.img} /></div>
-          <div className = "book-title">{basedOnDetails.title}</div>
-          <div className = "book-author">{basedOnDetails.author}</div>
+            </div>
+
+              <div className="book-thumbnail">
+                <a className="book" href={bookDetails.url}><img src={bookDetails.img} /></a>
+              </div>
+          </div>
+
+            <div className="book-text-container">
+              <div className="book-title">{bookDetails.title}</div>
+              <div className="book-author">{bookDetails.author}</div>
+              <div className="book-price">{bookDetails.price}</div>
+              <div className="book-binding">{bookDetails.binding}</div>
+            </div>
+
+            <div className="based-on-container light-teal">
+              <p className="based-on-text">Based on: {basedOnDetails.title}</p>
+            </div>
 
         </div>
       </div>
     );
   }
 });
+          // {(() => {
+          //   if (bookDetails.isPrime){
+          //     return (
+          //       <div className="prime-eligible">
+          //         <img className ="prime-img" src="https://b1.burst.zone/wp-content/uploads/2014/03/amazon-prime-logo.jpg" />
+          //       </div>
+          //       );
+          //   }
+          // })()}
 
 var mapStateToProps = function(state) {
   return {

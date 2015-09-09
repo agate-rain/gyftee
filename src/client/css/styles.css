@@ -387,6 +387,10 @@ li>a.nav-menu-item {
   padding-top: 90px;
 }
 
+.detail-wrapper {
+  flex: 1;
+}
+
 .add-to-list-container {
   /*background-color: white;*/
   display: flex;
@@ -437,25 +441,14 @@ li>a.nav-menu-item {
 }
 
 .based-on-text {
-  font-size: 0.5em;
+  font-size: 0.6em;
   color: white;
 }
 
 .based-on-container {
-  padding-top: 10px;
+  padding: 10px;
 }
 
-.second-flex-container {
-  display: -webkit-flex; /* for safari */
-  display: flex;
-  -webkit-justify-content: center;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  height: 100%;
-  padding: 50;
-  margin: 0;
-}
 
 /***********************************/
 /******** FILTERABLE FRIEND *********/

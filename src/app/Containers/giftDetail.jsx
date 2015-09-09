@@ -1,13 +1,14 @@
 import React from 'react';
 import Book from '../Components/book';
+import Navbar from '../Components/navbar';
 import { connect } from 'react-redux';
-import { BOOK } from '../../../data/hardCoded';
 
 var GiftDetail = React.createClass({
 
   render: function() {
     return (
-      <div className="gift">
+      <div>
+      <Navbar />
       <Book book={this.props.gift}/>
       </div>
     );
