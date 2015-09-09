@@ -15,8 +15,10 @@ var Thumbnail = React.createClass({
   render: function(){
     return (
       <div>
-        <img className="book-img" src={this.props.book.details.MediumImage.URL} 
+        <div className="book">
+          <img className="book-img" src={this.props.book.details.MediumImage.URL}
         onClick={this.navToGiftDetail.bind(this, this.props.book.details.ASIN)}/>
+        </div>
       </div>
       );
   }

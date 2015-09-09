@@ -47,20 +47,23 @@ var Book = React.createClass({
       author: book.details.ItemAttributes.Author || 'NA',
       binding: book.details.ItemAttributes.Binding || 'NA',
       price: book.details.Offers.Offer.OfferListing.Price.FormattedPrice || 'NA',
-      basedOn: book.basedOn.ItemAttributes.Title
+      basedOn: book.basedOn.ItemAttributes.Title,
+      isPrime: book.details.Offers.Offer.OfferListing.IsEligibleForPrime === "1",
     };
 
     var basedOnDetails = {
       img: basedOn.MediumImage.URL || missingBookCover,
       title: basedOn.ItemAttributes.Title || 'NA',
       author: basedOn.ItemAttributes.Author || 'NA',
-    }
+    };
+
+    console.log(bookDetails);
 
     return (
       <div className="container gift-detail-container">
         <div>
           <div className="add-to-list"><a href="#" onClick={this.addToList(bookDetails.ASIN)}><i className="glyphicon glyphicon-heart"></i></a></div>
-          <div className="book-thumbnail"><a href={bookDetails.url}><img src={bookDetails.img} /></a></div>
+          <div className="book-thumbnail"><a className="book" href={bookDetails.url}><img src={bookDetails.img} /></a></div>
         </div>
 
         <div className="book-title">{bookDetails.title}</div>
@@ -68,11 +71,21 @@ var Book = React.createClass({
         <div className="book-author">{bookDetails.author}</div>
         <div className="book-binding">{bookDetails.binding}</div>
         <div className="book-price">{bookDetails.price}</div>
+        {(() => {
+          if (bookDetails.isPrime){
+            return (
+              <div className="prime-eligible">
+                <img className ="prime-img" src="https://b1.burst.zone/wp-content/uploads/2014/03/amazon-prime-logo.jpg" />
+              </div>
+              );
+          }
+        })()}
         <div className="based-on">
           <div> Based on: </div>
           <div className = "book-based-on-thumbnail"><img src={basedOnDetails.img} /></div>
           <div className = "book-title">{basedOnDetails.title}</div>
           <div className = "book-author">{basedOnDetails.author}</div>
+
         </div>
       </div>
     );
