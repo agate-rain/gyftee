@@ -9,10 +9,19 @@ var WishList = React.createClass({
 
   render: function() {
     const {wishlist} = this.props;
-    console.log(wishlist);
+    console.log(this.props)
+
+    // var wishListItems = [];
+    // for(var i = 0; i < wishlist.length; i++){
+    //   wishListItems.push(
+    //     <div>
+    //       <Thumbnail book={wishlist.Item} key={this.props.amazonBooks[key].ASIN} />
+    //     </div>
+    //   );
+    // }
 
     wishlist.forEach(function(item){
-      console.log(item);
+      // console.log(item);
     });
     return (
       <div className="container wish-list-container">
