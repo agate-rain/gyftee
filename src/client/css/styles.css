@@ -367,7 +367,7 @@ li>a.nav-menu-item {
 
 .gift-detail-container {
   padding: 20px;
-  max-width: 300px;
+  max-width: 80%;
   border-style: solid;
   border-color: #BBB;
 }
@@ -386,7 +386,8 @@ li>a.nav-menu-item {
 }
 .add-to-list {
   font-size: 0.8em;
-  position: fixed;
+  width: 30px;
+  /*position: fixed;*/
 }
 
 .second-flex-container {
