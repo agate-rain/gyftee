@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var GiftSchema = require('../gifts/giftModel');
 
 // represents all users of the app, both gifters and giftees
 var UserSchema = new mongoose.Schema({
@@ -17,22 +18,7 @@ var UserSchema = new mongoose.Schema({
   mutual_friends:{
     type: mongoose.Schema.Types.Mixed
   },
-  giftsList: [{ // array that represents users, stored by _id that reference the target user
-    fbId: {
-      type: String,
-      pinnedGifts: [{
-              books: [{
-                        type: mongoose.Schema.Types.Mixed
-                      }],
-              music: [{
-                        type: mongoose.Schema.Types.Mixed
-                      }],
-              etsy: [{
-                        type: mongoose.Schema.Types.Mixed
-                      }]
-          }]
-    }
-  }]
+  giftsList: [GiftSchema]
 });
 
 module.exports = mongoose.model('User', UserSchema);
