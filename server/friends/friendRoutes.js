@@ -1,6 +1,4 @@
 var friendController = require('./friendController.js');
-var BPromise = require('bluebird');
-var facebookApi = require('../config/facebook-api.js');
 
 module.exports = function(app) {
   // app is the userrouter injected from middleware file
