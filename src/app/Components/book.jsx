@@ -17,7 +17,7 @@ var Book = React.createClass({
             friendId : friendId,
             userId: userId}, // need to pass in the access token
       success: function(data) {
-        console.log('GIFT SUCCESSFULLY SAVED TO DB')
+        alert(data);
         // = JSON.parse(data);
       }.bind(this),
       error: function(xhr, status, err) {
@@ -63,7 +63,7 @@ var Book = React.createClass({
             <div className="add-to-list-container">
               <div className="add-to-list">
                 <button className="add-to-list-button">
-                  <a href="#" onClick={this.addToList(bookDetails.ASIN)}>
+                  <a href="#" onClick={this.addToList.bind(this, bookDetails.ASIN)}>
                     <i className="glyphicon add-heart glyphicon-heart"></i>
                   </a> ADD TO LIST
                 </button>

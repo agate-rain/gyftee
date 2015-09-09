@@ -2,15 +2,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { BOOK } from '../Components/book';
 import PORT from '../../config/port';
+import WishList from '../Components/wishlist'
 
 var PinnedGiftList = React.createClass({
 
   render: function() {
-    return (
-      <div className="gift">
-
-      </div>
-    );
+    if(this.state){
+      return (
+          <div className="gift">
+            <WishList wishlist={this.state.wishlist}/>
+          </div>
+      );
+    }else{
+      return (
+        <div className="gift">
+          Fetching Wishlist Items...
+        </div>
+      );
+    }
   },
 
   componentDidMount: function(){
@@ -45,6 +54,7 @@ var PinnedGiftList = React.createClass({
       method: 'POST',
       data: {giftArr : giftArr},
       success: function(data) {
+        this.setState({wishlist : data});
         console.log(data);
         // = JSON.parse(data);
       }.bind(this),
