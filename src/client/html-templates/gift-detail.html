@@ -9,31 +9,43 @@
   <!-- font awesome from BootstrapCDN -->
   <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
   <link href="../css/styles.css" rel="stylesheet">
 </head>
 
 <body>
   <div class="flex-container">
-    <!-- <img src="http://ecx.images-amazon.com/images/I/518olcSShBL._SL160_.jpg"> -->
-    <div class="row teal">
-      <div class="container">
-        <div class="add-to-list"><a href="#" ><i class="glyphicon glyphicon-heart"></i></a></div>
-        <div class="book-thumbnail"><a href="#"><img src="http://ecx.images-amazon.com/images/I/518olcSShBL._SL160_.jpg" /></a></div>
+    <div class="seafoam detail-main">
+      <!-- <div class="teal"> -->
+        <div class="detail-body">
+          <div class="add-to-list-container">
+            <div class="add-to-list">
+            <button class="add-to-list-button">
+              <a href="#" ><i class="glyphicon add-heart glyphicon-heart"></i></a> ADD TO LIST
+            </div>
+            </button>
+          </div>
+          <div class="book-thumbnail">
+            <a href="#"><img src="http://ecx.images-amazon.com/images/I/518olcSShBL._SL160_.jpg" /></a>
+          </div>
+        </div> <!-- /detail-body -->
+
+        <div class="book-text-container">
+          <div class="book-title">Sense and Sensibility</div>
+          <div class="book-author">Jane Austen</div>
+          <div>
+            <div class="book-price">$6.99</div>
+            <div class="book-binding">(Paperback)</div>
+          </div>
+        </div>
+      <!-- </div> -->
+
+      <div class="based-on-container container light-teal">
+        <div class="based-on-text"><p>Based on: Pride and Prejudice (Long subtitle with a lot of words)</p></div>
+<!--         <div><img class="book-based-on-thumbnail" src="http://ecx.images-amazon.com/images/I/51JpiahypML._SL160_.jpg"/></div>
+ -->        
       </div>
-
-      <div class="book-title">Sense and Sensibility</div>
-
-      <div class="book-author">Jane Austen</div>
-      <div class="book-binding">Paperback</div>
-      <div class="book-price">$6.99</div>
-
-    </div> <!-- /row -->
-
-      <div class="based-on">
-        <div> Based on: </div>
-        <div class="book-based-on-thumbnail"><img src="http://ecx.images-amazon.com/images/I/51JpiahypML._SL160_.jpg"/></div>
-        <div class= "book-title">Pride and Prejudice</div>
-      </div>
+    </div> <!-- /detail-main -->
 
   </div>
 </body>

@@ -11,10 +11,10 @@
 }
 
 body {
-  font-family: "proxima-nova", sans-serif;
+  font-family: 'Lato', sans-serif;
   text-align: center;
   font-size: 300%;
-  font-weight: 100;
+  font-weight: 300;
 }
 
 
@@ -36,6 +36,10 @@ body {
 
 .float-right {
   float: right;
+}
+
+.center {
+  text-align: center;
 }
 
 .row {
@@ -371,23 +375,67 @@ li>a.nav-menu-item {
   border-style: solid;
   border-color: #BBB;
 }
+
+.detail-main {
+  padding-top: 90px;
+}
+
+.add-to-list-container {
+  /*background-color: white;*/
+  display: flex;
+  flex: 1;
+  margin-bottom: 10px;
+}
+
 .book-title {
-  font-size: 0.7em;
+  font-size: 0.6em;
   font-weight: bold;
 }
 .book-author {
-  font-size: 0.7em;
-}
-.book-binding {
   font-size: 0.6em;
 }
+.book-binding {
+  font-size: 0.5em;
+}
 .book-price {
-  font-size: 0.7em;
+  font-size: 0.5em;
+  font-weight: 400;
 }
 .add-to-list {
   font-size: 0.8em;
-  width: 30px;
+  margin: 0 auto;
   /*position: fixed;*/
+}
+
+.add-heart {
+  color: #E4F2F2;
+}
+
+.add-to-list-button {
+  /*position: relative;*/
+  /*justify-content: center;*/
+  border-color: #004851;
+  font-size: 0.6em;
+  background-color: #004851;
+  color: #FFF;
+  /*align-content: center;*/
+  border-radius: 5px;
+  /*margin-top: 10px;*/
+  padding: 5px;
+  text-align: center;
+  width: 100%;
+}
+.book-text-container {
+  padding: 5px 0 10px 0;
+}
+
+.based-on-text {
+  font-size: 0.5em;
+  color: white;
+}
+
+.based-on-container {
+  padding-top: 10px;
 }
 
 .second-flex-container {
@@ -503,7 +551,6 @@ li>a.nav-menu-item {
   font-size: 0.8em;
   font-weight: normal;
   padding: 10px 0 10px 40px;
-  margin-bottom: 10px;
 }
 
 
