@@ -1,29 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Navigation } from 'react-router';
 import PORT from '../../config/port.js';
 import { getUser } from '../Actions/user';
 
 var LoggedIn = React.createClass({
 
-  callApi: function(data) {
-    var that = this;
-    $.ajax({
-      url: 'http://localhost:' + PORT.PORT + '/api/friends',
-      method: 'POST',
-      data: {access_token : data}
-    }).then(function(jsonFriend) {
-      alert("The request to the secured endpoint was successful");
-      location.href = location.origin;
-    }, function() {
-      alert("Error");
-    });
-  },
+  mixins: [ Navigation ],
 
   logout: function() {
     localStorage.removeItem('userToken');
     localStorage.removeItem('access_token');
     this.props.lock.logout({ref: 'window.location.href'});
-    // Go to home with your React Router
+    //TODO LOGOUT BUTTON IN NAV, WHICH REDIRECTS TO ??? LOGIN PAGE?
+  },
+
+  navToFriends: function() {
+    this.transitionTo(`/friends`);
   },
 
   componentDidMount: function() {
@@ -34,11 +27,35 @@ var LoggedIn = React.createClass({
         this.props.lock.logout({ref: 'window.location.href'});
       }
       this.props.dispatch(getUser(profile));
+      this.navToFriends();
     }.bind(this));
   },
 
   componentDidUpdate: function() {
     localStorage.setItem('access_token', JSON.stringify({'access_token' : this.props.profile.identities[0].access_token }))
+    var profile = {
+      user_id : this.props.profile.identities[0].user_id,
+      birthday : this.props.profile.birthday,
+      mutual_friends : this.props.profile.context.mutual_friends.data
+    }
+    this.saveUserToDB(profile);
+  },
+
+  saveUserToDB: function(profile){
+    var that = this;
+    $.ajax({
+      url: 'http://localhost:' + PORT.PORT + '/api/users/saveuser',
+      method: 'POST',
+      data: {user : profile}
+    }).then(function(savedUser) {
+      if(typeof savedUser === 'string'){
+        console.log('USER EXISTS')
+      }else{
+        console.log('USER SAVED TO DB');
+      }
+    }, function() {
+      alert("Error");
+    });
   },
 
   render: function() {

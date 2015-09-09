@@ -15,16 +15,25 @@ var Book = React.createClass({
 
     const {book} = this.props;
 
+    var basedOn = book.basedOn;
+
     var missingBookCover = 'http://www.mbalit.co.uk/sites/default/files/imagecache/fullsize/imagefield_default_images/generic_book_cover_0.jpg';
 
     var bookDetails = {
-      url: book.DetailPageURL || '',
-      img: book.MediumImage.URL || missingBookCover,
-      title: book.ItemAttributes.Title || 'NA',
-      author: book.ItemAttributes.Author || 'NA',
-      binding: book.ItemAttributes.Binding || 'NA',
-      price: book.Offers.Offer.OfferListing.Price.FormattedPrice || 'NA'
+      url: book.details.DetailPageURL || '',
+      img: book.details.MediumImage.URL || missingBookCover,
+      title: book.details.ItemAttributes.Title || 'NA',
+      author: book.details.ItemAttributes.Author || 'NA',
+      binding: book.details.ItemAttributes.Binding || 'NA',
+      price: book.details.Offers.Offer.OfferListing.Price.FormattedPrice || 'NA',
+      basedOn: book.basedOn.ItemAttributes.Title
     };
+
+    var basedOnDetails = {
+      img: basedOn.MediumImage.URL || missingBookCover,
+      title: basedOn.ItemAttributes.Title || 'NA',
+      author: basedOn.ItemAttributes.Author || 'NA',
+    }
 
     return (
       <div className="container gift-detail-container">
@@ -38,7 +47,12 @@ var Book = React.createClass({
         <div className="book-author">{bookDetails.author}</div>
         <div className="book-binding">{bookDetails.binding}</div>
         <div className="book-price">{bookDetails.price}</div>
-
+        <div className="based-on">
+          <div> Based on: </div>
+          <div className = "book-based-on-thumbnail"><img src={basedOnDetails.img} /></div>
+          <div className = "book-title">{basedOnDetails.title}</div>
+          <div className = "book-author">{basedOnDetails.author}</div>
+        </div>
       </div>
     );
   }

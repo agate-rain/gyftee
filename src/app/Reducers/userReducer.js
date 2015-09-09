@@ -7,25 +7,25 @@ export default function userReducer(state=initialState, action) {
 
   switch (action.type) {
     case ADD_FRIEND:
-      return [{
-        id
-      }, ...state];
+      return Object.assign({}, state, {
+        friends: state.friends.concat([action.friend])
+      });
 
     case REMOVE_FRIEND:
       var friends = state.friends.filter(friend => {
-        return friend.id !== action.id
+        return friend.id !== action.id;
       });
-      return Object.assign({}, { profile: state.profile, friends: friends });
+      return Object.assign({}, state, { friends: friends });
 
     case FETCH_FRIENDS:
       var friends = [];
       action.friends.forEach(function(friend) {
         friends.push(friend);
       });
-      return Object.assign({}, { profile: state.profile, friends: friends });
+      return Object.assign({}, state, { friends: friends });
 
     case GET_USER:
-      return Object.assign({}, { profile: action.profile, friends: state.friends });
+      return Object.assign({}, state, { profile: action.profile });
 
     default:
       return state;
