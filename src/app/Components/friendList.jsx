@@ -37,23 +37,8 @@ var FriendList = React.createClass({
         <div className="bday-list-header">{this.props.appFriends.length} UPCOMING BIRTHDAYS</div>
           {
             this.props.appFriends.map(function(friend) {
-
               return (
-                <div className="bday-list-container">
-                  <div className="bday-list-body seafoam">
-                    <div className="bday-row">
-                      <div className="heart-div"><a href="#"><i className="glyphicon glyphicon-heart heart"></i></a></div>
-                      <div className="bday-list-item friendname">
-                        <Friend friend={friend} key={friend.id} onClick={this.navToGiftList.bind(this, friend.id)}/>
-                      </div>
-
-                      <div className="date-container">
-                        <div>{friend.birthdate}</div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
+                <Friend friend={friend} key={friend.id} onClick={this.navToGiftList.bind(this, friend.id)} />
               );
 
             }, this)

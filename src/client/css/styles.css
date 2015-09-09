@@ -286,6 +286,7 @@ li>a.nav-menu-item {
 .friendname {
   color: #004851;
   text-decoration: none;
+  text-align: left;
   /*padding-left: 10px;*/
   font-size: 0.8em;
 }
@@ -318,7 +319,7 @@ li>a.nav-menu-item {
   display: flex;
   /*margin-bottom: 20px;*/
   /*padding: 0 12px;*/
-  align-items: center;
+  /*align-items: center;*/
 }
 
 .bday-row:last-child {
@@ -327,7 +328,8 @@ li>a.nav-menu-item {
 
 .date-container {
   display: flex;
-  flex: 0.4;
+  /*align-content: left;*/
+  flex: 0.3;
   font-size: 0.8em;
   color: #004851;
 }
