@@ -1,9 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router';
+import PORT from '../../config/port.js';
 
 var UserHeader = React.createClass({
+
+  getInitialState: function() {
+    return {
+      image_url: ''
+    };
+  },
+
+  componentDidMount: function(){
+
+    $.ajax({
+      url: "http://localhost:" + PORT.PORT + "/api/friends/image",
+      method: 'POST',
+      data: {friendId : this.props.user.identities[0].user_id,
+             access_token: JSON.parse(localStorage.getItem('access_token')).access_token}, // need to pass in the access token
+      success: function(data) {
+        if(this.isMounted()){
+          this.setState({
+            image_url: data
+          })
+        }
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+      }
+    });
+  },
+
   render: function() {
-    console.log("this.props in UserHeader", this.props);
     return (
       <div className="flex-container welcome-main">
         <div className="welcome-container container">
@@ -13,7 +40,7 @@ var UserHeader = React.createClass({
 
         <div className="profile-photo-container">
           <div className="thumbnail profile-photo">
-            <img src={this.props.user.picture} />
+            <img src={this.state.image_url} />
           </div>
         </div>
       </div>
