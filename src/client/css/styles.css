@@ -11,12 +11,11 @@
 }
 
 body {
-  font-family: "proxima-nova", sans-serif;
+  font-family: 'Lato', sans-serif;
   text-align: center;
   font-size: 300%;
-  font-weight: 100;
+  font-weight: 300;
 }
-
 
 .flex-container {
   display: -webkit-flex; /* for safari */
@@ -36,6 +35,10 @@ body {
 
 .float-right {
   float: right;
+}
+
+.center {
+  text-align: center;
 }
 
 .row {
@@ -93,6 +96,8 @@ body {
 .bold {
   font-weight: 700;
 }
+
+
 
 /***********************************/
 /******** LOGIN SCREEN *********/
@@ -169,6 +174,9 @@ li>a.nav-menu-item {
   /*height: 70px;*/
   /*position: absolute;*/
 }
+
+
+
 /***********************************/
 /******** HOME VIEW ********/
 /************************************/
@@ -346,9 +354,12 @@ li>a.nav-menu-item {
   color: #004851;
 }
 
+
+
 /***********************************/
 /******** ALL FRIEND VIEW ********/
 /************************************/
+
 .all-friend-row {
   padding: 20px 20px 20px 20px;
   /*border-style: solid;*/
@@ -371,23 +382,67 @@ li>a.nav-menu-item {
   border-style: solid;
   border-color: #BBB;
 }
+
+.detail-main {
+  padding-top: 90px;
+}
+
+.add-to-list-container {
+  /*background-color: white;*/
+  display: flex;
+  flex: 1;
+  margin-bottom: 10px;
+}
+
 .book-title {
-  font-size: 0.7em;
+  font-size: 0.6em;
   font-weight: bold;
 }
 .book-author {
-  font-size: 0.7em;
-}
-.book-binding {
   font-size: 0.6em;
 }
+.book-binding {
+  font-size: 0.5em;
+}
 .book-price {
-  font-size: 0.7em;
+  font-size: 0.5em;
+  font-weight: 400;
 }
 .add-to-list {
   font-size: 0.8em;
-  width: 30px;
+  margin: 0 auto;
   /*position: fixed;*/
+}
+
+.add-heart {
+  color: #E4F2F2;
+}
+
+.add-to-list-button {
+  /*position: relative;*/
+  /*justify-content: center;*/
+  border-color: #004851;
+  font-size: 0.6em;
+  background-color: #004851;
+  color: #FFF;
+  /*align-content: center;*/
+  border-radius: 5px;
+  /*margin-top: 10px;*/
+  padding: 5px;
+  text-align: center;
+  width: 100%;
+}
+.book-text-container {
+  padding: 5px 0 10px 0;
+}
+
+.based-on-text {
+  font-size: 0.5em;
+  color: white;
+}
+
+.based-on-container {
+  padding-top: 10px;
 }
 
 .second-flex-container {
@@ -467,7 +522,6 @@ li>a.nav-menu-item {
 }
 
 
-
 /***********************************/
 /******** PINNED GIFT LIST *********/
 /***********************************/
@@ -502,11 +556,14 @@ li>a.nav-menu-item {
   color: #FFF;
   font-size: 0.8em;
   font-weight: normal;
+<<<<<<< HEAD
   padding: 10px 0 10px 10%;
 }
 
 .slider-container{
   margin-left: 10%;
+  padding: 10px 0 10px 40px;
+  margin-bottom: 10px;
 }
 
 .prime-img{
@@ -514,113 +571,8 @@ li>a.nav-menu-item {
   width: 71px;
 }
 
-/***********************************/
-/******** AUTH0 STYLING *********/
-/***********************************/
-/*
-.auth {
-  font-family: "proxima-nova", sans-serif;
-  text-align: center;
-  font-size: 300%;
-  font-weight: 100;
-}
-.auth input[type=checkbox],
-input[type=radio] {
-  position: absolute;
-  opacity: 0;
-}
-.auth input[type=checkbox] + label,
-input[type=radio] + label {
-  display: inline-block;
-}
-.auth input[type=checkbox] + label:before,
-input[type=radio] + label:before {
-  content: "";
-  display: inline-block;
-  vertical-align: -0.2em;
-  width: 1em;
-  height: 1em;
-  border: 0.15em solid #0074d9;
-  border-radius: 0.2em;
-  margin-right: 0.3em;
-  background-color: white;
-}
-.auth input[type=radio] + label:before {
-  border-radius: 50%;
-}
-.auth input[type=radio]:checked + label:before,
-input[type=checkbox]:checked + label:before {
-  background-color: #0074d9;
-  box-shadow: inset 0 0 0 0.15em white;
-}
-.auth input[type=radio]:focus + label:before,
-input[type=checkbox]:focus + label:before {
-  outline: 0;
-}
-.auth .btn {
-  font-size: 140%;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border: 0;
-  background-color: #16214D;
-  color: white;
-}
-.auth .btn:hover {
-  background-color: #44C7F4;
-}
-.auth .btn:focus {
-  outline: none !important;
-}
-.auth .btn.btn-lg {
-  padding: 20px 30px;
-}
-.auth .btn:disabled {
-  background-color: #333;
-  color: #666;
-}
-.auth h1,
-h2,
-h3 {
-  font-weight: 100;
-}
-.auth .friend-img{
-  border-radius: 50%;
-  height: 100px;
-  width: 100px;
-}
-.auth #logo img {
-  width: 300px;
-  margin-bottom: 60px;
-}
-.auth .home-description {
-  font-weight: 100;
-  margin: 100px 0;
-}
-.auth h2 {
-  margin-top: 30px;
-  margin-bottom: 40px;
-  font-size: 200%;
-}
-.auth label {
-  font-size: 100%;
-  font-weight: 300;
-}
-.auth .btn-next {
-  margin-top: 30px;
-}
-.auth .answer {
-  width: 70%;
-  margin: auto;
-  text-align: left;
-  padding-left: 10%;
-  margin-bottom: 20px;
-}
-.auth .login-page .login-box {
-  padding: 100px 0;
-}
-*/
+/******** FALLBACK STYLING *********/
 
-/* Fallback styles */
 .book {
   display: inline-block;
   box-shadow: 5px 5px 20px #333;
@@ -636,6 +588,10 @@ h3 {
  *
  *  Visit http://modernizr.com/ for installation instructions
  */
+
+ /***********************************/
+/******** MODERNIZR *********/
+/***********************************/
 
 .csstransforms3d  .books {
   -moz-perspective: 100px;
