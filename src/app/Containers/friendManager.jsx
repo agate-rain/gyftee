@@ -64,7 +64,7 @@ FriendManager.propTypes = {
 var mapStateToProps = function(state) {
   return {
     profile: state.user.profile,
-    friends: state.user.friends
+    friends: state.user.friends,
   }
 };
 

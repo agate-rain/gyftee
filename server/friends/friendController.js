@@ -51,18 +51,37 @@ module.exports = {
             console.log('User Found!')
             user.giftsList.forEach(function(gift){
               if(gift.fbId === friendId){
-                gift.pinnedGifts.books.push(ASIN);
+                if(gift.pinnedGifts.books.indexOf(ASIN) === -1){
+                  gift.pinnedGifts.books.push(ASIN);
+                }
               }
             });
             user.markModified('giftsList');
             user.save();
-            console.log(JSON.stringify(user,null, '\t'));
+            console.log('>>>> Gift List Update',JSON.stringify(user,null, '\t'));
           } else {
            console.log('User Not Found!')
           }
     });
 
 
+  },
+
+  getWishList: function(req, res, next){
+    var userId = req.params.userId;
+    var friendId = req.params.friendId;
+    User.findOne({fbId: userId}).exec(function(err, user){
+      if(user){
+        user.giftsList.forEach(function(friend){
+          if(friend.fbId === friendId){
+           res.send(200, friend.pinnedGifts);
+          }
+        });
+      }else{
+        console.log('User does not exist', err);
+      }
+    })
+    // console.log('REQ.BODY userId', req.body.userId);
   },
 
 

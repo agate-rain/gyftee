@@ -17,7 +17,7 @@ var FriendList = React.createClass({
     this.transitionTo(`/friends/allfriends`);
   },
 
-// TODO: List birthdays in descending order 
+// TODO: List birthdays in descending order
   render: function() {
 
     return (
@@ -29,7 +29,7 @@ var FriendList = React.createClass({
           {
             this.props.appFriends.map(function(friend) {
               return (
-                <Friend friend={friend} key={friend.id} onClick={this.navToGiftList.bind(this, friend.id)} />
+                <Friend friend={friend} user={this.props.user} key={friend.id} onClick={this.navToGiftList.bind(this, friend.id)} />
               );
 
             }, this)
