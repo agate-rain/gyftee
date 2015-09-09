@@ -1,5 +1,4 @@
 import 'babel-core/polyfill';
-import './css/styles.css'; // add the css for all pages
 import React from 'react';
 import BrowserHistory from 'react-router/lib/BrowserHistory';
 import { Provider } from 'react-redux';
@@ -14,6 +13,7 @@ var GiftDetail    = require('./app/Containers/giftDetail');
 var GiftRecs      = require('./app/Containers/giftRecommendations');
 var AllFriendsList    = require('./app/Containers/allFriendsList');
 var InviteFriend    = require('./app/Containers/inviteFriend');
+var WishList    = require('./app/Containers/pinnedGiftList');
 // TODO GiftList View for each friend
 
 const history = new BrowserHistory();
@@ -34,6 +34,7 @@ React.render(
         <Route name="friends" path="/friends" component={FriendManager} />
         <Route name="allFriendsList" path="/friends/allfriends" component={AllFriendsList} />
         <Route name="inviteFriend" path="/friends/invite/:friendId" component={InviteFriend} />
+        <Route name="wishList" path="/friends/:friendId/wishList" component={WishList} />
         <Route name="friendGifts" path="/friends/:friendId" component={GiftRecs} />
         <Route name="giftDetail" path="/gifts/:giftId" component={GiftDetail} />
       </Route>

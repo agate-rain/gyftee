@@ -2,6 +2,7 @@ var Gift = require('./giftModel.js');
 var aws = require('aws-lib');
 var request = require('request');
 var S = require('string');
+var Promise = require('bluebird');
 require('dotenv').load();
 var prodAdv = aws.createProdAdvClient(process.env.AMAZON_CLIENT_ID, process.env.AMAZON_CLIENT_SECRET, process.env.AMAZON_ASSOCIATE_TAG);
 
@@ -12,15 +13,44 @@ module.exports = {
   lookupItemByKeyword: function(req, res) {
     // hard coding for testing will refactor lataer
     var bookKeyword = req.body.keyword;
-    console.log(bookKeyword);
     // var temp = JSON.parse(req.body.friend);
     // // console.log('REQ BODY', temp[1].books.data[0].name);
     // var bookKeyword = temp[1].books.data[0].name;
 
-    var options = {SearchIndex: 'Books', Keywords: bookKeyword, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
-    prodAdv.call('ItemSearch', options, function(err, result) {
-      res.send(result);
+      var options = {SearchIndex: 'Books', Keywords: bookKeyword, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
+      prodAdv.call('ItemSearch', options, function(err, result) {
+        res.send(result);
+      });
+  },
+
+  itemLookup: function(req, res) {
+    // hard coding for testing will refactor lataer
+    var giftArr = req.body.giftArr;
+    var bookArr = giftArr.books;
+    var promises = [];
+
+    var amazonSync = function(bookASIN){
+      var options = {SearchIndex: "All", IdType: "ISBN", ItemId: bookASIN, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
+      return new Promise(function(resolve, reject){
+        prodAdv.call('ItemLookup', options, function(err, result) {
+              if(err !== null){
+                return reject(err);
+              }
+              resolve(result);
+        });
+      })
+    };
+    bookArr.forEach(function(ASIN){
+      promises.push(amazonSync(ASIN));
     });
+    Promise.all(promises).then(function(result){
+      result = result.map(function(item){
+        return item.Items;
+      });
+      res.send(200,result);
+    });
+
+
   },
 
   // call to Amazon API to get similar items based on the 'liked' item
