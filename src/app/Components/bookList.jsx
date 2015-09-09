@@ -19,7 +19,7 @@ var BookList = React.createClass({
     for(var key in this.props.amazonBooks){
       books.push(
         <div>
-            <Thumbnail book={this.props.amazonBooks[key]} key={this.props.amazonBooks[key].ASIN} />
+          <Thumbnail book={this.props.amazonBooks[key]} key={this.props.amazonBooks[key].ASIN} />
         </div>
       );
     }
@@ -67,11 +67,12 @@ var BookList = React.createClass({
 
     return (
       <div className="books-list">
-      <div className="category-header">Books</div>
-        <Slider {...settings} className="books-list">
-        {books}
-        </Slider>
-
+        <div className="row light-teal category">
+          <div className="category-header">Books</div>
+        </div>
+          <Slider {...settings} className="books-list">
+            {books}
+          </Slider>
       </div>
       );
   }
