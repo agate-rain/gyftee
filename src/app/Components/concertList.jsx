@@ -7,7 +7,7 @@ var sliderSettings = require('../../util/sliderSettings');
 
 var Slider = require('react-slick');
 
-var BookList = React.createClass({
+var ConcertList = React.createClass({
 
   mixins: [ Navigation ],
 
@@ -16,26 +16,25 @@ var BookList = React.createClass({
   },
 
   render: function() {
-    var books = [];
+    var concerts = [];
     for(var key in this.props.amazonBooks){
-      books.push(
+      concerts.push(
         <div>
-          <Thumbnail book={this.props.amazonBooks[key]} key={this.props.amazonBooks[key].ASIN} />
+            <Thumbnail book={this.props.amazonBooks[key]} key={this.props.amazonBooks[key].ASIN} />
         </div>
       );
     }
 
     return (
       <div className="books-list">
-        <div className="row light-teal category">
-          <div className="category-header">Books</div>
-        </div>
-          <Slider {...settings} className="books-list">
-            {books}
-          </Slider>
+      <h1>Concerts</h1>
+      <Slider {...sliderSettings} className="concert-list">
+      {concerts}
+      </Slider>
+
       </div>
       );
   }
 });
 
-module.exports = BookList;
+module.exports = ConcertList;

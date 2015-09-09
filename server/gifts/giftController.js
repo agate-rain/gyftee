@@ -1,5 +1,7 @@
 var Gift = require('./giftModel.js');
 var aws = require('aws-lib');
+var request = require('request');
+var S = require('string');
 require('dotenv').load();
 var prodAdv = aws.createProdAdvClient(process.env.AMAZON_CLIENT_ID, process.env.AMAZON_CLIENT_SECRET, process.env.AMAZON_ASSOCIATE_TAG);
 
@@ -30,7 +32,28 @@ module.exports = {
     prodAdv.call('SimilarityLookup', options, function(err, result) {
       res.send(result);
     });
-  }
+  },
+
+  getEvents: function(req, res){
+
+    //console.log("REQUEST:------>", req.body);
+    var url = S('http://api.bandsintown.com/events/search.json?artists%5B%5D={{artist}}&date={{startDate}},{{endDate}}&location={{loc}}&radius=10&app_id=Gyftee').template(req.body).s;
+    //console.log("URL:------>", url);
+    var requestOptions = {
+     url: url,
+     json: true
+   };
+
+   request(requestOptions, function(error, response, body) {
+     if (!error && response.statusCode === 200) {
+      console.log(JSON.stringify(body));
+      res.send(body);
+    } else {
+     res.send({ success: false, message: 'Unknown Error getting result from bandsintown api.'});
+   }
+ })
+
+ }
   // TODO: search etsy using image tags or other facebook metadata
   // and get surprise gifts (grab bag feature)
 
