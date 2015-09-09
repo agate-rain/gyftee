@@ -80,7 +80,6 @@ var GiftRecommendations = React.createClass({
     this.fetchFriendById(friendId);
     this.fetchImageUrlById(friendId);
     this.getConcerts();
-
   },
 
 
