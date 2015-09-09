@@ -1,30 +1,27 @@
-import {connect} from 'react-redux';
-import React, {PropTypes} from 'react';
+import { connect } from 'react-redux';
+import React, { PropTypes } from 'react';
 import { fetchFriends } from '../Actions/user';
 import FilterableFriends from '../Components/filterableFriends';
 import FriendList from '../Components/friendList';
 import PORT from '../../config/port.js';
+import { Navigation } from 'react-router';
 
 var FriendManager = React.createClass({
 
+  mixins: [ Navigation ],
+
   render: function() {
-    const { friends } = this.props;
+
     return (
       <div className="friend-manager">
-        <FriendList appFriends={friends}/>
+        <FriendList appFriends={this.props.friends} user={this.props.profile} />
       </div>
     );
-  },
-
-  getInitialState: function() {
-    return { fbFriends: [], appFriends: [] }
-
   },
 
   componentDidMount: function() {
     // this.fetchFacebookFriends();
     this.fetchAppFriends();
-
     //setInterval and use polling to run this function at specfic intervals
     //could also use socketIO
   },
@@ -55,18 +52,19 @@ var FriendManager = React.createClass({
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
-  }
+  },
 
 });
 
 FriendManager.propTypes = {
-  friends: PropTypes.array.isRequired,
+  user: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired
 };
 
 var mapStateToProps = function(state) {
   return {
-    friends : state.user.friends // export the portion of the state from index.js Reducers
+    profile: state.user.profile,
+    friends: state.user.friends
   }
 };
 

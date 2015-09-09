@@ -10,6 +10,12 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: "proxima-nova", sans-serif;
+  text-align: center;
+  font-size: 300%;
+  font-weight: 100;
+}
 
 
 .flex-container {
@@ -53,6 +59,10 @@
 
 .teal {
   background-color: #017E82;
+}
+
+.light-teal {
+  background-color: #00B7BB;
 }
 
 .dark-teal {
@@ -286,6 +296,8 @@ li>a.nav-menu-item {
 .friendname {
   color: #004851;
   text-decoration: none;
+  text-align: left;
+  font-weight: normal;
   /*padding-left: 10px;*/
   font-size: 0.8em;
 }
@@ -316,9 +328,10 @@ li>a.nav-menu-item {
   border-top: solid;
   border-color: white;
   display: flex;
+  font-weight: normal;
   /*margin-bottom: 20px;*/
   /*padding: 0 12px;*/
-  align-items: center;
+  /*align-items: center;*/
 }
 
 .bday-row:last-child {
@@ -327,7 +340,8 @@ li>a.nav-menu-item {
 
 .date-container {
   display: flex;
-  flex: 0.4;
+  /*align-content: left;*/
+  flex: 0.3;
   font-size: 0.8em;
   color: #004851;
 }
@@ -353,7 +367,7 @@ li>a.nav-menu-item {
 
 .gift-detail-container {
   padding: 20px;
-  max-width: 300px;
+  max-width: 80%;
   border-style: solid;
   border-color: #BBB;
 }
@@ -372,7 +386,8 @@ li>a.nav-menu-item {
 }
 .add-to-list {
   font-size: 0.8em;
-  position: fixed;
+  width: 30px;
+  /*position: fixed;*/
 }
 
 .second-flex-container {
@@ -403,6 +418,92 @@ li>a.nav-menu-item {
   text-align: center;
   width: 25%;
 
+}
+
+
+/***********************************/
+/******** FRIEND HEADER *********/
+/***********************************/
+
+.friend-header-container {
+  padding: 100px 20px 0 65px;
+}
+
+.friend-header-name {
+  font-family: "proxima-nova", sans-serif;
+  text-align: left;
+  font-size: 1.0em;
+  color: #017E82;
+}
+
+.friend-header-bday {
+  font-size: 1.0em;
+  padding-bottom: 0px;
+  font-weight: bold;
+  color: #017E82;
+}
+
+.filter-button {
+  /*position: relative;*/
+  /*justify-content: center;*/
+  border-color: #004851;
+  font-size: 0.7em;
+  background-color: #004851;
+  color: #FFF;
+  /*align-content: center;*/
+  border-radius: 10px 0 10px 0;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: center;
+  /*background-color: blue;*/
+}
+
+.filter-link {
+  text-decoration: none;
+}
+.filter-link:hover {
+  color: transparent;
+}
+
+
+
+/***********************************/
+/******** PINNED GIFT LIST *********/
+/***********************************/
+
+.friend-detail-container {
+  padding: 10px 0 20px 0;
+}
+.giftlist-circle {
+  background-color: #9E081B;
+  color: #FFF;
+  text-align: center;
+  align-content: center;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+.giftlist-circle-container {
+  align-items: center;
+}
+
+.giftlist-main {
+  padding-bottom: 20px;
+}
+.giftlist-header {
+  margin-top: 70px;
+  font-size: 1.2em;
+  color: #FFF;
+  padding: 10px 0 10px 40px;
+}
+
+.category-header {
+  color: #FFF;
+  font-size: 0.8em;
+  font-weight: normal;
+  padding: 10px 0 10px 40px;
+  margin-bottom: 10px;
 }
 
 
