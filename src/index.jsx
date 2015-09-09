@@ -5,16 +5,15 @@ import { Provider } from 'react-redux';
 import { Router, Route } from 'react-router';
 import configStore from './app/Store/configStore';
 
-// pages
-var App           = require('./app/Containers/app');
-var Login         = require('./app/Containers/login');
-var FriendManager = require('./app/Containers/friendManager');
-var GiftDetail    = require('./app/Containers/giftDetail');
-var GiftRecs      = require('./app/Containers/giftRecommendations');
-var AllFriendsList    = require('./app/Containers/allFriendsList');
-var InviteFriend    = require('./app/Containers/inviteFriend');
-var WishList    = require('./app/Containers/pinnedGiftList');
-// TODO GiftList View for each friend
+// containers
+import App from './app/Containers/app';
+import Login from './app/Containers/login';
+import FriendManager from './app/Containers/friendManager';
+import GiftDetail from './app/Containers/giftDetail';
+import GiftRecs from './app/Containers/giftRecommendations';
+import AllFriendsList from './app/Containers/allFriendsList';
+import InviteFriend from './app/Containers/inviteFriend';
+import WishList from './app/Containers/pinnedGiftList';
 
 const history = new BrowserHistory();
 
