@@ -1,5 +1,4 @@
 import 'babel-core/polyfill';
-import './css/styles.css'; // add the css for all pages
 import React from 'react';
 import BrowserHistory from 'react-router/lib/BrowserHistory';
 import { Provider } from 'react-redux';
