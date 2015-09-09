@@ -1,13 +1,16 @@
 import React from 'react';
 import Book from '../Components/book';
+import Navbar from '../Components/navbar';
 import { connect } from 'react-redux';
 
 var GiftDetail = React.createClass({
 
   render: function() {
     return (
+      <div>
+      <Navbar />
       <Book book={this.props.gift}/>
-      
+      </div>
     );
   }
 });
