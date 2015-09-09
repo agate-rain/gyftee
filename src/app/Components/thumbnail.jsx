@@ -20,9 +20,7 @@ var Thumbnail = React.createClass({
       </div>
       );
   }
-});
-
-module.exports = Thumbnail;
+})
 
 var mapStateToProps = function(state) {
   return {

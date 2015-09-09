@@ -1,29 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Navigation } from 'react-router';
 import PORT from '../../config/port.js';
 import { getUser } from '../Actions/user';
 
 var LoggedIn = React.createClass({
 
-  callApi: function(data) {
-    var that = this;
-    $.ajax({
-      url: 'http://localhost:' + PORT.PORT + '/api/friends',
-      method: 'POST',
-      data: {access_token : data}
-    }).then(function(jsonFriend) {
-      alert("The request to the secured endpoint was successful");
-      location.href = location.origin;
-    }, function() {
-      alert("Error");
-    });
-  },
+  mixins: [ Navigation ],
 
   logout: function() {
     localStorage.removeItem('userToken');
     localStorage.removeItem('access_token');
     this.props.lock.logout({ref: 'window.location.href'});
-    // Go to home with your React Router
+    //TODO LOGOUT BUTTON IN NAV, WHICH REDIRECTS TO ??? LOGIN PAGE?
+  },
+
+  navToFriends: function() {
+    this.transitionTo(`/friends`);
   },
 
   componentDidMount: function() {
@@ -35,6 +28,7 @@ var LoggedIn = React.createClass({
       }
       console.log("profile in loggedIn", profile);
       this.props.dispatch(getUser(profile));
+      this.navToFriends();
     }.bind(this));
   },
 
@@ -47,6 +41,7 @@ var LoggedIn = React.createClass({
     }
     this.saveUserToDB(profile);
   },
+
   saveUserToDB: function(profile){
     var that = this;
     $.ajax({
