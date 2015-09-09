@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchFriend, saveImageUrl } from '../Actions/friend'
 import { saveGifts } from '../Actions/gifts'
 import Slider from 'react-slick';
-import FriendHeader from '../Components/userHeader';
+import FriendHeader from '../Components/friendHeader';
 import Thumbnail from '../Components/thumbnail';
 import RecommendationFilters from '../Components/recommendationFilters';
 import BookList from '../Components/bookList';
@@ -14,7 +14,7 @@ var GiftRecommendations = React.createClass({
   render: function() {
     return (
         <div className="recommendations">
-          <FriendHeader user={this.props.friend} url ={this.props.friend.image_url} />
+          <FriendHeader user={this.props.friend} url={this.props.friend.image_url} />
           <RecommendationFilters />
           <BookList amazonBooks={this.props.gifts} />
         </div>

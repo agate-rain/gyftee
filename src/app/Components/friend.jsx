@@ -8,9 +8,7 @@ var Friend = React.createClass({
 
   render: function() {
 
-    var birthday = this.formatDate(this.props.friend.birthday)
-
-    console.log(birthday)
+    var birthday = this.formatDate(this.props.friend.birthday);
 
     return (
       <div onClick={this.props.onClick}>
