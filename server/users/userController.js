@@ -1,4 +1,7 @@
 var User = require('./userModel.js');
+var GiftSchema = require('../gifts/giftModel');
+var mongoose = require('mongoose');
+var Gift = mongoose.model('Gift', GiftSchema);
 
 module.exports = {
 
@@ -23,6 +26,25 @@ module.exports = {
             birthdate : req.body.user.birthday,
             mutual_friends : req.body.user.mutual_friends
           });
+          var newUser = new User({
+              fbId: req.body.user.user_id,
+              birthdate : req.body.user.birthday,
+              mutual_friends : req.body.user.mutual_friends,
+              giftsList: []
+            });
+          console.log(newUser)
+            req.body.user.mutual_friends.forEach(function(friend){
+              var newGift = new Gift({fbId: friend.id,
+                                      pinnedGifts:
+                                        [
+                                          { books : [],
+                                            music : [],
+                                            etsy: []
+                                           }
+                                        ]
+                                    });
+              newUser.giftsList.push(newGift);
+            });
 
           newUser.save(function(err, user) {
             if (err) {

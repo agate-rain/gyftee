@@ -8,7 +8,11 @@ var Friend = React.createClass({
 
   render: function() {
 
-    var birthday = this.formatDate(this.props.friend.birthday);
+    if (this.props.friend.birthday) {
+      var birthday = this.formatDate(this.props.friend.birthday);
+    } else {
+      birthday = "Unknown";
+    }
 
     return (
       <div onClick={this.props.onClick}>
