@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigation } from 'react-router';
 import { connect } from 'react-redux';
+import PORT from '../../config/port.js';
 
 var Friend = React.createClass({
 
@@ -33,7 +34,7 @@ var Friend = React.createClass({
             <div className="heart-div"><i className="glyphicon glyphicon-heart heart" onClick={this.navToFriendWishList.bind(this, this.props.friend.id)}></i></div>
             <div className="bday-list-item friendname" onClick={this.props.onClick}>{this.props.friend.name} </div>
             <div className="date-container" onClick={this.props.onClick}>{birthday}</div>
-            <button type="button" onClick={this.navToImageView.bind(this, this.props.friend)}>Get Image</button>
+            <button type="button" onClick={this.navToImageView.bind(this, this.props.friend.id)}>Get Image</button>
           </div>
         </div>
       </div>
@@ -41,4 +42,10 @@ var Friend = React.createClass({
   }
 });
 
-export default Friend;
+var mapStateToProps = function(state) {
+  return {
+    profile: state.user.profile,
+  }
+};
+
+export default connect(mapStateToProps)(Friend);
