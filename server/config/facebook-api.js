@@ -7,11 +7,20 @@ var fbApi = BPromise.promisify(fb.napi, fb);
 
 function friends(accessToken) {
     return fbApi('me/friends', {
-        fields: 'name,picture,birthday,hometown,gender,favorite_athletes,education,devices,location,relationship_status,inspirational_people,political,sports,books,albums,events,music,music.listens,user_actions.books',
+        fields: 'name,picture,birthday,hometown,gender,favorite_athletes,education,devices,location,relationship_status,inspirational_people,political,sports,books,music,albums',
         limit: 2000,
         access_token: accessToken
     });
 }
+// fields: 'name,picture,birthday,hometown,gender,favorite_athletes,education,devices,location,relationship_status,inspirational_people,political,sports,books,albums,events,music,music.listens,user_actions.books',
+function feed(accessToken) {
+    return fbApi('me/feed', {
+        fields: 'post',
+        message : 'Reading Connect JS documentation',
+        access_token: accessToken
+    });
+}
+
 
 function invitableFriends(accessToken) {
     return fbApi('me/invitable_friends', {
@@ -23,5 +32,6 @@ function invitableFriends(accessToken) {
 
 module.exports = {
     friends: friends,
-    invitableFriends: invitableFriends
+    invitableFriends: invitableFriends,
+    feed : feed
 };

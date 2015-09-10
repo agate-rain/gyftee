@@ -36,7 +36,7 @@ export default function userReducer(state=initialState, action) {
         // calculate days from now to the bday; getTime() returns time in ms
         // 86,400,000 ms per day
         var elapsed = ( friendBday.getTime() - today.getTime() ) / 86400000;
-
+        // console.log("friendBday", friendBday, "elapsed", elapsed);
         // add 365 days to get upcoming day
         if(elapsed < 0) {
           elapsed = elapsed + 365;
