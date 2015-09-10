@@ -1,11 +1,9 @@
 var React = require('react');
 var LoggedIn = require('./loggedIn');
 var Home = require('./home');
-import {Navigation} from 'react-router';
 
 
 var App = React.createClass({
-  mixin: [Navigation],
 
   componentWillMount: function() {
     this.setupAjax();
@@ -16,7 +14,6 @@ var App = React.createClass({
   createLock: function() {
     this.lock = new Auth0Lock(this.props.clientId, this.props.domain);
     this.lock.show({
-      callbackURL: 'http://localhost:3000/callback',
       connections: ['facebook'],
       icon: '../../src/client/img/gyftee-icon.png',
       popup: true
