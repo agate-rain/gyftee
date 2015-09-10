@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Navbar from '../Components/navbar';
+import NavBar from '../Components/navbar';
 import Friend from '../Components/friend';
 import { removeFriend } from '../Actions/user';
 import { Navigation } from 'react-router';
@@ -12,7 +12,7 @@ var AllFriendsList = React.createClass({
   render: function() {
     return (
       <div className='all-friend-list'>
-        <Navbar />
+        <NavBar />
         <div className="welcome-container container flex-container">
         </div>
         <FilterableFriends fbFriends={this.state.fbFriends}/>

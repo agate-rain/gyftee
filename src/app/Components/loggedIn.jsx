@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Navigation, Link } from 'react-router';
+import { Navigation } from 'react-router';
 import PORT from '../../config/port.js';
 import { getUser } from '../Actions/user';
-// import { Link } from 'react-router';
 
 var LoggedIn = React.createClass({
 
   mixins: [ Navigation ],
 
+  //TODO REMOVE ONCE LOGOUT FUNCTIONALITY WORKS IN NAV
   logout: function() {
     localStorage.removeItem('userToken');
     localStorage.removeItem('access_token');
@@ -17,12 +17,6 @@ var LoggedIn = React.createClass({
   },
 
   navToFriends: function() {
-    this.transitionTo(`/friends`);
-  },
-
-  // TODO - get rid of the button, and this method 
-
-  navToFriendList: function(){
     this.transitionTo(`/friends`);
   },
 
@@ -71,15 +65,15 @@ var LoggedIn = React.createClass({
     if (this.props.profile) {
       return (
         <div className="logged-in-box auth0-box logged-in">
-        <p>You are logged in!</p>
-          <button onClick={this.logout} className="btn btn-lg btn-primary">Logout</button>
-          <button onClick={this.navToFriendList.bind(this)} className="btn btn-lg btn-primary">Go To Friend</button>
-        </div>);
+          <p>You are logged in!</p>
+        </div>
+      );
     } else {
       return (
         <div className="logged-in-box auth0-box logged-in">
           <h1 id="logo"><img src="https://cdn.auth0.com/blog/auth0_logo_final_blue_RGB.png" /></h1>
-        </div>);
+        </div>
+      );
     }
   }
 });

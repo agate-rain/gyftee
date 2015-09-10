@@ -9,14 +9,14 @@ import RecommendationFilters from '../Components/recommendationFilters';
 import BookList from '../Components/bookList';
 import ConcertList from '../Components/concertList';
 import PORT from '../../config/port.js';
-import Navbar from '../Components/navbar';
+import NavBar from '../Components/navbar';
 
 var GiftRecommendations = React.createClass({
 
   render: function() {
     return (
         <div className="recommendations">
-          <Navbar />
+          <NavBar />
           <FriendHeader user={this.props.friend} url={this.props.friend.image_url} />
           <BookList amazonBooks={this.props.gifts} />
           <ConcertList amazonBooks={this.props.gifts} />
