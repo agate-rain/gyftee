@@ -27,6 +27,7 @@ module.exports = {
     // hard coding for testing will refactor lataer
     console.log(giftArr);
     var giftArr = req.body.giftArr;
+    console.log('>>>>', giftArr)
     if(giftArr.books.length !== 0){
       var bookArr = giftArr.books;
     };
