@@ -6,6 +6,8 @@
         <!-- jQuery -->
         <script src="src/client/scripts/jquery-2.1.1.min.js"></script>
         <script src="src/client/scripts/lock-7.min.js"></script>
+        <!-- Facebook SDK -->
+        <script type="text/javascript" src="src/config/sdk.js"></script>
         <!-- Auth0 -->
         <script src="src/client/scripts/iws6ohy.js"></script>
         <script>try{Typekit.load();}catch(e){}</script>
@@ -17,6 +19,18 @@
         <link rel="stylesheet" href="src/client/css/styles.css">
     </head>
     <body class="home">
+        <script>
+
+            FB.init({
+              appId: '452664661572497',
+              channelUrl: '../../config/channel.html', /* Adding a Channel File improves the performance of the javascript SDK */
+              status: true,   /* Set if you want to check the authentication status at the start up of the app */
+              cookie: true,   /* Enable cookies to allow the server to access the session */
+              xfbml: true,    /* Parse XFBML */
+              version: 'v2.4'
+
+        </script>
+
         <div id="app"></div>
         <script src="src/client/scripts/modernizr.js"></script>
     </body>

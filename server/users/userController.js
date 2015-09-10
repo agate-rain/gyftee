@@ -2,19 +2,11 @@ var User = require('./userModel.js');
 var GiftSchema = require('../gifts/giftModel');
 var mongoose = require('mongoose');
 var Gift = mongoose.model('Gift', GiftSchema);
+var request = require('request');
+var facebookApi = require('../config/facebook-api.js');
+var BPromise = require('bluebird');
 
 module.exports = {
-
-  // signin: function(req, res, next) {
-  // // look up user in database
-  //   // if user does not exist, create and save in db
-  //   // else, let user sign in
-  // },
-
-  // signout: function(req, res, next) {
-  // // remove session
-  // },
-
   saveUser: function(req, res) {
     User.findOne({fbId: req.body.user.user_id})
       .exec(function(err, found) {

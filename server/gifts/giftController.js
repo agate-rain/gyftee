@@ -25,8 +25,25 @@ module.exports = {
 
   itemLookup: function(req, res) {
     // hard coding for testing will refactor lataer
+    console.log(giftArr);
     var giftArr = req.body.giftArr;
-    var bookArr = giftArr.books;
+    console.log('>>>>', giftArr)
+    if(giftArr.books.length !== 0){
+      var bookArr = giftArr.books;
+    };
+
+    if(giftArr.music.length !== 0){
+      var musicArr = giftArr.books;
+    };
+
+    if(giftArr.etsy.length !== 0){
+      var musicArr = giftArr.etsy;
+    };
+
+    // if(giftArr.hasOwnProperty(books)){
+    //   var bookArr = giftArr.books;
+    // });
+
     var promises = [];
 
     var amazonSync = function(bookASIN){
