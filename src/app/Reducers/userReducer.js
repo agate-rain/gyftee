@@ -23,20 +23,27 @@ export default function userReducer(state=initialState, action) {
           return null;
         }
         var today = new Date();
+        // add 1 to current month bc getMonth starts at Jan = 0 
+        var currentMonth = today.getMonth() + 1;
         var currentYear = today.getFullYear();
+        var currentDD = today.getDate();
+        today = new Date(currentYear, currentMonth, currentDD);
         var friendBdayArray = birthday.split('/');
         var friendBdayMonth = friendBdayArray[0];
         var friendBdayDD = friendBdayArray[1];
         // replace year with current year 
         var friendBday = new Date(currentYear, friendBdayMonth, friendBdayDD);
         // calculate days from now to the bday; getTime() returns time in ms 
-        var elapsed = friendBday.getTime() - today.getTime();
+        var elapsed = ( friendBday.getTime() - today.getTime() ) / 86400000;
         // 86,400,000 ms per day
-        var daysFromToday = Math.floor(elapsed / 86400000); 
+        console.log("friendBday", friendBday, "elapsed", elapsed);
+
         // add 365 days to get upcoming day 
-        if(daysFromToday < 0) {
-          daysFromToday = daysFromToday + 365;
+        if(elapsed < 0) {
+          elapsed = elapsed + 365;
         }
+
+        var daysFromToday = Math.floor(elapsed); 
         return daysFromToday;    
       };
 

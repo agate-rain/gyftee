@@ -489,6 +489,7 @@ li>a.nav-menu-item {
   padding-bottom: 0px;
   font-weight: bold;
   color: #017E82;
+  text-align: left;
 }
 
 .filter-button {
