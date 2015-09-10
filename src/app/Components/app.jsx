@@ -17,6 +17,12 @@ var App = React.createClass({
       connections: ['facebook'],
       icon: '../../src/client/img/gyftee-icon.png',
       popup: true
+    }, function(err, profile){
+      if(err){
+        console.log(err);
+      }else{
+        console.log(profile);
+      }
     });
   },
 

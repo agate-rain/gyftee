@@ -59,8 +59,10 @@ module.exports = {
             user.markModified('giftsList');
             user.save();
             console.log('>>>> Gift List Update',JSON.stringify(user,null, '\t'));
+            res.send(200, "Gift saved to database")
           } else {
            console.log('User Not Found!')
+           res.send(500, "Unable to save gift to database")
           }
     });
 
