@@ -1,9 +1,9 @@
 import * as types from '../Constants/ActionTypes';
 
-export function fetchFriend(json) {
+export function fetchFriend(friend) {
   return {
     type: types.FETCH_FRIEND,
-    friend: json
+    friend: friend
   };
 };
 

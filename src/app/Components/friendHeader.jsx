@@ -1,23 +1,28 @@
 import React from 'react';
+import { Navigation } from 'react-router';
 
 var FriendHeader = React.createClass({
+
+  mixins: [ Navigation ],
 
   formatDate: function(bday) {
     return bday.slice(0,5);
   },
 
-  render: function(){
+  navToWishList: function(friendId) {
+    this.transitionTo(`/friends/${friendId}/wishList`);
+  },
 
-    if(this.props.user.friend !== null){
-      console.log(this.props.url)
+  render: function() {
+    if (this.props.friend !== null && this.props.url !== null) {
       return (
       <div className="friend-info">
         <div className="friend-header-container container flex-container">
           <div>
-            <div className="friend-header-name">{this.props.user.friend[0].name}</div>
-            <div className="friend-header-bday">{this.formatDate(this.props.user.friend[0].birthday)}</div>
+            <div className="friend-header-name">{this.props.friend.name}</div>
+            <div className="friend-header-bday">{this.formatDate(this.props.friend.birthday)}</div>
             <div>
-              <button className="filter-button">WISHLIST</button> 
+              <button className="filter-button" onClick={this.navToWishList.bind(this, this.props.friend.id)}>WISHLIST</button>
             </div>
           </div>
 
@@ -27,7 +32,7 @@ var FriendHeader = React.createClass({
             </div>
           </div>
 
-        </div> 
+        </div>
       </div>
       );
 
@@ -39,10 +44,6 @@ var FriendHeader = React.createClass({
         );
       }
   },
-
-  getInitialState: function() {
-    return { user: []}
-  }
 
 });
 

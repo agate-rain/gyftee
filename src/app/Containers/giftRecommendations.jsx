@@ -17,21 +17,20 @@ var GiftRecommendations = React.createClass({
     return (
         <div className="recommendations">
           <NavBar />
-          <FriendHeader user={this.props.friend} url={this.props.friend.image_url} />
+          <FriendHeader friend={this.props.friend.friend} url={this.props.friend.image_url} />
           <BookList amazonBooks={this.props.gifts} />
           <ConcertList amazonBooks={this.props.gifts} />
         </div>
     );
-
   },
 
   getInitialState: function() {
     return { friend: [], gifts: []}
   },
 
-  getUserData: function(category){
+  getUserData: function(category) {
     console.log("FRIEND", this.props.friend.friend);
-    var friendData = this.props.friend.friend[0];
+    var friendData = this.props.friend.friend;
     switch(category){
       case 'books': return friendData.books.data;
       case 'music': return friendData.music.data;
@@ -41,7 +40,7 @@ var GiftRecommendations = React.createClass({
     }
   },
 
-  getConcerts: function(loc, date, range, artist){
+  getConcerts: function(loc, date, range, artist) {
 
     // set defaults for testing
     date = '10/10/2015';
@@ -82,7 +81,6 @@ var GiftRecommendations = React.createClass({
     this.getConcerts();
   },
 
-
   /* AMAZON BOOKS */
   generateRandomKeyword: function(userArray){
     var randomIndex = Math.floor(Math.random() * (userArray.length - 1) + 1);
@@ -94,14 +92,12 @@ var GiftRecommendations = React.createClass({
     $.ajax({
       url: "http://localhost:" + PORT.PORT + "/api/friends/" + friendId,
       method: 'POST',
-      data: {access_token: JSON.parse(localStorage.getItem('access_token')).access_token,
-            friendId : friendId}, // need to pass in the access token
+      data: {access_token: JSON.parse(localStorage.getItem('access_token')).access_token},
+      // need to pass in the access token
       success: function(data) {
         this.props.dispatch(fetchFriend(JSON.parse(data)));
         this.generateRandomKeyword(this.getUserData("books"));
         console.log("MUSIC TASTE ------->", this.getUserData('music').map(function(item) { return item.name; }));
-
-        // = JSON.parse(data);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
@@ -111,15 +107,14 @@ var GiftRecommendations = React.createClass({
 
   fetchImageUrlById: function(friendId) {
     $.ajax({
+      context: this,
       url: "http://localhost:" + PORT.PORT + "/api/friends/image",
       method: 'POST',
       data: {friendId : friendId,
              access_token: JSON.parse(localStorage.getItem('access_token')).access_token}, // need to pass in the access token
       success: function(data) {
         this.props.dispatch(saveImageUrl(data));
-        // this.generateRandomKeyword(this.props.friend[0].books.data);
-        // = JSON.parse(data);
-      }.bind(this),
+      },
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
       }
@@ -128,12 +123,13 @@ var GiftRecommendations = React.createClass({
 
   fetchGiftByKeyWord: function(keyword) {
     $.ajax({
+      context: this,
       url: "http://localhost:" + PORT.PORT + "/api/gifts/searchbykeyword",
       method: 'POST',
       data: {keyword : keyword}, // need to pass in the access token
       success: function(gift) {
         this.getSimilarItem(gift.Items.Item[0]);
-      }.bind(this),
+      },
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
       }
@@ -141,9 +137,10 @@ var GiftRecommendations = React.createClass({
   },
 
   //PUT THIS INTO ANOTHER JSX FILE
-  getSimilarItem: function(gift){
+  getSimilarItem: function(gift) {
     var ASIN = gift.ASIN;
     $.ajax({
+      context: this,
       url: 'http://localhost:' + PORT.PORT + '/api/gifts/searchsimilargifts',
       method: 'POST',
       data: {ASIN : ASIN},
@@ -153,7 +150,7 @@ var GiftRecommendations = React.createClass({
           gifts.push({category: "book", details: recommendedGift, basedOn: gift});
         });
         this.props.dispatch(saveGifts(gifts));
-      }.bind(this),
+      },
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
       }

@@ -27,10 +27,10 @@ var NavBar = React.createClass({
             <div className="collapse navbar-collapse">
               <ul className="nav navbar-nav">
                 <li>
-                  <Link className="nav-menu-item" onClick={this.logout.bind(this)}>Logout</Link>
+                  <Link to="#" className="nav-menu-item" onClick={this.logout}>Logout</Link>
                 </li>
                 <li>
-                  <Link className="nav-menu-item">Profile</Link>
+                  <Link to="#" className="nav-menu-item">Profile</Link>
                 </li>
               </ul>
             </div>
