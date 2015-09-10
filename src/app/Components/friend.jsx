@@ -1,10 +1,43 @@
 import React from 'react';
 import { Navigation } from 'react-router';
 import { connect } from 'react-redux';
+import PORT from '../../config/port.js';
+
 
 var Friend = React.createClass({
 
   mixins: [ Navigation ],
+
+  getInitialState: function() {
+    return {
+      hasWishList: false
+    };
+  },
+
+  componentDidMount: function(){
+    //console.log("USER ------->", this.props.user);
+    var userId = this.props.user.identities[0].user_id;
+    var friendId = this.props.friend.id;
+    var url = "http://localhost:" + PORT.PORT + "/api/friends/getwishlist/"+friendId+"/"+userId;
+
+    $.ajax({
+      url: url,
+      method: 'GET',
+      success: function(data) {
+        alert(data);
+        console.log("GIFT LIST------->", data);
+        if(this.isMounted()){
+          this.setState({
+            hasWishList: data
+          })
+        }
+      }.bind(this),
+      error: function(xhr, status, err) {
+        alert("NOPE!");
+        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+      }
+    });
+  },
 
   formatDate: function(bday) {
     return bday.slice(0,5);
@@ -37,3 +70,8 @@ var Friend = React.createClass({
 });
 
 export default Friend;
+/*/*/
+
+
+
+
