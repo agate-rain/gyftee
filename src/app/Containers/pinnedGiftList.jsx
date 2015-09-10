@@ -1,20 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Navbar from '../Components/navbar';
+import NavBar from '../Components/navbar';
 import PORT from '../../config/port';
 import WishList from '../Components/wishlist'
 
 var PinnedGiftList = React.createClass({
 
   render: function() {
-    if(this.state){
+    if(this.state) {
       return (
           <div className="gift">
             <NavBar />
             <WishList wishlist={this.state.wishlist}/>
           </div>
       );
-    }else{
+    } else {
       return (
         <div className="gift">
           <NavBar />
@@ -24,13 +24,13 @@ var PinnedGiftList = React.createClass({
     }
   },
 
-  setInitialState: function(){
+  setInitialState: function() {
     return {
       wishlist: ''
     }
   },
 
-  componentDidMount: function(){
+  componentDidMount: function() {
     //fetch friend wish list from database, getting all ASIN of wish list item
     //ping Amazon API to get all those book detail
     //and render on the page
@@ -40,7 +40,7 @@ var PinnedGiftList = React.createClass({
 
   },
 
-  getWishList: function(friendId, userId){
+  getWishList: function(friendId, userId) {
      $.ajax({
       url: "http://localhost:" + PORT.PORT + "/api/friends/getwishlist/" + friendId + "/" + userId,
       method: 'GET',
@@ -55,7 +55,7 @@ var PinnedGiftList = React.createClass({
 
   },
 
-  getGiftFromAmazon: function(giftArr){
+  getGiftFromAmazon: function(giftArr) {
      $.ajax({
       url: "http://localhost:" + PORT.PORT + "/api/gifts/itemlookup/",
       method: 'POST',
