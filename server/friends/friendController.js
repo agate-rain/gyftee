@@ -71,7 +71,6 @@ module.exports = {
   },
 
   getWishList: function(req, res, next){
-    console.log("GET WISH LIST HIT!");
     var userId = req.params.userId;
     var friendId = req.params.friendId;
     User.findOne({fbId: userId}).exec(function(err, user){
