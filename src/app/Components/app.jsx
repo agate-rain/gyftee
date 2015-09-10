@@ -19,6 +19,13 @@ var App = React.createClass({
       callbackURL: 'http://localhost:3000/login',
       connections: ['facebook'],
       icon: '../../src/client/img/gyftee-icon.png',
+      popup: true
+    }, function(err, user){
+      if(err){
+        console.log(err);
+      }else{
+        //show user
+      }
     });
     this.props.dispatch(setLock(this.lock));
   },

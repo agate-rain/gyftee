@@ -5,7 +5,6 @@ module.exports = function(app) {
   // app.post('/signin', userController.signin);
   // app.post('/signout', userController.signout);
   app.post('/saveuser', userController.saveUser);
-
   app.post('/friends', function(req, res, next) {
     BPromise.promisifyAll(facebookApi.friends(req.body.access_token))
     .then(function(friendsResponse){
