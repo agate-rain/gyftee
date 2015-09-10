@@ -7,8 +7,9 @@ var Book = React.createClass({
     // send the clicked book to the server to save on the user's gift list
     // should the req object just be Book's rendered view? this.props.book[0]
 
-    var friendId = this.props.friend.friend[0].id;
+    var friendId = this.props.friend.friend.id;
     var userId = this.props.user.profile.identities[0].user_id;
+    alert("I'M CLICKED!");
 
     $.ajax({
       url: "http://localhost:" + PORT.PORT + "/api/friends/savegift",

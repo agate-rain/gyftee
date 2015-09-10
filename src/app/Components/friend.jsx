@@ -10,6 +10,7 @@ var Friend = React.createClass({
 
   getInitialState: function() {
     return {
+      giftList: {},
       hasWishList: false
     };
   },
@@ -24,16 +25,15 @@ var Friend = React.createClass({
       url: url,
       method: 'GET',
       success: function(data) {
-        alert(data);
-        console.log("GIFT LIST------->", data);
+        console.log("GIFT LIST -------> ",data);
         if(this.isMounted()){
+          console.log("UPDATED STATE");
           this.setState({
-            hasWishList: data
-          })
+            giftList: data
+          });
         }
       }.bind(this),
       error: function(xhr, status, err) {
-        alert("NOPE!");
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
@@ -59,7 +59,16 @@ var Friend = React.createClass({
       <div>
         <div className="bday-list-body seafoam">
           <div className="bday-row flex-container">
-            <div className="heart-div"><i className="glyphicon glyphicon-heart heart" onClick={this.navToFriendWishList.bind(this, this.props.friend.id)}></i></div>
+          <div className="heart-div">
+          {(()=>{
+            var giftList = this.state.giftList;
+            for (var list in giftList){
+              if (giftList[list].length){
+                return <i className="glyphicon glyphicon-heart heart" onClick={this.navToFriendWishList.bind(this, this.props.friend.id)}></i>;
+              }
+            }
+          })()}
+            </div>
             <div className="bday-list-item friendname" onClick={this.props.onClick}>{this.props.friend.name} </div>
             <div className="date-container" onClick={this.props.onClick}>{birthday}</div>
           </div>
