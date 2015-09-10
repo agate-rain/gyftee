@@ -44,8 +44,13 @@ module.exports = {
       promises.push(amazonSync(ASIN));
     });
     Promise.all(promises).then(function(result){
+      console.dir(result);
       result = result.map(function(item){
-        return item.Items;
+        if(Array.isArray(item.Items.Item)){
+          return item.Items.Item[0];
+        }else{
+          return item.Items.Item;
+        }
       });
       res.send(200,result);
     });

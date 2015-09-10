@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import PORT from '../../config/port';
+import WishListBook from './wishListBook';
 
 var WishList = React.createClass({
 
@@ -9,31 +10,21 @@ var WishList = React.createClass({
 
   render: function() {
     const {wishlist} = this.props;
-    console.log(this.props)
 
-    // var wishListItems = [];
-    // for(var i = 0; i < wishlist.length; i++){
-    //   wishListItems.push(
-    //     <div>
-    //       <Thumbnail book={wishlist.Item} key={this.props.amazonBooks[key].ASIN} />
-    //     </div>
-    //   );
-    // }
+    var wishListItems = [];
+    for(var i = 0; i < wishlist.length; i++){
+      wishListItems.push(
+          <WishListBook book={wishlist[i]} key={wishlist[i].ASIN} />
+      );
+    }
 
-    wishlist.forEach(function(item){
-      // console.log(item);
-    });
     return (
       <div className="container wish-list-container">
+        {wishListItems}
       </div>
     );
   }
 });
 
-var mapStateToProps = function(state) {
-  return {
 
-  }
-};
-
-export default connect(mapStateToProps)(WishList);
+export default WishList;

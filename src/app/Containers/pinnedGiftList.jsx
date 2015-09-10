@@ -22,6 +22,12 @@ var PinnedGiftList = React.createClass({
     }
   },
 
+  setInitialState: function(){
+    return {
+      wishlist: ''
+    }
+  },
+
   componentDidMount: function(){
     //fetch friend wish list from database, getting all ASIN of wish list item
     //ping Amazon API to get all those book detail
@@ -37,7 +43,6 @@ var PinnedGiftList = React.createClass({
       url: "http://localhost:" + PORT.PORT + "/api/friends/getwishlist/" + friendId + "/" + userId,
       method: 'GET',
       success: function(data) {
-        console.log(data);
         this.getGiftFromAmazon(data);
         // = JSON.parse(data);
       }.bind(this),
@@ -55,7 +60,6 @@ var PinnedGiftList = React.createClass({
       data: {giftArr : giftArr},
       success: function(data) {
         this.setState({wishlist : data});
-        console.log(data);
         // = JSON.parse(data);
       }.bind(this),
       error: function(xhr, status, err) {
