@@ -76,7 +76,7 @@ module.exports = {
       if(user){
         user.giftsList.forEach(function(friend){
           if(friend.fbId === friendId){
-           res.send(200, friend);
+           res.send(200, friend.pinnedGifts);
           }
         });
       }else{

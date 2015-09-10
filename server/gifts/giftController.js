@@ -31,13 +31,13 @@ module.exports = {
       var bookArr = giftArr.books;
     };
 
-    if(giftArr.music.length !== 0){
-      var musicArr = giftArr.books;
-    };
+    // if(giftArr.music.length !== 0){
+    //   var musicArr = giftArr.music;
+    // };
 
-    if(giftArr.etsy.length !== 0){
-      var musicArr = giftArr.etsy;
-    };
+    // if(giftArr.etsy.length !== 0){
+    //   var etsyArr = giftArr.etsy;
+    // };
 
     // if(giftArr.hasOwnProperty(books)){
     //   var bookArr = giftArr.books;

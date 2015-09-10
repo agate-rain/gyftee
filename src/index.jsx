@@ -14,6 +14,7 @@ import GiftRecs from './app/Containers/giftRecommendations';
 import AllFriendsList from './app/Containers/allFriendsList';
 import InviteFriend from './app/Containers/inviteFriend';
 import WishList from './app/Containers/pinnedGiftList';
+import ImageView from './app/Containers/imageView';
 
 const history = new BrowserHistory();
 
@@ -36,6 +37,7 @@ React.render(
         <Route name="wishList" path="/friends/:friendId/wishList" component={WishList} />
         <Route name="friendGifts" path="/friends/:friendId" component={GiftRecs} />
         <Route name="giftDetail" path="/gifts/:giftId" component={GiftDetail} />
+        <Route name="imageView" path="/friends/:friendId/image" component={ImageView} />
       </Route>
     </Router>
   }

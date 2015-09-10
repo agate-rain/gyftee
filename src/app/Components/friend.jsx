@@ -14,6 +14,10 @@ var Friend = React.createClass({
     this.transitionTo(`/friends/${id}/wishlist`);
   },
 
+  navToImageView: function(id){
+    this.transitionTo(`/friends/${id}/image`);
+  },
+
   render: function() {
 
     if (this.props.friend.birthday) {
@@ -29,6 +33,7 @@ var Friend = React.createClass({
             <div className="heart-div"><i className="glyphicon glyphicon-heart heart" onClick={this.navToFriendWishList.bind(this, this.props.friend.id)}></i></div>
             <div className="bday-list-item friendname" onClick={this.props.onClick}>{this.props.friend.name} </div>
             <div className="date-container" onClick={this.props.onClick}>{birthday}</div>
+            <button type="button" onClick={this.navToImageView.bind(this, this.props.friend)}>Get Image</button>
           </div>
         </div>
       </div>
