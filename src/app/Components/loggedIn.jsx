@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Navigation } from 'react-router';
 import PORT from '../../config/port.js';
 import { getUser } from '../Actions/user';
+import Q from 'q';
 
 var LoggedIn = React.createClass({
 
@@ -40,7 +41,26 @@ var LoggedIn = React.createClass({
       birthday : this.props.profile.birthday,
       mutual_friends : this.props.profile.context.mutual_friends.data
     }
+    // console.log(this.props.profile.context)
+    // this.getImage(JSON.parse(localStorage.getItem('access_token')).access_token);
     this.saveUserToDB(profile);
+  },
+
+  assembleImage : function(access_token){
+    var albumArr = this.props.friend.friend.albums.data;
+    console.log(albumArr)
+  },
+
+  getImage : function(albumId, access_token) {
+    // 126455562499
+    FB.api('/v2.4/' + albumId + '/photos',
+            'GET',
+            {"fields":"source,url,message,place", "access_token": access_token},
+            function(response) {
+              response.data.forEach(function(photo){
+                console.log(photo.source)
+              });
+    });
   },
 
   saveUserToDB: function(profile){

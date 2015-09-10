@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigation } from 'react-router';
 import { connect } from 'react-redux';
+import PORT from '../../config/port.js';
 
 var Friend = React.createClass({
 
@@ -12,6 +13,10 @@ var Friend = React.createClass({
 
   navToFriendWishList: function(id) {
     this.transitionTo(`/friends/${id}/wishlist`);
+  },
+
+  navToImageView: function(id){
+    this.transitionTo(`/friends/${id}/image`);
   },
 
   render: function() {
@@ -36,4 +41,10 @@ var Friend = React.createClass({
   }
 });
 
-export default Friend;
+var mapStateToProps = function(state) {
+  return {
+    profile: state.user.profile,
+  }
+};
+
+export default connect(mapStateToProps)(Friend);
