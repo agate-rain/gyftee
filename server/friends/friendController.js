@@ -106,25 +106,25 @@ module.exports = {
   },
 
   getFriendById: function(req, res, next) {
-    var friendId = req.body.friendId;
+    var friendId = req.params.friendId;
     BPromise.promisifyAll(facebookApi.friends(req.body.access_token))
-    .then(function(friendsResponse){
+    .then(function(friendsResponse) {
       var friend = friendsResponse.data.filter(function(friend) {
-        if(friend.id === friendId){
-            return {
-              id: friend.id,
-              name: friend.name,
-              pictureUrl: friend.picture.data.url,
-              birthday : friend.birthday,
-              fav_atheletes : friend.favorite_athletes,
-              inspirational_people : friend.inspirational_people,
-              sports : friend.sports,
-              books: friend.books,
-              albums: friend.albums
-            };
+        if (friend.id === friendId) {
+          return {
+            id: friend.id,
+            name: friend.name,
+            pictureUrl: friend.picture.data.url,
+            birthday : friend.birthday,
+            fav_atheletes : friend.favorite_athletes,
+            inspirational_people : friend.inspirational_people,
+            sports : friend.sports,
+            books: friend.books,
+            albums: friend.albums
+          };
         }
       });
-      res.send(JSON.stringify(friend));
+      res.status(200).send(JSON.stringify(friend[0]));
     })
     .catch(function(err) {
         console.log('Error requesting friend response with friendId');
