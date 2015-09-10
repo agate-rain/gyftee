@@ -9,7 +9,7 @@ var FriendList = React.createClass({
   //TODO: dumb components should receive callbacks from smart components
   //What is this for again?
   navToAllFriendList: function() {
-    this.transitionTo(`/friends/allfriends`);
+    this.transitionTo(`/friends/invite`);
   },
 
   render: function() {

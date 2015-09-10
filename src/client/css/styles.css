@@ -164,15 +164,17 @@ ul {
   list-style-type: none;
 }
 
-/*TODO: make hover color go away*/
-li>a.nav-menu-item {
+li>a.nav-menu-item, .navbar-brand>a {
   color: white;
   font-size: 1.1em;
   font-weight: lighter;
-  /*background-color: yellow;*/
-  /*height: 70px;*/
-  /*text-align: right;*/
   text-decoration: none;
+}
+
+li>a.nav-menu-item:hover, .navbar-brand>a:hover {
+  background: #017E82;
+  color: #004851;
+  text:decoration: none;
 }
 
 #nav-menu {
@@ -185,6 +187,14 @@ li>a.nav-menu-item {
   /*position: absolute;*/
 }
 
+/***********************************/
+/******** NAV BAR ********/
+/************************************/
+
+.navbar-nav li a {
+  font-size: 18px;
+  line-height: 30px;
+}
 
 
 /***********************************/
