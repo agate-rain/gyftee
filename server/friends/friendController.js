@@ -70,6 +70,7 @@ module.exports = {
   },
 
   getWishList: function(req, res, next){
+    console.log("GET WISH LIST HIT!");
     var userId = req.params.userId;
     var friendId = req.params.friendId;
     User.findOne({fbId: userId}).exec(function(err, user){
@@ -81,6 +82,7 @@ module.exports = {
         });
       }else{
         console.log('User does not exist', err);
+        res.send(500, err);
       }
     })
     // console.log('REQ.BODY userId', req.body.userId);
