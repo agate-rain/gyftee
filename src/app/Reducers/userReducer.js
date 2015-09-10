@@ -1,6 +1,6 @@
-import { ADD_FRIEND, REMOVE_FRIEND, FETCH_FRIENDS, GET_USER } from '../Constants/ActionTypes';
+import { ADD_FRIEND, REMOVE_FRIEND, FETCH_FRIENDS, GET_USER, SET_LOCK } from '../Constants/ActionTypes';
 
-const initialState = { profile: {}, friends: [] };
+const initialState = { profile: {}, friends: [], lock: {} };
 
 export default function userReducer(state=initialState, action) {
   // DO NOT mutate the state, return a NEW state
@@ -23,7 +23,7 @@ export default function userReducer(state=initialState, action) {
           return null;
         }
         var today = new Date();
-        // add 1 to current month bc getMonth starts at Jan = 0 
+        // add 1 to current month bc getMonth starts at Jan = 0
         var currentMonth = today.getMonth() + 1;
         var currentYear = today.getFullYear();
         var currentDD = today.getDate();
@@ -31,20 +31,20 @@ export default function userReducer(state=initialState, action) {
         var friendBdayArray = birthday.split('/');
         var friendBdayMonth = friendBdayArray[0];
         var friendBdayDD = friendBdayArray[1];
-        // replace year with current year 
+        // replace year with current year
         var friendBday = new Date(currentYear, friendBdayMonth, friendBdayDD);
-        // calculate days from now to the bday; getTime() returns time in ms 
+        // calculate days from now to the bday; getTime() returns time in ms
         var elapsed = ( friendBday.getTime() - today.getTime() ) / 86400000;
         // 86,400,000 ms per day
         console.log("friendBday", friendBday, "elapsed", elapsed);
 
-        // add 365 days to get upcoming day 
+        // add 365 days to get upcoming day
         if(elapsed < 0) {
           elapsed = elapsed + 365;
         }
 
-        var daysFromToday = Math.floor(elapsed); 
-        return daysFromToday;    
+        var daysFromToday = Math.floor(elapsed);
+        return daysFromToday;
       };
 
       var friends = [];
@@ -67,6 +67,9 @@ export default function userReducer(state=initialState, action) {
 
     case GET_USER:
       return Object.assign({}, state, { profile: action.profile });
+
+    case SET_LOCK:
+      return Object.assign({}, state, { lock: action.lock });
 
     default:
       return state;

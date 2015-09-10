@@ -27,3 +27,10 @@ export function getUser(profile) {
     profile
   };
 }
+
+export function setLock(lock) {
+  return {
+    type: types.SET_LOCK,
+    lock
+  };
+}

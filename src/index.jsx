@@ -28,7 +28,7 @@ React.render(
   <Provider store={store}>
   {() =>
     <Router history={history}>
-      <Route path="/" component={App}>
+      <Route name="root" path="/" component={App}>
         <Route name="login" path="/login" component={Login} />
         <Route name="friends" path="/friends" component={FriendManager} />
         <Route name="allFriendsList" path="/friends/allfriends" component={AllFriendsList} />

@@ -1,6 +1,8 @@
-var React = require('react');
-var LoggedIn = require('./loggedIn');
-var Home = require('./home');
+import React from 'react';
+import LoggedIn from './loggedIn';
+import Home from './home';
+import { connect } from 'react-redux';
+import { setLock } from '../Actions/user';
 
 
 var App = React.createClass({
@@ -16,14 +18,8 @@ var App = React.createClass({
     this.lock.show({
       connections: ['facebook'],
       icon: '../../src/client/img/gyftee-icon.png',
-      popup: true
-    }, function(err, profile){
-      if(err){
-        console.log(err);
-      }else{
-        console.log(profile);
-      }
     });
+    this.props.dispatch(setLock(this.lock));
   },
 
   setupAjax: function() {
@@ -61,4 +57,10 @@ var App = React.createClass({
   }
 });
 
-module.exports = App;
+var mapStateToProps = function(state) {
+  return {
+    lock: state.user.lock
+  };
+};
+
+export default connect(mapStateToProps)(App);

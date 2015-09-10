@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BOOK } from '../Components/book';
+import Navbar from '../Components/navbar';
 import PORT from '../../config/port';
 import WishList from '../Components/wishlist'
 
@@ -10,12 +10,14 @@ var PinnedGiftList = React.createClass({
     if(this.state){
       return (
           <div className="gift">
+            <NavBar />
             <WishList wishlist={this.state.wishlist}/>
           </div>
       );
     }else{
       return (
         <div className="gift">
+          <NavBar />
           Fetching Wishlist Items...
         </div>
       );
@@ -66,11 +68,7 @@ var PinnedGiftList = React.createClass({
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
-
-  },
-
-
-
+  }
 
 });
 
