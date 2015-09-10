@@ -1,6 +1,6 @@
+import React from 'react';
 import { Navigation } from 'react-router';
 import { connect } from 'react-redux';
-var React = require('react');
 
 var Friend = React.createClass({
 
@@ -24,22 +24,16 @@ var Friend = React.createClass({
 
     return (
       <div>
-
-      <div className="bday-list-body seafoam">
-        <div className="bday-row flex-container">
-          <div className="heart-div"><i className="glyphicon glyphicon-heart heart" onClick={this.navToFriendWishList.bind(this, this.props.friend.id)}></i></div>
-          <div className="bday-list-item friendname" onClick={this.props.onClick}>{this.props.friend.name} </div>
-          <div className="date-container" onClick={this.props.onClick}>{birthday}</div>
+        <div className="bday-list-body seafoam">
+          <div className="bday-row flex-container">
+            <div className="heart-div"><i className="glyphicon glyphicon-heart heart" onClick={this.navToFriendWishList.bind(this, this.props.friend.id)}></i></div>
+            <div className="bday-list-item friendname" onClick={this.props.onClick}>{this.props.friend.name} </div>
+            <div className="date-container" onClick={this.props.onClick}>{birthday}</div>
+          </div>
+        </div>
       </div>
-
-      </div>
-    </div>
     );
   }
 });
 
-
-
-// export default connect(mapStateToProps)(Friend);
-
-module.exports = Friend;
+export default Friend;
