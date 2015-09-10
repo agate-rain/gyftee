@@ -23,6 +23,7 @@ var FriendHeader = React.createClass({
             <div className="friend-header-bday">{this.formatDate(this.props.friend.birthday)}</div>
             <div>
               <button className="filter-button" onClick={this.navToWishList.bind(this, this.props.friend.id)}>WISHLIST</button>
+
             </div>
           </div>
 
