@@ -1,14 +1,11 @@
-import { connect } from 'react-redux';
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import { fetchFriends } from '../Actions/user';
 import FilterableFriends from '../Components/filterableFriends';
 import FriendList from '../Components/friendList';
 import PORT from '../../config/port.js';
-import { Navigation } from 'react-router';
 
 var FriendManager = React.createClass({
-
-  mixins: [ Navigation ],
 
   render: function() {
 
