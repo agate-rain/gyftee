@@ -46,6 +46,7 @@ var PinnedGiftList = React.createClass({
       url: "http://localhost:" + PORT.PORT + "/api/friends/getwishlist/" + friendId + "/" + userId,
       method: 'GET',
       success: function(data) {
+        console.log('GET WISH LIST DATA',data)
         this.getGiftFromAmazon(data);
       },
       error: function(xhr, status, err) {

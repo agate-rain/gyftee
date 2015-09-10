@@ -26,6 +26,7 @@ module.exports = {
   itemLookup: function(req, res) {
     // hard coding for testing will refactor lataer
     var giftArr = req.body.giftArr;
+    console.log(req.body);
     var bookArr = giftArr.books;
     var promises = [];
 
