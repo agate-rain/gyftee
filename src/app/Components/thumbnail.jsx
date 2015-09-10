@@ -12,6 +12,11 @@ var Thumbnail = React.createClass({
     this.transitionTo(`/gifts/${id}`);
   },
 
+  truncateTitle: function(title, n){
+    n = n || 35;
+    return (title.length < n) ? title : title.substring(0, 30) + "...";
+  },
+
   render: function(){
     return (
       <div>
@@ -19,6 +24,7 @@ var Thumbnail = React.createClass({
           <img className="book-img" src={this.props.book.details.MediumImage.URL}
         onClick={this.navToGiftDetail.bind(this, this.props.book.details.ASIN)}/>
         </div>
+        <div className="book-title-thumb">{this.truncateTitle(this.props.book.details.ItemAttributes.Title)} </div>
       </div>
       );
   }
