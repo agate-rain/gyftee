@@ -17,7 +17,7 @@ var PhotoView = React.createClass({
       );
     })
     return (
-      <div className="container photo-view-container">
+      <div>
         {photoItems}
       </div>
     );
