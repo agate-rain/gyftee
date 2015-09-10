@@ -41,6 +41,7 @@ module.exports = {
     });
   },
    saveGift: function(req, res, next){
+    console.log("SAVING THE GIFT");
     var friendId = req.body.friendId;
     var userId = req.body.userId;
     var ASIN = req.body.ASIN;

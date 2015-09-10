@@ -9,6 +9,7 @@ var Book = React.createClass({
 
     var friendId = this.props.friend.friend.id;
     var userId = this.props.user.profile.identities[0].user_id;
+    alert("I'M CLICKED!");
 
     $.ajax({
       url: "http://localhost:" + PORT.PORT + "/api/friends/savegift",
