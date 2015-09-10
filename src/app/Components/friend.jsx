@@ -3,7 +3,6 @@ import { Navigation } from 'react-router';
 import { connect } from 'react-redux';
 import PORT from '../../config/port.js';
 
-
 var Friend = React.createClass({
 
   mixins: [ Navigation ],
@@ -25,9 +24,7 @@ var Friend = React.createClass({
       url: url,
       method: 'GET',
       success: function(data) {
-        console.log("GIFT LIST -------> ",data);
         if(this.isMounted()){
-          console.log("UPDATED STATE");
           this.setState({
             giftList: data
           });
