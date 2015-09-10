@@ -164,36 +164,61 @@ ul {
   list-style-type: none;
 }
 
-li>a.nav-menu-item, .navbar-brand>a {
-  color: white;
-  font-size: 1.1em;
-  font-weight: lighter;
-  text-decoration: none;
-}
-
-li>a.nav-menu-item:hover, .navbar-brand>a:hover {
-  background: #017E82;
-  color: #004851;
-  text:decoration: none;
-}
-
-#nav-menu {
-  /*color: white;*/
-  /*background-color: red;*/
-}
-
-.brand {
-  /*height: 70px;*/
-  /*position: absolute;*/
-}
-
 /***********************************/
 /******** NAV BAR ********/
 /************************************/
 
-.navbar-nav li a {
+.navbar {
+  background: #017E82;
+  border: none;
+  border-radius: 0;
+}
+
+.navbar-collapse {
+  overflow: hidden;
+}
+
+.navbar-brand {
+  height: auto;
+  line-height: auto;
+}
+
+.navbar-brand a img {
+  max-height: 30px;
+  padding-right: 10px;
+}
+
+.navbar-brand a, .navbar-nav li a {
   font-size: 18px;
-  line-height: 30px;
+  color:white;
+  font-weight: lighter;
+  text-decoration: none;
+  line-height: 35px;
+}
+
+.navbar-right li a:first-child {
+  margin-right: 15px;
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a {
+  color: white;
+}
+
+.navbar-brand a:hover, .navbar-nav>li>a:hover {
+  background: #017E82;
+  color: #004851;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background: white;
+}
+
+.navbar-default .navbar-toggle {
+  border: none;
+}
+
+.navbar-default .navbar-toggle:hover {
+  background-color: #017E82;
 }
 
 
@@ -224,7 +249,6 @@ li>a.nav-menu-item:hover, .navbar-brand>a:hover {
   margin-top: 100px;
 }
 
-
 .greeting-text {
   font-size: 1.0em;
   padding-bottom: 0px;
@@ -242,6 +266,7 @@ li>a.nav-menu-item:hover, .navbar-brand>a:hover {
   height: 100px;
   overflow: hidden;
 }
+
 .thumbnail img {
   position: absolute;
   left: 50%;
@@ -252,6 +277,7 @@ li>a.nav-menu-item:hover, .navbar-brand>a:hover {
       -ms-transform: translate(-50%,-50%);
           transform: translate(-50%,-50%);
 }
+
 .thumbnail img.portrait {
   width: 100%;
   height: auto;
@@ -264,6 +290,7 @@ li>a.nav-menu-item:hover, .navbar-brand>a:hover {
   /*background-color: yellow;*/
   justify-content: center;
 }
+
 .profile-photo {
   border-radius: 50%;
   /*background-color: yellow;*/
