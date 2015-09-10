@@ -7,12 +7,10 @@ export default function friendReducer(state=initialState, action) {
 
   switch (action.type) {
     case FETCH_FRIEND:
-      state.friend = action.friend
-      return state;
+      return Object.assign({}, state, {friend: action.friend});
 
     case SAVE_IMAGE_URL:
-      state.image_url = action.image_url
-      return state;
+      return Object.assign({}, state, {image_url: action.image_url});
 
     default:
       return state;
