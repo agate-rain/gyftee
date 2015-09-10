@@ -23,6 +23,5 @@ function invitableFriends(accessToken) {
 
 module.exports = {
     friends: friends,
-    invitableFriends: invitableFriends,
-    feed : feed
+    invitableFriends: invitableFriends
 };
