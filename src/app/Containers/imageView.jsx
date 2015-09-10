@@ -6,6 +6,7 @@ import { fetchFriend } from '../Actions/friend';
 import { Promise } from 'bluebird';
 import NavBar from '../Components/navbar';
 import PhotoView from '../Components/photoview'
+import RecommendPhotoView from '../Components/recommendPhotoView'
 
 
 var ImageView = React.createClass({
@@ -22,7 +23,7 @@ var ImageView = React.createClass({
       return (
         <div className="container image-view-container">
           <NavBar />
-          <PhotoView albums={this.state.imageArr}/>
+          <RecommendPhotoView albums={this.state.imageArr}/>
         </div>
       );
     }else{
@@ -33,8 +34,8 @@ var ImageView = React.createClass({
         </div>
       );
     }
-
   },
+  // put back into line 25 <PhotoView albums={this.state.imageArr}/>
 
   fetchFriendById: function(friendId) {
     $.ajax({

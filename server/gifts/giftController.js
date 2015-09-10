@@ -3,8 +3,18 @@ var aws = require('aws-lib');
 var request = require('request');
 var S = require('string');
 var Promise = require('bluebird');
+var Clarifai = require('../config/clarifai_node.js');
+// var etsyjs = require('etsy-js');
+// var etsyClient = etsyjs.client(process.env.ETSY_KEY_STRING);
+
 require('dotenv').load();
 var prodAdv = aws.createProdAdvClient(process.env.AMAZON_CLIENT_ID, process.env.AMAZON_CLIENT_SECRET, process.env.AMAZON_ASSOCIATE_TAG);
+Clarifai.initAPI(process.env.CLARIFAI_CLIENT_ID, process.env.CLARIFAI_CLIENT_SECRET);
+
+Clarifai.setThrottleHandler( function( bThrottled, waitSeconds ) {
+  console.log( bThrottled ? ["throttled. service available again in",waitSeconds,"seconds"].join(' ') : "not throttled");
+});
+
 
 module.exports = {
   // call to Amazon API to get a friend's 'liked' item on facebook
@@ -102,9 +112,41 @@ module.exports = {
     } else {
      res.send({ success: false, message: 'Unknown Error getting result from bandsintown api.'});
    }
- })
+ });
 
- }
+ },
+
+  getTagsFromClarifai: function(req, res, next){
+
+    var imageURL = req.body.imageURL;
+    Clarifai.tagURL( imageURL , "image 1",function(err, result){
+      console.log('Result',JSON.stringify(result, null, '\t'));
+      var keyWordArr = result.results[0].result.tag.classes;
+      this.searchEtsy(keyWordArr);
+    }).bind(this);
+  },
+
+  searchEtsy: function(keyWordArr){
+    var term = 'clothing';
+    var url = "https://openapi.etsy.com/v2/listings/active.js?keywords="+
+            terms + "&limit=12&includes=Images:1&api_key=" + process.env.ETSY_KEY_STRING ;
+
+    var requestOptions = {
+     url: url,
+     json: true
+   };
+
+   request(url, function(error, response, body) {
+     if (!error && response.statusCode === 200) {
+      console.log(JSON.stringify(body));
+      // res.send(body);
+    } else {
+     res.send({ success: false, message: 'Unknown Error getting result from bandsintown api.'});
+   }
+  });
+},
+
+
   // TODO: search etsy using image tags or other facebook metadata
   // and get surprise gifts (grab bag feature)
 
