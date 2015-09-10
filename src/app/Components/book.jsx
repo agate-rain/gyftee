@@ -7,8 +7,9 @@ var Book = React.createClass({
     // send the clicked book to the server to save on the user's gift list
     // should the req object just be Book's rendered view? this.props.book[0]
 
-    var friendId = this.props.friend.friend[0].id;
+    var friendId = this.props.friend.friend.id;
     var userId = this.props.user.profile.identities[0].user_id;
+    alert("I'M CLICKED!");
 
     $.ajax({
       url: "http://localhost:" + PORT.PORT + "/api/friends/savegift",
@@ -82,6 +83,16 @@ var Book = React.createClass({
               <div className="book-binding">{bookDetails.binding}</div>
             </div>
 
+            {(() => {
+              if (bookDetails.isPrime){
+                return (
+                  <div className="prime-eligible">
+                    <img className ="prime-img" src="../../src/client/img/amazon-prime.png" />
+                  </div>
+                  );
+              }
+            })()}
+
             <div className="based-on-container light-teal">
               <p className="based-on-text">Based on: {basedOnDetails.title}</p>
             </div>
@@ -91,15 +102,7 @@ var Book = React.createClass({
     );
   }
 });
-          // {(() => {
-          //   if (bookDetails.isPrime){
-          //     return (
-          //       <div className="prime-eligible">
-          //         <img className ="prime-img" src="https://b1.burst.zone/wp-content/uploads/2014/03/amazon-prime-logo.jpg" />
-          //       </div>
-          //       );
-          //   }
-          // })()}
+
 
 var mapStateToProps = function(state) {
   return {
