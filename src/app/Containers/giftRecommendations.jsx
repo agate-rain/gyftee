@@ -59,7 +59,7 @@ var GiftRecommendations = React.createClass({
           bandArr.push(item.name);
         })
       });
-      console.log('>>>>>',bandArr)
+    //  console.log('>>>>>',bandArr)
 
       var userLocation;
       utils.getUserData('location', friend, function(location){
@@ -73,7 +73,7 @@ var GiftRecommendations = React.createClass({
 
       var range = 365;
       utils.getConcerts(userLocation,userBirthday,range,bandArr, function(data){
-        console.log("CONCERT RESULTS------>", JSON.stringify(data));
+       // console.log("CONCERT RESULTS------>", JSON.stringify(data));
       });
     }.bind(this));
 
