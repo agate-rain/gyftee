@@ -632,6 +632,7 @@ ul {
 .prime-img{
   height: 13px;
   width: 70px;
+  margin-top: -10px;
 }
 
 .wishlist-header {

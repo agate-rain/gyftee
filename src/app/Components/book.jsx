@@ -85,7 +85,7 @@ var Book = React.createClass({
           <div>
             <div className="add-to-list-container">
               <div className="add-to-list" onClick={this.addToList.bind(this, bookDetails.ASIN)}>
-                <Button className="add-to-list-button">
+                <Button onClick={this.handleAlertShow} className="add-to-list-button">
                   <a>
                     <i className="glyphicon add-heart glyphicon-heart"></i>
                   </a> ADD TO LIST
@@ -109,9 +109,7 @@ var Book = React.createClass({
             {(() => {
               if (bookDetails.isPrime){
                 return (
-                  <div className="prime-eligible">
                     <img className ="prime-img" src="../../src/client/img/amazon-prime.png" />
-                  </div>
                   );
               }
             })()}
