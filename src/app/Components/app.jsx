@@ -15,18 +15,6 @@ var App = React.createClass({
 
   createLock: function() {
     this.lock = new Auth0Lock(this.props.clientId, this.props.domain);
-    this.lock.show({
-      callbackURL: 'http://localhost:3000/login',
-      connections: ['facebook'],
-      icon: '../../src/client/img/gyftee-icon.png',
-      popup: true
-    }, function(err, user){
-      if(err){
-        console.log(err);
-      }else{
-        //show user
-      }
-    });
     this.props.dispatch(setLock(this.lock));
   },
 

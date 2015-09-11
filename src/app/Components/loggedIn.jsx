@@ -9,14 +9,6 @@ var LoggedIn = React.createClass({
 
   mixins: [ Navigation ],
 
-  //TODO REMOVE ONCE LOGOUT FUNCTIONALITY WORKS IN NAV
-  logout: function() {
-    localStorage.removeItem('userToken');
-    localStorage.removeItem('access_token');
-    this.props.lock.logout({ref: 'window.location.href'});
-    //TODO LOGOUT BUTTON IN NAV, WHICH REDIRECTS TO ??? LOGIN PAGE?
-  },
-
   navToFriends: function() {
     this.transitionTo(`/friends`);
   },
@@ -41,8 +33,6 @@ var LoggedIn = React.createClass({
       birthday : this.props.profile.birthday,
       mutual_friends : this.props.profile.context.mutual_friends.data
     }
-    // console.log(this.props.profile.context)
-    // this.getImage(JSON.parse(localStorage.getItem('access_token')).access_token);
     this.saveUserToDB(profile);
   },
 
@@ -52,31 +42,30 @@ var LoggedIn = React.createClass({
   },
 
   getImage : function(albumId, access_token) {
-    // 126455562499
     FB.api('/v2.4/' + albumId + '/photos',
-            'GET',
-            {"fields":"source,url,message,place", "access_token": access_token},
-            function(response) {
-              response.data.forEach(function(photo){
-                console.log(photo.source)
-              });
+      'GET',
+      {"fields":"source,url,message,place", "access_token": access_token},
+      function(response) {
+        response.data.forEach(function(photo){
+          console.log(photo.source)
+        });
     });
   },
 
   saveUserToDB: function(profile){
     $.ajax({
-      url: 'http://localhost:' + PORT.PORT + '/api/users/saveuser',
+      url: 'http://localhost:' + PORT.PORT + '/api/users/save',
       method: 'POST',
-      data: {user : profile}, // need to pass in the access token
+      data: {user : profile},
       success: function(savedUser) {
-        if(typeof savedUser === 'string'){
+        if (typeof savedUser === 'string') {
           console.log('USER EXISTS')
-        }else{
+        } else {
           console.log('USER SAVED TO DB', savedUser);
         }
-      }.bind(this),
+      },
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/users/saveduser", status, err.toString());
+        console.error("http://localhost:" + PORT.PORT + "/api/users/save", status, err.toString());
       }
     });
   },

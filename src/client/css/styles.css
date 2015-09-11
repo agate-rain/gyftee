@@ -102,31 +102,40 @@ body {
   font-weight: 700;
 }
 
-
-
 /***********************************/
 /******** LOGIN SCREEN *********/
 /***********************************/
 
 .login-container {
-  /*background-color: #017E82;*/
   background-image: url("../img/bg-tile.jpg");
-  /*display: flex;*/
-  padding-top: 20%;
-  padding-bottom: 50%;
-  overflow: auto;
 
-  /* Set rules to fill background */
-  /*min-height: 100%;*/
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  /* Set up proportionate scaling and preserve the aspect ratio */
   min-width: 100%;
+  min-height: 100%;
 
-  /* Set up proportionate scaling */
-  /*height: 100%;*/
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  /* Set up proportionate scaling and preserve the aspect ratio */
+  min-width: 100%;
+  min-height: 100%;
 
   /* Set up positioning */
-  /*position: fixed;*/
-  /*top: 0;*/
-  /*left: 0;*/
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.logo-responsive img {
+  max-width: 40%;
+}
+
+.logo-responsive {
+  max-width: 50%;
+  margin: auto;
 }
 
 .icon-container {
@@ -134,19 +143,22 @@ body {
 }
 
 .brand-container {
-  margin-bottom: 20%;
+  padding-bottom: 20%;
   text-align: center;
 }
 
 .login-button {
-  width: 80%;
-  height: 100%;
-  /*position: relative;*/
-  /*align-items: baseline;*/
+  width: 40%;
   border-color: #004851;
   font-weight: 400;
+  font-size: 5.0vw;
   background-color: #004851;
   padding: 10px;
+}
+
+.login-button a:hover {
+  text-decoration: none;
+  color: white;
 }
 
 .opacity {
@@ -155,13 +167,12 @@ body {
 
 .login-button-container {
   background-color: #017E82;
-  /*align-self: flex-end;*/
 }
 
 .gyftee-text {
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  font-size: 400%;
+  font-size: 7.0vw;
   color: #FFF;
 }
 
@@ -531,7 +542,6 @@ ul {
   width: 25%;
 }
 
-
 /***********************************/
 /******** FRIEND HEADER *********/
 /***********************************/
@@ -542,7 +552,7 @@ ul {
 }
 
 .friend-header-container {
-  padding: 80px 20px 10px 65px;
+  padding: 80px 20px 0 65px;
 }
 
 .friend-header-name {
@@ -608,9 +618,8 @@ ul {
 }
 
 .giftlist-main {
-    margin-top: 80px;
-
   padding-bottom: 20px;
+  margin-top: 80px;
 }
 .giftlist-header {
   margin-top: 70px;

@@ -22,14 +22,3 @@ var UserSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('User', UserSchema);
-
-// var mongoose = require('mongoose');
-
-// // represents all users of the app, both gifters and giftees
-// var UserSchema = new mongoose.Schema({
-//     fbId: String,
-//     birthdate: String,
-//     mutual_friends: mongoose.Schema.Types.Mixed
-// });
-
-// module.exports = mongoose.model('User', UserSchema);
