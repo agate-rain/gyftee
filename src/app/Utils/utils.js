@@ -5,16 +5,29 @@ module.exports = {
     return bday === "Unknown" ? "Unknown" : bday.slice(0,5);
   },
 
-  getUserData: function(category, friend) {
+  getUserData: function(category, friend, callback) {
     console.log("GET USER DATA FROM UTILS");
     console.log("FRIEND", friend);
-    switch(category){
-      case 'books': return friend.books.data;
-      case 'music': return friend.music.data;
-      case 'location': return friend.location.name;
-      case 'birthday': return friend.birthday;
-      default: return friend.books;
+    var userInfo;
+    if(category === 'books'){
+      callback(friend.books.data);
+    }else if(category === 'music'){
+      callback(friend.music.data);
+    }else if(category === 'location'){
+      callback(friend.location.name);
+    }else if(category === 'birthday'){
+      callback(friend.birthday);
+    }else{
+      callback(friend.books)
     }
+    // switch(category){
+    //   case 'books': userInfo = friend.books.data;
+    //   case 'music': userInfo = friend.music.data;
+    //   case 'location': userInfo = friend.location.name;
+    //   case 'birthday': userInfo = friend.birthday;
+    //   default: userInfo = friend.books;
+    // }
+    // callback(userInfo);
   },
 
   fetchImageUrlById: function(friendId, callback) {
@@ -146,5 +159,13 @@ module.exports = {
     });
 
   },
+
+  generateRandomKeyword: function(userArray, callback){
+    var randomIndex = Math.floor(Math.random() * (userArray.length - 1) + 1);
+    if(userArray[randomIndex]){
+      var keyWord = userArray[randomIndex].name;
+      callback(keyWord);
+    }
+  }
 
 };

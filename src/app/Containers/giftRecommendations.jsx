@@ -42,22 +42,45 @@ var GiftRecommendations = React.createClass({
   componentDidMount: function() {
     var friendId = window.location.href.split('/')[4];
     utils.fetchFriendById(friendId, function(friend){
-      this.props.dispatch(friend);
+      this.props.dispatch(fetchFriend(friend));
 
-      this.generateRandomKeyword(utils.getUserData("books", this.props.friend.friend ));
-      var bandArr = utils.getUserData('music', this.props.friend.friend).map(function(item) { return item.name; })
-      console.log("MUSIC TASTE ------->", bandArr);
-      var userLocation = utils.getUserData('location', this.props.friend.friend);
-      var birthday = utils.getUserData('birthday', this.props.friend.friend);
+      utils.getUserData("books", friend, function(userData){
+        utils.generateRandomKeyword(userData, function(keyWord){
+            utils.fetchGiftByKeyWord(keyWord, function(gift){
+              this.props.dispatch(saveGifts(gift));
+            }.bind(this));
+          }.bind(this));
+      }.bind(this));
+
+
+      var bandArr = [];
+      utils.getUserData('music', friend, function(data){
+        data.map(function(item) {
+          bandArr.push(item.name);
+        })
+      });
+      console.log('>>>>>',bandArr)
+
+      var userLocation;
+      utils.getUserData('location', friend, function(location){
+        userLocation = location;
+      });
+
+      var userBirthday;
+      utils.getUserData('birthday', friend, function(birthday){
+        userBirthday = birthday;
+      });
+
       var range = 365;
-      utils.getConcerts(userLocation,birthday,range,bandArr, function(data){
-                // console.log("CONCERT RESULTS------>", JSON.stringify(data));
+      utils.getConcerts(userLocation,userBirthday,range,bandArr, function(data){
+        console.log("CONCERT RESULTS------>", JSON.stringify(data));
       });
     }.bind(this));
 
     utils.fetchImageUrlById(friendId, function(imageURLByID){
       this.props.dispatch(saveImageUrl(imageURLByID));
     }.bind(this));
+
     // this.getConcerts();
     // this.getMusic(friendId);
   },

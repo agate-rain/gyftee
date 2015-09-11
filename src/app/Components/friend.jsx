@@ -85,7 +85,7 @@ var Friend = React.createClass({
 
 var mapStateToProps = function(state) {
   return {
-    profile: state.user.profile,
+    profile: state.user.profile
   }
 };
 
