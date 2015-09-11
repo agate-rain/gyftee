@@ -7,3 +7,4 @@ export const SAVE_GIFTS = 'SAVE_GIFTS';
 export const SAVE_IMAGE_URL = 'SAVE_IMAGE_URL';
 export const GET_USER = 'GET_USER';
 export const SET_LOCK = 'SET_LOCK';
+export const SAVE_USER = 'SAVE_USER';

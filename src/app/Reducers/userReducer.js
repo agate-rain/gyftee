@@ -1,4 +1,4 @@
-import { ADD_FRIEND, REMOVE_FRIEND, FETCH_FRIENDS, GET_USER, SET_LOCK } from '../Constants/ActionTypes';
+import { ADD_FRIEND, REMOVE_FRIEND, FETCH_FRIENDS, GET_USER, SET_LOCK,SAVE_USER } from '../Constants/ActionTypes';
 
 const initialState = { profile: {}, friends: [], lock: {} };
 
@@ -66,6 +66,9 @@ export default function userReducer(state=initialState, action) {
 
     case GET_USER:
       return Object.assign({}, state, { profile: action.profile });
+
+    case SAVE_USER:
+      return Object.assign({}, state, { userProfile: action.profile });
 
     case SET_LOCK:
       return Object.assign({}, state, { lock: action.lock });

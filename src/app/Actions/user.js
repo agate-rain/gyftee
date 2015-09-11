@@ -33,4 +33,12 @@ export function setLock(lock) {
     type: types.SET_LOCK,
     lock
   };
+};
+
+export function saveUser(profile) {
+  return {
+    type: types.save_USER,
+    profile
+  };
 }
+

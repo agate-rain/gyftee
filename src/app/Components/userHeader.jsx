@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
 import PORT from '../../config/port.js';
+import { connect } from 'react-redux';
+import { fetchFriend, saveImageUrl} from '../Actions/friend';
+import { saveUser } from '../Actions/user'
+import utils from '../Utils/utils';
 
 var UserHeader = React.createClass({
 
@@ -18,6 +22,7 @@ var UserHeader = React.createClass({
              access_token: JSON.parse(localStorage.getItem('access_token')).access_token}, // need to pass in the access token
       success: function(data) {
         if(this.isMounted()){
+          this.props.dispatch(saveImageUrl(data))
           this.setState({
             image_url: data
           })
@@ -27,9 +32,12 @@ var UserHeader = React.createClass({
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
+
+
   },
 
   render: function() {
+    console.log(this.props)
     return (
       <div className="flex-container welcome-main">
         <div className="welcome-container container">
@@ -48,4 +56,11 @@ var UserHeader = React.createClass({
 
 });
 
-export default UserHeader;
+var mapStateToProps = function(state) {
+  return {
+    profile: state.user.profile
+  }
+};
+
+
+export default connect(mapStateToProps)(UserHeader);
