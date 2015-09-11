@@ -1,6 +1,6 @@
 import React from 'react';
 import Thumbnail from './thumbnail';
-import Book './book';
+import Book from './book';
 import { Navigation, Link } from 'react-router';
 import sliderSettings from '../../util/sliderSettings';
 import Slider from 'react-slick';
@@ -24,7 +24,7 @@ var BookList = React.createClass({
     }
 
     return (
-      <div className="books-list">
+         <div className="books-list">
         <div className="row light-teal category">
           <div className="category-header">Books</div>
         </div>
@@ -34,6 +34,7 @@ var BookList = React.createClass({
             </Slider>
           </div>
       </div>
+
       );
   }
 });
