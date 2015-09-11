@@ -11,7 +11,7 @@ var PinnedGiftList = React.createClass({
       return (
           <div className="gift">
             <NavBar />
-            <WishList user = {this.props.user} wishlist={this.state.wishlist} friend={this.props.friend}/>
+            <WishList user = {this.props.user} wishlist={this.state.wishlist} friend={this.props.friend} removeItem={this.removeFromList}/>
           </div>
       );
     } else {
@@ -22,6 +22,32 @@ var PinnedGiftList = React.createClass({
         </div>
       );
     }
+  },
+
+  removeFromList: function(ASIN) {
+    // send the clicked book to the server to save on the user's gift list
+    // should the req object just be Book's rendered view? this.props.book[0]
+
+    var friendId = this.props.friend.friend.id;
+    var userId = this.props.user.profile.identities[0].user_id;
+
+    console.log(">>>>>> FRIEND ID", this.props.friend);
+    console.log(">>>>>> USER ID", userId);
+    console.log(">>>>>> ASIN", ASIN);
+
+    $.ajax({
+      url: "http://localhost:" + PORT.PORT + "/api/friends/removegift",
+      method: 'POST',
+      data: {ASIN : ASIN,
+            friendId : friendId,
+            userId: userId}, // need to pass in the access token
+      success: function(data) {
+
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+      }
+    });
   },
 
   getInitialState: function() {

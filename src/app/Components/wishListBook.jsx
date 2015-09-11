@@ -19,27 +19,7 @@ var WishListBook = React.createClass({
     this.setState({alertVisible: true});
   },
 
-  removeFromList: function(ASIN) {
-    // send the clicked book to the server to save on the user's gift list
-    // should the req object just be Book's rendered view? this.props.book[0]
 
-    var friendId = this.props.friend.id;
-    var userId = this.props.user.profile.identities[0].user_id;
-
-    $.ajax({
-      url: "http://localhost:" + PORT.PORT + "/api/friends/removegift",
-      method: 'POST',
-      data: {ASIN : ASIN,
-            friendId : friendId,
-            userId: userId}, // need to pass in the access token
-      success: function(data) {
-
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
-      }
-    });
-  },
 
   render: function(){
 
@@ -68,7 +48,7 @@ var WishListBook = React.createClass({
     return (
       <div className="detail-wrapper pinned-gift">
           <div className="add-to-list-container">
-            <div className="add-to-list" onClick={this.removeFromList.bind(this, bookDetails.ASIN)}>
+            <div className="add-to-list" onClick={this.props.removeItem.bind(this, bookDetails.ASIN)}>
                 <Button onClick={this.handleAlertShow} className="add-to-list-button">
                   <a>
                     <i className="glyphicon add-heart glyphicon-heart"></i>

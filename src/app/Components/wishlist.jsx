@@ -27,11 +27,13 @@ var WishList = React.createClass({
     var wishListItems = [];
     for(var i = 0; i < this.props.wishlist.length; i++){
       wishListItems.push(
-          <WishListBook user = {this.props.user} friend = {this.props.friend.friend} book={this.props.wishlist[i]} key={this.props.wishlist[i].ASIN} />
+          <WishListBook user = {this.props.user} friend={this.props.friend.friend} book={this.props.wishlist[i]} key={this.props.wishlist[i].ASIN} removeItem={this.props.removeItem} />
       );
     }
     if(friend !== null){
-      return (
+
+    return (
+      <div>
         <div className="flex-container">
           <div className="giftlist-main container">
 
@@ -39,6 +41,7 @@ var WishList = React.createClass({
               <div className="wishlist-header">
                 <div className="friend-header-name">{friend.name}</div>
                 <div className="friend-header-bday">{formatDate(friend.birthday)}</div>
+
               </div>
 
               <div className="wishlist-header profile-photo-container">
@@ -47,27 +50,23 @@ var WishList = React.createClass({
                 </div>
               </div>
 
+
               <div className="wishlist-header container">
                 <div className="container giftlist-circle"><text>{this.props.wishlist.length}</text></div>
               </div>
             </div>{/* flex-container of friend info */}
 
-            <div className="giftlist-header row light-teal">Saved Gifts</div>
-
-            <div className="flex-container pinned-gifts">
-              {wishListItems}
-            </div>
-
           </div>{/* giftlist-main container */}
-        </div>// flex-container
-      );
-    }else{
-      return (
-        <div className="flex-container">
-          Fetching WishList
-        </div>// flex-container
-      );
-    }
+        </div>{/* flex-container */}
+
+        <div className="giftlist-header row light-teal">Saved Gifts</div>
+
+        <div className="flex-container pinned-gifts">
+          {wishListItems}
+        </div>
+      </div>
+
+    );
   }
 });
 
