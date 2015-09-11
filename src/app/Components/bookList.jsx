@@ -1,11 +1,9 @@
-var React = require('react');
-var Thumbnail = require('./thumbnail');
-var Book = require('./book');
-var Navigation = require('react-router').Navigation;
-var Link = require('react-router').Link;
-var sliderSettings = require('../../util/sliderSettings');
-
-var Slider = require('react-slick');
+import React from 'react';
+import Thumbnail from './thumbnail';
+import Book './book';
+import { Navigation, Link } from 'react-router';
+import sliderSettings from '../../util/sliderSettings';
+import Slider from 'react-slick';
 
 var BookList = React.createClass({
 
