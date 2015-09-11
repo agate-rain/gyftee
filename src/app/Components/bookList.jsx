@@ -24,7 +24,7 @@ var BookList = React.createClass({
     }
 
     return (
-         <div className="books-list">
+      <div className="books-list margin-top">
         <div className="row light-teal category">
           <div className="category-header">Books</div>
         </div>
