@@ -2,7 +2,10 @@ var React = require('react');
 
 var Home = React.createClass({
   showLock: function() {
-    this.props.lock.show();
+    this.props.lock.show({
+      connections: ['facebook'],
+      icon: '../../src/client/img/gyftee-icon.png'
+    });
   },
 
   render: function() {
@@ -11,11 +14,11 @@ var Home = React.createClass({
       <div className="container">
         <div className="logo responsive">
           <div className="icon-container"><img src="src/client/img/g-icon.png"></img></div>
-          <div className="brand-container"><span className="gyftee-text">gyftee</span></div>
+          <div className="brand-container"><span className="gyftee-text">Gyftee</span></div>
         </div>
-        <button className="login-button">
-          <a className="white-font opacity" onClick={this.showLock}>SIGN IN</a>
-        </button>
+        <a className="white-font login opacity" onClick={this.showLock}>
+          <button className="login-button">SIGN IN</button>
+        </a>
     </div>
   </div>
   );
