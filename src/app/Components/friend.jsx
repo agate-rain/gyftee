@@ -72,7 +72,6 @@ var Friend = React.createClass({
             </div>
             <div className="bday-list-item friendname" onClick={this.props.onClick}>{this.props.friend.name} </div>
             <div className="date-container" onClick={this.props.onClick}>{birthday}</div>
-            <button type="button" onClick={this.navToImageView.bind(this, this.props.friend.id)}>Get Image</button>
           </div>
         </div>
       </div>

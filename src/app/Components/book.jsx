@@ -10,7 +10,6 @@ var Book = React.createClass({
 
     var friendId = this.props.friend.friend.id;
     var userId = this.props.user.profile.identities[0].user_id;
-    alert("I'M CLICKED!");
 
     $.ajax({
       url: "http://localhost:" + PORT.PORT + "/api/friends/savegift",
@@ -86,11 +85,11 @@ var Book = React.createClass({
           <div>
             <div className="add-to-list-container">
               <div className="add-to-list" onClick={this.addToList.bind(this, bookDetails.ASIN)}>
-                <button className="add-to-list-button">
+                <Button className="add-to-list-button">
                   <a>
                     <i className="glyphicon add-heart glyphicon-heart"></i>
                   </a> ADD TO LIST
-                </button>
+                </Button>
                 <div>{element}</div>
               </div>
             </div>
