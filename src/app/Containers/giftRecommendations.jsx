@@ -73,7 +73,7 @@ var GiftRecommendations = React.createClass({
       method: 'POST',
       data: {loc: loc, startDate: startDate, endDate: endDate, artistArr: artistArr},
       success: function(data) {
-        console.log("CONCERT RESULTS------>", JSON.stringify(data));
+        // console.log("CONCERT RESULTS------>", JSON.stringify(data));
         //this.props.dispatch(saveGifts(gifts));
       }.bind(this),
       error: function(xhr, status, err) {
