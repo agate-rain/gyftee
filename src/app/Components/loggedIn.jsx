@@ -9,14 +9,6 @@ var LoggedIn = React.createClass({
 
   mixins: [ Navigation ],
 
-  //TODO REMOVE ONCE LOGOUT FUNCTIONALITY WORKS IN NAV
-  logout: function() {
-    localStorage.removeItem('userToken');
-    localStorage.removeItem('access_token');
-    this.props.lock.logout({ref: 'window.location.href'});
-    //TODO LOGOUT BUTTON IN NAV, WHICH REDIRECTS TO ??? LOGIN PAGE?
-  },
-
   navToFriends: function() {
     this.transitionTo(`/friends`);
   },
