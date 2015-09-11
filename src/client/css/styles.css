@@ -111,22 +111,22 @@ body {
 .login-container {
   /*background-color: #017E82;*/
   background-image: url("../img/bg-tile.jpg");
-  display: flex;
+  /*display: flex;*/
   padding-top: 20%;
-  padding-bottom: 20%;
+  padding-bottom: 50%;
+  overflow: auto;
 
   /* Set rules to fill background */
-  min-height: 100%;
-  min-width: 480px;
+  /*min-height: 100%;*/
+  min-width: 100%;
 
   /* Set up proportionate scaling */
-  width: 100%;
-  height: auto;
+  /*height: 100%;*/
 
   /* Set up positioning */
-  position: fixed;
-  top: 0;
-  left: 0;
+  /*position: fixed;*/
+  /*top: 0;*/
+  /*left: 0;*/
 }
 
 .icon-container {
@@ -305,7 +305,7 @@ ul {
   /*position: relative;*/
   /*justify-content: center;*/
   border-color: #004851;
-  font-size: 0.7em;
+  font-size: 0.6em;
   background-color: #004851;
   color: #FFF;
   /*align-content: center;*/

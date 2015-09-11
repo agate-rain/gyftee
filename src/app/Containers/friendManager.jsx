@@ -4,7 +4,7 @@ import { fetchFriends } from '../Actions/user';
 import { fetchFriend } from '../Actions/friend';
 import FilterableFriends from '../Components/filterableFriends';
 import FriendList from '../Components/friendList';
-import NavBar from './navbar';
+import NavBar from '../Components/navbar';
 import PORT from '../../config/port.js';
 import { Navigation } from 'react-router';
 
