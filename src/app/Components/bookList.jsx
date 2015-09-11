@@ -10,24 +10,15 @@ var BookList = React.createClass({
   mixins: [ Navigation ],
 
   handleClick: function(){
-    if(this.state.open) {
-      this.setState({
-        open: false,
-        class: "section"
-      });
-    }else{
-      this.setState({
-        open: true,
-        class: "section open"
-      });
+    if (this.state.open) {
+      this.setState({open: false, class: "section"});
+    } else {
+      this.setState({open: true, class: "section open"});
     }
   },
 
   getInitialState: function(){
-     return {
-       open: false,
-       class: "section"
-     }
+     return {open: true, class: "section open"}
   },
 
   navToGiftDetail: function(id) {

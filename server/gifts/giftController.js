@@ -82,8 +82,6 @@ module.exports = {
       });
       res.send(200,result);
     });
-
-
   },
 
   // call to Amazon API to get similar items based on the 'liked' item
@@ -137,27 +135,8 @@ module.exports = {
       result = result.map(function(item){
         return item;
       });
-      // console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',JSON.stringify(result, null, '\t'));
       res.send(result);
     });
-
-
- //    //console.log("REQUEST:------>", req.body);
- //    var url = S('http://api.bandsintown.com/events/search.json?artists%5B%5D={{artist}}&date={{startDate}},{{endDate}}&location={{loc}}&radius=10&app_id=Gyftee').template(req.body).s;
- //    //console.log("URL:------>", url);
- //    var requestOptions = {
- //     url: url,
- //     json: true
- //   };
-
- //   request(requestOptions, function(error, response, body) {
- //     if (!error && response.statusCode === 200) {
- //      console.log(JSON.stringify(body));
- //      res.send(body);
- //    } else {
- //     res.send({ success: false, message: 'Unknown Error getting result from bandsintown api.'});
- //   }
- // });
 
  },
 
