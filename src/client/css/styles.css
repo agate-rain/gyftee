@@ -111,17 +111,17 @@ body {
 .login-container {
   /*background-color: #017E82;*/
   background-image: url("../img/bg-tile.jpg");
-  display: flex;
-  padding-top: 20%;
-  padding-bottom: 20%;
 
-  /* Set rules to fill background */
+  /*display: flex;*/
+  padding-top: 40px;
+  padding-bottom: 40px;
+  overflow: scroll;
+
+  margin: auto;
+
+  /* Set up proportionate scaling and preserve the aspect ratio */
+  min-width: 100%;
   min-height: 100%;
-  min-width: 480px;
-
-  /* Set up proportionate scaling */
-  width: 100%;
-  height: auto;
 
   /* Set up positioning */
   position: fixed;
@@ -129,22 +129,29 @@ body {
   left: 0;
 }
 
+.logo-responsive img {
+  max-width: 40%;
+}
+
+.logo-responsive {
+  max-width: 50%;
+  margin: auto;
+}
+
 .icon-container {
   text-align: center;
 }
 
 .brand-container {
-  margin-bottom: 20%;
+  padding-bottom: 20%;
   text-align: center;
 }
 
 .login-button {
-  width: 80%;
-  height: 100%;
-  /*position: relative;*/
-  /*align-items: baseline;*/
+  width: 40%;
   border-color: #004851;
   font-weight: 400;
+  font-size: 5.0vw;
   background-color: #004851;
   padding: 10px;
 }
@@ -160,13 +167,12 @@ body {
 
 .login-button-container {
   background-color: #017E82;
-  /*align-self: flex-end;*/
 }
 
 .gyftee-text {
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  font-size: 400%;
+  font-size: 7.0vw;
   color: #FFF;
 }
 
