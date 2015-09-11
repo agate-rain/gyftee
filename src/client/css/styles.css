@@ -60,6 +60,11 @@ body {
   left:0;right:0; /* horizontal center */
 }
 
+.margin-top {
+  /* used on book category row header */
+  margin-top: 20px;
+}
+
 .teal {
   background-color: #017E82;
 }
@@ -172,6 +177,7 @@ ul {
   background: #017E82;
   border: none;
   border-radius: 0;
+  height: 70px;
 }
 
 .navbar-collapse {
@@ -221,14 +227,9 @@ ul {
   background-color: #017E82;
 }
 
-
 /***********************************/
 /******** HOME VIEW ********/
 /************************************/
-
-.gyftee-nav {
-  height: 70px;
-}
 
 .brand-icon {
   height: 35px;
@@ -237,7 +238,7 @@ ul {
 
 .welcome-main {
   /*holds the welcome, name greeting and photo*/
-  margin-top: 80px;
+  margin-top: 10px;
 }
 .welcome-container {
   padding: 0px 20px 0px 65px;
@@ -335,7 +336,7 @@ ul {
 
 .bday-list-header {
   color: #017E82;
-  font-size: 0.8em;
+  font-size: 0.7em;
   text-align: left;
   margin-left: 65px;
   font-weight: bold;
@@ -401,11 +402,10 @@ ul {
   color: #004851;
 }
 
-.book-title-thumb {
-    font-size: 0.4em;
-    text-align: left;
-    margin-left: 10%;
+.no-bday {
+  font-size: 0.8em;
 }
+
 
 /***********************************/
 /******** ALL FRIEND VIEW ********/
@@ -423,19 +423,20 @@ ul {
 }
 
 
+
 /***********************************/
 /******** GIFT DETAIL VIEW ********/
 /************************************/
 
 .gift-detail-container {
-  padding: 20px;
+  /*padding: 20px;*/
   max-width: 80%;
   border-style: solid;
   border-color: #BBB;
 }
 
 .detail-main {
-  padding-top: 90px;
+  padding-top: 20px;
 }
 
 .detail-wrapper {
@@ -487,6 +488,12 @@ ul {
   text-align: center;
   width: 100%;
 }
+
+.add-to-list-button:hover{
+  background-color: #017E82;
+  color: white;
+}
+
 .book-text-container {
   padding: 5px 0 10px 0;
 }
@@ -498,6 +505,12 @@ ul {
 
 .based-on-container {
   padding: 10px;
+}
+
+.saved {
+  font-size: 0.7em;
+  background-color: white;
+  border-radius: 5%;
 }
 
 
@@ -516,7 +529,6 @@ ul {
   padding: 10px;
   text-align: center;
   width: 25%;
-
 }
 
 
@@ -524,19 +536,23 @@ ul {
 /******** FRIEND HEADER *********/
 /***********************************/
 
+.fetching-friend {
+  font-size: 0.9em;
+  color: #017E82;
+}
+
 .friend-header-container {
-  padding: 100px 20px 0 65px;
+  padding: 0px 20px 0 65px;
 }
 
 .friend-header-name {
-  font-family: "proxima-nova", sans-serif;
   text-align: left;
-  font-size: 1.0em;
+  font-size: 0.9em;
   color: #017E82;
 }
 
 .friend-header-bday {
-  font-size: 1.0em;
+  font-size: 0.8em;
   padding-bottom: 0px;
   font-weight: bold;
   color: #017E82;
@@ -544,19 +560,18 @@ ul {
 }
 
 .filter-button {
-  /*position: relative;*/
-  /*justify-content: center;*/
   border-color: #004851;
   font-size: 0.7em;
   background-color: #004851;
   color: #FFF;
-  /*align-content: center;*/
   border-radius: 10px 0 10px 0;
   margin-top: 10px;
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
   padding: 10px;
   text-align: center;
-  /*background-color: blue;*/
+}
+.wishlist-button-container {
+  text-align: left;
 }
 
 .filter-link {
@@ -606,18 +621,18 @@ ul {
   color: #FFF;
   font-size: 0.8em;
   font-weight: normal;
-  padding: 10px 0 10px 10%;
+  padding: 5px 0 5px 65px;
 }
 
 .slider-container{
-  margin-left: 10%;
-  padding: 10px 0 10px 40px;
-  margin-bottom: 10px;
+  margin-left: 70px;
+  padding: 10px 0 10px 10px;
 }
 
 .prime-img{
   height: 13px;
   width: 70px;
+  margin-top: -10px;
 }
 
 .wishlist-header {
@@ -631,6 +646,12 @@ ul {
 
 .pinned-gift {
   padding: 0px 10px 0 10px;
+}
+
+.book-title-thumb {
+    font-size: 0.4em;
+    text-align: left;
+    margin-left: 10%;
 }
 
 /******** FALLBACK STYLING *********/
