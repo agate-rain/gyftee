@@ -2,7 +2,7 @@ import 'babel-core/polyfill';
 import React from 'react';
 import BrowserHistory from 'react-router/lib/BrowserHistory';
 import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router';
+import { Router, Route, Redirect } from 'react-router';
 import configStore from './app/Store/configStore';
 
 // containers
@@ -29,7 +29,7 @@ React.render(
   <Provider store={store}>
   {() =>
     <Router history={history}>
-      <Route name="root" path="/" component={App}>
+      <Route component={App}>
         <Route name="login" path="/login" component={Login} />
         <Route name="friends" path="/friends" component={FriendManager} />
         <Route name="allFriendsList" path="/friends/invite" component={AllFriendsList} />
@@ -39,6 +39,7 @@ React.render(
         <Route name="giftDetail" path="/gifts/:giftId" component={GiftDetail} />
         <Route name="imageView" path="/friends/:friendId/image" component={ImageView} />
       </Route>
+      <Redirect from="/" to="/login"/>
     </Router>
   }
   </Provider>,
