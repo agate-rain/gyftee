@@ -11,7 +11,7 @@ var PinnedGiftList = React.createClass({
       return (
           <div className="gift">
             <NavBar />
-            <WishList wishlist={this.state.wishlist} friend={this.props.friend}/>
+            <WishList user = {this.props.user} wishlist={this.state.wishlist} friend={this.props.friend}/>
           </div>
       );
     } else {

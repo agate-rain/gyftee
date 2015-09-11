@@ -1,10 +1,48 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PORT from '../../config/port';
+import { Button, Alert } from 'react-bootstrap';
 
 var WishListBook = React.createClass({
+  // enables the fading alert upon pinning item to wishlist
+  getInitialState: function() {
+    return {
+      alertVisible: false
+    };
+  },
+
+  handleAlertDismiss: function() {
+    this.setState({alertVisible: false});
+  },
+
+  handleAlertShow: function() {
+    this.setState({alertVisible: true});
+  },
+
+  removeFromList: function(ASIN) {
+    // send the clicked book to the server to save on the user's gift list
+    // should the req object just be Book's rendered view? this.props.book[0]
+
+    var friendId = this.props.friend.id;
+    var userId = this.props.user.profile.identities[0].user_id;
+
+    $.ajax({
+      url: "http://localhost:" + PORT.PORT + "/api/friends/removegift",
+      method: 'POST',
+      data: {ASIN : ASIN,
+            friendId : friendId,
+            userId: userId}, // need to pass in the access token
+      success: function(data) {
+
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+      }
+    });
+  },
+
   render: function(){
 
-    console.log('BOOK>>>>>>>>',this.props.book);
 
     var missingBookCover = 'http://www.mbalit.co.uk/sites/default/files/imagecache/fullsize/imagefield_default_images/generic_book_cover_0.jpg';
 
@@ -18,15 +56,25 @@ var WishListBook = React.createClass({
       price: this.props.book.Offers.Offer.OfferListing.Price.FormattedPrice || 'NA'
     };
 
+
+    // remove element confirmation
+    let element;
+    if (this.state.alertVisible) {
+      element = <Alert className="saved opacity" onDismiss={this.handleAlertDismiss} dismissAfter={2000}>
+        <span>ITEM REMOVED!</span>
+      </Alert>
+    }
+
     return (
       <div className="detail-wrapper pinned-gift">
           <div className="add-to-list-container">
-            <div className="add-to-list">
-              <button className="add-to-list-button">
-                <a href="#">
-                  <i className="glyphicon add-heart glyphicon-heart"></i>
-                </a> REMOVE FROM WISH LIST
-              </button>
+            <div className="add-to-list" onClick={this.removeFromList.bind(this, bookDetails.ASIN)}>
+                <Button onClick={this.handleAlertShow} className="add-to-list-button">
+                  <a>
+                    <i className="glyphicon add-heart glyphicon-heart"></i>
+                  </a> REMOVE FROM LIST
+                </Button>
+                 <div>{element}</div>
             </div>
           </div>
         <div>

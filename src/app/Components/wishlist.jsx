@@ -27,7 +27,7 @@ var WishList = React.createClass({
     var wishListItems = [];
     for(var i = 0; i < this.props.wishlist.length; i++){
       wishListItems.push(
-          <WishListBook book={this.props.wishlist[i]} key={this.props.wishlist[i].ASIN} />
+          <WishListBook user = {this.props.user} friend = {this.props.friend.friend} book={this.props.wishlist[i]} key={this.props.wishlist[i].ASIN} />
       );
     }
     if(friend !== null){
