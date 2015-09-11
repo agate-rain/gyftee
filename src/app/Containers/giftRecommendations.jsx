@@ -44,24 +44,16 @@ var GiftRecommendations = React.createClass({
     utils.fetchFriendById(friendId, function(friend){
       this.props.dispatch(friend);
 
-      utils.getUserData("books", this.props.friend.friend,function(userData){
-        utils.generateRandomKeyword(userData, function(keyWord){
-          utils.fetchGiftByKeyWord(keyWord, function(gift){
-            this.props.dispatch(saveGifts(gift));
-          });
-        })
-      }.bind(this));
+      this.generateRandomKeyword(utils.getUserData("books", this.props.friend.friend ));
+      var bandArr = utils.getUserData('music', this.props.friend.friend).map(function(item) { return item.name; })
+      console.log("MUSIC TASTE ------->", bandArr);
+      var userLocation = utils.getUserData('location', this.props.friend.friend);
+      var birthday = utils.getUserData('birthday', this.props.friend.friend);
+      var range = 365;
+      utils.getConcerts(userLocation,birthday,range,bandArr, function(data){
+                // console.log("CONCERT RESULTS------>", JSON.stringify(data));
+      });
     }.bind(this));
-
-    var bandArr = utils.getUserData('music', this.props.friend.friend).map(function(item) { return item.name; })
-    console.log("MUSIC TASTE ------->", bandArr);
-    var userLocation = utils.getUserData('location', this.props.friend.friend);
-    var birthday = utils.getUserData('birthday', this.props.friend.friend);
-    var range = 365;
-
-    utils.getConcerts(userLocation,birthday,range,bandArr, function(data){
-        console.log("CONCERT RESULTS------>", JSON.stringify(data));
-    });
 
     utils.fetchImageUrlById(friendId, function(imageURLByID){
       this.props.dispatch(saveImageUrl(imageURLByID));

@@ -5,15 +5,15 @@ module.exports = {
     return bday === "Unknown" ? "Unknown" : bday.slice(0,5);
   },
 
-  getUserData: function(category, friend, callback) {
+  getUserData: function(category, friend) {
     console.log("GET USER DATA FROM UTILS");
     console.log("FRIEND", friend);
     switch(category){
-      case 'books': callback(friend.books.data);
-      case 'music': callback(friend.music.data);
-      case 'location': callback(friend.location.name);
-      case 'birthday': callback(friend.birthday);
-      default: callback(friend.books);
+      case 'books': return friend.books.data;
+      case 'music': return friend.music.data;
+      case 'location': return friend.location.name;
+      case 'birthday': return friend.birthday;
+      default: return friend.books;
     }
   },
 
@@ -146,11 +146,5 @@ module.exports = {
     });
 
   },
-
-  generateRandomKeyword: function(userArray,callback){
-    var randomIndex = Math.floor(Math.random() * (userArray.length - 1) + 1);
-    var keyWord = userArray[randomIndex].name;
-    callback(keyWord);
-  }
 
 };
