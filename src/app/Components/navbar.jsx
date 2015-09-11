@@ -18,7 +18,7 @@ var NavBar = React.createClass({
     );
 
     return (
-      <Navbar brand={icon} toggleNavKey={0}>
+      <Navbar className="navbar" brand={icon} toggleNavKey={0}>
         <Nav right eventKey={0}>
           <NavItem eventKey={1} href="/friends/invite">Invite</NavItem>
           <NavItem eventKey={2} href="/logout" onClick={this.logout}>Logout</NavItem>
