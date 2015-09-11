@@ -664,6 +664,7 @@ li>a.nav-menu-item:hover, .navbar-brand>a:hover {
 .csstransforms3d  #book2:before { background-color: #333; }
 .csstransforms3d  #book3:before { background-color: #254053; }
 
+
 * {
   box-sizing: border-box;
 }
@@ -681,17 +682,17 @@ li>a.nav-menu-item:hover, .navbar-brand>a:hover {
 .section.open button:after {
   transform: translate(0%, -50%) rotate(45deg);
 }
-.section.open .articlewrap {
+.section.open .sliderwrap {
   height: 250px;
 }
 
-.articlewrap {
+.sliderwrap {
   height: 0;
   overflow: hidden;
   transition: all .2s ease-in;
 }
 
-.article {
+.slider {
   padding: 1em;
   color: #333;
   line-height: 1.3;

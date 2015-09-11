@@ -49,11 +49,11 @@ var BookList = React.createClass({
     return (
       <div className={this.state.class}>
         <div className="books-list">
-          <div className="row light-teal category">
-            <div className="category-header sectionhead" onClick={this.handleClick} >Books</div>
+          <div className="row light-teal category sectionhead" onClick={this.handleClick}>
+            <div className="category-header">Books</div>
           </div>
-            <div className="slider-container articlewrap">
-              <Slider {...sliderSettings} className="books-list article">
+            <div className="slider-container sliderwrap">
+              <Slider {...sliderSettings} className="books-list slider">
                 {books}
               </Slider>
             </div>
