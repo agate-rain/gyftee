@@ -60,6 +60,11 @@ body {
   left:0;right:0; /* horizontal center */
 }
 
+.margin-top {
+  /* used on book category row header */
+  margin-top: 20px;
+}
+
 .teal {
   background-color: #017E82;
 }
@@ -531,19 +536,23 @@ ul {
 /******** FRIEND HEADER *********/
 /***********************************/
 
+.fetching-friend {
+  font-size: 0.9em;
+  color: #017E82;
+}
+
 .friend-header-container {
-  padding: 10px 20px 0 65px;
+  padding: 0px 20px 0 65px;
 }
 
 .friend-header-name {
-  font-family: "proxima-nova", sans-serif;
   text-align: left;
-  font-size: 1.0em;
+  font-size: 0.9em;
   color: #017E82;
 }
 
 .friend-header-bday {
-  font-size: 1.0em;
+  font-size: 0.8em;
   padding-bottom: 0px;
   font-weight: bold;
   color: #017E82;
@@ -551,19 +560,18 @@ ul {
 }
 
 .filter-button {
-  /*position: relative;*/
-  /*justify-content: center;*/
   border-color: #004851;
   font-size: 0.7em;
   background-color: #004851;
   color: #FFF;
-  /*align-content: center;*/
   border-radius: 10px 0 10px 0;
   margin-top: 10px;
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
   padding: 10px;
   text-align: center;
-  /*background-color: blue;*/
+}
+.wishlist-button-container {
+  text-align: left;
 }
 
 .filter-link {
@@ -613,13 +621,12 @@ ul {
   color: #FFF;
   font-size: 0.8em;
   font-weight: normal;
-  padding: 10px 0 10px 10%;
+  padding: 5px 0 5px 65px;
 }
 
 .slider-container{
-  margin-left: 10%;
-  padding: 10px 0 10px 40px;
-  margin-bottom: 10px;
+  margin-left: 70px;
+  padding: 10px 0 10px 10px;
 }
 
 .prime-img{

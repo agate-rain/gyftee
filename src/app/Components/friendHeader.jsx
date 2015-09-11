@@ -18,7 +18,7 @@ var FriendHeader = React.createClass({
           <div>
             <div className="friend-header-name">{this.props.friend.name}</div>
             <div className="friend-header-bday">{formatDate(this.props.friend.birthday)}</div>
-            <div>
+            <div className="friend-header-name">
               <button className="filter-button" onClick={this.navToWishList.bind(this, this.props.friend.id)}>WISHLIST</button>
 
             </div>
@@ -37,7 +37,7 @@ var FriendHeader = React.createClass({
     } else {
         return (
           <div className="friend-info">
-            Fetching friend...
+            <p className="fetching-friend"> Fetching friend...</p>
           </div>
         );
       }
