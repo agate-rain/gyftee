@@ -97,6 +97,7 @@ module.exports = {
 
   getEvents: function(req, res, next){
     var promises = [];
+    console.log('>>> LIST OF ARTIST', req.body.artistArr)
 
     var eventAsync = function(artist){
       // var options = {SearchIndex: "All", IdType: "ISBN", ItemId: bookASIN, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
@@ -134,7 +135,8 @@ module.exports = {
       result = result.map(function(item){
         return item;
       });
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',JSON.stringify(result, null, '\t'));
+      // console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',JSON.stringify(result, null, '\t'));
+      res.send(result);
     });
 
 

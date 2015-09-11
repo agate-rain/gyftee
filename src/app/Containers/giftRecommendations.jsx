@@ -53,8 +53,9 @@ var GiftRecommendations = React.createClass({
 
     // set defaults for testing
     date = '10/10/2015';
-    range = range || 14;
-    artistArr = artistArr || ["Janet Jackson", "Marina and The Diamonds"];
+    range = range || 365;
+    artistArr = artistArr;
+     // || ["Janet Jackson", "Marina and The Diamonds"];
     loc = loc || "San Francisco, California";
 
     // get dates
@@ -136,7 +137,7 @@ var GiftRecommendations = React.createClass({
         console.log("MUSIC TASTE ------->", bandArr);
         var userLocation = this.getUserData('location');
         var birthday = this.getUserData('birthday');
-        var range = 14;
+        var range = 365;
         this.getConcerts(userLocation,birthday,range,bandArr);
 
       }.bind(this),
