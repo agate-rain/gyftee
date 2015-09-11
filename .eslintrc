@@ -1,0 +1,30 @@
+{
+  "globals": {
+    // Put things like jQuery, etc
+    "jQuery": true,
+    "$": true
+  },
+  "env": {
+    // I write for browser
+    "browser": true,
+    // in CommonJS
+    "node": true
+  },
+  "parser": "babel-eslint",
+  // To give you an idea how to override rule options:
+  "rules": {
+    // Tons of rules you can use, for example...
+    "quotes": [0, "double"],
+    "no-mixed-requires": [0],
+    "no-underscore-dangle" : [0]
+  },
+  "ecmaFeatures": {
+    "arrowFunctions": true,
+    "blockBindings": true,
+    "classes": true,
+    "defaultParams": true,
+    "jsx": true,
+    "modules": true,
+    "spread": false
+  }
+}
