@@ -66,8 +66,6 @@ module.exports = {
            res.send(500, "Unable to save gift to database")
           }
     });
-
-
   },
 
   getWishList: function(req, res, next){
@@ -85,7 +83,6 @@ module.exports = {
         res.send(500, err);
       }
     })
-    // console.log('REQ.BODY userId', req.body.userId);
   },
 
 
