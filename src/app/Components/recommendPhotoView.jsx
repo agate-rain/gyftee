@@ -5,12 +5,15 @@ import PORT from '../../config/port';
 var RecommendPhotoView = React.createClass({
 
   componentDidMount: function() {
+    var friendId = window.location.href.split('/')[4];
     var rand = Math.floor(Math.random() * this.props.albums.length) + 1;
     var randomAlbum = this.props.albums[rand];
     var randomPhoto = randomAlbum[0];
-    console.log('Random Photo',randomPhoto);
+    console.log('Random Photo',randomPhoto.source);
     var imageURL = randomPhoto.source;
-    this.getTags(imageURL)
+    // this.getTags(imageURL)
+    console.log('.>>>>>>>>>>>>>friend id',friendId)
+    this.getMovieList(friendId);
   },
 
   render: function() {
@@ -29,16 +32,44 @@ var RecommendPhotoView = React.createClass({
 
   getTags: function(imageURL){
     $.ajax({
-      url: 'http://localhost:' + PORT.PORT + '/api/gifts/gettags/',
+      url: 'http://localhost:' + PORT.PORT + '/api/gifts/gettagsfromclarifai/',
       method: 'POST',
       data: {imageURL : imageURL},
       success: function(data) {
-        this.searchEtsy(data)
+        console.log(data);
+        // this.searchEtsy(data)
       }.bind(this),
       error: function(xhr, status, err) {
         console.log("NOT WORKING", xhr, status, err);
         //console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
       }
+    });
+  },
+
+  getMovieList : function(friendId) {
+    // 126455562499
+    var that = this;
+    var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
+    console.log(access_token)
+    FB.api('/v2.4/' + friendId + '/movies',
+            'GET',
+            {"fields":"data,paging", "access_token": access_token},
+            function(response) {
+              console.log(">>>>>>>>>>>>>> Feed response",response);
+              var movieid = response.data[0].id
+              this.getPage(movieid);
+              // that.getPage(response.data[0].id);
+    }.bind(this));
+  },
+
+  getPage : function(pageId) {
+    // 126455562499
+    var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
+    FB.api('/v2.4/' + pageId,
+            'GET',
+            {"fields":"affiliation,cover,description,features,about,artists_we_like,band_members,band_interests", "access_token": access_token},
+            function(response) {
+              console.log(">>>>>>>>>>>>>> Page response",response);
     });
   },
 

@@ -18,7 +18,7 @@ var Friend = React.createClass({
     //console.log("USER ------->", this.props.user);
     var userId = this.props.user.identities[0].user_id;
     var friendId = this.props.friend.id;
-    var url = "http://localhost:" + PORT.PORT + "/api/friends/getwishlist/"+friendId+"/"+userId;
+    var url = "http://localhost:" + PORT.PORT + "/api/friends/wishlist/"+friendId+"/"+userId;
 
     $.ajax({
       url: url,

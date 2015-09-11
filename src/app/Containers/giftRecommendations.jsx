@@ -10,6 +10,7 @@ import BookList from '../Components/bookList';
 import ConcertList from '../Components/concertList';
 import PORT from '../../config/port.js';
 import NavBar from '../Components/navbar';
+import utils from '../Utils/utils'
 
 var GiftRecommendations = React.createClass({
 
@@ -131,12 +132,12 @@ var GiftRecommendations = React.createClass({
       // need to pass in the access token
       success: function(data) {
         this.props.dispatch(fetchFriend(JSON.parse(data)));
-        this.generateRandomKeyword(this.getUserData("books"));
+        this.generateRandomKeyword(utils.getUserData("books", this.props.friend.friend ));
         // console.log("MUSIC TASTE ------->", this.getUserData('music').map(function(item) { return item.name; }));
-        var bandArr = this.getUserData('music').map(function(item) { return item.name; })
+        var bandArr = utils.getUserData('music', this.props.friend.friend).map(function(item) { return item.name; })
         console.log("MUSIC TASTE ------->", bandArr);
-        var userLocation = this.getUserData('location');
-        var birthday = this.getUserData('birthday');
+        var userLocation = utils.getUserData('location', this.props.friend.friend);
+        var birthday = utils.getUserData('birthday', this.props.friend.friend);
         var range = 365;
         this.getConcerts(userLocation,birthday,range,bandArr);
 

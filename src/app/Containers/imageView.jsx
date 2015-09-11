@@ -36,6 +36,7 @@ var ImageView = React.createClass({
     }
   },
   // put back into line 25 <PhotoView albums={this.state.imageArr}/>
+  // <RecommendPhotoView albums={this.state.imageArr}/>
 
   fetchFriendById: function(friendId) {
     $.ajax({
