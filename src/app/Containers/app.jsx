@@ -1,9 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import FriendManager from './friendManager';
-
-import * as friendActions from '../Actions/user';
 
 class App extends Component {
   constructor(props) {
@@ -15,10 +12,6 @@ class App extends Component {
     // Available thanks to contextTypes below
     const { router } = this.context;
     router.transitionTo(`/${nextValue}`);
-  }
-
-  setFriends(friends) {
-
   }
 
   render() {
@@ -57,9 +50,4 @@ function mapStateToProps(state) {
   };
 }
 
-function mapActionsToProps(dispatch) {
-
-}
-// not sure if we need friendActions
-// we can dispatch actions using connect on any component, what is best practice?
-export default connect( mapStateToProps, friendActions )(App);
+export default connect(mapStateToProps)(App);
