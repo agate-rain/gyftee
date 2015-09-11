@@ -374,7 +374,11 @@ li>a.nav-menu-item:hover, .navbar-brand>a:hover {
   color: #004851;
 }
 
-
+.book-title-thumb {
+    font-size: 0.4em;
+    text-align: left;
+    margin-left: 10%;
+}
 
 /***********************************/
 /******** ALL FRIEND VIEW ********/
@@ -580,8 +584,8 @@ li>a.nav-menu-item:hover, .navbar-brand>a:hover {
 }
 
 .prime-img{
-  height: 40px;
-  width: 71px;
+  height: 13px;
+  width: 70px;
 }
 
 /******** FALLBACK STYLING *********/
@@ -592,7 +596,7 @@ li>a.nav-menu-item:hover, .navbar-brand>a:hover {
   margin: 10px;
 }
 
-.book img { vertical-align: middle; }
+.book img { vertical-align: middle; height: 107px;}
 
 /*
  *  In order for this to work, you must use Modernizer
@@ -626,7 +630,6 @@ li>a.nav-menu-item:hover, .navbar-brand>a:hover {
   -webkit-transform: perspective(100) rotateY(-3deg);
   outline: 1px solid transparent; /* Helps smooth jagged edges in Firefox */
   box-shadow: none;
-  margin: 0;
 }
 
 .csstransforms3d  .book img {
@@ -662,3 +665,34 @@ li>a.nav-menu-item:hover, .navbar-brand>a:hover {
 .csstransforms3d  #book3:before { background-color: #254053; }
 
 
+* {
+  box-sizing: border-box;
+}
+*:before, *:after {
+  box-sizing: border-box;
+}
+
+.section.open button:before, .section.open button:after {
+  height: 14px;
+}
+.section.open button:before {
+  transform: translate(0%, -50%) rotate(-45deg);
+}
+.section.open button:after {
+  transform: translate(0%, -50%) rotate(45deg);
+}
+.section.open .sliderwrap {
+  height: 250px;
+}
+
+.sliderwrap {
+  height: 0;
+  overflow: hidden;
+  transition: all .2s ease-in;
+}
+
+.slider {
+  padding: 1em;
+  color: #333;
+  line-height: 1.3;
+}

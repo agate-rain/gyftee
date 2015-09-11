@@ -11,7 +11,6 @@ var UserHeader = React.createClass({
   },
 
   componentDidMount: function(){
-
     $.ajax({
       url: "http://localhost:" + PORT.PORT + "/api/friends/image",
       method: 'POST',
@@ -35,7 +34,7 @@ var UserHeader = React.createClass({
       <div className="flex-container welcome-main">
         <div className="welcome-container container">
           <div className="greeting-text proxima teal-font bold">Welcome, {this.props.user.name.split(" ")[0]}</div>
-          <Link className="invite-link" to={`/friends/invite`}><div className="invite-button">INVITE FRIENDS</div></Link>
+          <Link className="invite-link" to={`/friends/allfriends`}><div className="invite-button">INVITE FRIENDS</div></Link>
         </div>
 
         <div className="profile-photo-container">

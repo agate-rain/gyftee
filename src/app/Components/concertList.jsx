@@ -17,13 +17,6 @@ var ConcertList = React.createClass({
 
   render: function() {
     var concerts = [];
-    for(var key in this.props.amazonBooks){
-      concerts.push(
-        <div>
-            <Thumbnail book={this.props.amazonBooks[key]} key={this.props.amazonBooks[key].ASIN} />
-        </div>
-      );
-    }
 
     return (
       <div className="books-list">

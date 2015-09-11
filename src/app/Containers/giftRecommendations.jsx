@@ -14,14 +14,23 @@ import NavBar from '../Components/navbar';
 var GiftRecommendations = React.createClass({
 
   render: function() {
+    /*var concerts = this.filterGifts("concert");
+    var books = this.filterGifts("book");*/
+
     return (
         <div className="recommendations">
           <NavBar />
           <FriendHeader friend={this.props.friend.friend} url={this.props.friend.image_url} />
           <BookList amazonBooks={this.props.gifts} />
-          <ConcertList amazonBooks={this.props.gifts} />
+          <ConcertList concerts={this.props.gifts} />
         </div>
     );
+  },
+
+  filterGifts: function(category){
+    var result = [];
+    result = this.props.gifts.filter(function(gift) { return gift.category === category; });
+    return result;
   },
 
   getInitialState: function() {
@@ -63,7 +72,7 @@ var GiftRecommendations = React.createClass({
       method: 'POST',
       data: {loc: loc, startDate: startDate, endDate: endDate, artist: artist},
       success: function(data) {
-        console.log("CONCERT RESULTS------>", data);
+        console.log("CONCERT RESULTS------>", JSON.stringify(data));
         //this.props.dispatch(saveGifts(gifts));
       }.bind(this),
       error: function(xhr, status, err) {

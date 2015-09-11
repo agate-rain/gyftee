@@ -41,6 +41,7 @@ module.exports = {
     });
   },
    saveGift: function(req, res, next){
+    console.log("SAVING THE GIFT");
     var friendId = req.body.friendId;
     var userId = req.body.userId;
     var ASIN = req.body.ASIN;
@@ -81,6 +82,7 @@ module.exports = {
         });
       }else{
         console.log('User does not exist', err);
+        res.send(500, err);
       }
     })
     // console.log('REQ.BODY userId', req.body.userId);
