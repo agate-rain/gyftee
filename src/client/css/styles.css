@@ -401,11 +401,10 @@ ul {
   color: #004851;
 }
 
-.book-title-thumb {
-    font-size: 0.4em;
-    text-align: left;
-    margin-left: 10%;
+.no-bday {
+  font-size: 0.8em;
 }
+
 
 /***********************************/
 /******** ALL FRIEND VIEW ********/
@@ -529,7 +528,6 @@ ul {
   padding: 10px;
   text-align: center;
   width: 25%;
-
 }
 
 
@@ -644,6 +642,12 @@ ul {
 
 .pinned-gift {
   padding: 0px 10px 0 10px;
+}
+
+.book-title-thumb {
+    font-size: 0.4em;
+    text-align: left;
+    margin-left: 10%;
 }
 
 /******** FALLBACK STYLING *********/

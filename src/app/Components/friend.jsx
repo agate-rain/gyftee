@@ -50,10 +50,12 @@ var Friend = React.createClass({
 
   render: function() {
 
+    let birthday;
+
     if (this.props.friend.birthday) {
-      var birthday = this.formatDate(this.props.friend.birthday);
+      birthday = <div>{this.formatDate(this.props.friend.birthday)}</div>;
     } else {
-      birthday = "Unknown";
+      birthday = <div className="no-bday">Unknown</div>;
     }
 
     return (
