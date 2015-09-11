@@ -9,9 +9,9 @@ var NavBar = React.createClass({
 
   render: function() {
     var icon = (
-      <span class="brand-icon">
+      <span className="brand-icon">
         <a href="/friends">
-          <img class="brand-icon" src="/src/client/img/gyftee-icon.png" alt="gift box with ribbon" />
+          <img className="brand-icon" src="/src/client/img/gyftee-icon.png" alt="gift box with ribbon" />
           <span>Gyftee</span>
         </a>
       </span>
