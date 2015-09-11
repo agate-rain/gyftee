@@ -188,7 +188,7 @@ ul {
   background: #017E82;
   border: none;
   border-radius: 0;
-  height: 70px;
+  padding-bottom: 10px;
 }
 
 .navbar-collapse {
@@ -249,7 +249,7 @@ ul {
 
 .welcome-main {
   /*holds the welcome, name greeting and photo*/
-  margin-top: 10px;
+  margin-top: 100px;
 }
 .welcome-container {
   padding: 0px 20px 0px 65px;
@@ -316,7 +316,7 @@ ul {
   /*position: relative;*/
   /*justify-content: center;*/
   border-color: #004851;
-  font-size: 0.7em;
+  font-size: 0.6em;
   background-color: #004851;
   color: #FFF;
   /*align-content: center;*/
@@ -447,7 +447,7 @@ ul {
 }
 
 .detail-main {
-  padding-top: 20px;
+  padding-top: 80px;
 }
 
 .detail-wrapper {
@@ -536,12 +536,11 @@ ul {
   color: #FFF;
   /*align-content: center;*/
   /*border-radius: 10px 0 10px 0;*/
-  margin: 10px 20px 10px 10px;
+  margin: 90px 20px 10px 10px;
   padding: 10px;
   text-align: center;
   width: 25%;
 }
-
 
 /***********************************/
 /******** FRIEND HEADER *********/
@@ -553,7 +552,7 @@ ul {
 }
 
 .friend-header-container {
-  padding: 0px 20px 0 65px;
+  padding: 80px 20px 0 65px;
 }
 
 .friend-header-name {
@@ -598,7 +597,7 @@ ul {
 /***********************************/
 
 .friend-detail-container {
-  padding: 10px 0 20px 0;
+  padding: 80px 0 20px 0;
 }
 .giftlist-circle {
   background-color: #9E081B;
@@ -620,6 +619,7 @@ ul {
 
 .giftlist-main {
   padding-bottom: 20px;
+  margin-top: 80px;
 }
 .giftlist-header {
   margin-top: 70px;
