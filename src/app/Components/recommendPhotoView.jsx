@@ -33,10 +33,26 @@ var RecommendPhotoView = React.createClass({
       method: 'POST',
       data: {imageURL : imageURL},
       success: function(data) {
+        this.searchEtsy(data)
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.log("NOT WORKING", xhr, status, err);
+        //console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+      }
+    });
+  },
+
+  searchEtsy: function(tagArr){
+    $.ajax({
+      url: 'http://localhost:' + PORT.PORT + '/api/gifts/searchEtsy',
+      method: 'POST',
+      data: {tagArr : tagArr},
+      success: function(data) {
+        console.log('RESULT', data)
         //this.props.dispatch(saveGifts(gifts));
       }.bind(this),
       error: function(xhr, status, err) {
-        console.log("NOT WORKING BOO");
+        console.log("NOT WORKING", xhr, status, err);
         //console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
