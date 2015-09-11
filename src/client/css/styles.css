@@ -583,6 +583,11 @@ ul {
   height: 90px;
   border-radius: 50%;
 }
+
+.giftlist-circle text {
+  line-height: 90px;
+}
+
 .giftlist-circle-container {
   align-items: center;
 }
@@ -613,6 +618,19 @@ ul {
 .prime-img{
   height: 13px;
   width: 70px;
+}
+
+.wishlist-header {
+  flex: 1;
+}
+
+.pinned-gifts {
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.pinned-gift {
+  padding: 0px 10px 0 10px;
 }
 
 /******** FALLBACK STYLING *********/

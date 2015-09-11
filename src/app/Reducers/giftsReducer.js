@@ -7,9 +7,7 @@ export default function giftsReducer(state=initialState, action) {
 
   switch (action.type) {
     case SAVE_GIFTS:
-      console.log('ACTION',action)
       state = Object.assign({}, action.gifts);
-      console.log('STATE',state)
       return state;
 
     default:

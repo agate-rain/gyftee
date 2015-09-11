@@ -19,30 +19,28 @@ var WishListBook = React.createClass({
     };
 
     return (
-      <div className = "flex-container wish-list-book">
-        <div className="detail-wrapper">
-            <div className="add-to-list-container">
-              <div className="add-to-list">
-                <button className="add-to-list-button">
-                  <a href="#">
-                    <i className="glyphicon add-heart glyphicon-heart"></i>
-                  </a> REMOVE FROM WISH LIST
-                </button>
-              </div>
+      <div className="detail-wrapper pinned-gift">
+          <div className="add-to-list-container">
+            <div className="add-to-list">
+              <button className="add-to-list-button">
+                <a href="#">
+                  <i className="glyphicon add-heart glyphicon-heart"></i>
+                </a> REMOVE FROM WISH LIST
+              </button>
             </div>
-          <div>
-              <div className="book-thumbnail">
-                <a className="book" href={bookDetails.url}><img src={bookDetails.img} /></a>
-              </div>
           </div>
-
-            <div className="book-text-container">
-              <div className="book-title">{bookDetails.title}</div>
-              <div className="book-author">{bookDetails.author}</div>
-              <div className="book-price">{bookDetails.price}</div>
-              <div className="book-binding">{bookDetails.binding}</div>
+        <div>
+            <div className="book-thumbnail">
+              <a className="book" href={bookDetails.url}><img src={bookDetails.img} /></a>
             </div>
         </div>
+
+          <div className="book-text-container">
+            <div className="book-title">{bookDetails.title}</div>
+            <div className="book-author">{bookDetails.author}</div>
+            <div className="book-price">{bookDetails.price}</div>
+            <div className="book-binding">{bookDetails.binding}</div>
+          </div>
       </div>
     );
   },

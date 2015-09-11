@@ -64,9 +64,7 @@ var Book = React.createClass({
             <div className="add-to-list-container">
               <div className="add-to-list" onClick={this.addToList.bind(this, bookDetails.ASIN)}>
                 <button className="add-to-list-button">
-                  <a href="#">
-                    <i className="glyphicon add-heart glyphicon-heart"></i>
-                  </a> ADD TO LIST
+                  <i className="glyphicon add-heart glyphicon-heart"></i>
                 </button>
               </div>
             </div>
