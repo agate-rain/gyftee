@@ -2,10 +2,21 @@ import React from 'react';
 import PORT from '../../config/port';
 import WishListBook from './wishListBook';
 import { formatDate } from '../Utils/utils';
+import { connect } from 'react-redux';
+import { fetchFriend, saveImageUrl} from '../Actions/friend';
+import utils from '../Utils/utils';
 
 var WishList = React.createClass({
 
   componentDidMount: function() {
+    var friendId = window.location.href.split('/')[4];
+    utils.fetchFriendById(friendId, function(friend){
+      this.props.dispatch(fetchFriend(friend));
+    }.bind(this));
+
+    utils.fetchImageUrlById(friendId, function(image){
+      this.props.dispatch(saveImageUrl(image));
+    }.bind(this));
   },
 
   render: function() {
@@ -19,39 +30,51 @@ var WishList = React.createClass({
           <WishListBook book={this.props.wishlist[i]} key={this.props.wishlist[i].ASIN} />
       );
     }
+    if(friend !== null){
+      return (
+        <div className="flex-container">
+          <div className="giftlist-main container">
 
-    return (
-      <div className="flex-container">
-        <div className="giftlist-main container">
-
-          <div className="container flex-container">
-            <div className="wishlist-header">
-              <div className="friend-header-name">{friend.name}</div>
-              <div className="friend-header-bday">{formatDate(friend.birthday)}</div>
-            </div>
-
-            <div className="wishlist-header profile-photo-container">
-              <div className="thumbnail profile-photo">
-                <img src={url} />
+            <div className="container flex-container">
+              <div className="wishlist-header">
+                <div className="friend-header-name">{friend.name}</div>
+                <div className="friend-header-bday">{formatDate(friend.birthday)}</div>
               </div>
+
+              <div className="wishlist-header profile-photo-container">
+                <div className="thumbnail profile-photo">
+                  <img src={url} />
+                </div>
+              </div>
+
+              <div className="wishlist-header container">
+                <div className="container giftlist-circle"><text>{this.props.wishlist.length}</text></div>
+              </div>
+            </div>{/* flex-container of friend info */}
+
+            <div className="giftlist-header row light-teal">Saved Gifts</div>
+
+            <div className="flex-container pinned-gifts">
+              {wishListItems}
             </div>
 
-            <div className="wishlist-header container">
-              <div className="container giftlist-circle"><text>{this.props.wishlist.length}</text></div>
-            </div>
-          </div>{/* flex-container of friend info */}
-
-          <div className="giftlist-header row light-teal">Saved Gifts</div>
-
-          <div className="flex-container pinned-gifts">
-            {wishListItems}
-          </div>
-
-        </div>{/* giftlist-main container */}
-      </div>// flex-container
-    );
+          </div>{/* giftlist-main container */}
+        </div>// flex-container
+      );
+    }else{
+      return (
+        <div className="flex-container">
+          Fetching WishList
+        </div>// flex-container
+      );
+    }
   }
 });
 
+var mapStateToProps = function(state) {
+  return {
+  }
+};
 
-export default WishList;
+
+export default connect(mapStateToProps)(WishList);

@@ -4,6 +4,8 @@ var request = require('request');
 var S = require('string');
 var Promise = require('bluebird');
 var Clarifai = require('../config/clarifai_node.js');
+var url = require('url');
+var https = require('https');
 // var etsyjs = require('etsy-js');
 // var etsyClient = etsyjs.client(process.env.ETSY_KEY_STRING);
 
@@ -165,8 +167,48 @@ module.exports = {
     Clarifai.tagURL( imageURL , "image 1",function(err, result){
       console.log('Result',JSON.stringify(result, null, '\t'));
       var tagArr = result.results[0].result.tag.classes;
+      console.log(tagArr)
       res.send(200, tagArr);
     });
+  },
+
+  getTagsFromMetamind: function(req, res, next){
+
+    var post_data = JSON.stringify({'classifier_id':'imagenet-1k-net','image_url':req.body.imageURL});
+
+    // var imageURL = req.body.imageURL;
+    var API_KEY = 'Basic ' + process.env.METAMIND_API_KEY;
+    var https_options = url.parse('https://www.metamind.io/vision/classify');
+    https_options.method = 'POST';
+    https_options.headers = {
+            "Authorization": "Basic aXZxkB3eOMupDZSMNIZSdfD9hxv2zBDpen8qbMOOPLtzYwhx2X",
+            'Content-Type': 'application/json',
+            'Content-Length': post_data.length
+    }
+    var post_request = https.request(https_options, function(response) {
+            response.setEncoding('utf8');
+            response.on('data', function (chunk) {
+                console.log(chunk);
+        //         var classify = JSON.parse(chunk);
+        //         var classid = classify.predictions[0].class_name;
+        // callback(null, classid);
+      });
+    });
+
+    post_request.write(post_data);
+    post_request.end();
+    // var options = {
+    //   uri: 'https://www.metamind.io/vision/classify',
+    //   image_url: imageURL,
+    //   classifier_id: 'imagenet-1k-net',
+    //   headers: {
+    //     'Authorization': API_KEY,
+    //   }
+    // }
+    // var result;
+    // request(options).on('response', function(response) {
+    //     console.log(response.body);
+    // });
   },
 
   searchEtsy: function(req, res, next){
