@@ -12,7 +12,7 @@ var Home = React.createClass({
     return (
       <div className="container login-container">
         <div className="container">
-          <div className="logo responsive">
+          <div className="logo-responsive">
             <div className="icon-container"><img src="src/client/img/g-icon.png"></img></div>
             <div className="brand-container"><span className="gyftee-text">Gyftee</span></div>
           </div>
