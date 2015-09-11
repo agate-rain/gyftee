@@ -9,6 +9,27 @@ var BookList = React.createClass({
 
   mixins: [ Navigation ],
 
+  handleClick: function(){
+    if(this.state.open) {
+      this.setState({
+        open: false,
+        class: "section"
+      });
+    }else{
+      this.setState({
+        open: true,
+        class: "section open"
+      });
+    }
+  },
+
+  getInitialState: function(){
+     return {
+       open: false,
+       class: "section"
+     }
+  },
+
   navToGiftDetail: function(id) {
     this.transitionTo(`/gifts/${id}`);
   },
@@ -24,19 +45,20 @@ var BookList = React.createClass({
     }
 
     return (
-      <div className="books-list margin-top">
-        <div className="row light-teal category">
-          <div className="category-header">Books</div>
-        </div>
-          <div className="slider-container">
-            <Slider {...sliderSettings} className="books-list">
-              {books}
-            </Slider>
+      <div className={this.state.class}>
+        <div className="books-list">
+          <div className="row light-teal category sectionhead" onClick={this.handleClick}>
+            <div className="category-header">Books</div>
           </div>
+            <div className="slider-container sliderwrap">
+              <Slider {...sliderSettings} className="books-list slider">
+                {books}
+              </Slider>
+            </div>
+        </div>
       </div>
-
       );
   }
 });
 
-export default BookList;
+module.exports = BookList;
