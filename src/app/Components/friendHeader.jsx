@@ -1,13 +1,10 @@
 import React from 'react';
 import { Navigation } from 'react-router';
+import { formatDate } from '../Utils/utils';
 
 var FriendHeader = React.createClass({
 
   mixins: [ Navigation ],
-
-  formatDate: function(bday) {
-    return bday.slice(0,5);
-  },
 
   navToWishList: function(friendId) {
     this.transitionTo(`/friends/${friendId}/wishList`);
@@ -20,7 +17,7 @@ var FriendHeader = React.createClass({
         <div className="friend-header-container container flex-container">
           <div>
             <div className="friend-header-name">{this.props.friend.name}</div>
-            <div className="friend-header-bday">{this.formatDate(this.props.friend.birthday)}</div>
+            <div className="friend-header-bday">{formatDate(this.props.friend.birthday)}</div>
             <div>
               <button className="filter-button" onClick={this.navToWishList.bind(this, this.props.friend.id)}>WISHLIST</button>
 

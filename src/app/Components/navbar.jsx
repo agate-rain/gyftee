@@ -1,43 +1,29 @@
 import React from 'react';
 import { Navigation, Link } from 'react-router';
 import { connect } from 'react-redux';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
 var NavBar = React.createClass({
 
   mixins: [ Navigation ],
 
   render: function() {
+    var icon = (
+      <span className="brand-icon">
+        <a href="/friends">
+          <img className="brand-icon" src="/src/client/img/gyftee-icon.png" alt="gift box with ribbon" />
+          <span>Gyftee</span>
+        </a>
+      </span>
+    );
+
     return (
-      <div className="home-container">
-        <nav className="navbar navbar-fixed-top gyftee-nav teal" role="navigation">
-          <div className="container">
-            <div className="navbar-toggle" data-toggle="collapse">
-              <span className="icon-bar white"></span>
-              <span className="icon-bar white"></span>
-              <span className="icon-bar white"></span>
-            </div>
-
-            <div className="navbar-brand">
-              <Link to="/friends" className="white-font">
-                <img className="brand-icon" src="../../src/client/img/g-icon.png"/>
-                Gyftee
-              </Link>
-            </div>
-
-            <div className="collapse navbar-collapse">
-              <ul className="nav navbar-nav">
-                <li>
-                  <Link to="/friends/invite" className="nav-menu-item">Invite</Link>
-                </li>
-                <li>
-                  <Link to="/logout" className="nav-menu-item" onClick={this.logout}>Logout</Link>
-                </li>
-              </ul>
-            </div>
-
-          </div>
-        </nav>
-      </div>
+      <Navbar brand={icon} toggleNavKey={0}>
+        <Nav right eventKey={0}>
+          <NavItem eventKey={1} href="/friends/invite">Invite</NavItem>
+          <NavItem eventKey={2} href="/logout" onClick={this.logout}>Logout</NavItem>
+        </Nav>
+      </Navbar>
     );
   },
 

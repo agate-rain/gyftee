@@ -11,5 +11,3 @@ exports.sendResponse = function(response, data, statusCode){
   response.writeHead(statusCode, headers);
   response.end(JSON.stringify(data));
 };
-
-
