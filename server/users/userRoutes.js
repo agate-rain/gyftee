@@ -1,15 +1,12 @@
 var userController = require('./userController.js');
 
 module.exports = function(app) {
-  // app is the userrouter injected from middleware file
-  // app.post('/signin', userController.signin);
-  // app.post('/signout', userController.signout);
-  app.post('/saveuser', userController.saveUser);
+  // app is the user router injected from middleware file
+  app.post('/save', userController.saveUser);
   app.post('/friends', function(req, res, next) {
     BPromise.promisifyAll(facebookApi.friends(req.body.access_token))
     .then(function(friendsResponse){
       var friends = friendsResponse.data.map(function(userData) {
-          // console.log(JSON.stringify(userData,null, '\t'));
           return {
             id: userData.id,
             name: userData.name,

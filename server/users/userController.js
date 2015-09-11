@@ -11,7 +11,7 @@ module.exports = {
     User.findOne({fbId: req.body.user.user_id})
       .exec(function(err, found) {
         if (found) {
-          res.send(200, 'User already existed!');
+          res.status(200).send('User already existed!');
         } else {
           var newUser = new User({
             fbId: req.body.user.user_id,
@@ -24,17 +24,17 @@ module.exports = {
               mutual_friends : req.body.user.mutual_friends,
               giftsList: []
             });
-          console.log(newUser)
             req.body.user.mutual_friends.forEach(function(friend){
-              var newGift = new Gift({fbId: friend.id,
-                                      pinnedGifts:
-                                        [
-                                          { books : [],
-                                            music : [],
-                                            etsy: []
-                                           }
-                                        ]
-                                    });
+              var newGift = new Gift({
+                fbId: friend.id,
+                pinnedGifts:
+                  [
+                    { books : [],
+                      music : [],
+                      etsy: []
+                    }
+                  ]
+              });
               newUser.giftsList.push(newGift);
             });
 
