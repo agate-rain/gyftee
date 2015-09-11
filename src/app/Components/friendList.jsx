@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from './navbar';
 import UserHeader from './userHeader';
 import Friend from './friend';
 import { removeFriend } from '../Actions/user';
@@ -15,7 +14,6 @@ var FriendList = React.createClass({
   render: function() {
     return (
       <div className='friend-list'>
-        <Navbar />
         <UserHeader user={this.props.user} />
 
         <div className="bday-list-header">{this.props.appFriends.length} UPCOMING BIRTHDAYS</div>

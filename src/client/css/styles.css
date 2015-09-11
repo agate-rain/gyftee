@@ -111,22 +111,22 @@ body {
 .login-container {
   /*background-color: #017E82;*/
   background-image: url("../img/bg-tile.jpg");
-  display: flex;
+  /*display: flex;*/
   padding-top: 20%;
-  padding-bottom: 20%;
+  padding-bottom: 50%;
+  overflow: auto;
 
   /* Set rules to fill background */
-  min-height: 100%;
-  min-width: 480px;
+  /*min-height: 100%;*/
+  min-width: 100%;
 
   /* Set up proportionate scaling */
-  width: 100%;
-  height: auto;
+  /*height: 100%;*/
 
   /* Set up positioning */
-  position: fixed;
-  top: 0;
-  left: 0;
+  /*position: fixed;*/
+  /*top: 0;*/
+  /*left: 0;*/
 }
 
 .icon-container {
@@ -177,7 +177,7 @@ ul {
   background: #017E82;
   border: none;
   border-radius: 0;
-  height: 70px;
+  padding-bottom: 10px;
 }
 
 .navbar-collapse {
@@ -238,7 +238,7 @@ ul {
 
 .welcome-main {
   /*holds the welcome, name greeting and photo*/
-  margin-top: 10px;
+  margin-top: 100px;
 }
 .welcome-container {
   padding: 0px 20px 0px 65px;
@@ -305,7 +305,7 @@ ul {
   /*position: relative;*/
   /*justify-content: center;*/
   border-color: #004851;
-  font-size: 0.7em;
+  font-size: 0.6em;
   background-color: #004851;
   color: #FFF;
   /*align-content: center;*/
@@ -525,7 +525,7 @@ ul {
   color: #FFF;
   /*align-content: center;*/
   /*border-radius: 10px 0 10px 0;*/
-  margin: 10px 20px 10px 10px;
+  margin: 90px 20px 10px 10px;
   padding: 10px;
   text-align: center;
   width: 25%;
@@ -542,7 +542,7 @@ ul {
 }
 
 .friend-header-container {
-  padding: 0px 20px 0 65px;
+  padding: 80px 20px 10px 65px;
 }
 
 .friend-header-name {
@@ -587,7 +587,7 @@ ul {
 /***********************************/
 
 .friend-detail-container {
-  padding: 10px 0 20px 0;
+  padding: 80px 0 20px 0;
 }
 .giftlist-circle {
   background-color: #9E081B;
@@ -608,6 +608,8 @@ ul {
 }
 
 .giftlist-main {
+    margin-top: 80px;
+
   padding-bottom: 20px;
 }
 .giftlist-header {
