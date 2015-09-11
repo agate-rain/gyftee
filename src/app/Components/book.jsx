@@ -74,7 +74,7 @@ var Book = React.createClass({
 
     let element;
     if (this.state.alertVisible) {
-      element = <Alert className="saved" onDismiss={this.handleAlertDismiss} dismissAfter={2000}>
+      element = <Alert className="saved opacity" onDismiss={this.handleAlertDismiss} dismissAfter={2000}>
         <span>ITEM SAVED!</span>
       </Alert>
     }
