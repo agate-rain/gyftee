@@ -96,7 +96,7 @@ module.exports = {
             'GET',
             {"fields":"about,artists_we_like,band_members,band_interests", "access_token": access_token},
             function(response) {
-              console.log(">>>>>>>>>>>>>> Page response",response);
+             // console.log(">>>>>>>>>>>>>> Page response",response);
     });
   },
 
@@ -107,7 +107,7 @@ module.exports = {
             'GET',
             {"fields":"data,paging", "access_token": access_token},
             function(response) {
-              console.log(">>>>>>>>>>>>>> Music response",response);
+           //   console.log(">>>>>>>>>>>>>> Music response",response);
               this.getPage(response.data[0].id);
     }.bind(this));
   },
