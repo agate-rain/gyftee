@@ -150,9 +150,7 @@ module.exports = {
   generateRandomKeyword: function(userArray,callback){
     var randomIndex = Math.floor(Math.random() * (userArray.length - 1) + 1);
     var keyWord = userArray[randomIndex].name;
-    utils.fetchGiftByKeyWord(keyWord, function(gift){
-      this.props.dispatch(saveGifts(gift));
-    }.bind(this));
+    callback(keyWord);
   }
 
 };
