@@ -95,24 +95,65 @@ module.exports = {
     });
   },
 
-  getEvents: function(req, res){
+  getEvents: function(req, res, next){
+    var promises = [];
 
-    //console.log("REQUEST:------>", req.body);
-    var url = S('http://api.bandsintown.com/events/search.json?artists%5B%5D={{artist}}&date={{startDate}},{{endDate}}&location={{loc}}&radius=10&app_id=Gyftee').template(req.body).s;
-    //console.log("URL:------>", url);
-    var requestOptions = {
-     url: url,
-     json: true
-   };
+    var eventAsync = function(artist){
+      // var options = {SearchIndex: "All", IdType: "ISBN", ItemId: bookASIN, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
+      var url = 'http://api.bandsintown.com/events/search.json?artists%5B%5D='
+                + artist
+                +'&date='
+                + req.body.startDate
+                + ','
+                + req.body.endDate
+                + '&location='
+                + req.body.loc
+                + '&radius=10&app_id=Gyftee';
+      var requestOptions = {
+        url: url,
+        json: true
+      };
+      return new Promise(function(resolve, reject){
+        request(requestOptions, function(error, response, body) {
+          if (error !== null) {
+                return reject(error);
+          }
+          resolve(body);
+        });
+      })
+    };
+    var artistArr = req.body.artistArr;
 
-   request(requestOptions, function(error, response, body) {
-     if (!error && response.statusCode === 200) {
-      console.log(JSON.stringify(body));
-      res.send(body);
-    } else {
-     res.send({ success: false, message: 'Unknown Error getting result from bandsintown api.'});
-   }
- });
+    artistArr.forEach(function(artist){
+      artist = artist.split(" ").join("+");
+      promises.push(eventAsync(artist));
+    });
+
+    Promise.all(promises).then(function(result){
+      console.dir(result);
+      result = result.map(function(item){
+        return item;
+      });
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',JSON.stringify(result, null, '\t'));
+    });
+
+
+ //    //console.log("REQUEST:------>", req.body);
+ //    var url = S('http://api.bandsintown.com/events/search.json?artists%5B%5D={{artist}}&date={{startDate}},{{endDate}}&location={{loc}}&radius=10&app_id=Gyftee').template(req.body).s;
+ //    //console.log("URL:------>", url);
+ //    var requestOptions = {
+ //     url: url,
+ //     json: true
+ //   };
+
+ //   request(requestOptions, function(error, response, body) {
+ //     if (!error && response.statusCode === 200) {
+ //      console.log(JSON.stringify(body));
+ //      res.send(body);
+ //    } else {
+ //     res.send({ success: false, message: 'Unknown Error getting result from bandsintown api.'});
+ //   }
+ // });
 
  },
 
@@ -121,13 +162,13 @@ module.exports = {
     var imageURL = req.body.imageURL;
     Clarifai.tagURL( imageURL , "image 1",function(err, result){
       console.log('Result',JSON.stringify(result, null, '\t'));
-      var keyWordArr = result.results[0].result.tag.classes;
-      this.searchEtsy(keyWordArr);
-    }).bind(this);
+      var tagArr = result.results[0].result.tag.classes;
+      res.send(200, tagArr);
+    });
   },
 
-  searchEtsy: function(keyWordArr){
-    var term = 'clothing';
+  searchEtsy: function(req, res, next){
+    var terms = 'panda candy ';
     var url = "https://openapi.etsy.com/v2/listings/active.js?keywords="+
             terms + "&limit=12&includes=Images:1&api_key=" + process.env.ETSY_KEY_STRING ;
 
@@ -138,7 +179,12 @@ module.exports = {
 
    request(url, function(error, response, body) {
      if (!error && response.statusCode === 200) {
-      console.log(JSON.stringify(body));
+      var str = JSON.stringify(response.body, null, '\t').replace(/\\/g, "").substr(6);
+      str = JSON.parse(str.slice(0, str.length -3));
+      console.log('>>>>>>>RESPONSE', JSON.stringify(str, null, '\t'));
+      // console.log('>>>>>>>RESPONSE', JSON.stringify(response, null, '\t').replace(/\\/g, "")).substr(5);
+      var body = body.replace(/\\/g, "").substr(5);
+      // console.log('>>>>>>>BODY', JSON.stringify(JSON.parse(body.slice(0, body.length -2)), null, '\t'));
       // res.send(body);
     } else {
      res.send({ success: false, message: 'Unknown Error getting result from bandsintown api.'});

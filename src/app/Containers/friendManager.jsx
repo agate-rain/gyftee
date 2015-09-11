@@ -82,7 +82,7 @@ var FriendManager = React.createClass({
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
-  },
+  }
 
 });
 

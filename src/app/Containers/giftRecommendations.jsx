@@ -49,12 +49,12 @@ var GiftRecommendations = React.createClass({
     }
   },
 
-  getConcerts: function(loc, date, range, artist) {
+  getConcerts: function(loc, date, range, artistArr) {
 
     // set defaults for testing
     date = '10/10/2015';
-    range = range || 7;
-    artist = artist || "Janet Jackson";
+    range = range || 14;
+    artistArr = artistArr || ["Janet Jackson", "Marina and The Diamonds"];
     loc = loc || "San Francisco, California";
 
     // get dates
@@ -64,13 +64,13 @@ var GiftRecommendations = React.createClass({
 
     // format the location
     loc = loc.split(" ").join("+").split(",+").join(",");
-    artist = artist.split(" ").join("+");
+    // artist = artist.split(" ").join("+");
 
     // query
     $.ajax({
       url: 'http://localhost:' + PORT.PORT + '/api/gifts/getevents',
       method: 'POST',
-      data: {loc: loc, startDate: startDate, endDate: endDate, artist: artist},
+      data: {loc: loc, startDate: startDate, endDate: endDate, artistArr: artistArr},
       success: function(data) {
         console.log("CONCERT RESULTS------>", JSON.stringify(data));
         //this.props.dispatch(saveGifts(gifts));
@@ -83,11 +83,36 @@ var GiftRecommendations = React.createClass({
 
   },
 
+  getMusic : function(friendId) {
+    // 126455562499
+    var that = this;
+    var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
+    FB.api('/v2.4/' + friendId + '/music',
+            'GET',
+            {"fields":"data,paging", "access_token": access_token},
+            function(response) {
+              console.log(">>>>>>>>>>>>>> Music response",response);
+              // that.getPage(response.data[0].id);
+    });
+  },
+
+  getPage : function(pageId) {
+    // 126455562499
+    var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
+    FB.api('/v2.4/' + pageId,
+            'GET',
+            {"fields":"about,artists_we_like,band_members,band_interests", "access_token": access_token},
+            function(response) {
+              console.log(">>>>>>>>>>>>>> Page response",response);
+    });
+  },
+
   componentDidMount: function() {
     var friendId = window.location.href.split('/')[4];
     this.fetchFriendById(friendId);
     this.fetchImageUrlById(friendId);
     this.getConcerts();
+    // this.getMusic(friendId);
   },
 
   /* AMAZON BOOKS */
@@ -106,7 +131,14 @@ var GiftRecommendations = React.createClass({
       success: function(data) {
         this.props.dispatch(fetchFriend(JSON.parse(data)));
         this.generateRandomKeyword(this.getUserData("books"));
-        console.log("MUSIC TASTE ------->", this.getUserData('music').map(function(item) { return item.name; }));
+        // console.log("MUSIC TASTE ------->", this.getUserData('music').map(function(item) { return item.name; }));
+        var bandArr = this.getUserData('music').map(function(item) { return item.name; })
+        console.log("MUSIC TASTE ------->", bandArr);
+        var userLocation = this.getUserData('location');
+        var birthday = this.getUserData('birthday');
+        var range = 14;
+        this.getConcerts(userLocation,birthday,range,bandArr);
+
       }.bind(this),
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
