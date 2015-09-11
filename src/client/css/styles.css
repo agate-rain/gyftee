@@ -177,7 +177,7 @@ ul {
   background: #017E82;
   border: none;
   border-radius: 0;
-
+  padding-bottom: 10px;
 }
 
 .navbar-collapse {
