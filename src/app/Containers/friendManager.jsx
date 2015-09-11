@@ -4,6 +4,7 @@ import { fetchFriends } from '../Actions/user';
 import { fetchFriend } from '../Actions/friend';
 import FilterableFriends from '../Components/filterableFriends';
 import FriendList from '../Components/friendList';
+import NavBar from './navbar';
 import PORT from '../../config/port.js';
 import { Navigation } from 'react-router';
 
@@ -15,6 +16,7 @@ var FriendManager = React.createClass({
 
     return (
       <div className="friend-manager">
+      <NavBar />
         <FriendList appFriends={this.props.friends} user={this.props.profile} navToFriendRecs={this.navToFriendRecs}/>
       </div>
     );
