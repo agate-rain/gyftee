@@ -95,7 +95,7 @@ var Book = React.createClass({
             </div>
 
               <div className="book-thumbnail">
-                <a className="book" href={bookDetails.url}><img src={bookDetails.img} /></a>
+                <a className="book" href={bookDetails.url} target="_blank"><img src={bookDetails.img} /></a>
               </div>
           </div>
 
