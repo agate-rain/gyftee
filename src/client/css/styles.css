@@ -423,6 +423,7 @@ ul {
 }
 
 
+
 /***********************************/
 /******** GIFT DETAIL VIEW ********/
 /************************************/
@@ -487,6 +488,12 @@ ul {
   text-align: center;
   width: 100%;
 }
+
+.add-to-list-button:hover{
+  background-color: #017E82;
+  color: white;
+}
+
 .book-text-container {
   padding: 5px 0 10px 0;
 }
@@ -498,6 +505,11 @@ ul {
 
 .based-on-container {
   padding: 10px;
+}
+
+.saved {
+  font-size: 0.7em;
+  background-color: white;
 }
 
 

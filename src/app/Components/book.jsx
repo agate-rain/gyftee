@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import PORT from '../../config/port';
+import { Button, Alert } from 'react-bootstrap';
 
 var Book = React.createClass({
   addToList: function(ASIN) {
@@ -18,7 +19,7 @@ var Book = React.createClass({
             friendId : friendId,
             userId: userId}, // need to pass in the access token
       success: function(data) {
-        alert(data);
+        // alert(data);
         // = JSON.parse(data);
       }.bind(this),
       error: function(xhr, status, err) {
@@ -28,6 +29,21 @@ var Book = React.createClass({
   },
 
   componentDidMount: function() {
+  },
+
+  // enables the fading alert upon pinning item to wishlist
+  getInitialState: function() {
+    return {
+      alertVisible: false
+    };
+  },
+
+  handleAlertDismiss: function() {
+    this.setState({alertVisible: false});
+  },
+
+  handleAlertShow: function() {
+    this.setState({alertVisible: true});
   },
 
   render: function() {
@@ -56,6 +72,13 @@ var Book = React.createClass({
       author: basedOn.ItemAttributes.Author || 'NA',
     };
 
+    let element;
+    if (this.state.alertVisible) {
+      element = <Alert className="saved" onDismiss={this.handleAlertDismiss} dismissAfter={2000}>
+        <span>ITEM SAVED!</span>
+      </Alert>
+    }
+
     return (
       <div className="flex-container seafoam detail-main">
 
@@ -64,8 +87,11 @@ var Book = React.createClass({
             <div className="add-to-list-container">
               <div className="add-to-list" onClick={this.addToList.bind(this, bookDetails.ASIN)}>
                 <button className="add-to-list-button">
-                  <i className="glyphicon add-heart glyphicon-heart"></i>
+                  <a>
+                    <i className="glyphicon add-heart glyphicon-heart"></i>
+                  </a> ADD TO LIST
                 </button>
+                <div>{element}</div>
               </div>
             </div>
 
@@ -100,6 +126,7 @@ var Book = React.createClass({
     );
   }
 });
+
 
 
 var mapStateToProps = function(state) {
