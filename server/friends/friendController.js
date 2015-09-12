@@ -41,7 +41,6 @@ module.exports = {
     });
   },
    saveGift: function(req, res, next){
-    console.log("SAVING THE GIFT");
     var friendId = req.body.friendId;
     var userId = req.body.userId;
     var ASIN = req.body.ASIN;
@@ -59,7 +58,6 @@ module.exports = {
             });
             user.markModified('giftsList');
             user.save();
-            console.log('>>>> Gift List Update',JSON.stringify(user,null, '\t'));
             res.send(200, "Gift saved to database")
           } else {
            console.log('User Not Found!')
@@ -94,7 +92,6 @@ module.exports = {
             // Save the modified document
             user.markModified('giftsList');
             user.save();
-            console.log('>>>> Gift List Update',JSON.stringify(user,null, '\t'));
             res.send(200, "Gift saved to database")
           } else {
            console.log('User Not Found!')
