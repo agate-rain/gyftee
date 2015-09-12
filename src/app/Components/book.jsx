@@ -53,7 +53,7 @@ var Book = React.createClass({
 
     var missingBookCover = 'http://www.mbalit.co.uk/sites/default/files/imagecache/fullsize/imagefield_default_images/generic_book_cover_0.jpg';
 
-    if(book.details.Offers.Offer){
+    if (book.details.Offers.Offer) {
       var bookDetails = {
         ASIN : book.details.ASIN,
         url: book.details.DetailPageURL || '',
@@ -65,7 +65,7 @@ var Book = React.createClass({
         basedOn: book.basedOn.ItemAttributes.Title,
         isPrime: book.details.Offers.Offer.OfferListing.IsEligibleForPrime === "1",
       };
-    }else{
+    } else {
       var bookDetails = {
         ASIN : book.details.ASIN,
         url: book.details.DetailPageURL || '',
@@ -99,7 +99,7 @@ var Book = React.createClass({
           <div>
             <div className="add-to-list-container">
               <div className="add-to-list" onClick={this.addToList.bind(this, bookDetails.ASIN)}>
-                <Button onClick={this.handleAlertShow} className="add-to-list-button">
+                <Button onClick={this.handleAlertShow} className="button add-to-list-button">
                   <a>
                     <i className="glyphicon add-heart glyphicon-heart"></i>
                   </a> ADD TO LIST
@@ -121,10 +121,10 @@ var Book = React.createClass({
             </div>
 
             {(() => {
-              if (bookDetails.isPrime){
+              if (bookDetails.isPrime) {
                 return (
-                    <img className ="prime-img" src="../../src/client/img/amazon-prime.png" />
-                  );
+                  <img className ="prime-img" src="../../src/client/img/amazon-prime.png" />
+                );
               }
             })()}
 
@@ -137,8 +137,6 @@ var Book = React.createClass({
     );
   }
 });
-
-
 
 var mapStateToProps = function(state) {
   return {
