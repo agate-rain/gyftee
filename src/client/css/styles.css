@@ -13,7 +13,7 @@
 body {
   font-family: 'Lato', sans-serif;
   text-align: center;
-  font-size: 300%;
+  font-size: 200%;
   font-weight: 300;
 }
 
@@ -241,7 +241,7 @@ ul {
   margin-top: 100px;
 }
 .welcome-container {
-  padding: 0px 20px 0px 65px;
+  padding: 0px 20px 0px 5%;
   /*background-color: yellow;*/
   text-align: left;
   flex: 1.2;
@@ -350,14 +350,14 @@ ul {
   color: #017E82;
   font-size: 0.7em;
   text-align: left;
-  margin-left: 65px;
+  margin-left: 5%;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
 .bday-list-item {
   flex: 1;
-  padding: 0 48px 0 10px;
+  /*padding: 0 48px 0 10px;*/
   text-align: left;
 }
 
@@ -365,7 +365,7 @@ ul {
   color: #004851;
   text-decoration: none;
   text-align: left;
-  font-weight: normal;
+  /*font-weight: normal;*/
   /*padding-left: 10px;*/
   font-size: 0.8em;
 }
@@ -391,12 +391,12 @@ ul {
 }
 
 .bday-row {
-  padding: 20px 20px 20px 20px;
+  padding: 20px 20px 20px 5%;
   /*border-style: solid;*/
   border-top: solid;
   border-color: white;
   display: flex;
-  font-weight: normal;
+ /* font-weight: normal;*/
   /*margin-bottom: 20px;*/
   /*padding: 0 12px;*/
   /*align-items: center;*/
@@ -407,11 +407,12 @@ ul {
 }
 
 .date-container {
-  display: flex;
+  /*display: flex;*/
   /*align-content: left;*/
-  flex: 0.3;
+  /*flex: 0.3;*/
   font-size: 0.8em;
   color: #004851;
+  padding-right: 10%;
 }
 
 .no-bday {
@@ -601,7 +602,13 @@ ul {
 }
 
 .friend-info{
-  padding: 80px 20px 0 65px;
+  padding: 70px 5% 0 10%;
+}
+
+@media (min-width: 320px) and (max-width: 650px) {
+  .pinned-gift {
+    flex: 1 50%;
+  }
 }
 
 .friend-thumbnail {
@@ -649,13 +656,13 @@ ul {
 .category-header {
   color: #FFF;
   font-size: 0.8em;
-  font-weight: normal;
-  padding: 5px 0 5px 65px;
+ /* font-weight: normal;*/
+  padding: 5px 0 5px 10%;
 }
 
 .slider-container{
-  margin-left: 70px;
-  padding: 10px 0 10px 10px;
+  margin-left: 5%;
+  padding: 20px 0 0px 5%;
 }
 
 .prime-img{
@@ -679,7 +686,7 @@ ul {
 }
 
 .book-title-thumb {
-    font-size: 0.4em;
+    font-size: 0.6em;
     text-align: left;
     margin-left: 10%;
 }
@@ -704,7 +711,7 @@ ul {
 
 @media (max-width: 450px) {
   .profile-photo-container {
-    padding-right: 2%;
+    padding-right: 5%;
   }
 }
 
@@ -812,7 +819,7 @@ ul {
   transform: translate(0%, -50%) rotate(45deg);
 }
 .section.open .sliderwrap {
-  height: 250px;
+  height: 220px;
 }
 
 .sliderwrap {
@@ -822,7 +829,6 @@ ul {
 }
 
 .slider {
-  padding: 1em;
   color: #333;
   line-height: 1.3;
 }
