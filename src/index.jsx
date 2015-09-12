@@ -22,24 +22,21 @@ const history = new BrowserHistory();
 const store = configStore();
 
 // react routes
-// TODO add route for friendGiftList
-// <Route name="friendGiftList" path="/friends/:friendId/giftlist" handler={giftList} />
-
 React.render(
   <Provider store={store}>
   {() =>
     <Router history={history}>
-      <Route component={App}>
-        <Route name="login" path="/login" component={Login} />
-        <Route name="friends" path="/friends" component={FriendManager} />
-        <Route name="allFriendsList" path="/friends/invite" component={AllFriendsList} />
-        <Route name="inviteFriend" path="/friends/invite/:friendId" component={InviteFriend} />
-        <Route name="wishList" path="/friends/:friendId/wishList" component={WishList} />
-        <Route name="friendGifts" path="/friends/:friendId" component={GiftRecs} />
-        <Route name="giftDetail" path="/gifts/:giftId" component={GiftDetail} />
-        <Route name="imageView" path="/friends/:friendId/image" component={ImageView} />
-      </Route>
       <Redirect from="/" to="/login"/>
+      <Route path="/" component={App}>
+        <Route name="login" path="login" component={Login} />
+        <Route name="friends" path="friends" component={FriendManager} />
+        <Route name="allFriendsList" path="friends/invite" component={AllFriendsList} />
+        <Route name="inviteFriend" path="friends/invite/:friendId" component={InviteFriend} />
+        <Route name="wishList" path="friends/:friendId/wishList" component={WishList} />
+        <Route name="friendGifts" path="friends/:friendId" component={GiftRecs} />
+        <Route name="giftDetail" path="gifts/:giftId" component={GiftDetail} />
+        <Route name="imageView" path="friends/:friendId/image" component={ImageView} />
+      </Route>
     </Router>
   }
   </Provider>,

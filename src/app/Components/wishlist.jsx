@@ -9,7 +9,7 @@ import utils from '../Utils/utils';
 var WishList = React.createClass({
 
   componentDidMount: function() {
-    var friendId = window.location.href.split('/')[4];
+    var friendId = this.props.friend.friend.id;
     utils.fetchFriendById(friendId, function(friend){
       this.props.dispatch(fetchFriend(friend));
     }.bind(this));
@@ -72,6 +72,7 @@ var WishList = React.createClass({
 
 var mapStateToProps = function(state) {
   return {
+    state
   }
 };
 
