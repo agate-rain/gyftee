@@ -22,7 +22,7 @@ var ConcertList = React.createClass({
     var artist = [];
     if (this.props.concerts) {
       this.props.concerts.forEach(function(concert) {
-        var artistName = concert.artists[0].name;
+        var artistName = concert.details.artists[0].name;
         artist.push(artistName);
       });
       this.getArtistImage(artist)
@@ -35,7 +35,7 @@ var ConcertList = React.createClass({
     var mainArtistArr;
     if (this.props.concerts) {
       this.props.concerts.forEach(function(concert) {
-        var artistName = concert[0].artists[0].name;
+        var artistName = concert.details.artists[0].name;
         artist.push(artistName);
       });
       this.getArtistImage(artist, function(artistArr) {

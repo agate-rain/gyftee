@@ -18,12 +18,22 @@ var GiftRecommendations = React.createClass({
     /*var concerts = this.filterGifts("concert");
     var books = this.filterGifts("book");*/
 
+    var books = this.props.gifts.filter(function(gift){
+      return gift.category === "book";
+    });
+
+    var concerts = this.props.gifts.filter(function(gift){
+      return gift.category === "concert";
+    });
+
+    console.log("CONCERTS FOR DEBUGGING >>>>>>>>>>", concerts);
+
     return (
         <div className="recommendations">
           <NavBar />
           <FriendHeader friend={this.props.friend.friend} url={this.props.friend.image_url} />
-          <BookList amazonBooks={this.props.gifts} />
-          <ConcertList concerts={this.state.concerts} />
+          <BookList amazonBooks={books} />
+
         </div>
     );
   },
@@ -46,8 +56,9 @@ var GiftRecommendations = React.createClass({
       utils.getUserData("books", friend, function(userData){
         utils.generateRandomKeyword(userData, function(keyWord){
             if(keyWord){
-              utils.fetchGiftByKeyWord(keyWord, function(gift){
-                this.props.dispatch(saveGifts(gift));
+
+              utils.fetchGiftByKeyWord(keyWord, function(books){
+                this.props.dispatch(saveGifts(books));
               }.bind(this));
             }else{
               this.props.dispatch(saveGifts(null));
@@ -77,11 +88,8 @@ var GiftRecommendations = React.createClass({
       });
 
       var range = 365;
-      utils.getConcerts(userLocation,userBirthday,range,bandArr, function(data){
-        this.setState({
-          concerts : data
-        })
-       // console.log("CONCERT RESULTS------>", JSON.stringify(data));
+      utils.getConcerts(userLocation,userBirthday,range,bandArr, function(concerts){
+        this.props.dispatch(saveGifts(concerts));
       }.bind(this));
     }.bind(this));
 
@@ -89,16 +97,13 @@ var GiftRecommendations = React.createClass({
       this.props.dispatch(saveImageUrl(imageURLByID));
     }.bind(this));
 
-    // this.getConcerts();
-    // this.getMusic(friendId);
   },
   /* AMAZON BOOKS */
   generateRandomKeyword: function(userArray){
-    console.log('>>>',userArray)
     var randomIndex = Math.floor(Math.random() * (userArray.length - 1) + 1);
     var keyWord = userArray[randomIndex].name;
-    utils.fetchGiftByKeyWord(keyWord, function(gift){
-      this.props.dispatch(saveGifts(gift));
+    utils.fetchGiftByKeyWord(keyWord, function(books){
+      this.props.dispatch(saveGifts(books));
     }.bind(this));
   }
 });

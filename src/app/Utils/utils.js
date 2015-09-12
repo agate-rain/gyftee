@@ -146,7 +146,19 @@ module.exports = {
       method: 'POST',
       data: {loc: loc, startDate: startDate, endDate: endDate, artistArr: artistArr},
       success: function(data) {
-        callback(data);
+        // Format the data to conform to the gift object structure
+        var concerts = data[0];
+        var concertGifts = [];
+
+        for (var concert in concerts){
+          concertGifts.push({
+            basedOn: {},
+            category: "concert",
+            details: concerts[concert]
+          });
+        }
+
+        callback(concertGifts);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/gifts/getevents", status, err.toString());

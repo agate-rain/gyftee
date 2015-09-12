@@ -8,7 +8,7 @@ var SliderSettings = {
   autoplay: false,
   arrows: false,
   fade: true,
-  swipe: true
+  swipe: true,
   responsive: [
     {
       breakpoint: 2000,
