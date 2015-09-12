@@ -39,7 +39,7 @@ var GiftRecommendations = React.createClass({
   },
 
   componentDidMount: function() {
-    var friendId = window.location.href.split('/')[4];
+    var friendId = this.props.params.friendId;
     utils.fetchFriendById(friendId, function(friend){
       this.props.dispatch(fetchFriend(friend));
 

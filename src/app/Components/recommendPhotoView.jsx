@@ -5,14 +5,11 @@ import PORT from '../../config/port';
 var RecommendPhotoView = React.createClass({
 
   componentDidMount: function() {
-    var friendId = window.location.href.split('/')[4];
+    var friendId = this.props.params.friendId;
     var rand = Math.floor(Math.random() * this.props.albums.length) + 1;
     var randomAlbum = this.props.albums[rand];
     var randomPhoto = randomAlbum[0];
-    console.log('Random Photo',randomPhoto.source);
     var imageURL = randomPhoto.source;
-    // this.getTags(imageURL)
-    console.log('.>>>>>>>>>>>>>friend id',friendId)
     this.getMovieList(friendId);
   },
 
