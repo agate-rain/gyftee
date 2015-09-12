@@ -1,16 +1,14 @@
-import ThumbnailConcert from './thumbnailConcert';
-import PORT from '../../config/port';
-import { saveConcert } from '../Actions/friend';
+import React from 'react';
 import { connect } from 'react-redux';
-var React = require('react');
-var Thumbnail = require('./thumbnail');
-var Book = require('./book');
-var Navigation = require('react-router').Navigation;
-var Link = require('react-router').Link;
-var sliderSettings = require('../../util/sliderSettings');
-
-
-var Slider = require('react-slick');
+import { Navigation } from 'react-router';
+import { Link } from 'react-router';
+import { saveConcert } from '../Actions/friend';
+import PORT from '../../config/port';
+import Thumbnail from './thumbnail';
+import ThumbnailConcert from './thumbnailConcert';
+import Book from './book';
+import Slider from'react-slick';
+import sliderSettings from '../../util/sliderSettings';
 
 var ConcertList = React.createClass({
 
@@ -20,10 +18,10 @@ var ConcertList = React.createClass({
     this.transitionTo(`/gifts/${id}`);
   },
 
-  componentDidMount: function(){
+  componentDidMount: function() {
     var artist = [];
-    if(this.props.concerts){
-      this.props.concerts.forEach(function(concert){
+    if (this.props.concerts) {
+      this.props.concerts.forEach(function(concert) {
         var artistName = concert.artists[0].name;
         artist.push(artistName);
       });
@@ -35,23 +33,21 @@ var ConcertList = React.createClass({
     var concerts = [];
     var artist = [];
     var mainArtistArr;
-    if(this.props.concerts){
-      ////////////////GETTING IMAGE FROM ARTIST//////////////////////
-      this.props.concerts.forEach(function(concert){
+    if (this.props.concerts) {
+      this.props.concerts.forEach(function(concert) {
         var artistName = concert[0].artists[0].name;
         artist.push(artistName);
       });
-      this.getArtistImage(artist, function(artistArr){
-        if(!this.props.friend.concert && Array.isArray(artistArr)){
+      this.getArtistImage(artist, function(artistArr) {
+        if (!this.props.friend.concert && Array.isArray(artistArr)) {
           this.props.dispatch(saveConcert(artistArr))
-        }else{
+        } else {
           console.log(artistArr);
         }
       }.bind(this))
-      ////////////////GETTING IMAGE FROM ARTIST//////////////////////
     }
 
-    if(this.props.concerts){
+    if (this.props.concerts) {
       var flattened = this.props.concerts.reduce(function(a, b) {
             return a.concat(b);
           }, []);
@@ -105,4 +101,3 @@ var mapStateToProps = function(state) {
 };
 
 export default connect(mapStateToProps)(ConcertList);
-

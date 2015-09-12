@@ -74,7 +74,6 @@ var LoggedIn = React.createClass({
     if (this.props.profile) {
       return (
         <div className="logged-in-box auth0-box logged-in">
-          <p>You are logged in!</p>
         </div>
       );
     } else {
