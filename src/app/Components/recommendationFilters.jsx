@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var RecommendationFilters = React.createClass({
   render: function() {
@@ -10,4 +10,4 @@ var RecommendationFilters = React.createClass({
   }
 });
 
-module.exports = RecommendationFilters;
+export default RecommendationFilters;

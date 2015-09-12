@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -16,7 +16,6 @@ class App extends Component {
 
   render() {
     // Injected by React Router
-
     const { location, children} = this.props;
     const { pathname } = location;
     const value = pathname.substring(1);
@@ -27,21 +26,6 @@ class App extends Component {
       </div>
     );
   }
-}
-
-App.propTypes = {
-//   location: PropTypes.shape({
-//     pathname: PropTypes.string.isRequired
-//   }),
-//   params: PropTypes.shape({
-//     userLogin: PropTypes.string,
-//     repoName: PropTypes.string
-//   }).isRequired,
-//   children: PropTypes.node
-// };
-
-// App.contextTypes = {
-//   router: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
