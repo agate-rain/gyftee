@@ -1,4 +1,5 @@
 import React from 'react';
+import { Navigation } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchFriend, saveImageUrl } from '../Actions/friend'
 import { saveGifts, initGifts } from '../Actions/gifts'
@@ -13,6 +14,8 @@ import NavBar from '../Components/navbar';
 import utils from '../Utils/utils'
 
 var GiftRecommendations = React.createClass({
+
+  mixins: [ Navigation ],
 
   render: function() {
     /*var concerts = this.filterGifts("concert");
@@ -29,13 +32,19 @@ var GiftRecommendations = React.createClass({
     console.log("CONCERTS FOR DEBUGGING >>>>>>>>>>", concerts);
 
     return (
-        <div className="recommendations">
-          <NavBar />
-          <FriendHeader friend={this.props.friend.friend} url={this.props.friend.image_url} />
-          <BookList amazonBooks={books} />
-
-        </div>
+      <div className="recommendations">
+        <NavBar />
+        <FriendHeader friend={this.props.friend.friend}
+          url={this.props.friend.image_url}
+          navToWishList={this.navToWishList} />
+        <BookList amazonBooks={this.props.gifts} />
+        <ConcertList concerts={this.state.concerts} />
+      </div>
     );
+  },
+
+  navToWishList: function(friendId) {
+    this.transitionTo(`/friends/${friendId}/wishList`);
   },
 
   filterGifts: function(category){
@@ -77,7 +86,6 @@ var GiftRecommendations = React.createClass({
           })
         }
       });
-    //  console.log('>>>>>',bandArr)
 
       var userLocation;
       utils.getUserData('location', friend, function(location){
