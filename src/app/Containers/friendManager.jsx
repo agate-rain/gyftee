@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { fetchFriends } from '../Actions/user';
 import { fetchFriend } from '../Actions/friend';
@@ -87,11 +87,6 @@ var FriendManager = React.createClass({
   }
 
 });
-
-FriendManager.propTypes = {
-  profile: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired
-};
 
 var mapStateToProps = function(state) {
   return {

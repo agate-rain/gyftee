@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var FacebookFriend = require('./facebookFriend');
 
@@ -19,4 +19,4 @@ var SearchResults = React.createClass({
   }
 });
 
-module.exports = SearchResults;
+export default SearchResults;

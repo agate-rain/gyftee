@@ -1,11 +1,10 @@
-var React = require('react');
-var Thumbnail = require('./thumbnail');
-var Book = require('./book');
-var Navigation = require('react-router').Navigation;
-var Link = require('react-router').Link;
-var sliderSettings = require('../../util/sliderSettings');
-
-var Slider = require('react-slick');
+import React from 'react';
+import Thumbnail from './thumbnail';
+import Book from './book';
+import { Navigation } from 'react-router';
+import { Link } from 'react-router';
+import Slider from'react-slick';
+import sliderSettings from '../../util/sliderSettings';
 
 var ConcertList = React.createClass({
 
@@ -34,4 +33,4 @@ var ConcertList = React.createClass({
   }
 });
 
-module.exports = ConcertList;
+export default ConcertList;

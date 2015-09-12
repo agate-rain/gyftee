@@ -89,5 +89,4 @@ var RecommendPhotoView = React.createClass({
 
 });
 
-
 export default RecommendPhotoView;
