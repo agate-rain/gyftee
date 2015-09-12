@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchFriend, saveImageUrl } from '../Actions/friend'
-import { saveGifts } from '../Actions/gifts'
+import { saveGifts, initGifts } from '../Actions/gifts'
 import Slider from 'react-slick';
 import FriendHeader from '../Components/friendHeader';
 import Thumbnail from '../Components/thumbnail';
@@ -49,6 +49,8 @@ var GiftRecommendations = React.createClass({
   },
 
   componentDidMount: function() {
+
+    this.props.dispatch(initGifts());
     var friendId = this.props.params.friendId;
     utils.fetchFriendById(friendId, function(friend){
       this.props.dispatch(fetchFriend(friend));

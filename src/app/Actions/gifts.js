@@ -6,3 +6,10 @@ export function saveGifts(arrayGift) {
     gifts : arrayGift
   };
 };
+
+export function initGifts() {
+  return {
+    type : types.INIT_GIFTS
+  };
+};
+
