@@ -1,6 +1,6 @@
-var React = require('react');
-var App = require('../Components/app');
-var Auth0 = require('../../config/auth0');
+import React from 'react';
+import App from '../Components/app';
+import Auth0 from '../../config/auth0';
 
 var Login = React.createClass({
   render: function() {
@@ -10,4 +10,4 @@ var Login = React.createClass({
   }
 });
 
-module.exports = Login;
+export default Login;

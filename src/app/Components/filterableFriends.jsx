@@ -1,6 +1,5 @@
-var React = require('react');
-
-var SearchResults = require('./searchResults');
+import React from 'react';
+import SearchResults from './searchResults';
 
 var FilterableFriends = React.createClass({
   getInitialState: function () {
@@ -42,4 +41,4 @@ var FilterableFriends = React.createClass({
   }
 });
 
-module.exports = FilterableFriends;
+export default FilterableFriends;
