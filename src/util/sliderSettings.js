@@ -5,6 +5,10 @@ var SliderSettings = {
   speed: 500,
   slidesToShow: 6,
   slidesToScroll: 6,
+  autoplay: false,
+  arrows: false,
+  fade: true,
+  swipe: true
   responsive: [
     {
       breakpoint: 2000,
