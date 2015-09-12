@@ -2,6 +2,7 @@ import React from 'react';
 import { Navigation } from 'react-router';
 import { connect } from 'react-redux';
 import PORT from '../../config/port.js';
+import { fetchFriend } from '../Actions/friend'
 
 var Friend = React.createClass({
 
@@ -41,6 +42,7 @@ var Friend = React.createClass({
   },
 
   navToFriendWishList: function(id) {
+    this.props.dispatch(fetchFriend(this.props.friend));
     this.transitionTo(`/friends/${id}/wishlist`);
   },
 
@@ -85,7 +87,8 @@ var Friend = React.createClass({
 
 var mapStateToProps = function(state) {
   return {
-    profile: state.user.profile
+    profile: state.user.profile,
+    currentFriend: state.friend
   }
 };
 

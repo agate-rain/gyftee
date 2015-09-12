@@ -32,41 +32,42 @@ var WishList = React.createClass({
     }
     if(friend !== null){
 
-    return (
-      <div>
-        <div className="flex-container">
-          <div className="giftlist-main container">
+      return (
+        <div>
+          <div className="flex-container">
+            <div className="giftlist-main container">
 
-            <div className="container flex-container">
-              <div className="wishlist-header">
-                <div className="friend-header-name">{friend.name}</div>
-                <div className="friend-header-bday">{formatDate(friend.birthday)}</div>
+              <div className="container flex-container">
+                <div className="wishlist-header">
+                  <div className="friend-header-name">{friend.name}</div>
+                  <div className="friend-header-bday">{formatDate(friend.birthday)}</div>
 
-              </div>
-
-              <div className="wishlist-header profile-photo-container">
-                <div className="thumbnail profile-photo">
-                  <img src={url} />
                 </div>
-              </div>
+
+                <div className="wishlist-header profile-photo-container">
+                  <div className="thumbnail profile-photo">
+                    <img src={url} />
+                  </div>
+                </div>
 
 
-              <div className="wishlist-header container">
-                <div className="container giftlist-circle"><text>{this.props.wishlist.length}</text></div>
-              </div>
-            </div>{/* flex-container of friend info */}
+                <div className="wishlist-header container">
+                  <div className="container giftlist-circle"><text>{this.props.wishlist.length}</text></div>
+                </div>
+              </div>{/* flex-container of friend info */}
 
-          </div>{/* giftlist-main container */}
-        </div>{/* flex-container */}
+            </div>{/* giftlist-main container */}
+          </div>{/* flex-container */}
 
-        <div className="giftlist-header row light-teal">Saved Gifts</div>
+          <div className="giftlist-header row light-teal">Saved Gifts</div>
 
-        <div className="flex-container pinned-gifts">
-          {wishListItems}
+          <div className="flex-container pinned-gifts">
+            {wishListItems}
+          </div>
         </div>
-      </div>
 
-    );
+      );
+    }
   }
 });
 
