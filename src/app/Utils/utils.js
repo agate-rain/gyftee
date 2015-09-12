@@ -147,7 +147,9 @@ module.exports = {
       data: {loc: loc, startDate: startDate, endDate: endDate, artistArr: artistArr},
       success: function(data) {
         // Format the data to conform to the gift object structure
-        var concerts = data[0];
+        var concerts = data.reduce(function(a, b) {
+            return a.concat(b);
+          }, []);
         var concertGifts = [];
 
         for (var concert in concerts){
@@ -157,7 +159,6 @@ module.exports = {
             details: concerts[concert]
           });
         }
-
         callback(concertGifts);
       }.bind(this),
       error: function(xhr, status, err) {
