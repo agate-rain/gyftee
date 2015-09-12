@@ -61,9 +61,11 @@ module.exports = {
       method: 'POST',
       data: {keyword : keyword}, // need to pass in the access token
       success: function(gift) {
-        this.getSimilarItem(gift.Items.Item[0], function(gift){
-          cb(gift);
-        });
+        if(gift.Items.Item){
+          this.getSimilarItem(gift.Items.Item[0], function(gift){
+            cb(gift);
+          });
+        }
       },
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());

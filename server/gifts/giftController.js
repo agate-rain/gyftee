@@ -38,7 +38,7 @@ module.exports = {
   itemLookup: function(req, res) {
     // hard coding for testing will refactor lataer
     var giftArr = req.body.giftArr;
-    console.log('>>>>', giftArr)
+    // console.log('>>>>', giftArr)
     if(giftArr.books.length !== 0){
       var bookArr = giftArr.books;
     };
@@ -155,7 +155,7 @@ module.exports = {
                 + req.body.endDate
                 + '&location='
                 + req.body.loc
-                + '&radius=10&app_id=Gyftee';
+                + '&radius=150&app_id=Gyftee';
       var requestOptions = {
         url: url,
         json: true
@@ -181,6 +181,8 @@ module.exports = {
         result = result.map(function(item){
           return item;
         });
+
+        // console.log('>>>>>>>>>',result)
         result = result.filter(function(array1){
           return array1.length !== 0;
         }).filter(function(array2){
@@ -231,6 +233,8 @@ module.exports = {
 
     post_request.write(post_data);
     post_request.end();
+
+
     // var options = {
     //   uri: 'https://www.metamind.io/vision/classify',
     //   image_url: imageURL,
@@ -246,7 +250,7 @@ module.exports = {
   },
 
   searchEtsy: function(req, res, next){
-    var terms = 'panda candy ';
+    var terms = 'panda candy';
     var url = "https://openapi.etsy.com/v2/listings/active.js?keywords="+
             terms + "&limit=12&includes=Images:1&api_key=" + process.env.ETSY_KEY_STRING ;
 
