@@ -15,7 +15,7 @@ var FriendHeader = React.createClass({
       return (
       <div className="friend-info">
         <div className="friend-header-container container flex-container">
-          <div>
+          <div className="friend-header-part">
             <div className="friend-header-name">{this.props.friend.name}</div>
             <div className="friend-header-bday">{formatDate(this.props.friend.birthday)}</div>
             <div className="friend-header-name">
@@ -24,7 +24,7 @@ var FriendHeader = React.createClass({
             </div>
           </div>
 
-          <div className="profile-photo-container">
+          <div className="friend-header-part profile-photo-container">
             <div className="thumbnail profile-photo">
               <img src={this.props.url} />
             </div>

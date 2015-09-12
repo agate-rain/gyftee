@@ -29,6 +29,9 @@ body {
   margin: 0;
 }
 
+
+
+
 .flex-item {
   /*text-align: center;*/
 }
@@ -43,7 +46,6 @@ body {
 
 .row {
   display: flex;
-  margin-bottom: 20px;
   padding: 0 12px;
   align-items: center;
 }
@@ -109,19 +111,12 @@ body {
 .login-container {
   background-image: url("../img/bg-tile.jpg");
 
-  padding-top: 40px;
-  padding-bottom: 40px;
-
   /* Set up proportionate scaling and preserve the aspect ratio */
   min-width: 100%;
   min-height: 100%;
 
   padding-top: 40px;
   padding-bottom: 40px;
-
-  /* Set up proportionate scaling and preserve the aspect ratio */
-  min-width: 100%;
-  min-height: 100%;
 
   /* Set up positioning */
   position: fixed;
@@ -129,13 +124,8 @@ body {
   left: 0;
 }
 
-.logo-responsive img {
-  max-width: 40%;
-}
-
 .logo-responsive {
-  max-width: 50%;
-  margin: auto;
+  padding-bottom: 50px;
 }
 
 .icon-container {
@@ -143,15 +133,14 @@ body {
 }
 
 .brand-container {
-  padding-bottom: 20%;
   text-align: center;
 }
 
 .login-button {
-  width: 40%;
+  width: 400px;
   border-color: #004851;
   font-weight: 400;
-  font-size: 5.0vw;
+  font-size: 32px;
   background-color: #004851;
   padding: 10px;
 }
@@ -172,7 +161,7 @@ body {
 .gyftee-text {
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  font-size: 7.0vw;
+  font-size: 64px;
   color: #FFF;
 }
 
@@ -297,10 +286,22 @@ ul {
 
 .profile-photo-container {
   padding-top: 10px;
+  padding-right: 10%;
   display: flex;
   flex: 1;
   /*background-color: yellow;*/
-  justify-content: center;
+  justify-content: flex-end;
+  padding: 2%;
+}
+
+.wishlist-header-aside {
+    /* padding-top: 10px; */
+    /* padding-right: 10%; */
+    display: inline-flex;
+    flex: 1;
+    /* background-color: yellow; */
+    /* justify-content: flex-end; */
+    align-items: center;
 }
 
 .profile-photo {
@@ -325,7 +326,7 @@ ul {
   margin-bottom: 20px;
   padding: 10px;
   text-align: center;
-  width: 70%;
+  width: 200px;
 }
 
 .invite-link {
@@ -553,6 +554,14 @@ ul {
 
 .friend-header-container {
   padding: 80px 20px 0 65px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .friend-header-name {
@@ -591,6 +600,13 @@ ul {
   color: transparent;
 }
 
+.friend-info{
+  padding: 80px 20px 0 65px;
+}
+
+.friend-thumbnail {
+    margin-bottom: 0px;
+}
 
 /***********************************/
 /******** PINNED GIFT LIST *********/
@@ -604,13 +620,14 @@ ul {
   color: #FFF;
   text-align: center;
   align-content: center;
-  width: 90px;
-  height: 90px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
+  margin-left: 20px;
 }
 
 .giftlist-circle text {
-  line-height: 90px;
+  line-height: 70px;
 }
 
 .giftlist-circle-container {
@@ -621,10 +638,12 @@ ul {
   padding-bottom: 20px;
   margin-top: 80px;
 }
+
 .giftlist-header {
-  font-size: 3vw;
-  color: #FFF;
-  padding: 10px 0 10px 40px;
+    font-size: 18px;
+    color: #FFF;
+    padding: 10px 0 10px 40px;
+    margin-bottom: 20px;
 }
 
 .category-header {
@@ -680,6 +699,18 @@ ul {
 @media (min-width: 1001px) {
   .pinned-gift {
     flex: 1 20%;
+  }
+}
+
+@media (max-width: 450px) {
+  .profile-photo-container {
+    padding-right: 2%;
+  }
+}
+
+@media (min-width: 451px) {
+  .profile-photo-container {
+    padding-right: 10%;
   }
 }
 

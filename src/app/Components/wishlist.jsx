@@ -44,16 +44,15 @@ var WishList = React.createClass({
 
                 </div>
 
-                <div className="wishlist-header profile-photo-container">
-                  <div className="thumbnail profile-photo">
-                    <img src={url} />
+                <div className="wishlist-header">
+                  <div className="wishlist-header-aside">
+                    <div className="thumbnail profile-photo friend-thumbnail">
+                      <img src={url} />
+                    </div>
+                    <div className="container giftlist-circle"><text>{this.props.wishlist.length}</text></div>
                   </div>
                 </div>
 
-
-                <div className="wishlist-header container">
-                  <div className="container giftlist-circle"><text>{this.props.wishlist.length}</text></div>
-                </div>
               </div>{/* flex-container of friend info */}
 
             </div>{/* giftlist-main container */}
