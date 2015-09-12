@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import PORT from '../../config/port.js';
 import { connect } from 'react-redux';
-import { fetchFriend, saveImageUrl} from '../Actions/friend';
+import { fetchFriend} from '../Actions/friend';
 import utils from '../Utils/utils';
 
 var UserHeader = React.createClass({
