@@ -21,7 +21,6 @@ var UserHeader = React.createClass({
              access_token: JSON.parse(localStorage.getItem('access_token')).access_token}, // need to pass in the access token
       success: function(data) {
         if(this.isMounted()){
-          this.props.dispatch(saveImageUrl(data))
           this.setState({
             image_url: data
           })
