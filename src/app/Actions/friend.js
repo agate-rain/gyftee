@@ -13,3 +13,10 @@ export function saveImageUrl(url) {
     image_url: url
   };
 };
+
+export function saveConcert(concert) {
+  return {
+    type: types.SAVE_CONCERT,
+    concert: concert
+  };
+};

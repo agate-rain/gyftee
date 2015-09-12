@@ -2,18 +2,21 @@ import PORT from '../../config/port.js';
 
 module.exports = {
   formatDate: function(bday) {
-    return bday === "Unknown" ? "Unknown" : bday.slice(0,5);
+    if(bday === "Unknown" || bday === undefined){
+      return "Unknown"
+    }else{
+      return bday.slice(0,5)
+    }
+    // return bday === "Unknown" || undefined ? "Unknown" : bday.slice(0,5);
   },
 
   getUserData: function(category, friend, callback) {
-    console.log("GET USER DATA FROM UTILS");
-    console.log("FRIEND", friend);
     var userInfo;
-    if(category === 'books'){
+    if(category === 'books' && friend.books){
       callback(friend.books.data);
-    }else if(category === 'music'){
+    }else if(category === 'music' && friend.music){
       callback(friend.music.data);
-    }else if(category === 'location'){
+    }else if(category === 'location' && friend.location){
       callback(friend.location.name);
     }else if(category === 'birthday'){
       callback(friend.birthday);
@@ -77,10 +80,14 @@ module.exports = {
       data: {ASIN : ASIN},
       success: function(similargifts) {
         var gifts = []
-        similargifts.Items.Item.forEach(function(recommendedGift){
-          gifts.push({category: "book", details: recommendedGift, basedOn: gift});
-        });
-        callback(gifts);
+        if(similargifts.Items.Item){
+          similargifts.Items.Item.forEach(function(recommendedGift){
+            gifts.push({category: "book", details: recommendedGift, basedOn: gift});
+          });
+          callback(gifts);
+        }else{
+          callback(gifts);
+        }
       },
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/friends/searchsimilargifts", status, err.toString());
@@ -161,10 +168,14 @@ module.exports = {
   },
 
   generateRandomKeyword: function(userArray, callback){
-    var randomIndex = Math.floor(Math.random() * (userArray.length - 1) + 1);
-    if(userArray[randomIndex]){
-      var keyWord = userArray[randomIndex].name;
-      callback(keyWord);
+    if(!userArray){
+      callback(null)
+    }else{
+      var randomIndex = Math.floor(Math.random() * (userArray.length - 1) + 1);
+      if(userArray[randomIndex]){
+        var keyWord = userArray[randomIndex].name;
+        callback(keyWord);
+      }
     }
   }
 

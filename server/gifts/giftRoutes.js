@@ -9,5 +9,5 @@ module.exports = function(app) {
   app.post('/itemlookup', giftController.itemLookup)
   app.post('/searchsimilargifts', giftController.getSimilarItems);
   app.post('/getevents', giftController.getEvents);
-
+  app.post('/getartistimage', giftController.getArtistImage);
 };
