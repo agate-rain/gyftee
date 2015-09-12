@@ -29,9 +29,6 @@ body {
   margin: 0;
 }
 
-
-
-
 .flex-item {
   /*text-align: center;*/
 }
@@ -104,6 +101,17 @@ body {
   font-weight: 700;
 }
 
+.button {
+  color: #FFF;
+  background-color: #004851;
+  border-radius: 10px 0 10px 0;
+  border-color: #004851;
+  font-size: 0.6em;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
 /***********************************/
 /******** LOGIN SCREEN *********/
 /***********************************/
@@ -138,11 +146,9 @@ body {
 
 .login-button {
   width: 400px;
-  border-color: #004851;
   font-weight: 400;
   font-size: 32px;
-  background-color: #004851;
-  padding: 10px;
+  margin: auto;
 }
 
 .login-button a:hover {
@@ -314,18 +320,9 @@ ul {
 }
 
 .invite-button {
-  /*position: relative;*/
-  /*justify-content: center;*/
-  border-color: #004851;
   font-size: 0.6em;
-  background-color: #004851;
-  color: #FFF;
-  /*align-content: center;*/
-  border-radius: 10px 0 10px 0;
   margin-top: 10px;
   margin-bottom: 20px;
-  padding: 10px;
-  text-align: center;
   width: 200px;
 }
 
@@ -488,15 +485,8 @@ ul {
 }
 
 .add-to-list-button {
-  /*position: relative;*/
-  /*justify-content: center;*/
-  border-color: #004851;
   font-size: 0.6em;
-  background-color: #004851;
-  color: #FFF;
-  /*align-content: center;*/
   border-radius: 5px;
-  /*margin-top: 10px;*/
   padding: 5px;
   text-align: center;
   width: 100%;
@@ -580,16 +570,10 @@ ul {
 }
 
 .filter-button {
-  border-color: #004851;
   font-size: 0.7em;
-  background-color: #004851;
-  color: #FFF;
-  border-radius: 10px 0 10px 0;
   margin-top: 10px;
-  /*margin-bottom: 20px;*/
-  padding: 10px;
-  text-align: center;
 }
+
 .wishlist-button-container {
   text-align: left;
 }
@@ -673,6 +657,12 @@ ul {
 
 .wishlist-header {
   flex: 1;
+}
+
+.recommendations-button {
+  width: 250px;
+  margin: auto;
+  margin-top: 10px;
 }
 
 .pinned-gifts {
