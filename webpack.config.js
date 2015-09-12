@@ -33,7 +33,13 @@ var common = {
       {
         test: /\.jsx?$/,
         loaders: ['react-hot', 'babel'],
-        include: [path.join(SRC_PATH, 'index.jsx'), path.join(SRC_PATH, 'app')]
+        include: [path.join(SRC_PATH, 'index.jsx'), path.join(SRC_PATH, 'app')],
+        exclude: (/node_modules/|/lib/)
+      },
+      {
+        test: /\.js$/,
+        loader: "eslint-loader",
+        exclude: (/node_modules/|/lib/)
       },
       {
         test: /\.css$/,
@@ -55,6 +61,9 @@ var common = {
 if (TARGET === 'start' || !TARGET) {
   // webpack dev server automatically refreshes content inthe browser
   module.exports = merge(common, {
+    eslint: {
+      configFile: '.eslintrc'
+    },
     devtool: 'eval',
     devServer: {
       colors: true,
@@ -71,7 +80,9 @@ if (TARGET === 'start' || !TARGET) {
         inject: true, // injects script tag for js at end of body
         template: 'src/index.html'
       }),
-      new webpack.NoErrorsPlugin(),
+      new webpack.NoErrorsPlugin(), // if you want to see ESLint warnings in
+      // console during development using WebpackDevServer,
+      // remove NoErrorsPlugin from webpack config
       new webpack.HotModuleReplacementPlugin()
     ]
   });
