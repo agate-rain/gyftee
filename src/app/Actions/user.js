@@ -35,10 +35,4 @@ export function setLock(lock) {
   };
 };
 
-export function saveUser(profile) {
-  return {
-    type: types.save_USER,
-    profile
-  };
-}
 
