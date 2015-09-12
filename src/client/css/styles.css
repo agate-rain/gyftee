@@ -241,7 +241,7 @@ ul {
   margin-top: 100px;
 }
 .welcome-container {
-  padding: 0px 20px 0px 10%;
+  padding: 0px 20px 0px 5%;
   /*background-color: yellow;*/
   text-align: left;
   flex: 1.2;
@@ -350,7 +350,7 @@ ul {
   color: #017E82;
   font-size: 0.7em;
   text-align: left;
-  margin-left: 10%;
+  margin-left: 5%;
   font-weight: bold;
   margin-bottom: 5px;
 }
@@ -391,7 +391,7 @@ ul {
 }
 
 .bday-row {
-  padding: 20px 20px 20px 20px;
+  padding: 20px 20px 20px 5%;
   /*border-style: solid;*/
   border-top: solid;
   border-color: white;
@@ -407,11 +407,12 @@ ul {
 }
 
 .date-container {
-  display: flex;
+  /*display: flex;*/
   /*align-content: left;*/
-  flex: 0.3;
+  /*flex: 0.3;*/
   font-size: 0.8em;
   color: #004851;
+  padding-right: 10%;
 }
 
 .no-bday {
@@ -656,7 +657,7 @@ ul {
   color: #FFF;
   font-size: 0.8em;
  /* font-weight: normal;*/
-  padding: 5px 0 5px 65px;
+  padding: 5px 0 5px 10%;
 }
 
 .slider-container{
@@ -685,7 +686,7 @@ ul {
 }
 
 .book-title-thumb {
-    font-size: 0.4em;
+    font-size: 0.6em;
     text-align: left;
     margin-left: 10%;
 }
@@ -818,7 +819,7 @@ ul {
   transform: translate(0%, -50%) rotate(45deg);
 }
 .section.open .sliderwrap {
-  height: 200px;
+  height: 220px;
 }
 
 .sliderwrap {
