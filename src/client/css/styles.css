@@ -622,8 +622,7 @@ ul {
   margin-top: 80px;
 }
 .giftlist-header {
-  margin-top: 70px;
-  font-size: 1.2em;
+  font-size: 3vw;
   color: #FFF;
   padding: 10px 0 10px 40px;
 }
@@ -652,6 +651,7 @@ ul {
 
 .pinned-gifts {
   align-items: flex-start;
+  flex-flow: row wrap;
   justify-content: space-around;
 }
 
@@ -663,6 +663,24 @@ ul {
     font-size: 0.4em;
     text-align: left;
     margin-left: 10%;
+}
+
+@media (min-width: 320px) and (max-width: 650px) {
+  .pinned-gift {
+    flex: 1 50%;
+  }
+}
+
+@media (min-width: 651px) and (max-width: 1000px) {
+  .pinned-gift {
+    flex: 1 25%;
+  }
+}
+
+@media (min-width: 1001px) {
+  .pinned-gift {
+    flex: 1 20%;
+  }
 }
 
 /******** FALLBACK STYLING *********/

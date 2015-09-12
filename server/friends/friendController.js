@@ -41,7 +41,6 @@ module.exports = {
     });
   },
    saveGift: function(req, res, next){
-    console.log("SAVING THE GIFT");
     var friendId = req.body.friendId;
     var userId = req.body.userId;
     var ASIN = req.body.ASIN;
@@ -59,7 +58,40 @@ module.exports = {
             });
             user.markModified('giftsList');
             user.save();
-            console.log('>>>> Gift List Update',JSON.stringify(user,null, '\t'));
+            res.send(200, "Gift saved to database")
+          } else {
+           console.log('User Not Found!')
+           res.send(500, "Unable to save gift to database")
+          }
+    });
+  },
+
+  removeGift: function(req, res, next){
+    console.log("REMOVE THE GIFT");
+    var friendId = req.body.friendId;
+    var userId = req.body.userId;
+    var ASIN = req.body.ASIN;
+
+
+    // Find the user
+    User.findOne({fbId:userId})
+      .exec(function(err, user) {
+          if (user) {
+            console.log('User Found!')
+            // Find the friend
+            user.giftsList.forEach(function(gift){
+              if(gift.fbId === friendId){
+                // Look for the boox
+                var giftToRemoveIdx = gift.pinnedGifts.books.indexOf(ASIN);
+                if (giftToRemoveIdx !== -1){
+                  // Remove the book
+                  gift.pinnedGifts.books.splice(giftToRemoveIdx, 1);
+                }
+              }
+            });
+            // Save the modified document
+            user.markModified('giftsList');
+            user.save();
             res.send(200, "Gift saved to database")
           } else {
            console.log('User Not Found!')
@@ -84,6 +116,8 @@ module.exports = {
       }
     })
   },
+
+
 
 
   getInvitableFriend: function(req, res, next){

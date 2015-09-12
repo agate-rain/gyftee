@@ -7,6 +7,8 @@ module.exports = function(app) {
   // app.post('/signout', userController.signout);
   app.post('/', friendController.getFriend);
   app.post('/savegift', friendController.saveGift);
+  app.post('/removegift', friendController.removeGift);
+
   app.get('/wishlist/:friendId/:userId', friendController.getWishList)
   app.post('/image', friendController.getImageUrl);
   app.post('/invitableFriends', friendController.getInvitableFriend);
