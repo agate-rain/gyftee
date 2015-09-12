@@ -25,23 +25,21 @@ module.exports = {
   lookupItemByKeyword: function(req, res) {
     // hard coding for testing will refactor lataer
     var bookKeyword = req.body.keyword;
-    // var temp = JSON.parse(req.body.friend);
-    // // console.log('REQ BODY', temp[1].books.data[0].name);
-    // var bookKeyword = temp[1].books.data[0].name;
 
-      var options = {SearchIndex: 'Books', Keywords: bookKeyword, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
-      prodAdv.call('ItemSearch', options, function(err, result) {
-        res.send(result);
-      });
+    var options = {
+      SearchIndex: 'Books',
+      Keywords: bookKeyword,
+      ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'
+    }
+
+    prodAdv.call('ItemSearch', options, function(err, result) {
+      res.send(result);
+    });
   },
 
   itemLookup: function(req, res) {
     // hard coding for testing will refactor lataer
-    var giftArr = req.body.giftArr;
-    // console.log('>>>>', giftArr)
-    if(giftArr.books.length !== 0){
-      var bookArr = giftArr.books;
-    };
+    var books = req.body.books;
 
     // if(giftArr.music.length !== 0){
     //   var musicArr = giftArr.music;
@@ -57,26 +55,31 @@ module.exports = {
 
     var promises = [];
 
-    var amazonSync = function(bookASIN){
-      var options = {SearchIndex: "All", IdType: "ISBN", ItemId: bookASIN, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
-      return new Promise(function(resolve, reject){
+    var amazonSync = function(bookASIN) {
+      var options = {
+        SearchIndex: "All",
+        IdType: "ISBN",
+        ItemId: bookASIN,
+        ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'
+      }
+      return new Promise(function(resolve, reject) {
         prodAdv.call('ItemLookup', options, function(err, result) {
-              if(err !== null){
+              if (err !== null) {
                 return reject(err);
               }
               resolve(result);
         });
       })
     };
-    bookArr.forEach(function(ASIN){
+    books.forEach(function(ASIN) {
       promises.push(amazonSync(ASIN));
     });
-    Promise.all(promises).then(function(result){
+    Promise.all(promises).then(function(result) {
       console.dir(result);
-      result = result.map(function(item){
-        if(Array.isArray(item.Items.Item)){
+      result = result.map(function(item) {
+        if (Array.isArray(item.Items.Item)) {
           return item.Items.Item[0];
-        }else{
+        } else {
           return item.Items.Item;
         }
       });
@@ -95,13 +98,13 @@ module.exports = {
     });
   },
 
-  getArtistImage: function(req, res, next){
+  getArtistImage: function(req, res, next) {
 
     var promises = [];
 
     console.log(req.body.artist);
 
-    var aristAsync = function(artist){
+    var aristAsync = function(artist) {
       var url = "http://api.bandsintown.com/artists/" + artist
       + "/?api_version=2.0&app_id=Gyftee2015";
 
@@ -109,43 +112,42 @@ module.exports = {
           url: url,
           json: true
       };
-      return new Promise(function(resolve, reject){
+      return new Promise(function(resolve, reject) {
 
         request(requestOptions, function(error, response, body) {
           if (error !== null) {
               return reject(error);
-              console.log('error>???????????', error)
           }
           resolve(body);
         });
       })
     };
     var artistArr = req.body.artist;
-    if(artistArr){
-      artistArr.forEach(function(artist){
+    if (artistArr) {
+      artistArr.forEach(function(artist) {
         promises.push(aristAsync(artist));
       });
 
-      Promise.all(promises).then(function(result){
+      Promise.all(promises).then(function(result) {
         // console.dir(result);
-        result = result.map(function(item){
+        result = result.map(function(item) {
           return item;
         });
 
         // console.log(JSON.stringify(result, null, '\t'));
         res.send(200, result);
       });
-    }else{
+    } else {
       res.send(200, 'No Artist Found!');
     }
 
   },
 
-  getEvents: function(req, res, next){
+  getEvents: function(req, res, next) {
     var promises = [];
     // console.log('>>> LIST OF ARTIST', req.body.artistArr)
 
-    var eventAsync = function(artist){
+    var eventAsync = function(artist) {
       // var options = {SearchIndex: "All", IdType: "ISBN", ItemId: bookASIN, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
       var url = 'http://api.bandsintown.com/events/search.json?artists%5B%5D='
                 + artist
@@ -160,7 +162,7 @@ module.exports = {
         url: url,
         json: true
       };
-      return new Promise(function(resolve, reject){
+      return new Promise(function(resolve, reject) {
         request(requestOptions, function(error, response, body) {
           if (error !== null) {
                 return reject(error);
@@ -171,36 +173,36 @@ module.exports = {
     };
     var artistArr = req.body.artistArr;
     if(artistArr){
-      artistArr.forEach(function(artist){
+      artistArr.forEach(function(artist) {
         artist = artist.split(" ").join("+");
         promises.push(eventAsync(artist));
       });
 
-      Promise.all(promises).then(function(result){
+      Promise.all(promises).then(function(result) {
         // console.dir(result);
-        result = result.map(function(item){
+        result = result.map(function(item) {
           return item;
         });
 
         // console.log('>>>>>>>>>',result)
-        result = result.filter(function(array1){
+        result = result.filter(function(array1) {
           return array1.length !== 0;
-        }).filter(function(array2){
+        }).filter(function(array2) {
           return Array.isArray(array2) === true;
         });
         // console.log(JSON.stringify(result, null, '\t'));
         res.send(200,result);
       });
-    }else{
+    } else {
       res.send(200,null);
     }
 
  },
 
-  getTagsFromClarifai: function(req, res, next){
+  getTagsFromClarifai: function(req, res, next) {
 
     var imageURL = req.body.imageURL;
-    Clarifai.tagURL( imageURL , "image 1",function(err, result){
+    Clarifai.tagURL( imageURL , "image 1",function(err, result) {
       console.log('Result',JSON.stringify(result, null, '\t'));
       var tagArr = result.results[0].result.tag.classes;
       console.log(tagArr)
@@ -208,32 +210,31 @@ module.exports = {
     });
   },
 
-  getTagsFromMetamind: function(req, res, next){
+  getTagsFromMetamind: function(req, res, next) {
 
-    var post_data = JSON.stringify({'classifier_id':'imagenet-1k-net','image_url':req.body.imageURL});
+    var post_data = JSON.stringify({
+      'classifier_id':'imagenet-1k-net',
+      'image_url':req.body.imageURL
+    });
 
     // var imageURL = req.body.imageURL;
     var API_KEY = 'Basic ' + process.env.METAMIND_API_KEY;
     var https_options = url.parse('https://www.metamind.io/vision/classify');
     https_options.method = 'POST';
     https_options.headers = {
-            "Authorization": "Basic aXZxkB3eOMupDZSMNIZSdfD9hxv2zBDpen8qbMOOPLtzYwhx2X",
-            'Content-Type': 'application/json',
-            'Content-Length': post_data.length
+      'Authorization' : 'Basic aXZxkB3eOMupDZSMNIZSdfD9hxv2zBDpen8qbMOOPLtzYwhx2X',
+      'Content-Type'  : 'application/json',
+      'Content-Length':  post_data.length
     }
     var post_request = https.request(https_options, function(response) {
-            response.setEncoding('utf8');
-            response.on('data', function (chunk) {
-                console.log(chunk);
-        //         var classify = JSON.parse(chunk);
-        //         var classid = classify.predictions[0].class_name;
-        // callback(null, classid);
+      response.setEncoding('utf8');
+      response.on('data', function (chunk) {
+        console.log(chunk);
       });
     });
 
     post_request.write(post_data);
     post_request.end();
-
 
     // var options = {
     //   uri: 'https://www.metamind.io/vision/classify',
@@ -249,32 +250,33 @@ module.exports = {
     // });
   },
 
-  searchEtsy: function(req, res, next){
+  searchEtsy: function(req, res, next) {
     var terms = 'panda candy';
-    var url = "https://openapi.etsy.com/v2/listings/active.js?keywords="+
-            terms + "&limit=12&includes=Images:1&api_key=" + process.env.ETSY_KEY_STRING ;
+    var url = "https://openapi.etsy.com/v2/listings/active.js?keywords=" +
+      terms + "&limit=12&includes=Images:1&api_key=" + process.env.ETSY_KEY_STRING ;
 
     var requestOptions = {
-     url: url,
-     json: true
-   };
+      url: url,
+      json: true
+    };
 
-   request(url, function(error, response, body) {
-     if (!error && response.statusCode === 200) {
-      var str = JSON.stringify(response.body, null, '\t').replace(/\\/g, "").substr(6);
-      str = JSON.parse(str.slice(0, str.length -3));
-      // console.log('>>>>>>>RESPONSE', JSON.stringify(str, null, '\t'));
-      // console.log('>>>>>>>RESPONSE', JSON.stringify(response, null, '\t').replace(/\\/g, "")).substr(5);
-      var body = body.replace(/\\/g, "").substr(5);
-      // console.log('>>>>>>>BODY', JSON.stringify(JSON.parse(body.slice(0, body.length -2)), null, '\t'));
-      // res.send(body);
-    } else {
-     res.send({ success: false, message: 'Unknown Error getting result from bandsintown api.'});
-   }
-  });
-},
-
-
+    request(url, function(error, response, body) {
+      if (!error && response.statusCode === 200) {
+        var str = JSON.stringify(response.body, null, '\t').replace(/\\/g, "").substr(6);
+        str = JSON.parse(str.slice(0, str.length -3));
+        // console.log('>>>>>>>RESPONSE', JSON.stringify(str, null, '\t'));
+        // console.log('>>>>>>>RESPONSE', JSON.stringify(response, null, '\t').replace(/\\/g, "")).substr(5);
+       var body = body.replace(/\\/g, "").substr(5);
+        // console.log('>>>>>>>BODY', JSON.stringify(JSON.parse(body.slice(0, body.length -2)), null, '\t'));
+        // res.send(body);
+      } else {
+        res.send({
+          success: false,
+          message: 'Unknown Error getting result from bandsintown api.'
+        });
+      }
+    });
+  }
   // TODO: search etsy using image tags or other facebook metadata
   // and get surprise gifts (grab bag feature)
 
