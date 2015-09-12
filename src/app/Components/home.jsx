@@ -15,9 +15,9 @@ var Home = React.createClass({
           <div className="icon-container"><img src="src/client/img/g-icon.png"></img></div>
           <div className="brand-container"><span className="gyftee-text">Gyftee</span></div>
         </div>
-        <button className="login-button" onClick={this.showLock}>
+        <div className="button login-button" onClick={this.showLock}>
           <a className="white-font">LOG IN</a>
-        </button>
+        </div>
       </div>
     );
   }
