@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import PORT from '../../config/port.js';
-import { connect } from 'react-redux';
 import { fetchFriend} from '../Actions/friend';
 import utils from '../Utils/utils';
 
@@ -54,11 +53,5 @@ var UserHeader = React.createClass({
 
 });
 
-var mapStateToProps = function(state) {
-  return {
-    profile: state.user.profile
-  }
-};
 
-
-export default connect(mapStateToProps)(UserHeader);
+export default UserHeader;
