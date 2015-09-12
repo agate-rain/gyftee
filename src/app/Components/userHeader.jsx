@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 import PORT from '../../config/port.js';
+import { fetchFriend} from '../Actions/friend';
+import utils from '../Utils/utils';
 
 var UserHeader = React.createClass({
 
@@ -27,9 +29,12 @@ var UserHeader = React.createClass({
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
+
+
   },
 
   render: function() {
+    console.log(this.props)
     return (
       <div className="flex-container welcome-main">
         <div className="welcome-container container">
@@ -47,5 +52,6 @@ var UserHeader = React.createClass({
   }
 
 });
+
 
 export default UserHeader;

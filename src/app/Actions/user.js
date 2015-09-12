@@ -33,4 +33,6 @@ export function setLock(lock) {
     type: types.SET_LOCK,
     lock
   };
-}
+};
+
+
