@@ -14,7 +14,7 @@ var ImageView = React.createClass({
   mixins: [ Navigation ],
 
   componentDidMount: function() {
-    var friendId = window.location.href.split('/')[4];
+    var friendId = this.props.params.friendId;
     this.fetchFriendById(friendId);
   },
 

@@ -26,4 +26,4 @@ var FacebookFriend = React.createClass({
   },
 });
 
-module.exports = FacebookFriend;
+export default FacebookFriend;
