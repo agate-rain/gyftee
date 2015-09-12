@@ -38,7 +38,7 @@ module.exports = {
   itemLookup: function(req, res) {
     // hard coding for testing will refactor lataer
     var giftArr = req.body.giftArr;
-    console.log('>>>>', giftArr)
+    // console.log('>>>>', giftArr)
     if(giftArr.books.length !== 0){
       var bookArr = giftArr.books;
     };
@@ -95,9 +95,55 @@ module.exports = {
     });
   },
 
+  getArtistImage: function(req, res, next){
+
+    var promises = [];
+
+    console.log(req.body.artist);
+
+    var aristAsync = function(artist){
+      var url = "http://api.bandsintown.com/artists/" + artist
+      + "/?api_version=2.0&app_id=Gyftee2015";
+
+      var requestOptions = {
+          url: url,
+          json: true
+      };
+      return new Promise(function(resolve, reject){
+
+        request(requestOptions, function(error, response, body) {
+          if (error !== null) {
+              return reject(error);
+              console.log('error>???????????', error)
+          }
+          resolve(body);
+        });
+      })
+    };
+    var artistArr = req.body.artist;
+    if(artistArr){
+      artistArr.forEach(function(artist){
+        promises.push(aristAsync(artist));
+      });
+
+      Promise.all(promises).then(function(result){
+        // console.dir(result);
+        result = result.map(function(item){
+          return item;
+        });
+
+        // console.log(JSON.stringify(result, null, '\t'));
+        res.send(200, result);
+      });
+    }else{
+      res.send(200, 'No Artist Found!');
+    }
+
+  },
+
   getEvents: function(req, res, next){
     var promises = [];
-    console.log('>>> LIST OF ARTIST', req.body.artistArr)
+    // console.log('>>> LIST OF ARTIST', req.body.artistArr)
 
     var eventAsync = function(artist){
       // var options = {SearchIndex: "All", IdType: "ISBN", ItemId: bookASIN, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
@@ -109,7 +155,7 @@ module.exports = {
                 + req.body.endDate
                 + '&location='
                 + req.body.loc
-                + '&radius=10&app_id=Gyftee';
+                + '&radius=150&app_id=Gyftee';
       var requestOptions = {
         url: url,
         json: true
@@ -124,19 +170,30 @@ module.exports = {
       })
     };
     var artistArr = req.body.artistArr;
-
-    artistArr.forEach(function(artist){
-      artist = artist.split(" ").join("+");
-      promises.push(eventAsync(artist));
-    });
-
-    Promise.all(promises).then(function(result){
-      console.dir(result);
-      result = result.map(function(item){
-        return item;
+    if(artistArr){
+      artistArr.forEach(function(artist){
+        artist = artist.split(" ").join("+");
+        promises.push(eventAsync(artist));
       });
-      res.send(result);
-    });
+
+      Promise.all(promises).then(function(result){
+        // console.dir(result);
+        result = result.map(function(item){
+          return item;
+        });
+
+        // console.log('>>>>>>>>>',result)
+        result = result.filter(function(array1){
+          return array1.length !== 0;
+        }).filter(function(array2){
+          return Array.isArray(array2) === true;
+        });
+        // console.log(JSON.stringify(result, null, '\t'));
+        res.send(200,result);
+      });
+    }else{
+      res.send(200,null);
+    }
 
  },
 
@@ -176,6 +233,8 @@ module.exports = {
 
     post_request.write(post_data);
     post_request.end();
+
+
     // var options = {
     //   uri: 'https://www.metamind.io/vision/classify',
     //   image_url: imageURL,
@@ -191,7 +250,7 @@ module.exports = {
   },
 
   searchEtsy: function(req, res, next){
-    var terms = 'panda candy ';
+    var terms = 'panda candy';
     var url = "https://openapi.etsy.com/v2/listings/active.js?keywords="+
             terms + "&limit=12&includes=Images:1&api_key=" + process.env.ETSY_KEY_STRING ;
 
@@ -204,7 +263,7 @@ module.exports = {
      if (!error && response.statusCode === 200) {
       var str = JSON.stringify(response.body, null, '\t').replace(/\\/g, "").substr(6);
       str = JSON.parse(str.slice(0, str.length -3));
-      console.log('>>>>>>>RESPONSE', JSON.stringify(str, null, '\t'));
+      // console.log('>>>>>>>RESPONSE', JSON.stringify(str, null, '\t'));
       // console.log('>>>>>>>RESPONSE', JSON.stringify(response, null, '\t').replace(/\\/g, "")).substr(5);
       var body = body.replace(/\\/g, "").substr(5);
       // console.log('>>>>>>>BODY', JSON.stringify(JSON.parse(body.slice(0, body.length -2)), null, '\t'));

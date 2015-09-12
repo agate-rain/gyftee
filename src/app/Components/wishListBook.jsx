@@ -26,15 +26,27 @@ var WishListBook = React.createClass({
 
     var missingBookCover = 'http://www.mbalit.co.uk/sites/default/files/imagecache/fullsize/imagefield_default_images/generic_book_cover_0.jpg';
 
-    var bookDetails = {
-      ASIN : this.props.book.ASIN || '',
-      url: this.props.book.DetailPageURL || '',
-      img: this.props.book.MediumImage.URL || missingBookCover,
-      title: this.props.book.ItemAttributes.Title || 'NA',
-      author: this.props.book.ItemAttributes.Author || 'NA',
-      binding: this.props.book.ItemAttributes.Binding || 'NA',
-      price: this.props.book.Offers.Offer.OfferListing.Price.FormattedPrice || 'NA'
-    };
+    if(this.props.book.Offers.Offer){
+      var bookDetails = {
+        ASIN : this.props.book.ASIN || '',
+        url: this.props.book.DetailPageURL || '',
+        img: this.props.book.MediumImage.URL || missingBookCover,
+        title: this.props.book.ItemAttributes.Title || 'NA',
+        author: this.props.book.ItemAttributes.Author || 'NA',
+        binding: this.props.book.ItemAttributes.Binding || 'NA',
+        price: this.props.book.Offers.Offer.OfferListing.Price.FormattedPrice || 'NA'
+      };
+    }else{
+      var bookDetails = {
+        ASIN : this.props.book.ASIN || '',
+        url: this.props.book.DetailPageURL || '',
+        img: this.props.book.MediumImage.URL || missingBookCover,
+        title: this.props.book.ItemAttributes.Title || 'NA',
+        author: this.props.book.ItemAttributes.Author || 'NA',
+        binding: this.props.book.ItemAttributes.Binding || 'NA',
+        price: 'NA'
+      };
+    }
 
 
     // remove element confirmation

@@ -53,17 +53,31 @@ var Book = React.createClass({
 
     var missingBookCover = 'http://www.mbalit.co.uk/sites/default/files/imagecache/fullsize/imagefield_default_images/generic_book_cover_0.jpg';
 
-    var bookDetails = {
-      ASIN : book.details.ASIN,
-      url: book.details.DetailPageURL || '',
-      img: book.details.MediumImage.URL || missingBookCover,
-      title: book.details.ItemAttributes.Title || 'NA',
-      author: book.details.ItemAttributes.Author || 'NA',
-      binding: book.details.ItemAttributes.Binding || 'NA',
-      price: book.details.Offers.Offer.OfferListing.Price.FormattedPrice || 'NA',
-      basedOn: book.basedOn.ItemAttributes.Title,
-      isPrime: book.details.Offers.Offer.OfferListing.IsEligibleForPrime === "1",
-    };
+    if(book.details.Offers.Offer){
+      var bookDetails = {
+        ASIN : book.details.ASIN,
+        url: book.details.DetailPageURL || '',
+        img: book.details.MediumImage.URL || missingBookCover,
+        title: book.details.ItemAttributes.Title || 'NA',
+        author: book.details.ItemAttributes.Author || 'NA',
+        binding: book.details.ItemAttributes.Binding || 'NA',
+        price: book.details.Offers.Offer.OfferListing.Price.FormattedPrice || 'NA',
+        basedOn: book.basedOn.ItemAttributes.Title,
+        isPrime: book.details.Offers.Offer.OfferListing.IsEligibleForPrime === "1",
+      };
+    }else{
+      var bookDetails = {
+        ASIN : book.details.ASIN,
+        url: book.details.DetailPageURL || '',
+        img: book.details.MediumImage.URL || missingBookCover,
+        title: book.details.ItemAttributes.Title || 'NA',
+        author: book.details.ItemAttributes.Author || 'NA',
+        binding: book.details.ItemAttributes.Binding || 'NA',
+        price: 'NA',
+        basedOn: book.basedOn.ItemAttributes.Title,
+        isPrime: 'NA'
+      };
+    }
 
     var basedOnDetails = {
       img: basedOn.MediumImage.URL || missingBookCover,

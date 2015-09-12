@@ -23,7 +23,7 @@ var GiftRecommendations = React.createClass({
           <NavBar />
           <FriendHeader friend={this.props.friend.friend} url={this.props.friend.image_url} />
           <BookList amazonBooks={this.props.gifts} />
-          <ConcertList concerts={this.props.gifts} />
+          <ConcertList concerts={this.state.concerts} />
         </div>
     );
   },
@@ -45,18 +45,24 @@ var GiftRecommendations = React.createClass({
 
       utils.getUserData("books", friend, function(userData){
         utils.generateRandomKeyword(userData, function(keyWord){
-            utils.fetchGiftByKeyWord(keyWord, function(gift){
-              this.props.dispatch(saveGifts(gift));
-            }.bind(this));
+            if(keyWord){
+              utils.fetchGiftByKeyWord(keyWord, function(gift){
+                this.props.dispatch(saveGifts(gift));
+              }.bind(this));
+            }else{
+              this.props.dispatch(saveGifts(null));
+            }
           }.bind(this));
       }.bind(this));
 
 
       var bandArr = [];
       utils.getUserData('music', friend, function(data){
-        data.map(function(item) {
-          bandArr.push(item.name);
-        })
+        if(data){
+          data.map(function(item) {
+            bandArr.push(item.name);
+          })
+        }
       });
     //  console.log('>>>>>',bandArr)
 
@@ -72,8 +78,11 @@ var GiftRecommendations = React.createClass({
 
       var range = 365;
       utils.getConcerts(userLocation,userBirthday,range,bandArr, function(data){
+        this.setState({
+          concerts : data
+        })
        // console.log("CONCERT RESULTS------>", JSON.stringify(data));
-      });
+      }.bind(this));
     }.bind(this));
 
     utils.fetchImageUrlById(friendId, function(imageURLByID){
@@ -85,6 +94,7 @@ var GiftRecommendations = React.createClass({
   },
   /* AMAZON BOOKS */
   generateRandomKeyword: function(userArray){
+    console.log('>>>',userArray)
     var randomIndex = Math.floor(Math.random() * (userArray.length - 1) + 1);
     var keyWord = userArray[randomIndex].name;
     utils.fetchGiftByKeyWord(keyWord, function(gift){
