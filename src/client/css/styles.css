@@ -732,12 +732,10 @@ ul {
  /***********************************/
 /******** USER PHOTO STYLING *********/
 /***********************************/
-.user-photo-small{
-  max-width: 350px;
-}
 
-.concert-img{
-  max-width: 150px;
+
+.ing.concert-img{
+  max-width: 300px;
 }
 
  /***********************************/

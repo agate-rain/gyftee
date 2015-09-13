@@ -150,19 +150,52 @@ module.exports = {
         var concerts = data.reduce(function(a, b) {
             return a.concat(b);
           }, []);
+
+        var artistArr = [];
         var concertGifts = [];
 
-        for (var concert in concerts){
+        concerts.forEach(function(concert){
+          artistArr.push(concert.artists[0].name)
+        })
+
+
+      this.getArtistImage(artistArr, function(artist){
+        for(var i in artist){
           concertGifts.push({
-            basedOn: {},
+            basedOn: {
+              artist_name : artist[i].name,
+              facebook_page_url: artist[i].facebook_page_url,
+              facebook_tour_dates_url: artist[i].facebook_tour_dates_url,
+              thumb_url: artist[i].thumb_url,
+              image_url: artist[i].image_url
+            },
             category: "concert",
-            details: concerts[concert]
+            details: concerts[i]
           });
         }
-        callback(concertGifts);
+        if(concertGifts.length === concerts.length){
+          callback(concertGifts)
+        }
+      });
+
       }.bind(this),
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/gifts/getevents", status, err.toString());
+      }
+    });
+  },
+
+  getArtistImage: function(artist, callback) {
+    $.ajax({
+      context: this,
+      url: "http://localhost:" + PORT.PORT + "/api/gifts/getartistimage",
+      method: 'POST',
+      data: {artist : artist}, // need to pass in the access token
+      success: function(data) {
+        callback(data);
+      },
+      error: function(xhr, status, err) {
+        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
   },
