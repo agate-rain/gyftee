@@ -18,50 +18,19 @@ var ConcertList = React.createClass({
     this.transitionTo(`/gifts/${id}`);
   },
 
-  componentDidMount: function() {
-    var artist = [];
-    if (this.props.concerts) {
-      this.props.concerts.forEach(function(concert) {
-        var artistName = concert.details.artists[0].name;
-        artist.push(artistName);
-      });
-      this.getArtistImage(artist)
-    }
-  },
-
   render: function() {
-    var concerts = [];
-    var artist = [];
-    var mainArtistArr;
-    if (this.props.concerts) {
-      this.props.concerts.forEach(function(concert) {
-        var artistName = concert.details.artists[0].name;
-        artist.push(artistName);
-      });
-      this.getArtistImage(artist, function(artistArr) {
-        if (!this.props.friend.concert && Array.isArray(artistArr)) {
-          this.props.dispatch(saveConcert(artistArr))
-        } else {
-          console.log(artistArr);
-        }
-      }.bind(this))
-    }
+    // const {concerts} = this.props.concerts;
 
-    if (this.props.concerts) {
-      var flattened = this.props.concerts.reduce(function(a, b) {
-            return a.concat(b);
-          }, []);
-
-          for(var key in flattened){
-            concerts.push(
-              <div>
-                <ThumbnailConcert concert={flattened[key]} artist={this.props.friend.concert} key={flattened[key].id} />
-              </div>
-            );
-          }
-    }
-
-    return (
+    if(this.props.concerts){
+      var concerts = [];
+      for(var concert in this.props.concerts){
+        concerts.push(
+          <div>
+            <ThumbnailConcert concert={this.props.concerts[concert]} key={this.props.concerts[concert].id} />
+          </div>
+        );
+      }
+      return (
       <div className="books-list">
         <div className="row light-teal category">
           <div className="category-header">Concerts</div>
@@ -72,32 +41,21 @@ var ConcertList = React.createClass({
             </Slider>
           </div>
       </div>
-
       );
-  },
-
-  getArtistImage: function(artist, callback) {
-    $.ajax({
-      context: this,
-      url: "http://localhost:" + PORT.PORT + "/api/gifts/getartistimage",
-      method: 'POST',
-      data: {artist : artist}, // need to pass in the access token
-      success: function(data) {
-        callback(data);
-      },
-      error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
-      }
-    });
-  },
+    }else{
+    return (
+      <div className="concerts-list">
+        <div className="row light-teal category">
+          <div className="category-header">Concerts</div>
+        </div>
+          <div className="slider-container">
+            Fetching Concert...
+          </div>
+      </div>
+      );
+    }
+  }
 });
 
-var mapStateToProps = function(state) {
-  return {
-    profile: state.user.profile,
-    friends: state.user.friends,
-    friend: state.friend
-  }
-};
 
-export default connect(mapStateToProps)(ConcertList);
+export default ConcertList;
