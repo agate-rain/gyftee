@@ -21,7 +21,7 @@ var ConcertList = React.createClass({
   render: function() {
     // const {concerts} = this.props.concerts;
 
-    if(this.props.concerts.length !== 0){
+    if(this.props.concerts){
       var concerts = [];
       for(var concert in this.props.concerts){
         concerts.push(
