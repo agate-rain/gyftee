@@ -20,7 +20,10 @@ var GiftRecommendations = React.createClass({
   render: function() {
     /*var concerts = this.filterGifts("concert");
     var books = this.filterGifts("book");*/
-    var books = this.filterGifts('book');
+    var books = this.props.gifts.filter(function(gift){
+      return gift.category === "book";
+    });
+    console.log('BOOKS',books)
     var concerts = this.filterGifts('concert');
 
     return (
@@ -29,8 +32,8 @@ var GiftRecommendations = React.createClass({
         <FriendHeader friend={this.props.friend.friend}
           url={this.props.friend.image_url}
           navToWishList={this.navToWishList} />
-        <BookList amazonBooks={this.props.gifts} />
-        <ConcertList concerts={this.state.concerts} />
+        <BookList amazonBooks={books} />
+        <ConcertList concerts={concerts} />
       </div>
     );
   },
