@@ -16,7 +16,6 @@ var Friend = React.createClass({
   },
 
   componentDidMount: function(){
-    //console.log("USER ------->", this.props.user);
     var userId = this.props.user.identities[0].user_id;
     var friendId = this.props.friend.id;
     var url = "http://localhost:" + PORT.PORT + "/api/friends/wishlist/"+friendId+"/"+userId;
@@ -82,8 +81,6 @@ var Friend = React.createClass({
     );
   }
 });
-// <button type="button" onClick={this.navToImageView.bind(this, this.props.friend.id)}>Get Image</button>
-
 
 var mapStateToProps = function(state) {
   return {

@@ -19,14 +19,14 @@ var ImageView = React.createClass({
   },
 
   render: function() {
-    if(this.state){
+    if(this.state) {
       return (
         <div className="container image-view-container">
           <NavBar />
           <RecommendPhotoView albums={this.state.imageArr}/>
         </div>
       );
-    }else{
+    } else {
       return (
         <div className="container image-view-container">
           <NavBar />
@@ -58,9 +58,8 @@ var ImageView = React.createClass({
     });
   },
 
-  assembleImage : function(){
+  assembleImage : function() {
     var albumArr = this.props.friend.friend.albums.data;
-    ////////////////////////////////////////////////////////////////////
     var promises = [];
     var resultImageArr;
 
@@ -68,13 +67,15 @@ var ImageView = React.createClass({
       var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
       return new Promise(function(resolve, reject){
         FB.api('/v2.4/' + albumId + '/photos',
-            'GET',
-            {"fields":"source,url,message,place", "access_token": access_token}, function(result) {
-              // if(err !== null){
-              //   return reject(err);
-              // }
-              resolve(result);
-            });
+          'GET', {
+            "fields":"source,url,message,place",
+            "access_token": access_token},
+            function(result) {
+            // if(err !== null){
+            //   return reject(err);
+            // }
+            resolve(result);
+          });
       });
     };
 
@@ -82,19 +83,16 @@ var ImageView = React.createClass({
       promises.push(fetchImageSync(album.id));
     });
 
-    Promise.all(promises).then(function(result){
-      return result = result.map(function(item){
-        return item.data.map(function(photo){
+    Promise.all(promises).then(function(result) {
+      return result = result.map(function(item) {
+        return item.data.map(function(photo) {
           return photo;
         });
       });
-    }).then(function(result){
+    }).then(function(result) {
       resultImageArr = result;
       this.setState({imageArr : resultImageArr});
     }.bind(this));
-
-    /////////////////////////////////////////////////////
-
 
     // var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
     // albumArr.forEach(function(album){
