@@ -1,7 +1,6 @@
 /***********************************/
 /******** SITEWIDE STYLING *********/
 /***********************************/
-
 *,
 *::before,
 *::after {
@@ -730,13 +729,40 @@ ul {
  */
 
  /***********************************/
-/******** USER PHOTO STYLING *********/
+/******** CONCERT LIST *********/
 /***********************************/
 
-
-.ing.concert-img{
-  max-width: 300px;
+.concert-thumb-container {
 }
+
+.concert-thumb {
+  max-width: 100px;
+}
+
+.concert-li-container {
+  /*background-color: yellow;*/
+  max-width: 130px;
+  font-size: 0.5em;
+  display: inline-block;
+  vertical-align: top;
+  /*margin-left: 10px;*/
+}
+.concert-details-container {
+  padding-left: 10px;
+}
+.concert-title {
+  font-weight: 400;
+}
+.concert-date {
+  font-size: 0.9em; 
+}
+.concert-venue {
+  font-size: 0.9em; 
+}
+
+
+
+
 
  /***********************************/
 /******** MODERNIZR *********/
@@ -789,13 +815,6 @@ ul {
 .csstransforms3d  #book2:before { background-color: #333; }
 .csstransforms3d  #book3:before { background-color: #254053; }
 
-
-* {
-  box-sizing: border-box;
-}
-*:before, *:after {
-  box-sizing: border-box;
-}
 
 .section.open button:before, .section.open button:after {
   height: 14px;
