@@ -74,8 +74,17 @@ var PinnedGiftList = React.createClass({
             friendId : friendId,
             userId: userId}, // need to pass in the access token
       success: function(data) {
-        var newWishList = this.state.wishlist.filter(function(gift) { return gift.ASIN !== ASIN; });
-        this.setState({wishlist : newWishList});
+        // look for the id in each of the categories
+        for (var category in this.state){
+          var list = this.state[category];
+          list = list.filter(function(gift) { return gift.ASIN !== ASIN; });
+          var newState = {};
+          newState[category] = list;
+          this.setState(newState);
+        }
+
+      /*  var newWishList = this.state.wishlist.filter(function(gift) { return gift.ASIN !== ASIN; });
+        this.setState({wishlist : newWishList});*/
       }.bind(this),
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());

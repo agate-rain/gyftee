@@ -87,8 +87,8 @@ var Book = React.createClass({
 
     let element;
     if (this.state.alertVisible) {
-      element = <Alert className="saved opacity" onDismiss={this.handleAlertDismiss} dismissAfter={2000}>
-        <span>ITEM SAVED!</span>
+      element = <Alert className="saved opacity" closeLabel="" onDismiss={this.handleAlertDismiss} dismissAfter={1000}>
+        <span> Gift added! </span>
       </Alert>
     }
 
@@ -98,7 +98,7 @@ var Book = React.createClass({
         <div className="detail-wrapper">
           <div>
             <div className="add-to-list-container">
-              <div className="add-to-list" onClick={this.addToList.bind(this, bookDetails.ASIN)}>
+              <div bsStyle="success" className="add-to-list" onClick={this.addToList.bind(this, bookDetails.ASIN)}>
                 <Button onClick={this.handleAlertShow} className="button add-to-list-button">
                   <a>
                     <i className="glyphicon add-heart glyphicon-heart"></i>
