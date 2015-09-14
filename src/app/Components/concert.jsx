@@ -5,32 +5,11 @@ import { Button, Alert } from 'react-bootstrap';
 
 var Concert = React.createClass({
 
-    // mixins: [ Navigation ],
-
-  // navToConcertDetail: function(id) {
-  //   this.transitionTo(`/gifts/${id}`);
-  // },
-
-  // render: function(){
-
-  //   var datetime = this.props.concert.details.datetime.replace('T',' ');
-  //   var date = datetime.slice(0,datetime.length - 9);
-  //   var time = datetime.slice(datetime.length - 9, datetime.length-3);
-
-
   addToList: function (concertId) {
     // send the clicked book to the server to save on the user's gift list
-      // console.log("concertDetails", concertDetails)
 
     var friendId = this.props.friend.friend.id;
     var userId = this.props.user.profile.identities[0].user_id;
-    
-    // if (this.props.details) {
-    //   var concertDetails = {
-    //     concertId: this.props.details.id,
-    //     url: this.props.details.ticket_url || ''
-    //   };
-    // } 
 
     $.ajax({
       url: "http://localhost:" + PORT.PORT + "/api/friends/savegift",
@@ -98,48 +77,25 @@ var Concert = React.createClass({
               </div>
             </div>
 
-              <div className="book-thumbnail">
-                <a className="book" href={concert.details.url} target="_blank"><img src={concert.details.img} /></a>
-              </div>
+            <div>
+              <a href={concert.details.ticket_url} target="_blank">
+                <img className="concert-detail-thumb" src={concert.basedOn.thumb_url}></img>
+              </a>
+            </div>
           </div>
 
-
-
-        <div className="concert-details-container">
-          <div className="concert-title">{this.props.concert.details.artists[0].name} </div>
-          <div className="concert-date">{date} </div>
-          <div className="concert-venue">{this.props.concert.details.venue.name} </div>
-          <div className="concert-city">{this.props.concert.details.venue.city} </div>
-        </div>
-
-            
-
-
+          <div className="concert-details-container">
+            <div className="concert-title">{this.props.concert.details.artists[0].name} </div>
+            <div className="concert-date">{date} </div>
+            <div className="concert-venue">{this.props.concert.details.venue.name} </div>
+            <div className="concert-city">{this.props.concert.details.venue.city} </div>
+          </div>
+              
         </div>
       </div>
     );
   }
 });
-
-
-
-  //     return (
-  //       <div className="concert-li-container container">
-
-  //         <div className="concert-thumb-container">
-  //           <a className="concert-link" href={this.props.concert.details.ticket_url} target="_blank">
-  //             <img className="book concert-thumb" src={this.props.concert.basedOn.thumb_url} onClick={this.navToConcertDetail.bind(this, this.props.concert.id)}></img>
-  //           </a>
-  //         </div>
-
-  //         <div className="concert-details-container">
-  //           <div className="concert-title">{this.props.concert.details.artists[0].name} </div>
-  //           <div className="concert-date">{date} </div>
-  //           <div className="concert-venue">{this.props.concert.details.venue.name} </div>
-  //           <div className="concert-city">{this.props.concert.details.venue.city} </div>
-  //         </div>
-
-  //       </div>
 
 
 var mapStateToProps = function(state) {

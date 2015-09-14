@@ -735,6 +735,10 @@ ul {
 .concert-thumb-container {
 }
 
+.concert-detail-thumb {
+  max-width: 100px;
+}
+
 .concert-thumb {
   max-width: 100px;
 }
