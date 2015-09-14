@@ -14,7 +14,8 @@ var Book = React.createClass({
     $.ajax({
       url: "http://localhost:" + PORT.PORT + "/api/friends/savegift",
       method: 'POST',
-      data: {ASIN : ASIN,
+      data: { type: 'book',
+            ASIN : ASIN,
             friendId : friendId,
             userId: userId}, // need to pass in the access token
       success: function(data) {

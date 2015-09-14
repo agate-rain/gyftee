@@ -21,9 +21,9 @@ var BookList = React.createClass({
      return {open: true, class: "section open"}
   },
 
-  navToGiftDetail: function(id) {
-    this.transitionTo(`/gifts/${id}`);
-  },
+  // navToGiftDetail: function(id) {
+  //   this.transitionTo(`/gifts/${id}`);
+  // },
 
   render: function() {
     var books = [];

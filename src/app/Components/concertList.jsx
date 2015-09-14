@@ -7,6 +7,8 @@ import PORT from '../../config/port';
 import Thumbnail from './thumbnail';
 import ThumbnailConcert from './thumbnailConcert';
 import Book from './book';
+import Concert from './concert';
+
 import sliderSettings from '../../util/sliderSettings';
 import Slider from'react-slick';
 
@@ -26,9 +28,9 @@ var ConcertList = React.createClass({
      return {open: true, class: "section open"}
   },
 
-  navToGiftDetail: function(id) {
-    this.transitionTo(`/gifts/${id}`);
-  },
+  // navToGiftDetail: function(id) {
+  //   this.transitionTo(`/gifts/${id}`);
+  // },
 
   render: function() {
 

@@ -40,10 +40,9 @@ module.exports = {
         next(err);
     });
   },
-   saveGift: function(req, res, next){
+   saveGift: function(req, res, next) {
     var friendId = req.body.friendId;
     var userId = req.body.userId;
-    var ASIN = req.body.ASIN;
 
     User.findOne({fbId:userId})
       .exec(function(err, user) {
@@ -51,8 +50,17 @@ module.exports = {
             console.log('User Found!')
             user.giftsList.forEach(function(gift){
               if(gift.fbId === friendId){
-                if(gift.pinnedGifts.books.indexOf(ASIN) === -1){
-                  gift.pinnedGifts.books.push(ASIN);
+                if(req.body.type === 'book'){
+                    var ASIN = req.body.ASIN;
+                  if(gift.pinnedGifts.books.indexOf(ASIN) === -1){
+                    gift.pinnedGifts.books.push(ASIN);
+                  } 
+                } 
+                else if (req.body.type === 'music') {
+                  var concertId = req.body.concertId;
+                  if(gift.pinnedGifts.music.indexOf(concertId) === -1){
+                    gift.pinnedGifts.music.push(concertId);
+                  } 
                 }
               }
             });

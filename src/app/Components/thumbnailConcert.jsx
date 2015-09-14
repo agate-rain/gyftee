@@ -7,8 +7,14 @@ var ThumbnailConcert = React.createClass({
 
   mixins: [ Navigation ],
 
-  navToConcertDetail: function(id) {
-    this.transitionTo(`/concert/${id}`);
+  navToGiftDetail: function(id) {
+    this.props.dispatch(currentDisplayedGift(this.props.concert));
+    this.transitionTo(`/concerts/${id}`);
+  },
+
+  truncateTitle: function(title, n){
+    n = n || 35;
+    return (title.length < n) ? title : title.substring(0, 30) + "...";
   },
 
   render: function(){
@@ -21,8 +27,8 @@ var ThumbnailConcert = React.createClass({
         <div className="concert-li-container container">
 
           <div className="concert-thumb-container">
-            <a className="concert-link" href={this.props.concert.details.ticket_url} target="_blank">
-              <img className="book concert-thumb" src={this.props.concert.basedOn.thumb_url} onClick={this.navToConcertDetail.bind(this, this.props.concert.id)}></img>
+            <a className="concert-link">
+              <img className="book concert-thumb" src={this.props.concert.basedOn.thumb_url} onClick={this.navToGiftDetail.bind(this, this.props.concert.details.id)}></img>
             </a>
           </div>
 
@@ -37,8 +43,15 @@ var ThumbnailConcert = React.createClass({
       );
   }
 });
+
+            // <a className="concert-link" href={this.props.concert.details.ticket_url} target="_blank">
+
           // <a href={this.props.concert.basedOn.facebook_page_url}><button type="facebook_page_url">Facebook</button></a>
           // <a href={this.props.concert.basedOn.facebook_tour_dates_url}><button type="facebook_tour_date">Tourdate</button></a>
+var mapStateToProps = function(state) {
+  return {
+    gift : state.gift // export the portion of the state from index.js Reducers
+  }
+};
 
-
-export default ThumbnailConcert;
+export default connect(mapStateToProps)(ThumbnailConcert);
