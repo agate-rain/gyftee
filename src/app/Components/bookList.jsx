@@ -38,7 +38,9 @@ var BookList = React.createClass({
     return (
       <div className={this.state.class}>
         <div className="books-list">
+
           <div className="row light-teal category sectionhead" onClick={this.handleClick}>
+          <button>toggle</button>
             <div className="category-header">Books</div>
           </div>
             <div className="slider-container sliderwrap">
