@@ -18,22 +18,27 @@ var ThumbnailConcert = React.createClass({
     var time = datetime.slice(datetime.length - 9, datetime.length-3);
 
       return (
-        <div>
-          <div className="concert">
-            <a className="concert" href={this.props.concert.details.ticket_url} target="_blank"><img className="concert-img" src={this.props.concert.basedOn.thumb_url} onClick={this.navToConcertDetail.bind(this, this.props.concert.id)}/></a>
+        <div className="concert-li-container container">
+
+          <div className="concert-thumb-container">
+            <a className="concert-link" href={this.props.concert.details.ticket_url} target="_blank">
+              <img className="book concert-thumb" src={this.props.concert.basedOn.thumb_url} onClick={this.navToConcertDetail.bind(this, this.props.concert.id)}></img>
+            </a>
           </div>
-          <div className="concert-title-thumb">{this.props.concert.details.artists[0].name} </div>
-          <div className="concert-date-thumb">{date} </div>
-          <div className="concert-time-thumb">{time} </div>
-          <div className="concert-venue-name-thumb">{this.props.concert.details.venue.name} </div>
-          <div className="concert-city-thumb">{this.props.concert.details.venue.city} </div>
-          <div className="concert-country-thumb">{this.props.concert.details.venue.country} </div>
-          <a href={this.props.concert.basedOn.facebook_page_url}><button type="facebook_page_url">Facebook</button></a>
-          <a href={this.props.concert.basedOn.facebook_tour_dates_url}><button type="facebook_tour_date">Tourdate</button></a>
+
+          <div className="concert-details-container">
+            <div className="concert-title">{this.props.concert.details.artists[0].name} </div>
+            <div className="concert-date">{date} </div>
+            <div className="concert-venue">{this.props.concert.details.venue.name} </div>
+            <div className="concert-city">{this.props.concert.details.venue.city} </div>
+          </div>
+
         </div>
       );
   }
 });
+          // <a href={this.props.concert.basedOn.facebook_page_url}><button type="facebook_page_url">Facebook</button></a>
+          // <a href={this.props.concert.basedOn.facebook_tour_dates_url}><button type="facebook_tour_date">Tourdate</button></a>
 
 
 export default ThumbnailConcert;
