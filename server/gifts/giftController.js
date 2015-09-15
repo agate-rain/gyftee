@@ -122,6 +122,8 @@ module.exports = {
         });
       })
     };
+
+
     var artistArr = req.body.artist;
     if (artistArr) {
       artistArr.forEach(function(artist) {

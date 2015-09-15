@@ -36,7 +36,7 @@ export default React.createClass({
           </div>
         );
       }
-      categoryHeader = (<div className="category-header">Concerts</div>);
+      categoryHeader = (<div className="category-header">Concerts <span className="category-count"> {concerts.length} </span></div>);
       element = concerts;
     }
     else if (this.props.books) {
@@ -48,7 +48,7 @@ export default React.createClass({
           </div>
         );
       }
-      categoryHeader = (<div className="category-header">Books</div>);
+      categoryHeader = (<div className="category-header">Books <span className="category-count"> {books.length} </span> </div>);
       element = books;
     }
     else if (this.props.etsy) {
@@ -64,22 +64,27 @@ export default React.createClass({
       element = etsy;
     }
 
-    return (
-      <div className={this.state.class}>
-        <div className="books-list">
+    if (element.length){
+      return (
+        <div className={this.state.class}>
+          <div className="books-list">
 
-          <div className="row light-teal category sectionhead" onClick={this.handleClick}>
-            <button>toggle</button>
-            {categoryHeader}
-          </div>
-            <div className="slider-container sliderwrap">
-              <Slider {...sliderSettings} className="books-list slider">
-                {element}
-              </Slider>
+            <div className="row light-teal category sectionhead" onClick={this.handleClick}>
+              <button>toggle</button>
+              {categoryHeader}
             </div>
+              <div className="slider-container sliderwrap">
+                <Slider {...sliderSettings} className="books-list slider">
+                  {element}
+                </Slider>
+              </div>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (<div className={this.state.class}></div>);
+    }
+
 
   }
 

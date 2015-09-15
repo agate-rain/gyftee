@@ -147,7 +147,6 @@ module.exports = {
 
     // format the location
     loc = loc.split(" ").join("+").split(",+").join(",");
-
     // query
     $.ajax({
       url: 'http://localhost:' + PORT.PORT + '/api/gifts/getevents',
@@ -165,7 +164,6 @@ module.exports = {
         concerts.forEach(function(concert){
           artistArr.push(concert.artists[0].name)
         })
-
 
       this.getArtistImage(artistArr, function(artist){
         for(var i in artist){
@@ -204,6 +202,7 @@ module.exports = {
       },
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/gifts/getartistimage", status, err.toString());
+
       }
     });
   },

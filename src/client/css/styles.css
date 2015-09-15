@@ -921,3 +921,16 @@ ul {
 .section.open button:after {
   transform: translate(0%, -50%) rotate(45deg);
 }
+
+.category-count {
+    display: inline-block;
+    width: 3em;
+    line-height: initial;
+    -moz-border-radius: 30px;
+    border-radius: 3em;
+    background-color: #004851;
+    color: white;
+    text-align: center;
+    font-size: 0.7em;
+    margin-left: 10px;
+}
