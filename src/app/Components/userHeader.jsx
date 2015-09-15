@@ -29,12 +29,9 @@ var UserHeader = React.createClass({
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
-
-
   },
 
   render: function() {
-    console.log(this.props)
     return (
       <div className="flex-container welcome-main">
         <div className="welcome-container container">
@@ -54,6 +51,5 @@ var UserHeader = React.createClass({
   }
 
 });
-
 
 export default UserHeader;

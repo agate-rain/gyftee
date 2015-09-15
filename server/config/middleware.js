@@ -30,7 +30,12 @@ module.exports = function(app, express) {
   app.use('/api/gifts', giftRouter);
   app.use('/api/giftlists', giftListRouter);
   app.use('/api/friends', friendRouter);
-
+  app.get('/*', function(req, res) {
+    res.sendFile('index.html', {
+      // TODO: check this path 
+      root: '../../src'
+    });
+  });
 
   // auth middleware will be here if we allow users to login w/o facebook
 

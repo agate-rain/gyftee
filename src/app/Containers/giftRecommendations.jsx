@@ -5,39 +5,13 @@ import { fetchFriend, saveImageUrl } from '../Actions/friend'
 import { saveGifts, initGifts } from '../Actions/gifts'
 import Slider from 'react-slick';
 import FriendHeader from '../Components/friendHeader';
-import Thumbnail from '../Components/thumbnail';
-import ThumbnailConcert from '../Components/thumbnailConcert';
-import RecommendationFilters from '../Components/recommendationFilters';
-import BookList from '../Components/bookList';
-import ConcertList from '../Components/concertList';
-import PORT from '../../config/port.js';
+import GiftsByCategory from '../Components/giftsByCategory';
 import NavBar from '../Components/navbar';
 import utils from '../Utils/utils'
 
 var GiftRecommendations = React.createClass({
 
   mixins: [ Navigation ],
-
-  render: function() {
-    /*var concerts = this.filterGifts("concert");
-    var books = this.filterGifts("book");*/
-    var books = this.props.gifts.filter(function(gift){
-      return gift.category === "book";
-    });
-    // console.log('BOOKS',books)
-    var concerts = this.filterGifts('concert');
-
-    return (
-      <div className="recommendations">
-        <NavBar />
-        <FriendHeader friend={this.props.friend.friend}
-          url={this.props.friend.image_url}
-          navToWishList={this.navToWishList} />
-        <BookList amazonBooks={books} />
-        <ConcertList concerts={concerts} />
-      </div>
-    );
-  },
 
   navToWishList: function(friendId) {
     this.transitionTo(`/friends/${friendId}/wishList`);
@@ -111,7 +85,32 @@ var GiftRecommendations = React.createClass({
     utils.fetchGiftByKeyWord(keyWord, function(books){
       this.props.dispatch(saveGifts(books));
     }.bind(this));
+  },
+
+  render: function() {
+    var books = this.props.gifts.filter(function(gift){
+      return gift.category === "book";
+    });
+    var concerts = this.filterGifts('concert');
+
+    if (books.length > 0) {
+      return (
+        <div className="recommendations">
+          <NavBar />
+          <FriendHeader friend={this.props.friend.friend}
+            url={this.props.friend.image_url}
+            navToWishList={this.navToWishList} />
+          <GiftsByCategory books={books} />
+          <GiftsByCategory concerts={concerts} />
+        </div>
+      );
+    } else {
+      return (
+        <div className="teal-font">Fetching gift recommendations...</div>
+      );
+    }
   }
+
 });
 
 var mapStateToProps = function(state) {

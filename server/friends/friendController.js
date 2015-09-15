@@ -6,15 +6,6 @@ var http = require('http');
 var request = require('request');
 
 module.exports = {
-  // signin: function(req, res, next) {
-  // // look up user in database
-  //   // if user does not exist, create and save in db
-  //   // else, let user sign in
-  // },
-
-  // signout: function(req, res, next) {
-  // // remove session
-  // },
 
   getFriend: function(req, res, next) {
     BPromise.promisifyAll(facebookApi.friends(req.body.access_token))
@@ -51,13 +42,13 @@ module.exports = {
             user.giftsList.forEach(function(gift){
               if(gift.fbId === friendId){
                 if(req.body.type === 'book'){
-                    var ASIN = req.body.ASIN;
+                    var ASIN = req.body.giftId;
                   if(gift.pinnedGifts.books.indexOf(ASIN) === -1){
                     gift.pinnedGifts.books.push(ASIN);
                   } 
                 } 
                 else if (req.body.type === 'music') {
-                  var concertId = req.body.concertId;
+                  var concertId = req.body.giftId;
                   if(gift.pinnedGifts.music.indexOf(concertId) === -1){
                     gift.pinnedGifts.music.push(concertId);
                   } 
@@ -73,12 +64,12 @@ module.exports = {
           }
     });
   },
-
+  // TODO: Refactor to remove concert or book items 
   removeGift: function(req, res, next){
     console.log("REMOVE THE GIFT");
     var friendId = req.body.friendId;
     var userId = req.body.userId;
-    var ASIN = req.body.ASIN;
+    var giftId = req.body.giftId;
 
 
     // Find the user
@@ -88,12 +79,21 @@ module.exports = {
             console.log('User Found!')
             // Find the friend
             user.giftsList.forEach(function(gift){
-              if(gift.fbId === friendId){
+              if (gift.fbId === friendId){
                 // Look for the boox
-                var giftToRemoveIdx = gift.pinnedGifts.books.indexOf(ASIN);
-                if (giftToRemoveIdx !== -1){
-                  // Remove the book
-                  gift.pinnedGifts.books.splice(giftToRemoveIdx, 1);
+                if (req.body.type === 'book') {
+                  var giftToRemoveIdx = gift.pinnedGifts.books.indexOf(giftId);
+                  if (giftToRemoveIdx !== -1){
+                    // Remove the book
+                    gift.pinnedGifts.books.splice(giftToRemoveIdx, 1);
+                  }                  
+                }
+                if (req.body.type === 'music') {
+                  var giftToRemoveIdx = gift.pinnedGifts.concerts.indexOf(giftId);
+                  if (giftToRemoveIdx !== -1){
+                    // Remove the concert
+                    gift.pinnedGifts.concerts.splice(giftToRemoveIdx, 1);
+                  }                  
                 }
               }
             });
