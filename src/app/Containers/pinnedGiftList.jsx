@@ -60,24 +60,26 @@ var PinnedGiftList = React.createClass({
     this.transitionTo(`/friends/${id}`);
   },
 
-  removeFromList: function(ASIN) {
+  removeFromList: function(giftId, type) {
     // send the clicked book to the server to save on the user's gift list
     // should the req object just be Book's rendered view? this.props.book[0]
-
     var friendId = this.props.friend.friend.id;
     var userId = this.props.user.profile.identities[0].user_id;
 
     $.ajax({
       url: "http://localhost:" + PORT.PORT + "/api/friends/removegift",
       method: 'POST',
-      data: {ASIN : ASIN,
-            friendId : friendId,
-            userId: userId}, // need to pass in the access token
+      data: {
+              type: type,
+              giftId : giftId,
+              friendId : friendId,
+              userId: userId
+            },
       success: function(data) {
         // look for the id in each of the categories
         for (var category in this.state){
           var list = this.state[category];
-          list = list.filter(function(gift) { return gift.ASIN !== ASIN; });
+          list = list.filter(function(gift) { return gift.giftId !== giftId; });
           var newState = {};
           newState[category] = list;
           this.setState(newState);

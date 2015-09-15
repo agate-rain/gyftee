@@ -10,7 +10,6 @@ import App from './app/Containers/app';
 import Login from './app/Containers/login';
 import FriendManager from './app/Containers/friendManager';
 import GiftDetail from './app/Containers/giftDetail';
-// import ConcertDetail from './app/Containers/concertDetail';
 import GiftRecs from './app/Containers/giftRecommendations';
 import AllFriendsList from './app/Containers/allFriendsList';
 import InviteFriend from './app/Containers/inviteFriend';

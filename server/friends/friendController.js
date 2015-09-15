@@ -64,12 +64,12 @@ module.exports = {
           }
     });
   },
-
+  // TODO: Refactor to remove concert or book items 
   removeGift: function(req, res, next){
     console.log("REMOVE THE GIFT");
     var friendId = req.body.friendId;
     var userId = req.body.userId;
-    var ASIN = req.body.giftId;
+    var giftId = req.body.giftId;
 
 
     // Find the user
@@ -79,12 +79,21 @@ module.exports = {
             console.log('User Found!')
             // Find the friend
             user.giftsList.forEach(function(gift){
-              if(gift.fbId === friendId){
+              if (gift.fbId === friendId){
                 // Look for the boox
-                var giftToRemoveIdx = gift.pinnedGifts.books.indexOf(ASIN);
-                if (giftToRemoveIdx !== -1){
-                  // Remove the book
-                  gift.pinnedGifts.books.splice(giftToRemoveIdx, 1);
+                if (req.body.type === 'book') {
+                  var giftToRemoveIdx = gift.pinnedGifts.books.indexOf(giftId);
+                  if (giftToRemoveIdx !== -1){
+                    // Remove the book
+                    gift.pinnedGifts.books.splice(giftToRemoveIdx, 1);
+                  }                  
+                }
+                if (req.body.type === 'music') {
+                  var giftToRemoveIdx = gift.pinnedGifts.concerts.indexOf(giftId);
+                  if (giftToRemoveIdx !== -1){
+                    // Remove the concert
+                    gift.pinnedGifts.concerts.splice(giftToRemoveIdx, 1);
+                  }                  
                 }
               }
             });
