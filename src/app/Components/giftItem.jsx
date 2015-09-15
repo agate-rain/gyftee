@@ -64,7 +64,6 @@ var GiftItem = React.createClass({
 
     if (this.props.book) {      
       const {book} = this.props;
-      // console.log('book deets', book.details)
       basedOn = book.basedOn;
       const missingBookCover = 'http://www.mbalit.co.uk/sites/default/files/imagecache/fullsize/imagefield_default_images/generic_book_cover_0.jpg';
 
@@ -137,10 +136,8 @@ var GiftItem = React.createClass({
       var date = datetime.slice(0,datetime.length - 9);
       var time = datetime.slice(datetime.length - 9, datetime.length-3);
       var datetime = concert.details.datetime.replace('T',' ');
-
+      
       basedOn = concert.basedOn;
-
-      console.log(concert.details);
 
       itemDetails = {
         giftId: concert.details.id

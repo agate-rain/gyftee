@@ -4,7 +4,6 @@ import NavBar from '../Components/navbar';
 import { connect } from 'react-redux';
 
 var GiftDetail = React.createClass({
-
   render: function() {
     let giftType; 
 
@@ -15,8 +14,6 @@ var GiftDetail = React.createClass({
       giftType = (<GiftItem concert={this.props.gift} />) 
     }
 
-    console.log('giftType', giftType);
-    console.log('this.props', this.props);
     return (
       <div>
         <NavBar />
