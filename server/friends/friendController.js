@@ -6,15 +6,6 @@ var http = require('http');
 var request = require('request');
 
 module.exports = {
-  // signin: function(req, res, next) {
-  // // look up user in database
-  //   // if user does not exist, create and save in db
-  //   // else, let user sign in
-  // },
-
-  // signout: function(req, res, next) {
-  // // remove session
-  // },
 
   getFriend: function(req, res, next) {
     BPromise.promisifyAll(facebookApi.friends(req.body.access_token))
@@ -51,13 +42,13 @@ module.exports = {
             user.giftsList.forEach(function(gift){
               if(gift.fbId === friendId){
                 if(req.body.type === 'book'){
-                    var ASIN = req.body.ASIN;
+                    var ASIN = req.body.giftId;
                   if(gift.pinnedGifts.books.indexOf(ASIN) === -1){
                     gift.pinnedGifts.books.push(ASIN);
                   } 
                 } 
                 else if (req.body.type === 'music') {
-                  var concertId = req.body.concertId;
+                  var concertId = req.body.giftId;
                   if(gift.pinnedGifts.music.indexOf(concertId) === -1){
                     gift.pinnedGifts.music.push(concertId);
                   } 
@@ -78,7 +69,7 @@ module.exports = {
     console.log("REMOVE THE GIFT");
     var friendId = req.body.friendId;
     var userId = req.body.userId;
-    var ASIN = req.body.ASIN;
+    var ASIN = req.body.giftId;
 
 
     // Find the user
