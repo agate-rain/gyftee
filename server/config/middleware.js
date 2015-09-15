@@ -15,6 +15,7 @@ module.exports = function(app, express) {
 
   // Request body parsing middleware should be above methodOverride
   // express middleware
+
   app.use(bodyParser.urlencoded({ extended: true, limit:'50mb' }));
   app.use(morgan('dev'));
   app.use(bodyParser.json({limit: '50mb'}));
