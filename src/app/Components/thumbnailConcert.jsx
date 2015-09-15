@@ -20,8 +20,6 @@ var ThumbnailConcert = React.createClass({
   render: function(){
 
     var datetime = this.props.concert.details.datetime.replace('T',' ');
-    var date = datetime.slice(0,datetime.length - 9);
-    var time = datetime.slice(datetime.length - 9, datetime.length-3);
 
       return (
         <div className="concert-li-container container">
@@ -34,9 +32,6 @@ var ThumbnailConcert = React.createClass({
 
           <div className="concert-details-container">
             <div className="concert-title">{this.props.concert.details.artists[0].name} </div>
-            <div className="concert-date">{date} </div>
-            <div className="concert-venue">{this.props.concert.details.venue.name} </div>
-            <div className="concert-city">{this.props.concert.details.venue.city} </div>
           </div>
 
         </div>
@@ -44,10 +39,6 @@ var ThumbnailConcert = React.createClass({
   }
 });
 
-            // <a className="concert-link" href={this.props.concert.details.ticket_url} target="_blank">
-
-          // <a href={this.props.concert.basedOn.facebook_page_url}><button type="facebook_page_url">Facebook</button></a>
-          // <a href={this.props.concert.basedOn.facebook_tour_dates_url}><button type="facebook_tour_date">Tourdate</button></a>
 var mapStateToProps = function(state) {
   return {
     gift : state.gift // export the portion of the state from index.js Reducers

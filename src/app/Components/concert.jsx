@@ -60,9 +60,10 @@ var Concert = React.createClass({
   var datetime = this.props.concert.details.datetime.replace('T',' ');
     var date = datetime.slice(0,datetime.length - 9);
     var time = datetime.slice(datetime.length - 9, datetime.length-3);
+    var datetime = this.props.concert.details.datetime.replace('T',' ');
 
     return (
-      <div className="flex-container seafoam detail-main">
+      <div className="flex-container seafoam detail-main add-padding">
 
         <div className="detail-wrapper">
           <div>
@@ -86,17 +87,19 @@ var Concert = React.createClass({
 
           <div className="concert-details-container">
             <div className="concert-title">{this.props.concert.details.artists[0].name} </div>
-            <div className="concert-date">{date} </div>
+            <div className="concert-date">{date} at {time}</div>
             <div className="concert-venue">{this.props.concert.details.venue.name} </div>
             <div className="concert-city">{this.props.concert.details.venue.city} </div>
           </div>
-              
+
         </div>
       </div>
     );
   }
 });
 
+          // <a href={this.props.concert.basedOn.facebook_page_url}><button type="facebook_page_url">Facebook</button></a>
+          // <a href={this.props.concert.basedOn.facebook_tour_dates_url}><button type="facebook_tour_date">Tourdate</button></a>
 
 var mapStateToProps = function(state) {
   return {

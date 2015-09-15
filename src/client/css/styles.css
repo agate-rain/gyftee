@@ -743,6 +743,10 @@ ul {
   max-width: 100px;
 }
 
+.add-padding {
+  padding-bottom: 40px;
+}
+
 .concert-li-container {
   /*background-color: yellow;*/
   max-width: 130px;
