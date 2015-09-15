@@ -6,6 +6,7 @@ import { saveGifts, initGifts } from '../Actions/gifts'
 import Slider from 'react-slick';
 import FriendHeader from '../Components/friendHeader';
 import Thumbnail from '../Components/thumbnail';
+import ThumbnailConcert from '../Components/thumbnailConcert';
 import RecommendationFilters from '../Components/recommendationFilters';
 import BookList from '../Components/bookList';
 import ConcertList from '../Components/concertList';
@@ -23,7 +24,7 @@ var GiftRecommendations = React.createClass({
     var books = this.props.gifts.filter(function(gift){
       return gift.category === "book";
     });
-    console.log('BOOKS',books)
+    // console.log('BOOKS',books)
     var concerts = this.filterGifts('concert');
 
     return (

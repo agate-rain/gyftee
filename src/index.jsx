@@ -10,6 +10,7 @@ import App from './app/Containers/app';
 import Login from './app/Containers/login';
 import FriendManager from './app/Containers/friendManager';
 import GiftDetail from './app/Containers/giftDetail';
+import ConcertDetail from './app/Containers/concertDetail';
 import GiftRecs from './app/Containers/giftRecommendations';
 import AllFriendsList from './app/Containers/allFriendsList';
 import InviteFriend from './app/Containers/inviteFriend';
@@ -35,6 +36,7 @@ React.render(
         <Route name="wishList" path="friends/:friendId/wishList" component={WishList} />
         <Route name="friendGifts" path="friends/:friendId" component={GiftRecs} />
         <Route name="giftDetail" path="gifts/:giftId" component={GiftDetail} />
+        <Route name="concertDetail" path="concerts/:giftId" component={ConcertDetail} />
         <Route name="imageView" path="friends/:friendId/image" component={ImageView} />
       </Route>
     </Router>

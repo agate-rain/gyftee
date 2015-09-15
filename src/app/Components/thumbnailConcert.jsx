@@ -7,33 +7,42 @@ var ThumbnailConcert = React.createClass({
 
   mixins: [ Navigation ],
 
-  navToConcertDetail: function(id) {
-    this.transitionTo(`/concert/${id}`);
+  navToGiftDetail: function(id) {
+    this.props.dispatch(currentDisplayedGift(this.props.concert));
+    this.transitionTo(`/concerts/${id}`);
+  },
+
+  truncateTitle: function(title, n){
+    n = n || 35;
+    return (title.length < n) ? title : title.substring(0, 30) + "...";
   },
 
   render: function(){
 
     var datetime = this.props.concert.details.datetime.replace('T',' ');
-    var date = datetime.slice(0,datetime.length - 9);
-    var time = datetime.slice(datetime.length - 9, datetime.length-3);
 
       return (
-        <div>
-          <div className="concert">
-            <a className="concert" href={this.props.concert.details.ticket_url} target="_blank"><img className="concert-img" src={this.props.concert.basedOn.thumb_url} onClick={this.navToConcertDetail.bind(this, this.props.concert.id)}/></a>
+        <div className="concert-li-container container">
+
+          <div className="concert-thumb-container">
+            <a className="concert-link">
+              <img className="book concert-thumb" src={this.props.concert.basedOn.thumb_url} onClick={this.navToGiftDetail.bind(this, this.props.concert.details.id)}></img>
+            </a>
           </div>
-          <div className="concert-title-thumb">{this.props.concert.details.artists[0].name} </div>
-          <div className="concert-date-thumb">{date} </div>
-          <div className="concert-time-thumb">{time} </div>
-          <div className="concert-venue-name-thumb">{this.props.concert.details.venue.name} </div>
-          <div className="concert-city-thumb">{this.props.concert.details.venue.city} </div>
-          <div className="concert-country-thumb">{this.props.concert.details.venue.country} </div>
-          <a href={this.props.concert.basedOn.facebook_page_url}><button type="facebook_page_url">Facebook</button></a>
-          <a href={this.props.concert.basedOn.facebook_tour_dates_url}><button type="facebook_tour_date">Tourdate</button></a>
+
+          <div className="concert-details-container">
+            <div className="concert-title">{this.props.concert.details.artists[0].name} </div>
+          </div>
+
         </div>
       );
   }
 });
 
+var mapStateToProps = function(state) {
+  return {
+    gift : state.gift // export the portion of the state from index.js Reducers
+  }
+};
 
-export default ThumbnailConcert;
+export default connect(mapStateToProps)(ThumbnailConcert);

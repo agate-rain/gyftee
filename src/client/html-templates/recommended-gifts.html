@@ -48,59 +48,54 @@
         </div>
         <div class="profile-photo-container">
           <div class="thumbnail profile-photo">
-            <img src="../img/gyftee-icon.png" alt="user profile photo"/>
+            <img src="../img/g-icon.png" class="dark-teal" alt="user profile photo"/>
           </div>
         </div>
     </div> <!-- /welcome-container --> 
 
     <!-- Start of bday list --> 
-    <div class="bday-list-container">
-      <div class="bday-list-header">UPCOMING BIRTHDAYS</div>
-      <div class="bday-list-body seafoam">
-        <!-- friend row items -->
-        <div class="bday-row">
-          <div class="heart-div"><a href="#"><i class="glyphicon glyphicon-heart heart"></i></a></div>
-          <div class="bday-list-item"><a id="friendname" href="#">Taylor Swift</a></div>
-          <div class="date-container">
-            <div>01/01</div>
+
+    <div flex-container>
+
+
+    
+    
+    
+         <div class="concert-li-container container seafoam">
+          <div class="concert-thumb-container">
+            <a class="concert-link" href="#" target="_blank">
+              <img class="book concert-thumb" src="../img/janet.jpg">
+            </a>
           </div>
-        </div>
 
-        <div class="bday-row">
-          <div class="heart-div"><a href="#"><i class="glyphicon glyphicon-heart heart"></i></a></div>
-          <div class="bday-list-item"><a id="friendname" href="#">Gaga, Lady</a></div>
-          <div class="date-container">
-            <div>01/01</div>
+          <div class="concert-details-container"> 
+            <div class="concert-title">Janet Jackson</div>
+            <div class="concert-date">September 30, 2015</div>
+            <div class="concert-venue">Bill Graham Civic Auditorium | San Francisco</div>
           </div>
-        </div>
+      
+        </div>  
 
-        <div class="bday-row">
-          <div class="heart-div"><a href="#"><i class="glyphicon glyphicon-heart heart"></i></a></div>
-          <div class="bday-list-item"><a id="friendname" href="#">John Paul George</a></div>
-          <div class="date-container">
-            <div>01/01</div>
+        <div class="concert-li-container container seafoam">
+          <div class="concert-thumb-container">
+            <a class="concert-link" href="#" target="_blank">
+              <img class="book concert-thumb" src="../img/tovelo.jpg">
+            </a>
           </div>
-        </div>
+          <div class="concert-details-container"> 
+            <div class="concert-title">Janet Jackson</div>
+            <div class="concert-date">September 30, 2015</div>
+            <div class="concert-venue">Bill Graham Civic Auditorium</div>
+            <div class="concert-city">San Francisco</div>
+          </div> 
 
-        <div class="bday-row">
-          <div class="heart-div"><a href="#"><i class="glyphicon glyphicon-heart heart"></i></a></div>
-          <div class="bday-list-item"><a id="friendname" href="#">Britney Spears</a></div>
-          <div class="date-container">
-            <div>01/01</div>
-          </div>
-        </div>
+        </div>  
 
-        <div class="bday-row">
-          <div class="heart-div"><a href="#"><i class="glyphicon glyphicon-heart heart"></i></a></div>
-          <div class="bday-list-item"><a id="friendname" href="#">The Artist Formerly Known as Prince</a></div>
-           <div class="date-container">
-             <div>01/01</div>
-           </div>
-        </div>
+    </div>
 
-      </div> <!-- bday-list-body -->      
-    </div> <!-- /bday-list-container -->    
    
+         <!--  <a href={this.props.concert.basedOn.facebook_page_url}><button type="facebook_page_url">Facebook</button></a>
+          <a href={this.props.concert.basedOn.facebook_tour_dates_url}><button type="facebook_tour_date">Tourdate</button></a> -->
 
   </div><!-- /home-container -->
 </body>
