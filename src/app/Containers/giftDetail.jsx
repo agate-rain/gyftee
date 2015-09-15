@@ -1,15 +1,26 @@
 import React from 'react';
-import Book from '../Components/book';
+import GiftItem from '../Components/giftItem';
 import NavBar from '../Components/navbar';
 import { connect } from 'react-redux';
 
 var GiftDetail = React.createClass({
 
   render: function() {
+    let giftType; 
+
+    if (this.props.gift.category === 'book') {
+      giftType = (<GiftItem book={this.props.gift} />)
+    } 
+    else if (this.props.gift.category === 'concert') {
+      giftType = (<GiftItem concert={this.props.gift} />) 
+    }
+
+    console.log('giftType', giftType);
+    console.log('this.props', this.props);
     return (
       <div>
-      <NavBar />
-      <Book book={this.props.gift}/>
+        <NavBar />
+        {giftType}
       </div>
     );
   }

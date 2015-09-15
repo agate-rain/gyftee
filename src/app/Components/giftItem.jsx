@@ -3,7 +3,7 @@ import React from 'react';
 import PORT from '../../config/port';
 import { Button, Alert } from 'react-bootstrap';
 
-// Component for the item that is rendered in the gift detail view
+// Component for the item that is rendered in the gift detail container
 var GiftItem = React.createClass({
   addToList: function(giftId, type) {
     // send the clicked item to the server to save to the user's gift list
@@ -13,10 +13,12 @@ var GiftItem = React.createClass({
     $.ajax({
       url: "http://localhost:" + PORT.PORT + "/api/friends/savegift",
       method: 'POST',
-      data: { type: type,
-            giftId : giftId,
-            friendId : friendId,
-            userId: userId}, // need to pass in the access token
+      data: { 
+              type: type,
+              giftId : giftId,
+              friendId : friendId,
+              userId: userId
+            },
       success: function(data) {
         console.log("gift item with id " + giftId + " added to wishlist");
       }.bind(this),
@@ -47,17 +49,18 @@ var GiftItem = React.createClass({
   render: function() {
 
     let element;
-    if (this.state.alertVisible) {
-      element = <Alert className="saved opacity" closeLabel="" onDismiss={this.handleAlertDismiss} dismissAfter={1000}>
-        <span> Gift added! </span>
-      </Alert>
-    }
-
+    let giftType;
     let itemView;
     let itemThumbnail;
     let itemDetails;
     let basedOnDetails;
     let basedOn;
+ 
+    if (this.state.alertVisible) {
+      element = <Alert className="saved opacity" closeLabel="" onDismiss={this.handleAlertDismiss} dismissAfter={1000}>
+        <span> Gift added! </span>
+      </Alert>
+    }
 
     if (this.props.book) {      
       const {book} = this.props;
@@ -137,8 +140,10 @@ var GiftItem = React.createClass({
 
       basedOn = concert.basedOn;
 
+      console.log(concert.details);
+
       itemDetails = {
-        giftId: concert.details.concertId
+        giftId: concert.details.id
       };
 
       itemThumbnail = (
@@ -167,7 +172,7 @@ var GiftItem = React.createClass({
 
           <div>
             <div className="add-to-list-container">
-              <div bsStyle="success" className="add-to-list" onClick={this.addToList.bind(this, itemDetails.giftId)}>
+              <div bsStyle="success" className="add-to-list" onClick={this.addToList.bind(this, itemDetails.giftId, giftType)}>
                 <Button onClick={this.handleAlertShow} className="button add-to-list-button">
                   <a>
                     <i className="glyphicon add-heart glyphicon-heart"></i>
