@@ -32,7 +32,7 @@ module.exports = {
       data: {
         friendId : friendId,
         access_token: this.getUserAccessToken()
-      }, 
+      },
       success: function(data) {
         callback(data);
       },
@@ -74,7 +74,7 @@ module.exports = {
       data: {ASIN : ASIN},
       success: function(similargifts) {
         var gifts = [];
-        if (similargifts.Items.Item) {
+        if (similargifts && similargifts.Items && similargifts.Items.Item) {
           similargifts.Items.Item.forEach(function(recommendedGift) {
             gifts.push({category: "book", details: recommendedGift, basedOn: gift});
           });
@@ -129,11 +129,19 @@ module.exports = {
   },
 
   getConcerts: function(loc, date, range, artistArr, callback) {
-    date = '10/10/2015';
+    var currentDate = new Date();
+    var currentYear = currentDate.getFullYear();
+
+    var mdy = date.split("/");
+    var upcomingBday = new Date(currentYear, mdy[0]-1, mdy[1]);
+    if (upcomingBday < currentDate){
+      upcomingBday = new Date(currentYear+1, mdy[0]-1, mdy[1]);
+    }
+
     range = range || 365;
     artistArr = artistArr;
     loc = loc || "San Francisco, California";
-    var jsDate = new Date(date);
+    var jsDate = new Date(upcomingBday);
     var startDate = new Date(jsDate.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString().slice(0,10);
     var endDate = new Date(jsDate.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0,10);
 
