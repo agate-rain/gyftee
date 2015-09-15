@@ -24,7 +24,8 @@ var common = {
     // If in production mode we put the files into the dist folder instead
     path: process.env.NODE_ENV === 'production' ? './dist' : './build',
     filename: '[name].js', // template name based on keys in entry
-    pathInfo: true
+    pathInfo: true,
+    publicPath: './build'
   },
 
 
@@ -67,7 +68,9 @@ if (TARGET === 'start' || !TARGET) {
     devtool: 'eval',
     devServer: {
       colors: true,
-      historyApiFallback: true,
+      historyApiFallback: {
+        index: './src/index.html'
+      },
       hot: true,
       inline: true,
       progress: true,
