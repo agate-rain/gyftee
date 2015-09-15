@@ -31,8 +31,9 @@ module.exports = function(app, express) {
   app.use('/api/giftlists', giftListRouter);
   app.use('/api/friends', friendRouter);
 
-
-  // auth middleware will be here if we allow users to login w/o facebook
+  app.get('*', function(req, res) {
+    res.sendFile(__dirname + '/../../index.html');
+  });
 
   // require route files
   require('../users/userRoutes.js')(userRouter);
