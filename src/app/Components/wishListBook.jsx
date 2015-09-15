@@ -19,14 +19,10 @@ var WishListBook = React.createClass({
     this.setState({alertVisible: true});
   },
 
-
-
-  render: function(){
-
-
+  render: function() {
     var missingBookCover = 'http://www.mbalit.co.uk/sites/default/files/imagecache/fullsize/imagefield_default_images/generic_book_cover_0.jpg';
 
-    if(this.props.book.Offers.Offer){
+    if (this.props.book && this.props.book.Offers && this.props.book.Offers.Offer) {
       var bookDetails = {
         ASIN : this.props.book.ASIN || '',
         url: this.props.book.DetailPageURL || '',
@@ -36,7 +32,7 @@ var WishListBook = React.createClass({
         binding: this.props.book.ItemAttributes.Binding || 'NA',
         price: this.props.book.Offers.Offer.OfferListing.Price.FormattedPrice || 'NA'
       };
-    }else{
+    } else {
       var bookDetails = {
         ASIN : this.props.book.ASIN || '',
         url: this.props.book.DetailPageURL || '',

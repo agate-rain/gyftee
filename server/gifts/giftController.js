@@ -253,7 +253,7 @@ module.exports = {
   searchEtsy: function(req, res, next) {
     var terms = 'panda candy';
     var url = "https://openapi.etsy.com/v2/listings/active.js?keywords=" +
-      terms + "&limit=12&includes=Images:1&api_key=" + process.env.ETSY_KEY_STRING ;
+      terms + "&limit=12&includes=Images:1&api_key=" + process.env.ETSY_KEY_STRING;
 
     var requestOptions = {
       url: url,
