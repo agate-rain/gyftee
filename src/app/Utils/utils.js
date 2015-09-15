@@ -32,7 +32,7 @@ module.exports = {
       data: {
         friendId : friendId,
         access_token: this.getUserAccessToken()
-      }, // need to pass in the access token
+      }, 
       success: function(data) {
         callback(data);
       },
@@ -52,7 +52,7 @@ module.exports = {
       context: this,
       url: "http://localhost:" + PORT.PORT + "/api/gifts/searchbykeyword",
       method: 'POST',
-      data: {keyword : keyword}, // need to pass in the access token
+      data: {keyword : keyword},
       success: function(gift) {
         if (gift.Items.Item) {
           this.getSimilarItem(gift.Items.Item[0], function(gift) {
@@ -118,8 +118,8 @@ module.exports = {
       data: {access_token: access_token},
       dataType: "json",
       success: function(data) {
-        console.log(typeof data),
-        console.dir(data);
+        // console.log(typeof data),
+        // console.dir(data);
         callback(data);
       },
       error: function(xhr, status, err) {
