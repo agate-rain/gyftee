@@ -15,7 +15,7 @@ var SliderSettings = {
       settings: {
         slidesToShow: 5,
         slidesToScroll: 5,
-        infinite: true,
+        infinite: false,
         dots: true
       }
     },
@@ -25,7 +25,7 @@ var SliderSettings = {
       settings: {
         slidesToShow: 5,
         slidesToScroll: 5,
-        infinite: true,
+        infinite: false,
         dots: true
       }
     }, {
