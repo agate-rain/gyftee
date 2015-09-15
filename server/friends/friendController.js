@@ -40,52 +40,50 @@ module.exports = {
         next(err);
     });
   },
-   saveGift: function(req, res, next) {
+
+   saveGift: function(req, res, next){
     var friendId = req.body.friendId;
     var userId = req.body.userId;
 
     User.findOne({fbId:userId})
       .exec(function(err, user) {
           if (user) {
-            console.log('User Found!')
             user.giftsList.forEach(function(gift){
               if(gift.fbId === friendId){
                 if(req.body.type === 'book'){
                     var ASIN = req.body.ASIN;
                   if(gift.pinnedGifts.books.indexOf(ASIN) === -1){
                     gift.pinnedGifts.books.push(ASIN);
-                  } 
-                } 
+                  }
+                }
                 else if (req.body.type === 'music') {
                   var concertId = req.body.concertId;
                   if(gift.pinnedGifts.music.indexOf(concertId) === -1){
                     gift.pinnedGifts.music.push(concertId);
-                  } 
+                  }
                 }
               }
             });
             user.markModified('giftsList');
             user.save();
-            res.send(200, "Gift saved to database")
+            //res.send(200, "Gift saved to database");
+            res.status(200).send("Gift saved to database");
           } else {
-           console.log('User Not Found!')
-           res.send(500, "Unable to save gift to database")
+           //res.send(500, "Unable to save gift to database")
+           res.status(500).send("Unable to save gift to database");
           }
     });
   },
 
   removeGift: function(req, res, next){
-    console.log("REMOVE THE GIFT");
     var friendId = req.body.friendId;
     var userId = req.body.userId;
     var ASIN = req.body.ASIN;
-
 
     // Find the user
     User.findOne({fbId:userId})
       .exec(function(err, user) {
           if (user) {
-            console.log('User Found!')
             // Find the friend
             user.giftsList.forEach(function(gift){
               if(gift.fbId === friendId){
@@ -100,10 +98,9 @@ module.exports = {
             // Save the modified document
             user.markModified('giftsList');
             user.save();
-            res.send(200, "Gift saved to database")
+            res.status(200).send("Gift removed from database");
           } else {
-           console.log('User Not Found!')
-           res.send(500, "Unable to save gift to database")
+           res.status(500).send("Unable to remove gift from database");
           }
     });
   },
@@ -115,18 +112,16 @@ module.exports = {
       if(user){
         user.giftsList.forEach(function(friend){
           if(friend.fbId === friendId){
-           res.send(200, friend.pinnedGifts);
+           //res.send(200, friend.pinnedGifts);
+           res.status(200).send(friend.pinnedGifts);
           }
         });
       }else{
-        console.log('User does not exist', err);
-        res.send(500, err);
+        //console.log('User does not exist', err);
+        res.status(500).send(err);
       }
     })
   },
-
-
-
 
   getInvitableFriend: function(req, res, next){
     BPromise.promisifyAll(facebookApi.invitableFriends(req.body.access_token))
