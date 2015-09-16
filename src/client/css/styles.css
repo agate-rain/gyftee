@@ -738,6 +738,9 @@ ul {
 .concert-detail-thumb {
   max-width: 200px;
 }
+.etsy-detail-thumb {
+  max-width: 400px;
+}
 
 .concert-thumb {
   max-width: 100px;
@@ -762,10 +765,10 @@ ul {
   font-weight: 400;
 }
 .concert-date {
-  font-size: 0.9em; 
+  font-size: 0.9em;
 }
 .concert-venue {
-  font-size: 0.9em; 
+  font-size: 0.9em;
 }
 
 

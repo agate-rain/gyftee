@@ -218,6 +218,31 @@ module.exports = {
         callback(keyWord);
       }
     }
+  },
+
+  searchEtsy: function(tagArr, callback){
+    $.ajax({
+      url: 'http://localhost:' + PORT.PORT + '/api/gifts/searchEtsy',
+      method: 'POST',
+      data: {tagArr : tagArr},
+      success: function(data) {
+        var resultArr = data.results;
+        var etsyArr = [];
+        for(var etsy in resultArr){
+          etsyArr.push({
+            basedOn: {},
+            category: "etsy",
+            details: resultArr[etsy]
+          })
+        }
+        callback(etsyArr);
+        //this.props.dispatch(saveGifts(gifts));
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.log("NOT WORKING", xhr, status, err);
+        //console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+      }
+    });
   }
 
 };

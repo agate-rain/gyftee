@@ -251,7 +251,7 @@ module.exports = {
   },
 
   searchEtsy: function(req, res, next) {
-    var terms = 'panda candy';
+    var terms = req.body.tagArr;
     var url = "https://openapi.etsy.com/v2/listings/active.js?keywords=" +
       terms + "&limit=12&includes=Images:1&api_key=" + process.env.ETSY_KEY_STRING ;
 
@@ -266,9 +266,9 @@ module.exports = {
         str = JSON.parse(str.slice(0, str.length -3));
         // console.log('>>>>>>>RESPONSE', JSON.stringify(str, null, '\t'));
         // console.log('>>>>>>>RESPONSE', JSON.stringify(response, null, '\t').replace(/\\/g, "")).substr(5);
-       var body = body.replace(/\\/g, "").substr(5);
+       // var body = body.replace(/\\/g, "").substr(5);
         // console.log('>>>>>>>BODY', JSON.stringify(JSON.parse(body.slice(0, body.length -2)), null, '\t'));
-        // res.send(body);
+        res.send(str);
       } else {
         res.send({
           success: false,

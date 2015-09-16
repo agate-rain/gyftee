@@ -13,7 +13,7 @@ var GiftItem = React.createClass({
     $.ajax({
       url: "http://localhost:" + PORT.PORT + "/api/friends/savegift",
       method: 'POST',
-      data: { 
+      data: {
               type: type,
               giftId : giftId,
               friendId : friendId,
@@ -55,15 +55,16 @@ var GiftItem = React.createClass({
     let itemDetails;
     let basedOnDetails;
     let basedOn;
- 
+
     if (this.state.alertVisible) {
       element = <Alert className="saved opacity" closeLabel="" onDismiss={this.handleAlertDismiss} dismissAfter={1000}>
         <span> Gift added! </span>
       </Alert>
     }
 
-    if (this.props.book) {      
+    if (this.props.book) {
       const {book} = this.props;
+      giftType = 'book'
       basedOn = book.basedOn;
       const missingBookCover = 'http://www.mbalit.co.uk/sites/default/files/imagecache/fullsize/imagefield_default_images/generic_book_cover_0.jpg';
 
@@ -132,11 +133,12 @@ var GiftItem = React.createClass({
 
     else if (this.props.concert) {
       const {concert} = this.props;
+      giftType = 'music'
       var datetime = concert.details.datetime.replace('T',' ');
       var date = datetime.slice(0,datetime.length - 9);
       var time = datetime.slice(datetime.length - 9, datetime.length-3);
       var datetime = concert.details.datetime.replace('T',' ');
-      
+
       basedOn = concert.basedOn;
 
       itemDetails = {
@@ -162,6 +164,38 @@ var GiftItem = React.createClass({
         </div>
       );
     }
+    else if (this.props.etsy) {
+      giftType = 'etsy';
+      itemDetails = {
+        giftId: this.props.etsy.details.listing_id
+      };
+
+      itemThumbnail = (
+        <div>
+          <a href={this.props.etsy.details.url} target="_blank">
+            <img className="etsy-detail-thumb" src={this.props.etsy.details.Images[0].url_570xN}></img>
+          </a>
+        </div>
+      );
+      var etsyTag = [];
+      this.props.etsy.details.tags.forEach(function(tag){
+        etsyTag.push(tag + ', ');
+      });
+      var description = JSON.stringify(this.props.etsy.details.description).replace(/(?:[rn])+/g, "").replace(/(?:[*])+/g, "").replace(/(?:[_])+/g, "");
+      console.log(description)
+
+      itemView = (
+        <div>
+          <div className="concert-details-container">
+            <div className="concert-title">{this.props.etsy.details.title} </div>
+            <div className="concert-date">Price: ${this.props.etsy.details.price}</div>
+            <div className="concert-date">Description: {description}</div>
+            <div className="concert-venue">Quantity: {this.props.etsy.details.quantity} </div>
+            <div className="concert-venue">Tags: {etsyTag} </div>
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div className="flex-container seafoam detail-main">
@@ -178,7 +212,7 @@ var GiftItem = React.createClass({
                 <div>{element}</div>
               </div>
             </div>
-            {itemThumbnail} 
+            {itemThumbnail}
           </div>
           {itemView}
 
