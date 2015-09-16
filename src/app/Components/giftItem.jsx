@@ -64,6 +64,7 @@ var GiftItem = React.createClass({
 
     if (this.props.book) {
       const {book} = this.props;
+      giftType = 'book'
       basedOn = book.basedOn;
       const missingBookCover = 'http://www.mbalit.co.uk/sites/default/files/imagecache/fullsize/imagefield_default_images/generic_book_cover_0.jpg';
 
@@ -132,6 +133,7 @@ var GiftItem = React.createClass({
 
     else if (this.props.concert) {
       const {concert} = this.props;
+      giftType = 'music'
       var datetime = concert.details.datetime.replace('T',' ');
       var date = datetime.slice(0,datetime.length - 9);
       var time = datetime.slice(datetime.length - 9, datetime.length-3);
@@ -163,7 +165,7 @@ var GiftItem = React.createClass({
       );
     }
     else if (this.props.etsy) {
-
+      giftType = 'etsy';
       itemDetails = {
         giftId: this.props.etsy.details.listing_id
       };
@@ -201,7 +203,7 @@ var GiftItem = React.createClass({
 
           <div>
             <div className="add-to-list-container">
-              <div bsStyle="success" className="add-to-list" onClick={this.addToList.bind(this, itemDetails.giftId, 'etsy')}>
+              <div bsStyle="success" className="add-to-list" onClick={this.addToList.bind(this, itemDetails.giftId, giftType)}>
                 <Button onClick={this.handleAlertShow} className="button add-to-list-button">
                   <a>
                     <i className="glyphicon add-heart glyphicon-heart"></i>
