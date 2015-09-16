@@ -77,6 +77,10 @@ var GiftRecommendations = React.createClass({
       this.props.dispatch(saveImageUrl(imageURLByID));
     }.bind(this));
 
+    utils.searchEtsy('panda candy', function(etsy){
+      this.props.dispatch(saveGifts(etsy));
+    }.bind(this));
+
   },
   /* AMAZON BOOKS */
   generateRandomKeyword: function(userArray){
@@ -88,10 +92,9 @@ var GiftRecommendations = React.createClass({
   },
 
   render: function() {
-    var books = this.props.gifts.filter(function(gift){
-      return gift.category === "book";
-    });
+    var books = this.filterGifts('book');
     var concerts = this.filterGifts('concert');
+    var etsy = this.filterGifts('etsy');
 
     if (books.length > 0) {
       return (
@@ -102,6 +105,7 @@ var GiftRecommendations = React.createClass({
             navToWishList={this.navToWishList} />
           <GiftsByCategory books={books} />
           <GiftsByCategory concerts={concerts} />
+          <GiftsByCategory etsy={etsy} />
         </div>
       );
     } else {

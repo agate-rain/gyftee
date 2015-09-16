@@ -51,6 +51,19 @@ export default React.createClass({
       categoryHeader = (<div className="category-header">Books</div>);
       element = books;
     }
+    else if (this.props.etsy) {
+      var etsy = [];
+      for (var key in this.props.etsy) {
+        etsy.push(
+          <div>
+            <Thumbnail etsy={this.props.etsy[key]} key={this.props.etsy[key].listing_id} />
+          </div>
+        );
+      }
+      categoryHeader = (<div className="category-header">Etsy</div>);
+      element = etsy;
+      console.log('ELEMENT', element)
+    }
 
     return (
       <div className={this.state.class}>

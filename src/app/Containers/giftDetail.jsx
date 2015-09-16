@@ -5,13 +5,16 @@ import { connect } from 'react-redux';
 
 var GiftDetail = React.createClass({
   render: function() {
-    let giftType; 
+    let giftType;
 
     if (this.props.gift.category === 'book') {
       giftType = (<GiftItem book={this.props.gift} />)
-    } 
+    }
     else if (this.props.gift.category === 'concert') {
-      giftType = (<GiftItem concert={this.props.gift} />) 
+      giftType = (<GiftItem concert={this.props.gift} />)
+    }
+    else if (this.props.gift.category === 'etsy') {
+      giftType = (<GiftItem etsy={this.props.gift} />)
     }
 
     return (

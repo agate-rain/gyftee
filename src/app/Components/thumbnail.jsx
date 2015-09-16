@@ -11,9 +11,12 @@ var Thumbnail = React.createClass({
     let item;
     if (this.props.book) {
       item = this.props.book;
-    } 
+    }
     if (this.props.concert) {
       item = this.props.concert;
+    }
+    if (this.props.etsy) {
+      item = this.props.etsy;
     }
     this.props.dispatch(currentDisplayedGift(item));
     this.transitionTo(`/gifts/${id}`);
@@ -36,7 +39,7 @@ var Thumbnail = React.createClass({
           <div className="book-title-thumb">{this.truncateTitle(this.props.book.details.ItemAttributes.Title)} </div>
         </div>
       );
-    } 
+    }
     if (this.props.concert) {
       element = (
         <div className="concert-li-container container">
@@ -47,6 +50,21 @@ var Thumbnail = React.createClass({
           </div>
           <div className="concert-details-container">
             <div className="concert-title">{this.props.concert.details.artists[0].name} </div>
+          </div>
+        </div>
+      );
+    }
+    if (this.props.etsy) {
+      console.log(this.props.etsy)
+      element = (
+        <div className="concert-li-container container">
+          <div className="concert-thumb-container">
+            <a className="concert-link">
+              <img className="book concert-thumb" src={this.props.etsy.details.Images[0].url_570xN} onClick={this.navToGiftDetail.bind(this, this.props.etsy.details.listing_id)}></img>
+            </a>
+          </div>
+          <div className="concert-details-container">
+            <div className="concert-title">{this.props.etsy.details.title} </div>
           </div>
         </div>
       );
