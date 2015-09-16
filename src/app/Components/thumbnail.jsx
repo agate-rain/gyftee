@@ -55,7 +55,6 @@ var Thumbnail = React.createClass({
       );
     }
     if (this.props.etsy) {
-      console.log(this.props.etsy)
       element = (
         <div className="concert-li-container container">
           <div className="concert-thumb-container">
