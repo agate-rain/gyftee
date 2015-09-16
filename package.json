@@ -76,7 +76,7 @@
   },
   "scripts": {
     "lint": "eslint src",
-    "test": "npm run test-node",
+    "test": "mocha -R spec ./test/spec/**/*Spec.js --compilers js:babel/register --recursive",
     "test-node": "mocha -R spec ./test/spec/**/*Spec.js",
     "start": "webpack-dev-server & npm run server",
     "server": "nodemon server/server.js",
