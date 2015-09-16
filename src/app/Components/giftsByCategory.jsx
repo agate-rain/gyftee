@@ -62,7 +62,6 @@ export default React.createClass({
       }
       categoryHeader = (<div className="category-header">Etsy</div>);
       element = etsy;
-      console.log('ELEMENT', element)
     }
 
     return (
