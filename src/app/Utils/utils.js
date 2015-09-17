@@ -243,6 +243,52 @@ module.exports = {
         //console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
-  }
+  },
+
+  assembleImage : function(albumArr,callback){
+    // var albumArr = this.props.friend.friend.albums.data;
+    ////////////////////////////////////////////////////////////////////
+    var promises = [];
+    var resultImageArr;
+
+    var fetchImageSync = function(albumId){
+      var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
+      return new Promise(function(resolve, reject){
+        FB.api('/v2.4/' + albumId + '/photos',
+            'GET',
+            {"fields":"source,url,message,place", "access_token": access_token}, function(result) {
+              // if(err !== null){
+              //   return reject(err);
+              // }
+              resolve(result);
+            });
+      });
+    };
+
+    albumArr.forEach(function(album){
+      promises.push(fetchImageSync(album.id));
+    });
+
+    Promise.all(promises).then(function(result){
+      return result = result.map(function(item){
+        return item.data.map(function(photo){
+          return photo;
+        });
+      });
+    }).then(function(result){
+      callback(result)
+      // resultImageArr = result;
+      // this.setState({imageArr : resultImageArr});
+      // this.getTags(resultImageArr);
+    }.bind(this));
+
+    /////////////////////////////////////////////////////
+
+
+    // var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
+    // albumArr.forEach(function(album){
+    //   this.getImage(album.id,access_token);
+    // }.bind(this));
+  },
 
 };

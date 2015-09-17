@@ -49,6 +49,10 @@ var Friend = React.createClass({
     this.transitionTo(`/friends/${id}/image`);
   },
 
+  navToClassifyImageView: function(id){
+    this.transitionTo(`/friends/${id}/imageclassify`);
+  },
+
   render: function() {
 
     let birthday;
@@ -75,6 +79,8 @@ var Friend = React.createClass({
             </div>
             <div className="bday-list-item friendname" onClick={this.props.onClick}>{this.props.friend.name} </div>
             <div className="date-container" onClick={this.props.onClick}>{birthday}</div>
+            <button type="button" onClick={this.navToImageView.bind(this, this.props.friend.id)}>Get Image</button>
+            <button type="button" onClick={this.navToClassifyImageView.bind(this, this.props.friend.id)}>Classify Image</button>
           </div>
         </div>
       </div>

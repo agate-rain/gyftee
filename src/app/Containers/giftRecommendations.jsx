@@ -81,6 +81,12 @@ var GiftRecommendations = React.createClass({
       this.props.dispatch(saveGifts(etsy));
     }.bind(this));
 
+
+    utils.assembleImage(this.props.friend.friend.albums, function(data){
+        console.log('>>>>>>>>>>>>ALBUM PHOTO',data);
+    }.bind(this))
+
+
   },
   /* AMAZON BOOKS */
   generateRandomKeyword: function(userArray){
