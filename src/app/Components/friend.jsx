@@ -64,7 +64,7 @@ var Friend = React.createClass({
     }
 
     return (
-      <div>
+      <div className="slideUp">
         <div className="bday-list-body seafoam">
           <div className="bday-row flex-container">
           <div className="heart-div">

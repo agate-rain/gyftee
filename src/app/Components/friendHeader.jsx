@@ -27,10 +27,10 @@ var FriendHeader = React.createClass({
       <div className="friend-info">
         <div className="friend-header-container container flex-container">
           <div className="friend-header-part">
-            <div className="friend-header-name">{this.props.friend.name}</div>
-            <div className="friend-header-bday">{formatDate(this.props.friend.birthday)} - {this.DaysToBirthday(this.props.friend.birthday)} days</div>
+            <div className="friend-header-name slideDown">{this.props.friend.name}</div>
+            <div className="friend-header-bday slideDown">{formatDate(this.props.friend.birthday)} - {this.DaysToBirthday(this.props.friend.birthday)} days</div>
             <div className="friend-header-name">
-              <div className="button filter-button"
+              <div className="button filter-button slideRight"
                 onClick={this.props.navToWishList.bind(this, this.props.friend.id)}>
                 WISHLIST
               </div>
@@ -38,7 +38,7 @@ var FriendHeader = React.createClass({
           </div>
 
           <div className="friend-header-part profile-photo-container">
-            <div className="thumbnail profile-photo">
+            <div className="thumbnail profile-photo slideLeft">
               <img src={this.props.url} />
             </div>
           </div>

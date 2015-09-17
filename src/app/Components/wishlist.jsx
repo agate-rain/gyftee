@@ -38,16 +38,16 @@ var WishList = React.createClass({
         <div className="flex-container">
           <div className="giftlist-main container">
             <div className="container flex-container">
-              <div className="wishlist-header">
+              <div className="wishlist-header slideRight">
                 <div className="friend-header-name">{friend.name}</div>
                 <div className="friend-header-bday">{formatDate(friend.birthday)}</div>
               </div>
               <div className="wishlist-header">
                 <div className="wishlist-header-aside">
-                  <div className="thumbnail profile-photo friend-thumbnail">
+                  <div className="thumbnail profile-photo friend-thumbnail slideLeft">
                     <img src={url} />
                   </div>
-                  <div className="container giftlist-circle">
+                  <div className="container giftlist-circle slideLeft">
                     <text>{this.props.items}</text>
                   </div>
                 </div>
