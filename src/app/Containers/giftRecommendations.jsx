@@ -24,7 +24,7 @@ var GiftRecommendations = React.createClass({
   },
 
   getInitialState: function() {
-    return { friend: [], gifts: [] }
+    return { friend: [], gifts: []}
   },
 
   componentDidMount: function() {
@@ -37,11 +37,12 @@ var GiftRecommendations = React.createClass({
 
       utils.getUserData("books", friend, function(userData){
         utils.generateRandomKeyword(userData, function(keyWord){
-            if (keyWord) {
+            if(keyWord){
+
               utils.fetchGiftByKeyWord(keyWord, function(books){
                 this.props.dispatch(saveGifts(books));
               }.bind(this));
-            } else {
+            }else{
               this.props.dispatch(saveGifts(null));
             }
           }.bind(this));
@@ -49,8 +50,8 @@ var GiftRecommendations = React.createClass({
 
 
       var bandArr = [];
-      utils.getUserData('music', friend, function(data) {
-        if (data) {
+      utils.getUserData('music', friend, function(data){
+        if(data){
           data.map(function(item) {
             bandArr.push(item.name);
           })
@@ -72,21 +73,26 @@ var GiftRecommendations = React.createClass({
         this.props.dispatch(saveGifts(concerts));
       }.bind(this));
 
-      utils.assembleImage(album.data, function(data) {
+      utils.assembleImage(album.data, function(data){
         data =  data.reduce(function(a, b){
             return a.concat(b);
         });
-        utils.getTagFromClarifai(data, function(tagArr) {
-          utils.calculateTagFrequency(tagArr, function(keyword) {
-            utils.searchEtsy(keyword, function(etsy) {
+        utils.getTagFromClarifai(data, function(tagArr){
+          utils.calculateTagFrequency(tagArr, function(keyword){
+            utils.searchEtsy(keyword, tagArr, function(etsy){
                 this.props.dispatch(saveGifts(etsy));
             }.bind(this));
           }.bind(this));
+
+          // utils.searchEtsy(tag, function(etsy){
+          //     console.log(etsy)
+          //     // this.props.dispatch(saveGifts(etsy));
+          // }.bind(this))
         }.bind(this))
       }.bind(this))
     }.bind(this));
 
-    utils.fetchImageUrlById(friendId, function(imageURLByID) {
+    utils.fetchImageUrlById(friendId, function(imageURLByID){
       this.props.dispatch(saveImageUrl(imageURLByID));
     }.bind(this));
 
