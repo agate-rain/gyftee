@@ -203,7 +203,7 @@ module.exports = {
         callback(data);
       },
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+        console.error("http://localhost:" + PORT.PORT + "/api/gifts/getartistimage", status, err.toString());
       }
     });
   },
@@ -220,17 +220,18 @@ module.exports = {
     }
   },
 
-  searchEtsy: function(keyword, callback){
+  searchEtsy: function(keyword, tagArr, callback){
     $.ajax({
       url: 'http://localhost:' + PORT.PORT + '/api/gifts/searchEtsy',
       method: 'POST',
       data: {keyword : keyword},
       success: function(data) {
+        console.log('TAG ARR>>>>>>>>',tagArr )
         var resultArr = data.results;
         var etsyArr = [];
         for(var etsy in resultArr){
           etsyArr.push({
-            basedOn: {keyword: keyword},
+            basedOn: {keyword: keyword, image: [tagArr[0].image,tagArr[1].image]},
             category: "etsy",
             details: resultArr[etsy]
           })
