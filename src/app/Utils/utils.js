@@ -220,17 +220,17 @@ module.exports = {
     }
   },
 
-  searchEtsy: function(tagArr, callback){
+  searchEtsy: function(keyword, callback){
     $.ajax({
       url: 'http://localhost:' + PORT.PORT + '/api/gifts/searchEtsy',
       method: 'POST',
-      data: {tagArr : tagArr},
+      data: {keyword : keyword},
       success: function(data) {
         var resultArr = data.results;
         var etsyArr = [];
         for(var etsy in resultArr){
           etsyArr.push({
-            basedOn: {},
+            basedOn: {keyword: keyword},
             category: "etsy",
             details: resultArr[etsy]
           })
@@ -243,6 +243,95 @@ module.exports = {
         //console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
-  }
+  },
+
+  assembleImage : function(albumArr,callback){
+    // var albumArr = this.props.friend.friend.albums.data;
+    ////////////////////////////////////////////////////////////////////
+    var promises = [];
+    var resultImageArr;
+
+    var fetchImageSync = function(albumId){
+      var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
+      return new Promise(function(resolve, reject){
+        FB.api('/v2.4/' + albumId + '/photos',
+            'GET',
+            {"fields":"source,url,message,place", "access_token": access_token}, function(result) {
+              resolve(result);
+            });
+      });
+    };
+
+    albumArr.forEach(function(album){
+      promises.push(fetchImageSync(album.id));
+    });
+
+    Promise.all(promises).then(function(result){
+      return result = result.map(function(item){
+        return item.data.map(function(photo){
+          return photo;
+        });
+      });
+    }).then(function(result){
+      callback(result)
+      // resultImageArr = result;
+      // this.setState({imageArr : resultImageArr});
+      // this.getTags(resultImageArr);
+    }.bind(this));
+
+    /////////////////////////////////////////////////////
+
+
+    // var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
+    // albumArr.forEach(function(album){
+    //   this.getImage(album.id,access_token);
+    // }.bind(this));
+  },
+
+  getTagFromClarifai: function(imageArr, callback) {
+    $.ajax({
+      context: this,
+      url: "http://localhost:" + PORT.PORT + "/api/gifts/gettagsfromclarifai",
+      method: 'POST',
+      data: {
+        imageArr : imageArr
+      },
+      success: function(data) {
+        callback(data);
+      },
+      error: function(xhr, status, err) {
+        console.error("http://localhost:" + PORT.PORT + "/api/gifts/gettagsfromclarifai", status, err.toString());
+        return null; // stock image if unsuccessful
+      }
+    });
+  },
+
+  calculateTagFrequency: function(arr,callback) {
+    var tagArr = [];
+    arr.forEach(function(obj){
+      tagArr.push(obj.tag);
+    })
+    tagArr = tagArr.reduce(function(a, b){
+     return a.concat(b);
+    });
+    var storage = [];
+
+    // for(var i = 0; i < tagArr.length; i++){
+    //   if(storage.hasOwnProperty(tagArr[i])){
+    //     storage[tagArr[i]]++;
+    //   }else{
+    //     storage[tagArr[i]] = 1;
+    //   }
+    // }
+    for(var i = 0; i < tagArr.length; i++){
+      if(storage.indexOf(tagArr[i]) === -1){
+        storage.push(tagArr[i])
+      }
+    }
+    var rand1 = Math.floor(Math.random() * storage.length) + 1;
+    var rand2 = Math.floor(Math.random() * storage.length) + 1;
+
+    callback(storage[rand1] + ' ' + storage[rand2]);
+  },
 
 };

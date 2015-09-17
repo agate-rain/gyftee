@@ -32,6 +32,7 @@ var GiftRecommendations = React.createClass({
     this.props.dispatch(initGifts());
     var friendId = this.props.params.friendId;
     utils.fetchFriendById(friendId, function(friend){
+      var album = friend.albums;
       this.props.dispatch(fetchFriend(friend));
 
       utils.getUserData("books", friend, function(userData){
@@ -71,14 +72,28 @@ var GiftRecommendations = React.createClass({
       utils.getConcerts(userLocation,userBirthday,range,bandArr, function(concerts){
         this.props.dispatch(saveGifts(concerts));
       }.bind(this));
+
+      utils.assembleImage(album.data, function(data){
+        data =  data.reduce(function(a, b){
+            return a.concat(b);
+        });
+        utils.getTagFromClarifai(data, function(tagArr){
+          utils.calculateTagFrequency(tagArr, function(keyword){
+            utils.searchEtsy(keyword, function(etsy){
+                this.props.dispatch(saveGifts(etsy));
+            }.bind(this));
+          }.bind(this));
+
+          // utils.searchEtsy(tag, function(etsy){
+          //     console.log(etsy)
+          //     // this.props.dispatch(saveGifts(etsy));
+          // }.bind(this))
+        }.bind(this))
+      }.bind(this))
     }.bind(this));
 
     utils.fetchImageUrlById(friendId, function(imageURLByID){
       this.props.dispatch(saveImageUrl(imageURLByID));
-    }.bind(this));
-
-    utils.searchEtsy('panda candy', function(etsy){
-      this.props.dispatch(saveGifts(etsy));
     }.bind(this));
 
   },

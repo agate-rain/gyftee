@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import PORT from '../../config/port';
+import PhotoViewItem from './photoViewItem'
 
 var RecommendPhotoView = React.createClass({
 
   componentDidMount: function() {
-    var friendId = this.props.params.friendId;
+    var friendId = window.location.href.split('/')[4]
     var rand = Math.floor(Math.random() * this.props.albums.length) + 1;
     var randomAlbum = this.props.albums[rand];
     var randomPhoto = randomAlbum[0];
@@ -15,14 +16,14 @@ var RecommendPhotoView = React.createClass({
 
   render: function() {
 
-    // var photoItems = [];
-    // this.props.albums.forEach(function(album){
-    //   photoItems.push(
-    //       <PhotoViewItem album={album} key={album.id} />
-    //   );
-    // })
+    var photoItems = [];
+    this.props.albums.forEach(function(album){
+      photoItems.push(
+          <PhotoViewItem album={album} key={album.id} />
+      );
+    })
     return (
-      <div>
+      <div>{photoItems}
       </div>
     );
   },

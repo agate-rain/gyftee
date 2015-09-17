@@ -49,6 +49,10 @@ var Friend = React.createClass({
     this.transitionTo(`/friends/${id}/image`);
   },
 
+  navToClassifyImageView: function(id){
+    this.transitionTo(`/friends/${id}/imageclassify`);
+  },
+
   render: function() {
 
     let birthday;

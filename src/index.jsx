@@ -15,6 +15,8 @@ import AllFriendsList from './app/Containers/allFriendsList';
 import InviteFriend from './app/Containers/inviteFriend';
 import WishList from './app/Containers/pinnedGiftList';
 import ImageView from './app/Containers/imageView';
+import ImageClassify from './app/Containers/imageClassify';
+
 
 const history = new BrowserHistory();
 
@@ -36,6 +38,7 @@ React.render(
         <Route name="friendGifts" path="friends/:friendId" component={GiftRecs} />
         <Route name="giftDetail" path="gifts/:giftId" component={GiftDetail} />
         <Route name="imageView" path="friends/:friendId/image" component={ImageView} />
+       <Route name="imageClassify" path="/friends/:friendId/imageclassify" component={ImageClassify} />
       </Route>
     </Router>
   }
