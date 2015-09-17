@@ -200,14 +200,60 @@ module.exports = {
  },
 
   getTagsFromClarifai: function(req, res, next) {
+    var promises = [];
+    var i = 0
+    var imageArr = req.body.imageArr;
+    var arr = [];
 
-    var imageURL = req.body.imageURL;
-    Clarifai.tagURL( imageURL , "image 1",function(err, result) {
-      console.log('Result',JSON.stringify(result, null, '\t'));
-      var tagArr = result.results[0].result.tag.classes;
-      console.log(tagArr)
-      res.send(200, tagArr);
-    });
+    imageArr.forEach(function(image){
+      arr.push(image.source);
+    })
+
+      var rand;
+      var randomGenerateArr = [];
+      for(var i = 0; i < 10; i++){
+        rand = Math.floor(Math.random() * arr.length) + 1
+        var temp = arr.splice(rand, 1);
+        randomGenerateArr.push(temp);
+      }
+
+
+    var getTagAsync = function(imageURL) {
+      i++;
+      return new Promise(function(resolve, reject) {
+        Clarifai.tagURL( imageURL , "image" + i ,function(err, result) {
+            if (err !== null) {
+              return reject(err);
+            }
+            resolve(result);
+        });
+      });
+    };
+      randomGenerateArr.forEach(function(image){
+        promises.push(getTagAsync(image));
+      });
+
+      Promise.all(promises).then(function(result) {
+        result = result.map(function(item){
+          return item.results[0].result.tag.classes;
+        })
+        var finalArr = [];
+        for(var i = 0; i < result.length; i++){
+          finalArr.push({tag: result[i], image: randomGenerateArr[i][0]})
+        }
+
+        res.status(200).send(finalArr);
+      });
+
+
+    // arr = arr.splice(0,1)[0];
+
+    // Clarifai.tagURL( arr , "image 1",function(err, result) {
+    //   console.log('Result',JSON.stringify(result, null, '\t'));
+    //   var tagArr = result.results[0].result.tag.classes;
+    //   console.log(tagArr)
+    //   res.send(200, tagArr);
+    // });
   },
 
   getTagsFromMetamind: function(req, res, next) {
@@ -251,7 +297,7 @@ module.exports = {
   },
 
   searchEtsy: function(req, res, next) {
-    var terms = req.body.tagArr;
+    var terms = req.body.keyword;
     var url = "https://openapi.etsy.com/v2/listings/active.js?keywords=" +
       terms + "&limit=12&includes=Images:1&api_key=" + process.env.ETSY_KEY_STRING ;
 

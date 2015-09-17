@@ -182,7 +182,6 @@ var GiftItem = React.createClass({
         etsyTag.push(tag + ', ');
       });
       var description = JSON.stringify(this.props.etsy.details.description).replace(/(?:[rn])+/g, "").replace(/(?:[*])+/g, "").replace(/(?:[_])+/g, "");
-      console.log(description)
 
       itemView = (
         <div>
@@ -192,6 +191,9 @@ var GiftItem = React.createClass({
             <div className="concert-date">Description: {description}</div>
             <div className="concert-venue">Quantity: {this.props.etsy.details.quantity} </div>
             <div className="concert-venue">Tags: {etsyTag} </div>
+          </div>
+          <div className="based-on-container light-teal">
+            <p className="based-on-text">Based on: {this.props.etsy.basedOn.keyword}</p>
           </div>
         </div>
       );

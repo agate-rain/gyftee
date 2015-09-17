@@ -23,7 +23,7 @@ var NavBar = React.createClass({
   render: function() {
     var icon = (
       <span className="brand-icon">
-        <a onClick={this.navToFriendList.bind(this)}>
+        <a onClick={this.navToFriendList}>
           <img className="brand-icon" src="/src/client/img/gyftee-icon.png" alt="gift box with ribbon" />
           <span>Gyftee</span>
         </a>
@@ -33,8 +33,8 @@ var NavBar = React.createClass({
     return (
       <Navbar className="navbar-fixed-top navbar" brand={icon} toggleNavKey={0}>
         <Nav right eventKey={0}>
-          <NavItem eventKey={1} onClick={this.navToInvite.bind(this)}>Invite</NavItem>
-          <NavItem eventKey={2} onClick={this.navToLogout.bind(this), this.logout}>Logout</NavItem>
+          <NavItem eventKey={1} onClick={this.navToInvite}>Invite</NavItem>
+          <NavItem eventKey={2} onClick={this.navToLogout, this.logout}>Logout</NavItem>
         </Nav>
       </Navbar>
     );
