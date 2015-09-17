@@ -194,6 +194,8 @@ var GiftItem = React.createClass({
           </div>
           <div className="based-on-container light-teal">
             <p className="based-on-text">Based on: {this.props.etsy.basedOn.keyword}</p>
+            <img className="etsy-detail-thumb" src={this.props.etsy.basedOn.image[0]}></img>
+            <img className="etsy-detail-thumb" src={this.props.etsy.basedOn.image[1]}></img>
           </div>
         </div>
       );
