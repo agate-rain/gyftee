@@ -46,6 +46,11 @@ var GiftItem = React.createClass({
     this.setState({alertVisible: true});
   },
 
+  truncateDescription: function(title, n){
+    n = n || 120;
+    return (title.length < n) ? title : title.substring(0, 95) + "...";
+  },
+
   render: function() {
 
     let element;
@@ -177,25 +182,24 @@ var GiftItem = React.createClass({
           </a>
         </div>
       );
-      var etsyTag = [];
-      this.props.etsy.details.tags.forEach(function(tag){
-        etsyTag.push(tag + ', ');
-      });
-      var description = JSON.stringify(this.props.etsy.details.description).replace(/(?:[rn])+/g, "").replace(/(?:[*])+/g, "").replace(/(?:[_])+/g, "");
+
+      var title = this.props.etsy.details.title;
+      title.replace('\&quot\;', '\"');
+
+      // var description = JSON.stringify(this.props.etsy.details.description).replace(/(?:[rn])+/g, "").replace(/(?:[*])+/g, "").replace(/(?:[_])+/g, "");
 
       itemView = (
         <div>
           <div className="concert-details-container">
-            <div className="concert-title">{this.props.etsy.details.title} </div>
+            <div className="concert-title">{title} </div>
             <div className="concert-date">Price: ${this.props.etsy.details.price}</div>
-            <div className="concert-date">Description: {description}</div>
-            <div className="concert-venue">Quantity: {this.props.etsy.details.quantity} </div>
-            <div className="concert-venue">Tags: {etsyTag} </div>
           </div>
           <div className="based-on-container light-teal">
-            <p className="based-on-text">Based on: {this.props.etsy.basedOn.keyword}</p>
-            <img className="etsy-detail-thumb" src={this.props.etsy.basedOn.image[0]}></img>
-            <img className="etsy-detail-thumb" src={this.props.etsy.basedOn.image[1]}></img>
+            <p className="based-on-etsy">Based on the image tags: {this.props.etsy.basedOn.keyword}</p>
+            <div className="etsy-photo-container">
+              <img className="etsy-photo" src={this.props.etsy.basedOn.image[0]}></img>
+              <img className="etsy-photo" src={this.props.etsy.basedOn.image[1]}></img>
+            </div>
           </div>
         </div>
       );

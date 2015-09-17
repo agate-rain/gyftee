@@ -739,7 +739,26 @@ ul {
   max-width: 200px;
 }
 .etsy-detail-thumb {
-  max-width: 400px;
+  max-width: 200px;
+}
+
+.based-on-etsy {
+  font-size: 0.7em;
+  color: white;
+}
+
+.etsy-photo-container {
+  margin: 5px;
+}
+
+.etsy-photo {
+  border-radius: 50%;
+  /*background-color: yellow;*/
+  /*background-position: 50%;*/
+  /*position: relative;*/
+  height: 120px;
+  width: 120px;
+  margin: 5px;
 }
 
 .concert-thumb {

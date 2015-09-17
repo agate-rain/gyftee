@@ -63,7 +63,7 @@ var Thumbnail = React.createClass({
             </a>
           </div>
           <div className="concert-details-container">
-            <div className="concert-title">{this.props.etsy.details.title} </div>
+            <div className="concert-title">{this.truncateTitle(this.props.etsy.details.title)} </div>
           </div>
         </div>
       );
