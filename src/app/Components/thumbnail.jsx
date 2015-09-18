@@ -29,7 +29,7 @@ var Thumbnail = React.createClass({
 
   render: function() {
     let element;
-    if (this.props.book && this.props.book.details && this.props.book.details && this.props.book.details.Offers && this.props.book.details.Offers.Offer) {
+    if (this.props.book && this.props.book.details && this.props.book.details.Offers && this.props.book.details.Offers.Offer) {
       element = (
         <div>
           <div className="book slideLeft">
