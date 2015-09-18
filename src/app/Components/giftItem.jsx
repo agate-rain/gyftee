@@ -5,7 +5,7 @@ import { Button, Alert } from 'react-bootstrap';
 
 // Component for the item that is rendered in the gift detail container
 var GiftItem = React.createClass({
-  addToList: function(giftId, type) {
+  addToList: function(giftId, type, giftDetail) {
     // send the clicked item to the server to save to the user's gift list
     var friendId = this.props.friend.friend.id;
     var userId = this.props.user.profile.identities[0].user_id;
@@ -17,7 +17,8 @@ var GiftItem = React.createClass({
               type: type,
               giftId : giftId,
               friendId : friendId,
-              userId: userId
+              userId: userId,
+              giftDetail: giftDetail
             },
       success: function(data) {
         console.log("gift item with id " + giftId + " added to wishlist");
@@ -147,7 +148,14 @@ var GiftItem = React.createClass({
       basedOn = concert.basedOn;
 
       itemDetails = {
-        giftId: concert.details.id
+        giftId: concert.details.id,
+        concertTitle: this.props.concert.details.artists[0].name,
+        url: concert.details.ticket_url,
+        thumbnail:basedOn.thumb_url,
+        date: date,
+        time: time,
+        venue: this.props.concert.details.venue.name,
+        city: this.props.concert.details.venue.city
       };
 
       itemThumbnail = (
@@ -171,9 +179,7 @@ var GiftItem = React.createClass({
     }
     else if (this.props.etsy) {
       giftType = 'etsy';
-      itemDetails = {
-        giftId: this.props.etsy.details.listing_id
-      };
+
 
       itemThumbnail = (
         <div>
@@ -185,6 +191,16 @@ var GiftItem = React.createClass({
 
       var title = this.props.etsy.details.title;
       title.replace('\&quot\;', '\"');
+
+      itemDetails = {
+        giftId: this.props.etsy.details.listing_id,
+        title: title,
+        thumbnail: this.props.etsy.details.Images[0].url_570xN,
+        url: this.props.etsy.details.url,
+        price: this.props.etsy.details.price,
+        basedOnKeyword: this.props.etsy.basedOn.keyword,
+        basedOnPhoto: this.props.etsy.basedOn.image
+      };
 
       // var description = JSON.stringify(this.props.etsy.details.description).replace(/(?:[rn])+/g, "").replace(/(?:[*])+/g, "").replace(/(?:[_])+/g, "");
 
@@ -211,7 +227,7 @@ var GiftItem = React.createClass({
 
           <div>
             <div className="add-to-list-container">
-              <div bsStyle="success" className="add-to-list" onClick={this.addToList.bind(this, itemDetails.giftId, giftType)}>
+              <div bsStyle="success" className="add-to-list" onClick={this.addToList.bind(this, itemDetails.giftId, giftType, itemDetails)}>
                 <Button onClick={this.handleAlertShow} className="button add-to-list-button">
                   <a>
                     <i className="glyphicon add-heart glyphicon-heart"></i>

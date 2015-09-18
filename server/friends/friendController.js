@@ -42,34 +42,57 @@ module.exports = {
             user.giftsList.forEach(function(gift){
               if(gift.fbId === friendId){
                 if(req.body.type === 'book'){
-                    var ASIN = req.body.giftId;
+                  var ASIN = req.body.giftId;
                   if(gift.pinnedGifts.books.indexOf(ASIN) === -1){
                     gift.pinnedGifts.books.push(ASIN);
+                    user.markModified('giftsList');
+                    user.save();
+                    //res.send(200, "Gift saved to database");
+                    res.status(200).send("Book successfully saved to database");
                   }
                 }
                 else if (req.body.type === 'music') {
-                  var concertId = req.body.giftId;
-                  if(gift.pinnedGifts.music.indexOf(concertId) === -1){
-                    gift.pinnedGifts.music.push(concertId);
+                  for(var i = 0; i < gift.pinnedGifts.music.length; i++){
+                    if(gift.pinnedGifts.music[i] === req.body.giftId){
+                      console.log('CONCERT ALREADY EXIST');
+                      res.status(200).send('CONCERT ALREADY EXIST');
+                    }
                   }
+                  gift.pinnedGifts.music.push(req.body.giftDetail);
+                  user.markModified('giftsList');
+                  user.save();
+                  res.status(200).send('Concert successfully saved to database', req.body.giftDetail);
                 }
+                else if (req.body.type === 'etsy') {
+                  for(var i = 0; i < gift.pinnedGifts.etsy.length; i++){
+                    if(gift.pinnedGifts.etsy[i] === req.body.giftId){
+                      console.log('ETSY ALREADY EXIST');
+                      res.status(200).send('ETSY ALREADY EXIST');
+                    }
+                  }
+                  gift.pinnedGifts.etsy.push(req.body.giftDetail);
+                  user.markModified('giftsList');
+                  user.save();
+                  res.status(200).send('Etsy successfully saved to database', req.body.giftDetail);
+
               }
-            });
-            user.markModified('giftsList');
-            user.save();
-            //res.send(200, "Gift saved to database");
-            res.status(200).send("Gift saved to database");
-          } else {
+            }
+
+          })
+        } else {
            //res.send(500, "Unable to save gift to database")
            res.status(500).send("Unable to save gift to database");
-          }
+        }
     });
   },
-  // TODO: Refactor to remove concert or book items 
+  // TODO: Refactor to remove concert or book items
   removeGift: function(req, res, next){
     var friendId = req.body.friendId;
     var userId = req.body.userId;
     var giftId = req.body.giftId;
+    var giftObj = req.body.giftObj;
+
+    console.log("REQ BODY TYPE ", req.body.type )
 
     // Find the user
     User.findOne({fbId:userId})
@@ -84,14 +107,26 @@ module.exports = {
                   if (giftToRemoveIdx !== -1){
                     // Remove the book
                     gift.pinnedGifts.books.splice(giftToRemoveIdx, 1);
-                  }                  
+                    console.log('SUCCESSFULLY REMOVE BOOKID', giftId, ' FROM DATABASE')
+                  }
                 }
                 if (req.body.type === 'music') {
-                  var giftToRemoveIdx = gift.pinnedGifts.concerts.indexOf(giftId);
-                  if (giftToRemoveIdx !== -1){
-                    // Remove the concert
-                    gift.pinnedGifts.concerts.splice(giftToRemoveIdx, 1);
-                  }                  
+                  for(var i = 0; i < gift.pinnedGifts.music.length; i++){
+                    if(gift.pinnedGifts.music[0].giftId === giftId){
+                      var temp = gift.pinnedGifts.music[i];
+                      gift.pinnedGifts.music.splice(i,1);
+                      console.log('SUCCESSFULLY REMOVE ', temp, ' FROM DATABASE')
+                    }
+                  }
+                }
+                if (req.body.type === 'etsy') {
+                  for(var i = 0; i < gift.pinnedGifts.etsy.length; i++){
+                    if(gift.pinnedGifts.etsy[0].giftId === giftId){
+                      var temp = gift.pinnedGifts.etsy[i];
+                      gift.pinnedGifts.etsy.splice(i,1);
+                      console.log('SUCCESSFULLY REMOVE ', temp, ' FROM DATABASE')
+                    }
+                  }
                 }
               }
             });

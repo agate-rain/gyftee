@@ -29,7 +29,7 @@ var Thumbnail = React.createClass({
 
   render: function() {
     let element;
-    if (this.props.book) {
+    if (this.props.book && this.props.book.details && this.props.book.details.Offers && this.props.book.details.Offers.Offer) {
       element = (
         <div>
           <div className="book slideLeft">
@@ -39,9 +39,15 @@ var Thumbnail = React.createClass({
           </div>
 
           <div className="book-title-thumb">{this.truncateTitle(this.props.book.details.ItemAttributes.Title)} </div>
-
         </div>
       );
+    }else{
+      element = (
+        <div>
+          Fetching Book...
+        </div>
+      );
+
     }
     if (this.props.concert) {
       element = (

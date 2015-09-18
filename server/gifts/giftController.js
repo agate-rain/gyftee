@@ -1,3 +1,4 @@
+
 var Gift = require('./giftModel.js');
 var aws = require('aws-lib');
 var request = require('request');
@@ -6,6 +7,7 @@ var Promise = require('bluebird');
 var Clarifai = require('../config/clarifai_node.js');
 var url = require('url');
 var https = require('https');
+var client = (require('ituner')());
 // var etsyjs = require('etsy-js');
 // var etsyClient = etsyjs.client(process.env.ETSY_KEY_STRING);
 
@@ -106,7 +108,8 @@ module.exports = {
 
     var aristAsync = function(artist) {
       var url = "http://api.bandsintown.com/artists/" + artist
-      + "/?api_version=2.0&app_id=Gyftee";
+      + "/?api_version=2.0&app_id=Gyfte,jsdbfljkfde2015";
+
 
       var requestOptions = {
           url: url,
@@ -325,6 +328,7 @@ module.exports = {
       }
     });
   }
+
   // TODO: search etsy using image tags or other facebook metadata
   // and get surprise gifts (grab bag feature)
 

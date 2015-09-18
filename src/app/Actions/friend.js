@@ -14,9 +14,9 @@ export function saveImageUrl(url) {
   };
 };
 
-export function saveConcert(concert) {
+export function saveWishlist(wishlist) {
   return {
-    type: types.SAVE_CONCERT,
-    concert: concert
+    type: types.SAVE_WISHLIST,
+    wishlist: wishlist
   };
 };

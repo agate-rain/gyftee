@@ -4,6 +4,7 @@ import { Navigation } from 'react-router';
 import NavBar from '../Components/navbar';
 import PORT from '../../config/port';
 import WishList from '../Components/wishlist'
+import { saveWishlist } from '../Actions/friend'
 
 var PinnedGiftList = React.createClass({
 
@@ -60,7 +61,7 @@ var PinnedGiftList = React.createClass({
     this.transitionTo(`/friends/${id}`);
   },
 
-  removeFromList: function(giftId, type) {
+  removeFromList: function(giftId, type, giftObj) {
     // send the clicked book to the server to save on the user's gift list
     // should the req object just be Book's rendered view? this.props.book[0]
     var friendId = this.props.friend.friend.id;
@@ -73,10 +74,12 @@ var PinnedGiftList = React.createClass({
               type: type,
               giftId : giftId,
               friendId : friendId,
-              userId: userId
+              userId: userId,
+              giftObj: giftObj
             },
       success: function(data) {
         // look for the id in each of the categories
+        console.log('STATE',this.state)
         for (var category in this.state){
           var list = this.state[category];
           list = list.filter(function(gift) { return gift.giftId !== giftId; });
@@ -100,14 +103,19 @@ var PinnedGiftList = React.createClass({
       url: "http://localhost:" + PORT.PORT + "/api/friends/wishlist/" + friendId + "/" + userId,
       method: 'GET',
       success: function(data) {
-        console.log('GET WISH LIST DATA', data);
-        if (data.books && data.books.length) {
-          this.setState({
+        console.log('GET WISH LIST DATA!!!!!!!!!!', data);
+
+        this.setState({
             music: data.music,
             etsy: data.etsy,
-          });
+        });
+        console.log('STATE AFTER SAVED', this.state);
+
+        this.props.dispatch(saveWishlist(data));
+        if(data.books && data.books.length > 0){
           this.getGiftFromAmazon(data.books);
         }
+
       },
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/friends/wishlist", status, err.toString());
