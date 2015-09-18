@@ -1,10 +1,6 @@
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
-var cookieSession = require('cookie-session');
-var cookieParser = require('cookie-parser');
 var cors = require('cors');
-var morgan = require('morgan');
-
 
 module.exports = function(app, express) {
   // define routers
@@ -19,8 +15,6 @@ module.exports = function(app, express) {
   app.use(bodyParser.urlencoded({ extended: true, limit:'50mb' }));
   app.use(morgan('dev'));
   app.use(bodyParser.json({limit: '50mb'}));
-  app.use(cookieParser());
-  app.use(cookieSession({secret: process.env.SESSION_SECRET}));
   app.use(cors());
 
   // We point to our static assets
