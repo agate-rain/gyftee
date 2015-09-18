@@ -1,3 +1,4 @@
+
 var Gift = require('./giftModel.js');
 var aws = require('aws-lib');
 var request = require('request');
@@ -6,6 +7,7 @@ var Promise = require('bluebird');
 var Clarifai = require('../config/clarifai_node.js');
 var url = require('url');
 var https = require('https');
+var client = (require('ituner')());
 // var etsyjs = require('etsy-js');
 // var etsyClient = etsyjs.client(process.env.ETSY_KEY_STRING);
 
@@ -325,7 +327,19 @@ module.exports = {
         });
       }
     });
+  },
+
+  searchItune: function(req, res, next) {
+    client.findBestMatch('beck loser', function (err, result) {
+      if (err) {
+        console.error(err);
+      }
+
+    console.log(result);
+
+    });
   }
+
   // TODO: search etsy using image tags or other facebook metadata
   // and get surprise gifts (grab bag feature)
 

@@ -1,27 +1,32 @@
 var path = require('path');
-var node_modules_dir = path.resolve(__dirname, 'node_modules');
+
+var SRC_PATH = path.resolve(__dirname, 'src');
+var BUILD_PATH = path.resolve(__dirname, 'build');
+var NODE_MODULES_PATH = path.resolve(__dirname, 'node_modules');
 
 var config = {
-  context: path.join(__dirname, 'src'),
-  entry: path.resolve(__dirname, 'src/index.jsx'),
+  devtool: 'source-map',
+  entry: path.resolve(SRC_PATH, 'main.js'),
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: BUILD_PATH,
     filename: 'bundle.js'
   },
-  resolve:{
-    root: path.join(__dirname, 'src'),
-    modulesDirectories: ['node_modules', 'lib']
-  },
-  resolveLoader: {root: node_modules_dir},
   module: {
     loaders: [{
-      test: /\.jsx?$/,
-
-      // There is not need to run the loader through
-      // vendors\
-      include: [path.join(__dirname, 'src')],
-      exclude: [node_modules_dir],
-      loader: 'babel'
+      test: /\.js$/,
+      loader: 'babel',
+      exclude: [NODE_MODULES_PATH]
+    }, {
+      test: /\.css$/,
+      loader: 'style!css',
+      exclude: [NODE_MODULES_PATH]
+    }, {
+      test: /\.less$/,
+      loader: 'style!css!less',
+      exclude: NODE_MODULES_PATH
+    }, {
+      test: /\.(png|jpg)$/,
+      loader: 'url?limit=25000'
     }]
   }
 };
