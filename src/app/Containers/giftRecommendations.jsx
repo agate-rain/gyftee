@@ -77,6 +77,7 @@ var GiftRecommendations = React.createClass({
         data =  data.reduce(function(a, b){
             return a.concat(b);
         });
+        data = data.splice(0,200);
         utils.getTagFromClarifai(data, function(tagArr){
           utils.calculateTagFrequency(tagArr, function(keyword){
             utils.searchEtsy(keyword, tagArr, function(etsy){

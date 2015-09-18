@@ -106,7 +106,8 @@ module.exports = {
 
     var aristAsync = function(artist) {
       var url = "http://api.bandsintown.com/artists/" + artist
-      + "/?api_version=2.0&app_id=Gyftee";
+      + "/?api_version=2.0&app_id=Gyftee2015";
+
 
       var requestOptions = {
           url: url,
