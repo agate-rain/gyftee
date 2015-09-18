@@ -93,8 +93,9 @@ module.exports = {
   getPage: function(pageId) {
     var access_token = this.getUserAccessToken();
     FB.api('/v2.4/' + pageId,
-      'GET',
-      {"fields":"about,artists_we_like,band_members,band_interests", "access_token": access_token},
+      'GET', {
+        "fields": "about,artists_we_like,band_members,band_interests",
+        "access_token": access_token},
       function(response) {
       }
     );
@@ -207,10 +208,10 @@ module.exports = {
     });
   },
 
-  generateRandomKeyword: function(userArray, callback){
-    if(!userArray){
+  generateRandomKeyword: function(userArray, callback) {
+    if (!userArray) {
       callback(null)
-    }else{
+    } else {
       var randomIndex = Math.floor(Math.random() * (userArray.length - 1) + 1);
       if(userArray[randomIndex]){
         var keyWord = userArray[randomIndex].name;
@@ -219,7 +220,7 @@ module.exports = {
     }
   },
 
-  searchEtsy: function(keyword, tagArr, callback){
+  searchEtsy: function(keyword, tagArr, callback) {
     $.ajax({
       url: 'http://localhost:' + PORT.PORT + '/api/gifts/searchEtsy',
       method: 'POST',
@@ -236,7 +237,6 @@ module.exports = {
           })
         }
         callback(etsyArr);
-        //this.props.dispatch(saveGifts(gifts));
       }.bind(this),
       error: function(xhr, status, err) {
         console.log("NOT WORKING", xhr, status, err);
@@ -245,20 +245,20 @@ module.exports = {
     });
   },
 
-  assembleImage : function(albumArr,callback){
-    // var albumArr = this.props.friend.friend.albums.data;
-    ////////////////////////////////////////////////////////////////////
+  assembleImage : function(albumArr,callback) {
     var promises = [];
     var resultImageArr;
 
     var fetchImageSync = function(albumId){
       var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
-      return new Promise(function(resolve, reject){
+      return new Promise(function(resolve, reject) {
         FB.api('/v2.4/' + albumId + '/photos',
-            'GET',
-            {"fields":"source,url,message,place", "access_token": access_token}, function(result) {
-              resolve(result);
-            });
+          'GET',{
+            "fields":"source,url,message,place",
+            "access_token": access_token
+          }, function(result) {
+            resolve(result);
+          });
       });
     };
 
@@ -274,18 +274,7 @@ module.exports = {
       });
     }).then(function(result){
       callback(result)
-      // resultImageArr = result;
-      // this.setState({imageArr : resultImageArr});
-      // this.getTags(resultImageArr);
     }.bind(this));
-
-    /////////////////////////////////////////////////////
-
-
-    // var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
-    // albumArr.forEach(function(album){
-    //   this.getImage(album.id,access_token);
-    // }.bind(this));
   },
 
   getTagFromClarifai: function(imageArr, callback) {

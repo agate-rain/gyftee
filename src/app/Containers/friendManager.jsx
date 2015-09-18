@@ -28,10 +28,7 @@ var FriendManager = React.createClass({
   },
 
   componentDidMount: function() {
-    // this.fetchFacebookFriends();
     this.fetchAppFriends();
-    //setInterval and use polling to run this function at specfic intervals
-    //could also use socketIO
   },
 
   fetchFacebookFriends: function() {
@@ -77,7 +74,6 @@ var FriendManager = React.createClass({
       // need to pass in the access token
       dataType: "json",
       success: function(data) {
-        console.log('FRIEND FROM SERVER', data);
         this.props.dispatch(fetchFriend(data));
       },
       error: function(xhr, status, err) {

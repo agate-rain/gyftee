@@ -19,7 +19,7 @@ class App extends Component {
     const { location, children} = this.props;
     const { pathname } = location;
     const value = pathname.substring(1);
-    // HEADER COMPONENT will replace the div with GYFTEE!
+    // will replace the div with container views for GYFTEE APP!
     return (
       <div>
         {children}

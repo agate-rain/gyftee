@@ -6,17 +6,16 @@ var GiftSchema = new mongoose.Schema({
     required: true
   },
   pinnedGifts: {
-                  books: [{
-                            type: mongoose.Schema.Types.Mixed
-                          }],
-                  music: [{
-                            type: mongoose.Schema.Types.Mixed
-                          }],
-                  etsy: [{
-                            type: mongoose.Schema.Types.Mixed
-                          }]
-              }
+    books: [{
+    type: mongoose.Schema.Types.Mixed
+  }],
+  music: [{
+    type: mongoose.Schema.Types.Mixed
+  }],
+  etsy: [{
+    type: mongoose.Schema.Types.Mixed
+  }]
+  }
 });
 
 module.exports = GiftSchema;
-// module.exports = mongoose.model('Gift', GiftSchema);

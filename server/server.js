@@ -16,7 +16,7 @@ var app = express();
 require('./config/middleware')(app, express);
 
 mongoose.connect(db.url);
-mongoose.connection.once('connected', function(){
+mongoose.connection.once('connected', function() {
   console.log('Nifty gifty db is connected!');
 });
 

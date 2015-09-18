@@ -6,7 +6,7 @@
 //   giving feedback to add tags to multiple docids
 //   giving feedback to remove tags from multiple docids
 //   automatically requesting a new access token, and queuing any requests received while the access token request is in flight
-//   honoring the server throttling instructions   
+//   honoring the server throttling instructions
 //
 // to get an idea of how to use the API, see the example clarifai_sample.js in the same directory
 // requires only that you have node installed
@@ -28,7 +28,7 @@ var feedbackPath = "/v1/feedback";
  * @param localId the local id provided by the client with the request that generated this response
  * @param resultHandler the method that will be called if this client isn't going to handle it (e.g. invalid tokens or throttled responses)
  * @param retry a closure that will be queued for retry in case we are throttled and are queueing
- */ 
+ */
 Clarifai.prototype._commonHttpStatusHandler = function(  res, responseData, localId, resultHandler, retry ) {
 
 	if( this._bLogHttp ) console.log( "HTTP response statusCode: "+res.statusCode);
@@ -65,7 +65,7 @@ Clarifai.prototype._commonHttpStatusHandler = function(  res, responseData, loca
 				break;
 			}
 			else {
-				resultHandler( JSON.parse( responseData), null ); 
+				resultHandler( JSON.parse( responseData), null );
 			}
 
 			break;
@@ -76,21 +76,21 @@ Clarifai.prototype._commonHttpStatusHandler = function(  res, responseData, loca
 			if( ! this._throttled ) {
 				this._throttled = true;
 				if( typeof( this._handleThrottleChanges ) == "function" ) {
-					this._handleThrottleChanges( true, waitSeconds );	
+					this._handleThrottleChanges( true, waitSeconds );
 					// only set a timeout handler to call the throttle change handler if
 					// there is one registered. No reason waiting on the timeout otherwise.
-					this._throttleTimeout = setTimeout( function() { 
+					this._throttleTimeout = setTimeout( function() {
 						this._throttled = false;
-						if(typeof( this._handleThrottleChanges ) == "function" ) this._handleThrottleChanges( false, 0 ); }.bind(this), 
+						if(typeof( this._handleThrottleChanges ) == "function" ) this._handleThrottleChanges( false, 0 ); }.bind(this),
 						1000*Number(waitSeconds) );
-				} 
-				
+				}
+
 			}
 			resultHandler( JSON.parse( responseData ), null );
 
 			break;
 
-		case 400: // ALL_ERROR - All images in the request had errors 
+		case 400: // ALL_ERROR - All images in the request had errors
 
 			resultHandler( JSON.parse( responseData ), null );
 			break;
@@ -114,7 +114,7 @@ Clarifai.prototype._commonHttpStatusHandler = function(  res, responseData, loca
 
 // handling the response to access token requests is a bit different than handling ordinary
 // http requests for the other API methods. if successful, we:
-// save the new access token 
+// save the new access token
 // set the request-in-flight flag to false
 // despool any requests that queued while waiting for new access token
 // in addition to handling errors in the response to the access token request,
@@ -151,13 +151,13 @@ Clarifai.prototype._tokenResponseHandler = function( res, responseData, resultHa
 					tuple = this._retryQueue.pop();
 					r = tuple[0];
 					r();
-				}	
+				}
 			}
 			break;
-		case 401: 
+		case 401:
 			// the API host returns 401 and status_code="TOKEN_APP_INVALID" when the client_id and secret are bad
 		case 500:
-			// the API host returns 500 for internal server errors 
+			// the API host returns 500 for internal server errors
 			// these are both fatal when we need a new access token, and the client code needs to get this error response
 			// despool queued [ retry, resultHandler ] and call handlers with fatal error
 			this._tokenRequestInFlight = false;
@@ -167,7 +167,7 @@ Clarifai.prototype._tokenResponseHandler = function( res, responseData, resultHa
 				tuple = this._retryQueue.pop();
 				rh = tuple[1];
 				rh( responseData, null );
-			}	
+			}
 			break;
 		default:
 			if(this._bVerbose) console.log( "Access Token HTTP Response: unexpected http status code "+http_status);
@@ -217,7 +217,7 @@ Clarifai.prototype._requestAccessToken  = function(  retry , resultHandler ) {
 		res.on("error",console.error);
 		res.on("data",function(chunk) { responseData += chunk; } );
 		res.on("end", function() { self._tokenResponseHandler(res, responseData); } );
-	}).on("error",function( err ) { 
+	}).on("error",function( err ) {
 		if( self._tokenRetries >= self._tokenMaxRetries ) {
 			// despool queued [ retry, resultHandler ] and call handlers with fatal error
 			this._tokenRequestInFlight = false;
@@ -227,7 +227,7 @@ Clarifai.prototype._requestAccessToken  = function(  retry , resultHandler ) {
 				tuple = self._retryQueue.pop();
 				rh = tuple[1];
 				rh( {"status_code": "TOKEN_FAILURE", "status_msg": "Failed to get access token. Contact Clarifai support." }, null );
-			}	
+			}
 		}
 		else {
 			self._tokenRetries++;
@@ -239,13 +239,13 @@ Clarifai.prototype._requestAccessToken  = function(  retry , resultHandler ) {
 
 	req.on("socket", function(socket) {
 		socket.setTimeout( self._tokenRequestWait_ms );
-		socket.on("timeout", function() { 
+		socket.on("timeout", function() {
 			// aborting the request due to timeout causes the request on error handler to be
 			// called with { [Error: socket hang up] code: 'ECONNRESET' }. That will be passed
 			// to the client resultHandler callback as the err parameter
 			req.abort();
 		});
-	} );	
+	} );
 
 	req.write( formData );
 	if( this._bLogHttp ) console.log(req.output);
@@ -277,28 +277,28 @@ Clarifai.prototype._httpRequest = function( endpoint, form, localId, resultHandl
 		res.setEncoding('utf8');
 		res.on("error",function( err ) { console.log("res http error: "); console.log(err); } );
 		res.on("data",function(chunk) { responseData += chunk; } );
-		res.on("end",function() { 
+		res.on("end",function() {
 			self._commonHttpStatusHandler( res, responseData, localId, resultHandler, retry );
 			});
 
-	}).on("error",function( err ) { 
+	}).on("error",function( err ) {
 
 		if( typeof err["code"] === "string" && err["code"] === "ECONNRESET")
 			err =  {"status_code": "TIMEOUT", "status_msg": "Response not received" };
 
-		resultHandler( err, null ); 
+		resultHandler( err, null );
 
 	});
 
 	req.on("socket", function(socket) {
 		socket.setTimeout(self._requestTimeout_ms);
-		socket.on("timeout", function() { 
+		socket.on("timeout", function() {
 			// aborting the request due to timeout causes the request on error handler to be
 			// called with { [Error: socket hang up] code: 'ECONNRESET' }. That will be passed
 			// to the client resultHandler callback as the err parameter
 			req.abort();
 		});
-	} );	
+	} );
 
 	req.write( formData );
 	if( this._bLogHttp ) console.log(req.output);
@@ -313,7 +313,7 @@ Clarifai.prototype._httpRequest = function( endpoint, form, localId, resultHandl
 // when/if we temporarily queue requests when the access token is invalid and
 // a new one is being requested
 Clarifai.prototype._tagURL  = function( url, localId, resultHandler, retry ) {
-	if( this._throttled ) 
+	if( this._throttled )
 		// the host has throttled us, so there's no point in sending the request
 		// just immediately return the throttled status
 		resultHandler( { 'status_code': 'ERROR_THROTTLED',
@@ -337,7 +337,7 @@ Clarifai.prototype.tagURL = function( url, localId, callback ) {
   }.bind(this);
 
   this._tagURL( url, localId,
-    callback,	
+    callback,
     retry );
 
 }
@@ -347,7 +347,7 @@ Clarifai.prototype.tagURL = function( url, localId, callback ) {
 // boolean bAdd.
 Clarifai.prototype._feedbackTagsDocids = function( docids, tags, localId, bAdd, resultHandler, retry ) {
 
-	if( this._throttled ) 
+	if( this._throttled )
 		// the host has throttled us, so there's no point in sending the request
 		// just immediately return the throttled status
 		resultHandler( { 'status_code': 'ERROR_THROTTLED',
@@ -380,7 +380,7 @@ Clarifai.prototype.setThrottleHandler = function( newThrottleHandler ) {
 }
 
 Clarifai.prototype.clearThrottleHandler = function(  ) {
-	clearTimeout( this._throttleTimeout ); 
+	clearTimeout( this._throttleTimeout );
 	this._handleThrottleChanges = null;;
 }
 
@@ -413,7 +413,7 @@ Clarifai.prototype.setVerbose = function( bVerbose ) {
 
 Clarifai.prototype.initAPI = function( clientId, clientSecret ) {
 	this._clientId = clientId;
-	this._clientSecret = clientSecret;	
+	this._clientSecret = clientSecret;
 }
 
 function Clarifai( ) {
@@ -430,7 +430,7 @@ function Clarifai( ) {
 	this._requestTimeout_ms = 3*1000;
 	this._tokenRequestInFlight = false;
 	this._tokenRequestTimeout = null;
-	this._tokenRequestWait_ms = 3*1000; 
+	this._tokenRequestWait_ms = 3*1000;
 	this._tokenRequestRetryAttempts = 0;
 	this._maxTokenRequestAttempts = 3;          // if we can't get a good token after 3 attempts, things are grim
 	this._retryQueue = [];
