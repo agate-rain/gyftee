@@ -1,6 +1,6 @@
-# gyftee
+# Gyftee
 
-Get personalized, surprising and irreverent gift ideas for your family and friends. 
+Get personalized, surprising and irreverent gift ideas for your family and friends.
 
 ## User Flow
 
@@ -18,19 +18,19 @@ Get personalized, surprising and irreverent gift ideas for your family and frien
 #### Gift Recommendations based on liked books, music and photos
 ![gifts1](http://i.imgur.com/m8xDoEs.png) ![gifts2](http://i.imgur.com/P5ZiUjo.png)
 
-------
+---
 
 #### Get Etsy gifts based on tags from photos
-![etsy](http://i.imgur.com/VsaEwiH.png?1) 
+![etsy](http://i.imgur.com/VsaEwiH.png?1)
 
------- 
+---
 
 #### Save gifts to wishlist, or click through to buy!
 ![add](http://i.imgur.com/m48FHpR.png)
 
-----
+---
 
-## Dev Team 
+## Dev Team
 - Product Owner: Eric Le
 - Scrum Master: Jennie Kim Eldon
 - Development Team: Ben Biran, Chris Saden
@@ -42,17 +42,18 @@ Type these commands to get started:
 1. `npm install` node dependencies
 2. `bower install` bower dependencies
 3. `brew install mongodb` if you need to install mongoDB client
-4. create `/data/db` folder at root directly if it doesn't exist already
-5. run `mongod` process from the terminal
+4. create `/data/db` folder at root directory if it doesn't exist already
+5. run `mongod --dbpath ./data/db` process from the root directory in terminal
+6. `npm start` to run the application in development mode
 
 ## Tech Stack
 
 ### Front End
 
-- React 
+- React
 - Redux
 
-### Back End 
+### Back End
 
 - Node/Express
 - MongoDB/Mongoose
@@ -60,39 +61,39 @@ Type these commands to get started:
 **Testing**
 
 - Mocha/Chai
+- Should
 
 **Build System**
 
-- Webpack 
+- Webpack
 
 **Deployment**
 
 - CircleCI
-- Elastic Beanstalk
 
-## Roadmap 
+## Roadmap
 - [Product scope (Asana)](https://app.asana.com/0/46865547141591/list)
 - [Sprint schedule (Asana)](https://app.asana.com/0/46865547141637/list)
 
 ### Build First Principles
 
-- Save time and reduce human error through task automation 
+- Save time and reduce human error through task automation
 - Enforce modular, scalable application design
 - Make testing and maintenance easier
 - Ensure that releases conform to performance best practices
 - Test all deployed code prior to release
 
-### Build First Components 
+### Build First Components
 
 1. Build Process
   - Create tests and tasks to compile the application (automated)
   - Aimed at facilitating continuous development (later can re-tune to focus on max performance)
 2. Design
-  - Code and augment application architecture  
+  - Code and augment application architecture
   - Refactor code
-  - Update tests and iterate 
-3. Deployment and Environment 
-  - Automate the release process 
+  - Update tests and iterate
+3. Deployment and Environment
+  - Automate the release process
   - Configure different host environments, and define the services and databases they interact with
   - Deliver changes to hosted environment
 
