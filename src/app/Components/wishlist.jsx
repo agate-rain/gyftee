@@ -1,6 +1,6 @@
 import React from 'react';
 import PORT from '../../config/port';
-import WishListBook from './wishListBook';
+import WishListItem from './wishListItem';
 import { formatDate } from '../Utils/utils';
 import { connect } from 'react-redux';
 import { fetchFriend, saveImageUrl} from '../Actions/friend';
@@ -23,12 +23,30 @@ var WishList = React.createClass({
     var friend = this.props.friend.friend;
     var url = this.props.friend.image_url;
     var books = this.props.wishlist.books;
+    var etsy = this.props.wishlist.etsy;
+    var music = this.props.wishlist.music;
     // TODO REFACTOR TO SHOW ALL GIFTS, NOT JUST BOOKS
     var wishListItems = [];
     for (var i = 0; i < books.length; i++) {
       wishListItems.push(
-        <WishListBook user={this.props.user} friend={this.props.friend.friend}
-          book={books[i]} key={books[i].ASIN}
+        <WishListItem user={this.props.user} friend={this.props.friend.friend}
+          book={books[i]}
+          removeItem={this.props.removeItem} />
+      );
+    }
+    for (var i = 0; i < etsy.length; i++) {
+      console.log('adding to etsy!')
+      wishListItems.push(
+        <WishListItem user={this.props.user} friend={this.props.friend.friend}
+          etsy={etsy[i]}
+          removeItem={this.props.removeItem} />
+      );
+    }
+    for (var i = 0; i < music.length; i++) {
+      console.log('adding to music!')
+      wishListItems.push(
+        <WishListItem user={this.props.user} friend={this.props.friend.friend}
+          music={music[i]}
           removeItem={this.props.removeItem} />
       );
     }
