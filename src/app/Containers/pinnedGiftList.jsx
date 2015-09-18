@@ -79,6 +79,7 @@ var PinnedGiftList = React.createClass({
             },
       success: function(data) {
         // look for the id in each of the categories
+        console.log('STATE',this.state)
         for (var category in this.state){
           var list = this.state[category];
           list = list.filter(function(gift) { return gift.giftId !== giftId; });

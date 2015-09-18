@@ -225,7 +225,7 @@ module.exports = {
       method: 'POST',
       data: {keyword : keyword},
       success: function(data) {
-        console.log('TAG ARR>>>>>>>>',tagArr )
+        // console.log('TAG ARR>>>>>>>>',tagArr )
         var resultArr = data.results;
         var etsyArr = [];
         for(var etsy in resultArr){
@@ -316,13 +316,6 @@ module.exports = {
     });
     var storage = [];
 
-    // for(var i = 0; i < tagArr.length; i++){
-    //   if(storage.hasOwnProperty(tagArr[i])){
-    //     storage[tagArr[i]]++;
-    //   }else{
-    //     storage[tagArr[i]] = 1;
-    //   }
-    // }
     for(var i = 0; i < tagArr.length; i++){
       if(storage.indexOf(tagArr[i]) === -1){
         storage.push(tagArr[i])

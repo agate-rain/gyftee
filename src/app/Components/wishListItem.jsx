@@ -28,7 +28,7 @@ var WishListItem = React.createClass({
   if(this.props.book){
     if(this.props.book.Offers.Offer){
       var bookDetails = {
-        ASIN : this.props.book.ASIN || '',
+        giftId : this.props.book.ASIN || '',
         url: this.props.book.DetailPageURL || '',
         img: this.props.book.MediumImage.URL || missingBookCover,
         title: this.props.book.ItemAttributes.Title || 'NA',
@@ -38,7 +38,7 @@ var WishListItem = React.createClass({
       };
     }else{
       var bookDetails = {
-        ASIN : this.props.book.ASIN || '',
+        giftId : this.props.book.ASIN || '',
         url: this.props.book.DetailPageURL || '',
         img: this.props.book.MediumImage.URL || missingBookCover,
         title: this.props.book.ItemAttributes.Title || 'NA',
@@ -60,7 +60,7 @@ var WishListItem = React.createClass({
     return (
       <div className="detail-wrapper pinned-gift">
           <div className="add-to-list-container">
-            <div className="add-to-list" onClick={this.props.removeItem.bind(this, bookDetails.ASIN, 'book', this.props.book)}>
+            <div className="add-to-list" onClick={this.props.removeItem.bind(this, bookDetails.giftId, 'book', this.props.book)}>
                 <Button onClick={this.handleAlertShow} className="add-to-list-button">
                   <a>
                     <i className="glyphicon add-heart glyphicon-heart"></i>
