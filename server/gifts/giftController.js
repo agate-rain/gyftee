@@ -327,17 +327,6 @@ module.exports = {
         });
       }
     });
-  },
-
-  searchItune: function(req, res, next) {
-    client.findBestMatch('beck loser', function (err, result) {
-      if (err) {
-        console.error(err);
-      }
-
-    console.log(result);
-
-    });
   }
 
   // TODO: search etsy using image tags or other facebook metadata
