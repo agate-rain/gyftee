@@ -84,11 +84,6 @@ var GiftRecommendations = React.createClass({
                 this.props.dispatch(saveGifts(etsy));
             }.bind(this));
           }.bind(this));
-
-          // utils.searchEtsy(tag, function(etsy){
-          //     console.log(etsy)
-          //     // this.props.dispatch(saveGifts(etsy));
-          // }.bind(this))
         }.bind(this))
       }.bind(this))
     }.bind(this));

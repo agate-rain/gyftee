@@ -9,13 +9,18 @@ var url = require('url');
 var https = require('https');
 
 require('dotenv').load();
-var prodAdv = aws.createProdAdvClient(process.env.AMAZON_CLIENT_ID, process.env.AMAZON_CLIENT_SECRET, process.env.AMAZON_ASSOCIATE_TAG);
+
+var prodAdv = aws.createProdAdvClient(process.env.AMAZON_CLIENT_ID,
+  process.env.AMAZON_CLIENT_SECRET,
+  process.env.AMAZON_ASSOCIATE_TAG);
+
 Clarifai.initAPI(process.env.CLARIFAI_CLIENT_ID, process.env.CLARIFAI_CLIENT_SECRET);
 
 Clarifai.setThrottleHandler( function( bThrottled, waitSeconds ) {
-  console.log( bThrottled ? ["throttled. service available again in",waitSeconds,"seconds"].join(' ') : "not throttled");
+  console.log( bThrottled ? ["throttled. service available again in",
+    waitSeconds,
+    "seconds"].join(' ') : "not throttled");
 });
-
 
 module.exports = {
   // call to Amazon API to get a friend's 'liked' item on facebook
@@ -130,16 +135,15 @@ module.exports = {
     var promises = [];
 
     var eventAsync = function(artist) {
-      // var options = {SearchIndex: "All", IdType: "ISBN", ItemId: bookASIN, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
       var url = 'http://api.bandsintown.com/events/search.json?artists%5B%5D='
-                + artist
-                +'&date='
-                + req.body.startDate
-                + ','
-                + req.body.endDate
-                + '&location='
-                + req.body.loc
-                + '&radius=150&app_id=Gyftee';
+        + artist
+        +'&date='
+        + req.body.startDate
+        + ','
+        + req.body.endDate
+        + '&location='
+        + req.body.loc
+        + '&radius=150&app_id=Gyftee';
       var requestOptions = {
         url: url,
         json: true
@@ -161,24 +165,19 @@ module.exports = {
       });
 
       Promise.all(promises).then(function(result) {
-        // console.dir(result);
         result = result.map(function(item) {
           return item;
         });
-
-        // console.log('>>>>>>>>>',result)
         result = result.filter(function(array1) {
           return array1.length !== 0;
         }).filter(function(array2) {
           return Array.isArray(array2) === true;
         });
-        // console.log(JSON.stringify(result, null, '\t'));
         res.status(200).send(result);
       });
     } else {
       res.status(500).send(null);
     }
-
  },
 
   getTagsFromClarifai: function(req, res, next) {
@@ -234,7 +233,6 @@ module.exports = {
       'image_url':req.body.imageURL
     });
 
-    // var imageURL = req.body.imageURL;
     var API_KEY = 'Basic ' + process.env.METAMIND_API_KEY;
     var https_options = url.parse('https://www.metamind.io/vision/classify');
     https_options.method = 'POST';

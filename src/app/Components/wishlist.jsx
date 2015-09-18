@@ -25,7 +25,7 @@ var WishList = React.createClass({
     var books = this.props.wishlist.books;
     var etsy = this.props.wishlist.etsy;
     var music = this.props.wishlist.music;
-    // TODO REFACTOR TO SHOW ALL GIFTS, NOT JUST BOOKS
+    // TODO refactor into a function
     var wishListItems = [];
     for (var i = 0; i < books.length; i++) {
       wishListItems.push(
@@ -35,7 +35,6 @@ var WishList = React.createClass({
       );
     }
     for (var i = 0; i < etsy.length; i++) {
-      console.log('adding to etsy!')
       wishListItems.push(
         <WishListItem user={this.props.user} friend={this.props.friend.friend}
           etsy={etsy[i]}
@@ -43,7 +42,6 @@ var WishList = React.createClass({
       );
     }
     for (var i = 0; i < music.length; i++) {
-      console.log('adding to music!')
       wishListItems.push(
         <WishListItem user={this.props.user} friend={this.props.friend.friend}
           music={music[i]}

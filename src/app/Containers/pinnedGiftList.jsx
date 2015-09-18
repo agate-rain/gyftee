@@ -71,12 +71,12 @@ var PinnedGiftList = React.createClass({
       url: "http://localhost:" + PORT.PORT + "/api/friends/removegift",
       method: 'POST',
       data: {
-              type: type,
-              giftId : giftId,
-              friendId : friendId,
-              userId: userId,
-              giftObj: giftObj
-            },
+        type: type,
+        giftId : giftId,
+        friendId : friendId,
+        userId: userId,
+        giftObj: giftObj
+      },
       success: function(data) {
         // look for the id in each of the categories
         console.log('STATE',this.state)
@@ -87,9 +87,6 @@ var PinnedGiftList = React.createClass({
           newState[category] = list;
           this.setState(newState);
         }
-
-      /*  var newWishList = this.state.wishlist.filter(function(gift) { return gift.ASIN !== ASIN; });
-        this.setState({wishlist : newWishList});*/
       }.bind(this),
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
@@ -103,19 +100,14 @@ var PinnedGiftList = React.createClass({
       url: "http://localhost:" + PORT.PORT + "/api/friends/wishlist/" + friendId + "/" + userId,
       method: 'GET',
       success: function(data) {
-        console.log('GET WISH LIST DATA!!!!!!!!!!', data);
-
         this.setState({
             music: data.music,
             etsy: data.etsy,
         });
-        console.log('STATE AFTER SAVED', this.state);
-
         this.props.dispatch(saveWishlist(data));
         if(data.books && data.books.length > 0){
           this.getGiftFromAmazon(data.books);
         }
-
       },
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/friends/wishlist", status, err.toString());
@@ -131,7 +123,6 @@ var PinnedGiftList = React.createClass({
       data: {books : books},
       success: function(data) {
         this.setState({books : data});
-        console.log(">>>> SET BOOKS PART OF STATE", this.state);
       },
       error: function(xhr, status, err) {
         console.error("http://localhost:" + PORT.PORT + "/api/gifts/itemlookup", status, err.toString());

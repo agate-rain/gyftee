@@ -12,7 +12,7 @@ var UserHeader = React.createClass({
     };
   },
 
-  componentDidMount: function(){
+  componentDidMount: function() {
     $.ajax({
       url: "http://localhost:" + PORT.PORT + "/api/friends/image",
       method: 'POST',

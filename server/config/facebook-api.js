@@ -7,7 +7,9 @@ var fbApi = BPromise.promisify(fb.napi, fb);
 
 function friends(accessToken) {
     return fbApi('me/friends', {
-        fields: 'name,picture,birthday,hometown,gender,favorite_athletes,education,devices,location,relationship_status,inspirational_people,political,sports,books,music,albums',
+        fields: 'name,picture,birthday,hometown,gender,favorite_athletes,'
+            +'education,devices,location,relationship_status,'
+            +'inspirational_people,political,sports,books,music,albums',
         limit: 2000,
         access_token: accessToken
     });

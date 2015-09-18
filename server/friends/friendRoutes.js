@@ -1,7 +1,7 @@
 var friendController = require('./friendController.js');
 
 module.exports = function(app) {
-  // app is the userrouter injected from middleware file
+  // app is the friend router injected from middleware file
 
   app.post('/', friendController.getFriend);
   app.post('/savegift', friendController.saveGift);

@@ -19,14 +19,14 @@ var ImageClassify = React.createClass({
   },
 
   render: function() {
-    if(this.state){
+    if (this.state) {
       return (
         <div className="container image-view-container">
           <NavBar />
           <RecommendPhotoView albums={this.state.imageArr}/>
         </div>
       );
-    }else{
+    } else {
       return (
         <div className="container image-view-container">
           <NavBar />
@@ -58,9 +58,9 @@ var ImageClassify = React.createClass({
     });
   },
 
-  assembleImage : function(){
+  assembleImage : function() {
     var albumArr = this.props.friend.friend.albums.data;
-    ////////////////////////////////////////////////////////////////////
+
     var promises = [];
     var resultImageArr;
 
@@ -69,41 +69,33 @@ var ImageClassify = React.createClass({
       return new Promise(function(resolve, reject){
         FB.api('/v2.4/' + albumId + '/photos',
             'GET',
-            {"fields":"source,url,message,place", "access_token": access_token}, function(result) {
-              // if(err !== null){
-              //   return reject(err);
-              // }
+            {
+              "fields":"source,url,message,place",
+              "access_token": access_token
+            }, function(result) {
               resolve(result);
             });
       });
     };
 
-    albumArr.forEach(function(album){
+    albumArr.forEach(function(album) {
       promises.push(fetchImageSync(album.id));
     });
 
-    Promise.all(promises).then(function(result){
-      return result = result.map(function(item){
-        return item.data.map(function(photo){
+    Promise.all(promises).then(function(result) {
+      return result = result.map(function(item) {
+        return item.data.map(function(photo) {
           return photo;
         });
       });
-    }).then(function(result){
+    }).then(function(result) {
       resultImageArr = result;
       this.setState({imageArr : resultImageArr});
       this.getTags(resultImageArr);
     }.bind(this));
-
-    /////////////////////////////////////////////////////
-
-
-    // var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
-    // albumArr.forEach(function(album){
-    //   this.getImage(album.id,access_token);
-    // }.bind(this));
   },
 
-  getTags: function(imageArr){
+  getTags: function(imageArr) {
     $.ajax({
       url: 'http://localhost:' + PORT.PORT + '/api/gifts/gettagsfrommetamind/',
       method: 'POST',
@@ -120,19 +112,17 @@ var ImageClassify = React.createClass({
   },
 
   getImage : function(albumId) {
-    // 126455562499
     var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
     FB.api('/v2.4/' + albumId + '/photos',
-            'GET',
-            {"fields":"source,url,message,place", "access_token": access_token},
-            function(response) {
-              response.data.forEach(function(photo){
-                console.log(photo.source)
-              });
+      'GET',
+      {"fields":"source,url,message,place", "access_token": access_token},
+      function(response) {
+        response.data.forEach(function(photo) {
+          console.log(photo.source)
+        });
     });
   }
 });
-
 
 var mapStateToProps = function(state) {
   return {
@@ -143,13 +133,3 @@ var mapStateToProps = function(state) {
 };
 
 export default connect(mapStateToProps)(ImageClassify);
-
-  // fetchAlbum : function(friendId){
-  //   var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
-  //   FB.api('/v2.4/' + friendId + '/albums',
-  //           'GET',
-  //           {"fields":"name,location,id,message,privacy,place", "access_token": access_token},
-  //           function(response) {
-  //             console.log(response);
-  //   });
-  // },

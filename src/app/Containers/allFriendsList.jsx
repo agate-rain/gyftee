@@ -34,7 +34,7 @@ var AllFriendsList = React.createClass({
       method: 'POST',
       data: {access_token: JSON.parse(localStorage.getItem('access_token')).access_token}, // need to pass in the access token
       success: function(data) {
-        this.setState({fbFriends: JSON.parse(data)}); // check
+        this.setState({fbFriends: JSON.parse(data)});
         console.log(this.state.fbFriends);
       }.bind(this),
       error: function(xhr, status, err) {
