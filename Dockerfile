@@ -1,0 +1,3 @@
+FROM node:0.12.7-onbuild
+EXPOSE 4000
+EXPOSE 3000
