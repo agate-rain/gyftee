@@ -2,6 +2,34 @@
 
 Get personalized, surprising and irreverent gift ideas for your family and friends. 
 
+## User Flow
+
+#### Login through Facebook and Auth0
+
+![login](http://i.imgur.com/xOXnDC8.png?1)
+
+---
+
+#### Main Screen, sorted by upcoming birthdays
+![MainScreen](http://i.imgur.com/SzmxDrf.png)
+
+---
+
+#### Gift Recommendations based on liked books, music and photos
+![gifts1](http://i.imgur.com/m8xDoEs.png) ![gifts2](http://i.imgur.com/P5ZiUjo.png)
+
+------
+
+#### Get Etsy gifts based on tags from photos
+![etsy](http://i.imgur.com/VsaEwiH.png?1) 
+
+------ 
+
+#### Save gifts to wishlist, or click through to buy!
+![add](http://i.imgur.com/m48FHpR.png)
+
+----
+
 ## Dev Team 
 - Product Owner: Eric Le
 - Scrum Master: Jennie Kim Eldon
@@ -23,7 +51,6 @@ Type these commands to get started:
 
 - React 
 - Redux
-- Reapp 
 
 ### Back End 
 
