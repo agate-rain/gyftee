@@ -67,7 +67,7 @@ var PinnedGiftList = React.createClass({
     var userId = this.props.user.profile.identities[0].user_id;
 
     $.ajax({
-      url: "http://localhost:" + PORT.PORT + "/api/friends/removegift",
+      url: "http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/removegift",
       method: 'POST',
       data: {
               type: type,
@@ -89,7 +89,7 @@ var PinnedGiftList = React.createClass({
         this.setState({wishlist : newWishList});*/
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
   },
@@ -97,7 +97,7 @@ var PinnedGiftList = React.createClass({
   getWishList: function(friendId, userId) {
      $.ajax({
       context: this,
-      url: "http://localhost:" + PORT.PORT + "/api/friends/wishlist/" + friendId + "/" + userId,
+      url: "http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/wishlist/" + friendId + "/" + userId,
       method: 'GET',
       success: function(data) {
         console.log('GET WISH LIST DATA', data);
@@ -110,7 +110,7 @@ var PinnedGiftList = React.createClass({
         }
       },
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends/wishlist", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/wishlist", status, err.toString());
       }
     });
   },
@@ -118,7 +118,7 @@ var PinnedGiftList = React.createClass({
   getGiftFromAmazon: function(books) {
      $.ajax({
       context: this,
-      url: "http://localhost:" + PORT.PORT + "/api/gifts/itemlookup",
+      url: "http://" + PORT.HOST + ":" + PORT.PORT + "/api/gifts/itemlookup",
       method: 'POST',
       data: {books : books},
       success: function(data) {
@@ -126,7 +126,7 @@ var PinnedGiftList = React.createClass({
         console.log(">>>> SET BOOKS PART OF STATE", this.state);
       },
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/gifts/itemlookup", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/gifts/itemlookup", status, err.toString());
       }
     });
   }

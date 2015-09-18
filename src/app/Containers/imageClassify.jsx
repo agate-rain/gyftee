@@ -41,7 +41,7 @@ var ImageClassify = React.createClass({
   fetchFriendById: function(friendId) {
     $.ajax({
       context: this,
-      url: "http://localhost:" + PORT.PORT + "/api/friends/" + friendId,
+      url: "http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/" + friendId,
       method: "POST",
       data: {access_token: JSON.parse(localStorage.getItem("access_token")).access_token},
       // need to pass in the access token
@@ -53,7 +53,7 @@ var ImageClassify = React.createClass({
         // this.fetchAlbum(this.props.friend.friend.id);
       },
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
   },
@@ -105,7 +105,7 @@ var ImageClassify = React.createClass({
 
   getTags: function(imageArr){
     $.ajax({
-      url: 'http://localhost:' + PORT.PORT + '/api/gifts/gettagsfrommetamind/',
+      url: 'http://' + PORT.HOST + ':' + PORT.PORT + '/api/gifts/gettagsfrommetamind/',
       method: 'POST',
       data: {imageArr : imageArr},
       success: function(data) {
@@ -114,7 +114,7 @@ var ImageClassify = React.createClass({
       }.bind(this),
       error: function(xhr, status, err) {
         console.log("NOT WORKING", xhr, status, err);
-        //console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+        //console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
   },

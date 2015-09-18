@@ -14,7 +14,7 @@ var UserHeader = React.createClass({
 
   componentDidMount: function(){
     $.ajax({
-      url: "http://localhost:" + PORT.PORT + "/api/friends/image",
+      url: "http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/image",
       method: 'POST',
       data: {friendId : this.props.user.identities[0].user_id,
              access_token: JSON.parse(localStorage.getItem('access_token')).access_token}, // need to pass in the access token
@@ -26,7 +26,7 @@ var UserHeader = React.createClass({
         }
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
   },

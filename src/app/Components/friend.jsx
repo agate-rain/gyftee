@@ -18,7 +18,7 @@ var Friend = React.createClass({
   componentDidMount: function(){
     var userId = this.props.user.identities[0].user_id;
     var friendId = this.props.friend.id;
-    var url = "http://localhost:" + PORT.PORT + "/api/friends/wishlist/"+friendId+"/"+userId;
+    var url = "http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/wishlist/"+friendId+"/"+userId;
 
     $.ajax({
       url: url,
@@ -31,7 +31,7 @@ var Friend = React.createClass({
         }
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
   },

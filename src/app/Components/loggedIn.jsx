@@ -54,7 +54,7 @@ var LoggedIn = React.createClass({
 
   saveUserToDB: function(profile){
     $.ajax({
-      url: 'http://localhost:' + PORT.PORT + '/api/users/save',
+      url: 'http://' + PORT.HOST + ':' + PORT.PORT + '/api/users/save',
       method: 'POST',
       data: {user : profile},
       success: function(savedUser) {
@@ -65,7 +65,7 @@ var LoggedIn = React.createClass({
         }
       },
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/users/save", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/users/save", status, err.toString());
       }
     });
   },

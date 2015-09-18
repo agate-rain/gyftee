@@ -67,7 +67,7 @@
     "test": "mocha -R spec ./test/spec/**/*Spec.js --compilers js:babel/register --recursive",
     "test-node": "mocha -R spec ./test/spec/**/*Spec.js",
     "start": "webpack-dev-server & npm run server",
-    "server": "nodemon server/server.js",
+    "server": "node server/server.js",
     "deploy": "NODE_ENV=production webpack -p",
     "build": "webpack --progress --colors",
     "watch": "webpack-dev-server --hot --inline --progress --colors"

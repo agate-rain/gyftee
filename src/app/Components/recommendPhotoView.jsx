@@ -30,7 +30,7 @@ var RecommendPhotoView = React.createClass({
 
   getTags: function(imageURL){
     $.ajax({
-      url: 'http://localhost:' + PORT.PORT + '/api/gifts/gettagsfromclarifai/',
+      url: 'http://' + PORT.HOST + ':' + PORT.PORT + '/api/gifts/gettagsfromclarifai/',
       method: 'POST',
       data: {imageURL : imageURL},
       success: function(data) {
@@ -39,7 +39,7 @@ var RecommendPhotoView = React.createClass({
       }.bind(this),
       error: function(xhr, status, err) {
         console.log("NOT WORKING", xhr, status, err);
-        //console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+        //console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
   },
@@ -73,7 +73,7 @@ var RecommendPhotoView = React.createClass({
 
   searchEtsy: function(tagArr){
     $.ajax({
-      url: 'http://localhost:' + PORT.PORT + '/api/gifts/searchEtsy',
+      url: 'http://' + PORT.HOST + ':' + PORT.PORT + '/api/gifts/searchEtsy',
       method: 'POST',
       data: {tagArr : tagArr},
       success: function(data) {
@@ -82,7 +82,7 @@ var RecommendPhotoView = React.createClass({
       }.bind(this),
       error: function(xhr, status, err) {
         console.log("NOT WORKING", xhr, status, err);
-        //console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+        //console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
   }

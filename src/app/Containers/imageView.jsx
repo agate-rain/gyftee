@@ -41,7 +41,7 @@ var ImageView = React.createClass({
   fetchFriendById: function(friendId) {
     $.ajax({
       context: this,
-      url: "http://localhost:" + PORT.PORT + "/api/friends/" + friendId,
+      url: "http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/" + friendId,
       method: "POST",
       data: {access_token: JSON.parse(localStorage.getItem("access_token")).access_token},
       // need to pass in the access token
@@ -53,7 +53,7 @@ var ImageView = React.createClass({
         // this.fetchAlbum(this.props.friend.friend.id);
       },
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
   },

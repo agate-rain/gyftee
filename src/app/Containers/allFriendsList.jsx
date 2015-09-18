@@ -30,7 +30,7 @@ var AllFriendsList = React.createClass({
 
   fetchFacebookFriends: function() {
     $.ajax({
-      url: "http://localhost:" + PORT.PORT + "/api/friends/invitableFriends",
+      url: "http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/invitableFriends",
       method: 'POST',
       data: {access_token: JSON.parse(localStorage.getItem('access_token')).access_token}, // need to pass in the access token
       success: function(data) {
@@ -38,7 +38,7 @@ var AllFriendsList = React.createClass({
         console.log(this.state.fbFriends);
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends/invitableFriends", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/invitableFriends", status, err.toString());
       }
     });
   },

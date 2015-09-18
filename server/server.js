@@ -1,7 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var db = require('./config/dbConfig');
-var jwt = require('express-jwt');
 var dotenv = require('dotenv');
 var BPromise = require('bluebird');
 var fb = require('fb');
@@ -24,7 +23,7 @@ mongoose.connection.once('connected', function(){
 var isProduction = process.env.NODE_ENV === 'production';
 var port = isProduction ? process.env.PORT : 4000;
 
-app.listen(port);
+app.listen(port, '0.0.0.0');
 
 console.log('Magical gifts on port ' + port);
 module.exports = app;

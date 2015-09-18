@@ -11,7 +11,7 @@ var GiftItem = React.createClass({
     var userId = this.props.user.profile.identities[0].user_id;
 
     $.ajax({
-      url: "http://localhost:" + PORT.PORT + "/api/friends/savegift",
+      url: "http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/savegift",
       method: 'POST',
       data: {
               type: type,
@@ -23,7 +23,7 @@ var GiftItem = React.createClass({
         console.log("gift item with id " + giftId + " added to wishlist");
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
   },

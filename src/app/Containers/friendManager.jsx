@@ -37,7 +37,7 @@ var FriendManager = React.createClass({
   fetchFacebookFriends: function() {
     $.ajax({
       context: this,
-      url: "http://localhost:" + PORT.PORT + "/api/friends/invitableFriends",
+      url: "http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/invitableFriends",
       method: "POST",
       data: {access_token: JSON.parse(localStorage.getItem("access_token")).access_token},
       // need to pass in the access token
@@ -46,7 +46,7 @@ var FriendManager = React.createClass({
         this.setState({fbFriends: data}); // check
       },
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends/invitableFriends", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/invitableFriends", status, err.toString());
       }
     });
   },
@@ -54,7 +54,7 @@ var FriendManager = React.createClass({
   fetchAppFriends: function() {
     $.ajax({
       context: this,
-      url: "http://localhost:" + PORT.PORT + "/api/friends/",
+      url: "http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/",
       method: "POST",
       data: {access_token: JSON.parse(localStorage.getItem("access_token")).access_token},
       // need to pass in the access token
@@ -63,7 +63,7 @@ var FriendManager = React.createClass({
         this.props.dispatch(fetchFriends(data));
       },
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
   },
@@ -71,7 +71,7 @@ var FriendManager = React.createClass({
   fetchFriendById: function(friendId) {
     $.ajax({
       context: this,
-      url: "http://localhost:" + PORT.PORT + "/api/friends/" + friendId,
+      url: "http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/" + friendId,
       method: "POST",
       data: {access_token: JSON.parse(localStorage.getItem("access_token")).access_token},
       // need to pass in the access token
@@ -81,7 +81,7 @@ var FriendManager = React.createClass({
         this.props.dispatch(fetchFriend(data));
       },
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
   }

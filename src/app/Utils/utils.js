@@ -27,7 +27,7 @@ module.exports = {
   fetchImageUrlById: function(friendId, callback) {
     $.ajax({
       context: this,
-      url: "http://localhost:" + PORT.PORT + "/api/friends/image",
+      url: "http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/image",
       method: 'POST',
       data: {
         friendId : friendId,
@@ -37,7 +37,7 @@ module.exports = {
         callback(data);
       },
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends/image", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/image", status, err.toString());
         return null; // stock image if unsuccessful
       }
     });
@@ -50,7 +50,7 @@ module.exports = {
   fetchGiftByKeyWord: function(keyword, cb) {
     $.ajax({
       context: this,
-      url: "http://localhost:" + PORT.PORT + "/api/gifts/searchbykeyword",
+      url: "http://" + PORT.HOST + ":" + PORT.PORT + "/api/gifts/searchbykeyword",
       method: 'POST',
       data: {keyword : keyword},
       success: function(gift) {
@@ -61,7 +61,7 @@ module.exports = {
         }
       },
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
   },
@@ -69,7 +69,7 @@ module.exports = {
   getSimilarItem: function(gift, callback) {
     var ASIN = gift.ASIN;
     $.ajax({
-      url: 'http://localhost:' + PORT.PORT + '/api/gifts/searchsimilargifts',
+      url: 'http://' + PORT.HOST + ':' + PORT.PORT + '/api/gifts/searchsimilargifts',
       method: 'POST',
       data: {ASIN : ASIN},
       success: function(similargifts) {
@@ -84,7 +84,7 @@ module.exports = {
         }
       },
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends/searchsimilargifts", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/searchsimilargifts", status, err.toString());
         return null;
       }
     });
@@ -113,7 +113,7 @@ module.exports = {
   fetchFriendById: function(friendId, callback) {
     var access_token = this.getUserAccessToken();
     $.ajax({
-      url: "http://localhost:" + PORT.PORT + "/api/friends/" + friendId,
+      url: "http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/" + friendId,
       method: 'POST',
       data: {access_token: access_token},
       dataType: "json",
@@ -123,7 +123,7 @@ module.exports = {
         callback(data);
       },
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/friends/" + friendId, status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends/" + friendId, status, err.toString());
       }
     });
   },
@@ -149,7 +149,7 @@ module.exports = {
     loc = loc.split(" ").join("+").split(",+").join(",");
     // query
     $.ajax({
-      url: 'http://localhost:' + PORT.PORT + '/api/gifts/getevents',
+      url: 'http://' + PORT.HOST + ':' + PORT.PORT + '/api/gifts/getevents',
       method: 'POST',
       data: {loc: loc, startDate: startDate, endDate: endDate, artistArr: artistArr},
       success: function(data) {
@@ -186,7 +186,7 @@ module.exports = {
 
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/gifts/getevents", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/gifts/getevents", status, err.toString());
       }
     });
   },
@@ -194,14 +194,14 @@ module.exports = {
   getArtistImage: function(artist, callback) {
     $.ajax({
       context: this,
-      url: "http://localhost:" + PORT.PORT + "/api/gifts/getartistimage",
+      url: "http://" + PORT.HOST + ":" + PORT.PORT + "/api/gifts/getartistimage",
       method: 'POST',
       data: {artist : artist}, // need to pass in the access token
       success: function(data) {
         callback(data);
       },
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/gifts/getartistimage", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/gifts/getartistimage", status, err.toString());
 
       }
     });
@@ -221,7 +221,7 @@ module.exports = {
 
   searchEtsy: function(keyword, tagArr, callback){
     $.ajax({
-      url: 'http://localhost:' + PORT.PORT + '/api/gifts/searchEtsy',
+      url: 'http://' + PORT.HOST + ':' + PORT.PORT + '/api/gifts/searchEtsy',
       method: 'POST',
       data: {keyword : keyword},
       success: function(data) {
@@ -240,7 +240,7 @@ module.exports = {
       }.bind(this),
       error: function(xhr, status, err) {
         console.log("NOT WORKING", xhr, status, err);
-        //console.error("http://localhost:" + PORT.PORT + "/api/friends", status, err.toString());
+        //console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/friends", status, err.toString());
       }
     });
   },
@@ -291,7 +291,7 @@ module.exports = {
   getTagFromClarifai: function(imageArr, callback) {
     $.ajax({
       context: this,
-      url: "http://localhost:" + PORT.PORT + "/api/gifts/gettagsfromclarifai",
+      url: "http://" + PORT.HOST + ":" + PORT.PORT + "/api/gifts/gettagsfromclarifai",
       method: 'POST',
       data: {
         imageArr : imageArr
@@ -300,7 +300,7 @@ module.exports = {
         callback(data);
       },
       error: function(xhr, status, err) {
-        console.error("http://localhost:" + PORT.PORT + "/api/gifts/gettagsfromclarifai", status, err.toString());
+        console.error("http://" + PORT.HOST + ":" + PORT.PORT + "/api/gifts/gettagsfromclarifai", status, err.toString());
         return null; // stock image if unsuccessful
       }
     });
