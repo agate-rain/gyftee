@@ -7,9 +7,6 @@ var Promise = require('bluebird');
 var Clarifai = require('../config/clarifai_node.js');
 var url = require('url');
 var https = require('https');
-var client = (require('ituner')());
-// var etsyjs = require('etsy-js');
-// var etsyClient = etsyjs.client(process.env.ETSY_KEY_STRING);
 
 require('dotenv').load();
 var prodAdv = aws.createProdAdvClient(process.env.AMAZON_CLIENT_ID, process.env.AMAZON_CLIENT_SECRET, process.env.AMAZON_ASSOCIATE_TAG);
@@ -25,7 +22,7 @@ module.exports = {
   // passing in keyword (ie book title) that we get from facebook, and category, with the req body
   // TODO: need to add category parameter to the clicked object in client side
   lookupItemByKeyword: function(req, res) {
-    // hard coding for testing will refactor lataer
+
     var bookKeyword = req.body.keyword;
 
     var options = {
@@ -40,20 +37,8 @@ module.exports = {
   },
 
   itemLookup: function(req, res) {
-    // hard coding for testing will refactor lataer
+
     var books = req.body.books;
-
-    // if(giftArr.music.length !== 0){
-    //   var musicArr = giftArr.music;
-    // };
-
-    // if(giftArr.etsy.length !== 0){
-    //   var etsyArr = giftArr.etsy;
-    // };
-
-    // if(giftArr.hasOwnProperty(books)){
-    //   var bookArr = giftArr.books;
-    // });
 
     var promises = [];
 
@@ -77,7 +62,6 @@ module.exports = {
       promises.push(amazonSync(ASIN));
     });
     Promise.all(promises).then(function(result) {
-      //console.dir(result);
       result = result.map(function(item) {
         if (Array.isArray(item.Items.Item)) {
           return item.Items.Item[0];
@@ -92,9 +76,11 @@ module.exports = {
   // call to Amazon API to get similar items based on the 'liked' item
   getSimilarItems: function(req, res) {
     var ASIN = req.body.ASIN;
-    var options = {ItemId: ASIN, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
+    var options = {
+      ItemId: ASIN,
+      ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'
+    }
 
-    // var options = {SearchIndex: 'Books', Keywords: bookKeyword, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
     prodAdv.call('SimilarityLookup', options, function(err, result) {
       res.send(result);
     });
@@ -104,12 +90,9 @@ module.exports = {
 
     var promises = [];
 
-    //console.log(req.body.artist);
-
     var aristAsync = function(artist) {
       var url = "http://api.bandsintown.com/artists/" + artist
-      + "/?api_version=2.0&app_id=Gyfte,jsdbfljkfde2015";
-
+      + "/?api_version=2.0&app_id=jamBandGifts";
 
       var requestOptions = {
           url: url,
@@ -126,7 +109,6 @@ module.exports = {
       })
     };
 
-
     var artistArr = req.body.artist;
     if (artistArr) {
       artistArr.forEach(function(artist) {
@@ -134,23 +116,18 @@ module.exports = {
       });
 
       Promise.all(promises).then(function(result) {
-        // console.dir(result);
         result = result.map(function(item) {
           return item;
         });
-
-        // console.log(JSON.stringify(result, null, '\t'));
         res.status(200).send(result);
       });
     } else {
       res.status(500).send('No Artist Found!');
     }
-
   },
 
   getEvents: function(req, res, next) {
     var promises = [];
-    // console.log('>>> LIST OF ARTIST', req.body.artistArr)
 
     var eventAsync = function(artist) {
       // var options = {SearchIndex: "All", IdType: "ISBN", ItemId: bookASIN, ResponseGroup: 'Offers, ItemAttributes, Images, OfferSummary, PromotionSummary'}
@@ -177,7 +154,7 @@ module.exports = {
       })
     };
     var artistArr = req.body.artistArr;
-    if(artistArr){
+    if (artistArr) {
       artistArr.forEach(function(artist) {
         artist = artist.split(" ").join("+");
         promises.push(eventAsync(artist));
@@ -214,14 +191,13 @@ module.exports = {
       arr.push(image.source);
     })
 
-      var rand;
-      var randomGenerateArr = [];
-      for(var i = 0; i < 2; i++){
-        rand = Math.floor(Math.random() * arr.length) + 1
-        var temp = arr.splice(rand, 1);
-        randomGenerateArr.push(temp);
-      }
-
+    var rand;
+    var randomGenerateArr = [];
+    for(var i = 0; i < 2; i++){
+      rand = Math.floor(Math.random() * arr.length) + 1
+      var temp = arr.splice(rand, 1);
+      randomGenerateArr.push(temp);
+    }
 
     var getTagAsync = function(imageURL) {
       i++;
@@ -234,31 +210,21 @@ module.exports = {
         });
       });
     };
-      randomGenerateArr.forEach(function(image){
+      randomGenerateArr.forEach(function(image) {
         promises.push(getTagAsync(image));
       });
 
       Promise.all(promises).then(function(result) {
-        result = result.map(function(item){
+        result = result.map(function(item) {
           return item.results[0].result.tag.classes;
         })
         var finalArr = [];
-        for(var i = 0; i < result.length; i++){
+        for(var i = 0; i < result.length; i++) {
           finalArr.push({tag: result[i], image: randomGenerateArr[i][0]})
         }
 
         res.status(200).send(finalArr);
       });
-
-
-    // arr = arr.splice(0,1)[0];
-
-    // Clarifai.tagURL( arr , "image 1",function(err, result) {
-    //   console.log('Result',JSON.stringify(result, null, '\t'));
-    //   var tagArr = result.results[0].result.tag.classes;
-    //   console.log(tagArr)
-    //   res.send(200, tagArr);
-    // });
   },
 
   getTagsFromMetamind: function(req, res, next) {
@@ -286,19 +252,6 @@ module.exports = {
 
     post_request.write(post_data);
     post_request.end();
-
-    // var options = {
-    //   uri: 'https://www.metamind.io/vision/classify',
-    //   image_url: imageURL,
-    //   classifier_id: 'imagenet-1k-net',
-    //   headers: {
-    //     'Authorization': API_KEY,
-    //   }
-    // }
-    // var result;
-    // request(options).on('response', function(response) {
-    //     console.log(response.body);
-    // });
   },
 
   searchEtsy: function(req, res, next) {
@@ -315,10 +268,6 @@ module.exports = {
       if (!error && response.statusCode === 200) {
         var str = JSON.stringify(response.body, null, '\t').replace(/\\/g, "").substr(6);
         str = JSON.parse(str.slice(0, str.length -3));
-        // console.log('>>>>>>>RESPONSE', JSON.stringify(str, null, '\t'));
-        // console.log('>>>>>>>RESPONSE', JSON.stringify(response, null, '\t').replace(/\\/g, "")).substr(5);
-       // var body = body.replace(/\\/g, "").substr(5);
-        // console.log('>>>>>>>BODY', JSON.stringify(JSON.parse(body.slice(0, body.length -2)), null, '\t'));
         res.send(str);
       } else {
         res.send({
@@ -328,8 +277,5 @@ module.exports = {
       }
     });
   }
-
-  // TODO: search etsy using image tags or other facebook metadata
-  // and get surprise gifts (grab bag feature)
 
 };
