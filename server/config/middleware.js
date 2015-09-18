@@ -20,7 +20,6 @@ module.exports = function(app, express) {
   // define API paths
   app.use('/api/users', userRouter);
   app.use('/api/gifts', giftRouter);
-  app.use('/api/giftlists', giftListRouter);
   app.use('/api/friends', friendRouter);
 
   //TODO persist redux state on client on browser refresh
