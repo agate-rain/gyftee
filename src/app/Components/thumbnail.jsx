@@ -32,20 +32,23 @@ var Thumbnail = React.createClass({
     if (this.props.book) {
       element = (
         <div>
-          <div className="book">
+          <div className="book slideLeft">
             <img className="book-img" src={this.props.book.details.MediumImage.URL}
           onClick={this.navToGiftDetail.bind(this, this.props.book.details.ASIN)}/>
+          <div className="book-title-price">{this.props.book.details.Offers.Offer.OfferListing.Price.FormattedPrice} </div>
           </div>
+
           <div className="book-title-thumb">{this.truncateTitle(this.props.book.details.ItemAttributes.Title)} </div>
+
         </div>
       );
     }
     if (this.props.concert) {
       element = (
         <div className="concert-li-container container">
-          <div className="concert-thumb-container">
+          <div className="concert-thumb-container slideLeft">
             <a className="concert-link">
-              <img className="book concert-thumb" src={this.props.concert.basedOn.thumb_url} onClick={this.navToGiftDetail.bind(this, this.props.concert.details.id)}></img>
+              <img className="book concert-thumb " src={this.props.concert.basedOn.thumb_url} onClick={this.navToGiftDetail.bind(this, this.props.concert.details.id)}></img>
             </a>
           </div>
           <div className="concert-details-container">
@@ -57,9 +60,9 @@ var Thumbnail = React.createClass({
     if (this.props.etsy) {
       element = (
         <div className="concert-li-container container">
-          <div className="concert-thumb-container">
+          <div className="concert-thumb-container slideLeft">
             <a className="concert-link">
-              <img className="book concert-thumb" src={this.props.etsy.details.Images[0].url_570xN} onClick={this.navToGiftDetail.bind(this, this.props.etsy.details.listing_id)}></img>
+              <img className="book concert-thumb " src={this.props.etsy.details.Images[0].url_570xN} onClick={this.navToGiftDetail.bind(this, this.props.etsy.details.listing_id)}></img>
             </a>
           </div>
           <div className="concert-details-container">

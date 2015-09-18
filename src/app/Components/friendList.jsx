@@ -15,7 +15,7 @@ var FriendList = React.createClass({
       <div className='friend-list'>
         <UserHeader user={this.props.user} />
 
-        <div className="bday-list-header">
+        <div className="bday-list-header slideRight">
           {this.props.appFriends.length} UPCOMING BIRTHDAYS
         </div>
           {

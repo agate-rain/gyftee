@@ -921,3 +921,36 @@ ul {
 .section.open button:after {
   transform: translate(0%, -50%) rotate(45deg);
 }
+
+.category-count {
+    display: inline-block;
+    width: 3em;
+    line-height: initial;
+    -moz-border-radius: 30px;
+    border-radius: 3em;
+    background-color: #004851;
+    color: white;
+    text-align: center;
+    font-size: 0.7em;
+    margin-left: 10px;
+}
+
+.book-title-price{
+    color: #00B7BB;
+    font-size: 0.5em;
+    border-radius: 0.5em;
+    background: white;
+    border-color: #00B7BB;
+    border-style: solid;
+    padding: 4px 4px 4px 4px;
+    position: absolute;
+    display: block;
+    top: 2px;
+    left: auto;
+    right: 0px;
+    margin-top: -10px;
+    margin-right: -18px;
+    z-index: 100;
+    opacity: 0.9;
+    border-width: 0.9px;
+}
