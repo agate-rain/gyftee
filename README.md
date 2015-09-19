@@ -142,116 +142,116 @@ See [_CONTRIBUTING.md](_CONTRIBUTING.md) for contribution guidelines.
 
 ## File Structure
 
-.
-├── Dockerfile (docker deployment)
-├── Procfile (heroku deployment)
-├── README.md
-├── _CONTRIBUTING.md
-├── bower.json
-├── build
-│   ├── bundle.js
-│   ├── bundle.js.map
-│   ├── css
-│   │   ├── bootstrap.min.css
-│   │   ├── slick.css
-│   │   └── styles.css
-│   ├── img
-│   │   ├── amazon-prime.png
-│   │   ├── bg-tile.jpg
-│   │   ├── g-icon.png
-│   │   ├── gyftee-icon.png
-│   │   ├── icons
-│   │   ├── profile.png
-│   │   └── spinner.gif
-│   ├── index.html
-│   └── scripts
-│       ├── iws6ohy.js
-│       ├── jquery-2.1.1.min.js
-│       ├── lock-7.min.js
-│       ├── modernizr.js
-│       └── sdk.js
-├── circle.yml
-├── data
-│   ├── amazonData.txt
-│   ├── amazonHardCodeData
-│   │   └── data.txt
-│   ├── db
-│   │   ├── gifty.0
-│   │   ├── gifty.ns
-│   │   ├── journal
-│   │   ├── local.0
-│   │   ├── local.ns
-│   │   ├── mongod.lock
-│   │   └── storage.bson
-│   ├── facebookHardCodedData
-│   │   └── fbUserInfo.js
-│   ├── hardCoded.js
-│   └── metamind
-│       └── test.py
-├── docs
-│   ├── amazonHardCodeData
-│   │   ├── amazonDataWithImageandPrice.txt
-│   │   └── data.txt
-│   ├── api.md
-│   └── databaseSchema.md
-├── karma.conf.js
-├── node_modules
-├── package.json
-├── server
-│   ├── amazon.js
-│   ├── config
-│   │   ├── clarifai_node.js
-│   │   ├── dbConfig.js
-│   │   ├── facebook-api.js
-│   │   └── middleware.js
-│   ├── friends
-│   │   ├── friendController.js
-│   │   └── friendRoutes.js
-│   ├── gifts
-│   │   ├── giftController.js
-│   │   ├── giftModel.js
-│   │   └── giftRoutes.js
-│   ├── server.js
-│   └── users
-│       ├── userController.js
-│       ├── userModel.js
-│       └── userRoutes.js
-├── src
-│   ├── app
-│   │   ├── Actions
-│   │   ├── Components
-│   │   ├── Constants
-│   │   ├── Containers
-│   │   ├── Reducers
-│   │   ├── Store
-│   │   └── Utils
-│   ├── client
-│   │   ├── css
-│   │   ├── html-templates
-│   │   ├── img
-│   │   └── scripts
-│   ├── config
-│   │   ├── auth0.js
-│   │   ├── channel.html
-│   │   ├── port.js
-│   │   └── sdk.js
-│   ├── index.html
-│   ├── index.jsx
-│   ├── lib
-│   │   ├── bootstrap
-│   │   ├── jquery
-│   │   ├── marked
-│   │   ├── slick-carousel
-│   │   └── underscore
-│   └── util
-│       ├── sliderSettings.js
-│       └── utility.js
-├── test
-│   └── spec
-│       ├── friendModelSpec.js
-│       ├── giftModelSpec.js
-│       ├── serverSpec.js
-│       ├── serverUtils.js
-│       └── userModelSpec.js
-├── webpack.config.js
-└── webpack.production.config.js
+.  
+├── Dockerfile (docker deployment)  
+├── Procfile (heroku deployment)  
+├── README.md  
+├── _CONTRIBUTING.md  
+├── bower.json  
+├── build  
+│   ├── bundle.js  
+│   ├── bundle.js.map  
+│   ├── css  
+│   │   ├── bootstrap.min.css  
+│   │   ├── slick.css  
+│   │   └── styles.css  
+│   ├── img  
+│   │   ├── amazon-prime.png  
+│   │   ├── bg-tile.jpg  
+│   │   ├── g-icon.png  
+│   │   ├── gyftee-icon.png  
+│   │   ├── icons  
+│   │   ├── profile.png  
+│   │   └── spinner.gif  
+│   ├── index.html  
+│   └── scripts  
+│       ├── iws6ohy.js  
+│       ├── jquery-2.1.1.min.js  
+│       ├── lock-7.min.js  
+│       ├── modernizr.js 
+│       └── sdk.js  
+├── circle.yml  
+├── data  
+│   ├── amazonData.txt  
+│   ├── amazonHardCodeData  
+│   │   └── data.txt  
+│   ├── db  
+│   │   ├── gifty.0  
+│   │   ├── gifty.ns  
+│   │   ├── journal  
+│   │   ├── local.0  
+│   │   ├── local.ns  
+│   │   ├── mongod.lock  
+│   │   └── storage.bson  
+│   ├── facebookHardCodedData  
+│   │   └── fbUserInfo.js  
+│   ├── hardCoded.js  
+│   └── metamind  
+│       └── test.py  
+├── docs  
+│   ├── amazonHardCodeData  
+│   │   ├── amazonDataWithImageandPrice.txt  
+│   │   └── data.txt  
+│   ├── api.md  
+│   └── databaseSchema.md  
+├── karma.conf.js  
+├── node_modules  
+├── package.json  
+├── server  
+│   ├── amazon.js  
+│   ├── config  
+│   │   ├── clarifai_node.js  
+│   │   ├── dbConfig.js  
+│   │   ├── facebook-api.js  
+│   │   └── middleware.js  
+│   ├── friends  
+│   │   ├── friendController.js  
+│   │   └── friendRoutes.js  
+│   ├── gifts  
+│   │   ├── giftController.js  
+│   │   ├── giftModel.js  
+│   │   └── giftRoutes.js  
+│   ├── server.js  
+│   └── users  
+│       ├── userController.js  
+│       ├── userModel.js  
+│       └── userRoutes.js  
+├── src  
+│   ├── app  
+│   │   ├── Actions  
+│   │   ├── Components  
+│   │   ├── Constants  
+│   │   ├── Containers  
+│   │   ├── Reducers  
+│   │   ├── Store  
+│   │   └── Utils  
+│   ├── client  
+│   │   ├── css  
+│   │   ├── html-templates  
+│   │   ├── img  
+│   │   └── scripts  
+│   ├── config  
+│   │   ├── auth0.js  
+│   │   ├── channel.html  
+│   │   ├── port.js  
+│   │   └── sdk.js  
+│   ├── index.html  
+│   ├── index.jsx  
+│   ├── lib  
+│   │   ├── bootstrap  
+│   │   ├── jquery  
+│   │   ├── marked  
+│   │   ├── slick-carousel  
+│   │   └── underscore  
+│   └── util  
+│       ├── sliderSettings.js  
+│       └── utility.js  
+├── test  
+│   └── spec  
+│       ├── friendModelSpec.js  
+│       ├── giftModelSpec.js  
+│       ├── serverSpec.js  
+│       ├── serverUtils.js  
+│       └── userModelSpec.js  
+├── webpack.config.js  
+└── webpack.production.config.js  
