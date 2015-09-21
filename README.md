@@ -62,33 +62,33 @@ Type these commands to get started:
 
 **'/api/users/'**
 
-  post '/save'
-  post '/friends'
+  post '/save'  
+  post '/friends'  
 
 **'/api/friends'**
 
-  post '/' get friend
-  post '/savegift' save a gift
-  post '/removegift' remove a gift
+  post '/' get friend  
+  post '/savegift' save a gift  
+  post '/removegift' remove a gift  
 
-  get '/wishlist/:friendId/:userId' get wishlist for a user's friend
+  get '/wishlist/:friendId/:userId' get wishlist for a user's friend  
 
-  post '/image' get image url from Facebook
-  post '/invitableFriends' get invitable friends from Facebook
-  post '/:friendId', get friend by Facebook ID
+  post '/image' get image url from Facebook  
+  post '/invitableFriends' get invitable friends from Facebook  
+  post '/:friendId', get friend by Facebook ID  
 
 **'/api/gifts'**
 
-  post '/gettagsfromclarifai'
-  post '/gettagsfrommetamind'
-  post '/searchEtsy'
-  post '/searchbykeyword'
-  post '/itemlookup'
-  post '/searchsimilargifts'
-  post '/getevents'
-  post '/getartistimage'
+  post '/gettagsfromclarifai'  
+  post '/gettagsfrommetamind'  
+  post '/searchEtsy'  
+  post '/searchbykeyword'  
+  post '/itemlookup'  
+  post '/searchsimilargifts'  
+  post '/getevents'  
+  post '/getartistimage'  
 
-### EXTERNAL API
+### EXTERNAL APIS
 
 Gyftee makes use of external APIs to retrieve data, which include...
   - [Facebook Graph](https://developers.facebook.com/docs/graph-api)
